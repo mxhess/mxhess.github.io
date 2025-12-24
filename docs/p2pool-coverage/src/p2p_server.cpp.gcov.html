@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-24 16:57:14</td>
+            <td class="headerValue">2025-12-24 18:57:16</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -1301,7 +1301,7 @@
 <span id="L1239"><span class="lineNum">    1239</span> <span class="tlaUNC">           0 :                                         LOGERR(1, &quot;compact blob broadcast is broken, error &quot; &lt;&lt; result);</span></span>
 <span id="L1240"><span class="lineNum">    1240</span> <span class="tlaUNC">           0 :                                 }</span></span>
 <span id="L1241"><span class="lineNum">    1241</span> <span class="tlaUNC">           0 :                         }</span></span>
-<span id="L1242"><span class="lineNum">    1242</span> <span class="tlaUNC">           0 :                         {</span></span>
+<span id="L1242"><span class="lineNum">    1242</span> <span class="tlaUNC">           0 :                         if (!data-&gt;pruned_blob.empty()) {</span></span>
 <span id="L1243"><span class="lineNum">    1243</span> <span class="tlaUNC">           0 :                                 PoolBlock check;</span></span>
 <span id="L1244"><span class="lineNum">    1244</span> <span class="tlaUNC">           0 :                                 const int result = check.deserialize(data-&gt;pruned_blob.data(), data-&gt;pruned_blob.size(), m_pool-&gt;side_chain(), nullptr, false);</span></span>
 <span id="L1245"><span class="lineNum">    1245</span> <span class="tlaUNC">           0 :                                 if (result != 0) {</span></span>
