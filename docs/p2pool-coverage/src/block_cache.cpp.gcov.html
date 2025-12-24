@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-24 18:57:16</td>
+            <td class="headerValue">2025-12-24 20:26:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -218,7 +218,7 @@
 <span id="L156"><span class="lineNum">     156</span>              :                         continue;</span>
 <span id="L157"><span class="lineNum">     157</span>              :                 }</span>
 <span id="L158"><span class="lineNum">     158</span>              : </span>
-<span id="L159"><span class="lineNum">     159</span>              :                 if (block.deserialize(block_data + sizeof(uint32_t), n, side_chain, uv_default_loop_checked(), false) == 0) {</span>
+<span id="L159"><span class="lineNum">     159</span>              :                 if (block.deserialize(block_data + sizeof(uint32_t), n, side_chain, nullptr, false) == 0) {</span>
 <span id="L160"><span class="lineNum">     160</span>              :                         server.add_cached_block(block);</span>
 <span id="L161"><span class="lineNum">     161</span>              :                         ++blocks_loaded;</span>
 <span id="L162"><span class="lineNum">     162</span>              :                 }</span>
@@ -440,7 +440,7 @@
 <span id="L378"><span class="lineNum">     378</span> <span class="tlaUNC">           0 :                         continue;</span></span>
 <span id="L379"><span class="lineNum">     379</span> <span class="tlaUNC">           0 :                 }</span></span>
 <span id="L380"><span class="lineNum">     380</span>              : </span>
-<span id="L381"><span class="lineNum">     381</span> <span class="tlaUNC">           0 :                 if (block.deserialize(data + sizeof(uint32_t), n, side_chain, uv_default_loop_checked(), false) == 0) {</span></span>
+<span id="L381"><span class="lineNum">     381</span> <span class="tlaUNC">           0 :                 if (block.deserialize(data + sizeof(uint32_t), n, side_chain, nullptr, false) == 0) {</span></span>
 <span id="L382"><span class="lineNum">     382</span> <span class="tlaUNC">           0 :                         server.add_cached_block(block);</span></span>
 <span id="L383"><span class="lineNum">     383</span> <span class="tlaUNC">           0 :                         ++blocks_loaded;</span></span>
 <span id="L384"><span class="lineNum">     384</span> <span class="tlaUNC">           0 :                 }</span></span>
