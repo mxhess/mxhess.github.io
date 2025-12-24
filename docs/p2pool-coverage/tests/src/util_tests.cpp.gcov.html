@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - tests/src/util_tests.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">tests/src</a> - util_tests.cpp<span style="font-size: 80%;"> (source / <a href="util_tests.cpp.func-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">188</td>
+            <td class="headerCovTableEntry">188</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2025-12-24 00:16:12</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+          </tr>
+                  <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /*</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * This file is part of the Monero P2Pool &lt;https://github.com/SChernykh/p2pool&gt;</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * Copyright (c) 2021-2024 SChernykh &lt;https://github.com/SChernykh&gt;</span>
+<span id="L4"><span class="lineNum">       4</span>              :  *</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * This program is free software: you can redistribute it and/or modify</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * it under the terms of the GNU General Public License as published by</span>
+<span id="L7"><span class="lineNum">       7</span>              :  * the Free Software Foundation, version 3.</span>
+<span id="L8"><span class="lineNum">       8</span>              :  *</span>
+<span id="L9"><span class="lineNum">       9</span>              :  * This program is distributed in the hope that it will be useful, but</span>
+<span id="L10"><span class="lineNum">      10</span>              :  * WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span id="L11"><span class="lineNum">      11</span>              :  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU</span>
+<span id="L12"><span class="lineNum">      12</span>              :  * General Public License for more details.</span>
+<span id="L13"><span class="lineNum">      13</span>              :  *</span>
+<span id="L14"><span class="lineNum">      14</span>              :  * You should have received a copy of the GNU General Public License</span>
+<span id="L15"><span class="lineNum">      15</span>              :  * along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span id="L16"><span class="lineNum">      16</span>              :  */</span>
+<span id="L17"><span class="lineNum">      17</span>              : </span>
+<span id="L18"><span class="lineNum">      18</span>              : #include &quot;common.h&quot;</span>
+<span id="L19"><span class="lineNum">      19</span>              : #include &quot;util.h&quot;</span>
+<span id="L20"><span class="lineNum">      20</span>              : extern &quot;C&quot; {</span>
+<span id="L21"><span class="lineNum">      21</span>              : #include &quot;crypto-ops.h&quot;</span>
+<span id="L22"><span class="lineNum">      22</span>              : }</span>
+<span id="L23"><span class="lineNum">      23</span>              : #include &quot;gtest/gtest.h&quot;</span>
+<span id="L24"><span class="lineNum">      24</span>              : </span>
+<span id="L25"><span class="lineNum">      25</span>              : namespace p2pool {</span>
+<span id="L26"><span class="lineNum">      26</span>              : </span>
+<span id="L27"><span class="lineNum">      27</span>              : TEST(util, varint)</span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC tlaBgGNC">           1 : {</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">           1 :         std::vector&lt;uint8_t&gt; v;</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">           1 :         v.reserve(16);</span></span>
+<span id="L31"><span class="lineNum">      31</span>              : </span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">           1 :         uint64_t check;</span></span>
+<span id="L33"><span class="lineNum">      33</span>              : </span>
+<span id="L34"><span class="lineNum">      34</span>              :         // 0...2^7 - 1</span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">         129 :         for (uint64_t value = 0; value &lt; 0x80; ++value) {</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">         128 :                 v.clear();</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">         128 :                 writeVarint(value, v);</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">         128 :                 ASSERT_EQ(v.size(), 1);</span></span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">         128 :                 ASSERT_EQ(v[0], value);</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">         128 :                 ASSERT_EQ(readVarint(v.data(), v.data() + v.size(), check), v.data() + v.size());</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">         128 :                 ASSERT_EQ(check, value);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">         128 :         }</span></span>
+<span id="L43"><span class="lineNum">      43</span>              : </span>
+<span id="L44"><span class="lineNum">      44</span>              :         // 2^7...2^14 - 1</span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">       16257 :         for (uint64_t value = 0x80; value &lt; 0x4000; ++value) {</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">       16256 :                 v.clear();</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">       16256 :                 writeVarint(value, v);</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">       16256 :                 ASSERT_EQ(v.size(), 2);</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">       16256 :                 ASSERT_EQ(v[0], (value &amp; 0x7F) | 0x80);</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">       16256 :                 ASSERT_EQ(v[1], value &gt;&gt; 7);</span></span>
+<span id="L51"><span class="lineNum">      51</span> <span class="tlaGNC">       16256 :                 ASSERT_EQ(readVarint(v.data(), v.data() + v.size(), check), v.data() + v.size());</span></span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">       16256 :                 ASSERT_EQ(check, value);</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">       16256 :         }</span></span>
+<span id="L54"><span class="lineNum">      54</span>              : </span>
+<span id="L55"><span class="lineNum">      55</span>              :         // 2^14...2^21 - 1</span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">     2080769 :         for (uint64_t value = 0x4000; value &lt; 0x200000; ++value) {</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">     2080768 :                 v.clear();</span></span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">     2080768 :                 writeVarint(value, v);</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">     2080768 :                 ASSERT_EQ(v.size(), 3);</span></span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">     2080768 :                 ASSERT_EQ(v[0], (value &amp; 0x7F) | 0x80);</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">     2080768 :                 ASSERT_EQ(v[1], ((value &gt;&gt; 7) &amp; 0x7F) | 0x80);</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">     2080768 :                 ASSERT_EQ(v[2], value &gt;&gt; 14);</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">     2080768 :                 ASSERT_EQ(readVarint(v.data(), v.data() + v.size(), check), v.data() + v.size());</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">     2080768 :                 ASSERT_EQ(check, value);</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">     2080768 :         }</span></span>
+<span id="L66"><span class="lineNum">      66</span>              : </span>
+<span id="L67"><span class="lineNum">      67</span>              :         // 2^64 - 1</span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">           1 :         v.clear();</span></span>
+<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">           1 :         writeVarint(std::numeric_limits&lt;uint64_t&gt;::max(), v);</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">           1 :         ASSERT_EQ(v.size(), 10);</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">          10 :         for (int i = 0; i &lt; 9; ++i) {</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">           9 :                 ASSERT_EQ(v[i], 0xFF);</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">           9 :         }</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">           1 :         ASSERT_EQ(v[9], 1);</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(v.data(), v.data() + v.size(), check), v.data() + v.size());</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">           1 :         ASSERT_EQ(check, std::numeric_limits&lt;uint64_t&gt;::max());</span></span>
+<span id="L77"><span class="lineNum">      77</span>              : </span>
+<span id="L78"><span class="lineNum">      78</span>              :         // Invalid value 1</span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">           1 :         uint8_t buf[16];</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">           1 :         memset(buf, -1, sizeof(buf));</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(buf, buf + sizeof(buf), check), nullptr);</span></span>
+<span id="L82"><span class="lineNum">      82</span>              : </span>
+<span id="L83"><span class="lineNum">      83</span>              :         // Invalid value 2</span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">           1 :         uint8_t buf2[1] = { 0x80 };</span></span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(buf2, buf2 + 1, check), nullptr);</span></span>
+<span id="L86"><span class="lineNum">      86</span>              : </span>
+<span id="L87"><span class="lineNum">      87</span>              :         // Invalid value 3</span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaGNC">           1 :         uint8_t buf3[16];</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">           1 :         memset(buf3, 128, sizeof(buf3));</span></span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(buf3, buf3 + sizeof(buf3), check), nullptr);</span></span>
+<span id="L91"><span class="lineNum">      91</span>              : </span>
+<span id="L92"><span class="lineNum">      92</span>              :         // Invalid value 4</span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC">           1 :         uint32_t check2;</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaGNC">           1 :         uint8_t buf4[] = {255, 255, 255, 255, 127};</span></span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(buf4, buf4 + sizeof(buf4), check2), nullptr);</span></span>
+<span id="L96"><span class="lineNum">      96</span>              : </span>
+<span id="L97"><span class="lineNum">      97</span>              :         // Invalid value 5</span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaGNC">           1 :         uint8_t buf5[] = {128, 0};</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(buf5, buf5 + sizeof(buf5), check), nullptr);</span></span>
+<span id="L100"><span class="lineNum">     100</span>              : </span>
+<span id="L101"><span class="lineNum">     101</span>              :         // Invalid value 6 (2^64)</span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaGNC">           1 :         uint8_t buf6[] = {128, 128, 128, 128, 128, 128, 128, 128, 128, 2};</span></span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaGNC">           1 :         ASSERT_EQ(readVarint(buf6, buf6 + sizeof(buf6), check), nullptr);</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">           1 : }</span></span>
+<span id="L105"><span class="lineNum">     105</span>              : </span>
+<span id="L106"><span class="lineNum">     106</span>              : TEST(util, bsr)</span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaGNC">           1 : {</span></span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">          65 :         for (uint64_t i = 0, x = 1; i &lt;= 63; ++i, x &lt;&lt;= 1) {</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">          64 :                 ASSERT_EQ(bsr(x), i);</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">          64 :                 ASSERT_EQ(bsr_reference(x), i);</span></span>
+<span id="L111"><span class="lineNum">     111</span>              : </span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">          64 :                 const uint64_t y = x | (x - 1);</span></span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaGNC">          64 :                 ASSERT_EQ(bsr(y), i);</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaGNC">          64 :                 ASSERT_EQ(bsr_reference(y), i);</span></span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaGNC">          64 :         }</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaGNC">           1 : }</span></span>
+<span id="L117"><span class="lineNum">     117</span>              : </span>
+<span id="L118"><span class="lineNum">     118</span>              : TEST(util, onion)</span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">           1 : {</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">           1 :         const std::string tests[] = {</span></span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaGNC">           1 :                 &quot;yucmgsbw7nknw7oi3bkuwudvc657g2xcqahhbjyewazusyytapqo4xid.onion&quot;,</span></span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">           1 :                 &quot;p2pool2giz2r5cpqicajwoazjcxkfujxswtk3jolfk2ubilhrkqam2id.onion&quot;,</span></span>
+<span id="L123"><span class="lineNum">     123</span> <span class="tlaGNC">           1 :                 &quot;p2pseeds5qoenuuseyuqxhzzefzxpbhiq4z4h5hfbry5dxd5y2fwudyd.onion&quot;,</span></span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaGNC">           1 :                 &quot;testhrjytc63cnmcgff5tlcz2phd4sixeogfkjq6uinihwcs2awm3oad.onion&quot;,</span></span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaGNC">           1 :                 &quot;testsao5qh4qz4ne3iqytyve6a6ijbzmrok6wbauwxfzplv4g276elyd.onion&quot;,</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC">           1 :                 &quot;testaohgecnzvl6k25fvhkqaizc3vu6e6dxg62qgbtzqmoflnj5bk6id.onion&quot;,</span></span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaGNC">           1 :                 &quot;testgamrbpyy5e6kogd5kk4cdzvr6qzd6w3fj5eyxa5ccyaudwuwx3ad.onion&quot;,</span></span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaGNC">           1 :                 &quot;testdriz2m4xh6czzkjmbsnicqoyqyyiilhkogp3n6if7x5qaairetid.onion&quot;,</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaGNC">           1 :                 &quot;testc7rluz33af3wlypoiwamwzti6gup3il2kqkf7ly7td5qggpvknyd.onion&quot;,</span></span>
+<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC">           1 :                 &quot;testlxqch2dtemlwjc4bt3y6fj3vvknjksywugceibnhscybw4vlnlyd.onion&quot;,</span></span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">           1 :                 &quot;testbbx66qk4cgy342mm32jrod6k6zi4gu6bfvyjxsx3m6mf4khvuyqd.onion&quot;,</span></span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaGNC">           1 :                 &quot;testpita5yopwhs4utuk5ylfndzkijxv3lh7d6gjifxjg7oriuhn3mqd.onion&quot;,</span></span>
+<span id="L133"><span class="lineNum">     133</span> <span class="tlaGNC">           1 :                 &quot;testdtmzbyzi47b677ocnoyi7w6oylcnyqh77pl2yv5q22qla7agz7qd.onion&quot;,</span></span>
+<span id="L134"><span class="lineNum">     134</span> <span class="tlaGNC">           1 :                 &quot;testv3qobc33v3gfjnccs24eorkrtdzh5e4jbth5yag32sd5d24xazid.onion&quot;,</span></span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC">           1 :                 &quot;testgwoazhovosqn2yfqaewkd6snynwm66qb5egcbenh3m54yi3ur4yd.onion&quot;,</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">           1 :                 &quot;testu2oufhxgp6qqehf2ytpxqvmr3qm6dit3k7p3ixhnxjbxwqmfooyd.onion&quot;,</span></span>
+<span id="L137"><span class="lineNum">     137</span> <span class="tlaGNC">           1 :                 &quot;testvi6s6dp5reui35lv6lnu3tzxmu4h3dofejjmmttr6ax3eshvefid.onion&quot;,</span></span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaGNC">           1 :                 &quot;testsap5p4lorjlvo4ovs6yxmn4lb3lgehsjyolqfcm7l53rqeswvnid.onion&quot;,</span></span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaGNC">           1 :                 &quot;testexfa567ampq3dkw5smfmofci6qvicl3niaoe6pneekcheqdsbfad.onion&quot;,</span></span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC">           1 :                 &quot;testhnodrpe2qukswkp5554csphtq325pnnpm7uqs4ats5es7gcujhqd.onion&quot;,</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaGNC">           1 :                 &quot;testneyu3idcjyvgmdylszcebkw5xsl5bnxyfwdu27fcbb2cm7pcs3id.onion&quot;,</span></span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">           1 :                 &quot;test5y4it65r5lnm3w4en4lj3bmy35nypmbgshkawt2h2ep3f75yuwyd.onion&quot;,</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">           1 :                 &quot;testknxevfffltpt2iq5xioye3z52eoh4aefy3aegfmhogqf7w6xtnqd.onion&quot;,</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">           1 :                 &quot;testshitk3xpt5aex3doyepmbvpsbzptjr6ujso6gahz4arryp7s6vyd.onion&quot;,</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">           1 :                 &quot;testfin66dkzp7ozolfu7exjxi3cuck35xunt4a56xfanivs4xqsfbqd.onion&quot;,</span></span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaGNC">           1 :                 &quot;testec5noqmo2javrlye5higddskhvsialohrwwi2naoqkxrrwhucaid.onion&quot;,</span></span>
+<span id="L147"><span class="lineNum">     147</span> <span class="tlaGNC">           1 :                 &quot;testbo2fncb7mblktg23a77clp4pdqfdje7g6axohcegle46bk64hnad.onion&quot;,</span></span>
+<span id="L148"><span class="lineNum">     148</span> <span class="tlaGNC">           1 :                 &quot;testd7rzyebdtzpx3fjalkqmeuppbmqs4pbx5pxusyq57m73fyjwgxyd.onion&quot;,</span></span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaGNC">           1 :                 &quot;testmw3wweekyz7ui7uodlgq3zbv23hehkusrb257yerlpsizhylswyd.onion&quot;,</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaGNC">           1 :                 &quot;testspzmswow3rc3x6ymbbsfuovcia3umhzribfcpnry7xw66lyjysad.onion&quot;,</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC">           1 :                 &quot;test635ior3cpu4hd4e4ogd3kzy2pugyv3gkfp3q5u4x2riojbhrvtid.onion&quot;,</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaGNC">           1 :                 &quot;testn3vi7q5c5j5dqiq3hd3wtkazpxhfaxg2s6kxe6q75hvjnu62iiqd.onion&quot;,</span></span>
+<span id="L153"><span class="lineNum">     153</span> <span class="tlaGNC">           1 :                 &quot;testjmo662avqobpfukplqt4bg5jd2dqu6rdr53a6jyju6jf72iavbyd.onion&quot;,</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">           1 :                 &quot;testertyaowcvevhjdjwqr3jjvqkzzc2vrmp5hvd3iecukgjbla5xnqd.onion&quot;,</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaGNC">           1 :                 &quot;testivnwlanaiqoxbcsmlsgpswpx72c5zifljfwta444mtkfk476pmad.onion&quot;,</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">           1 :                 &quot;test7u4feuytc3gulkk2mdrmobkqjs6kc5tqxc32qv2v565ybm3kvsyd.onion&quot;,</span></span>
+<span id="L157"><span class="lineNum">     157</span> <span class="tlaGNC">           1 :                 &quot;testmcndo5ahfvfnlxefpc3325drm4xfgtgx42hj7p7we7ppyursrbyd.onion&quot;,</span></span>
+<span id="L158"><span class="lineNum">     158</span> <span class="tlaGNC">           1 :                 &quot;testtcr5xoqnirota5v5aonhn6gpzulewfbzb7kduld73jx353drjpyd.onion&quot;,</span></span>
+<span id="L159"><span class="lineNum">     159</span> <span class="tlaGNC">           1 :                 &quot;testc4biea6pwrya56s2vtus33c3bhrx6pnt3gfwwwoclhkuujvcwhyd.onion&quot;,</span></span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">           1 :                 &quot;testbjeyc5bizi7ys7cjgklkpeq3bhadaukk6sx3r6pycfxx35ksipyd.onion&quot;,</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">           1 :                 &quot;testvvumkf5b7k3vaagl54yujefrwsr7iuldkepzewwdiwyogkzzwyyd.onion&quot;,</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">           1 :                 &quot;testiysaar7h25477y7ee7xhz4foyrjkmtoxbh3kiiazvuehlp7ubiid.onion&quot;,</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">           1 :                 &quot;test7zh6zfacxeyrt3qkbelnfpf4sepmcypvl33vkbbeylbk3ddf4qad.onion&quot;,</span></span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">           1 :                 &quot;testebbxturu56qaxvlr7dqbrdjigga7mlmjanq4suc7j5h77h5iszyd.onion&quot;,</span></span>
+<span id="L165"><span class="lineNum">     165</span> <span class="tlaGNC">           1 :                 &quot;testob7j77x3qmy6dd6ja6wvofhbedzloxae6rrxrf7hv5fpi2aotayd.onion&quot;,</span></span>
+<span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">           1 :                 &quot;testgy24eidqv7wgaqtsucvqnagcyohpmzdmox2cpztd5eukmm6ubkid.onion&quot;,</span></span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaGNC">           1 :                 &quot;testtdslb2etamcxo7pklesyqxnidy6m5b5qu3yzcfhafajrnm5rotyd.onion&quot;,</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           1 :                 &quot;testha6wehnus7v4qb5cxbuf232fomz7ge6idrrenjewvmcl2fneffid.onion&quot;,</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">           1 :                 &quot;testmp7u2cxnnjqsjcfz3ydd6gpiqbym5r5rxykqhz3h6ks6nsnthuad.onion&quot;,</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaGNC">           1 :                 &quot;tests3xay2zjfkzzpfzl7s3kpnjftfwxmo7e3v5p657pfxbuqxt5e3id.onion&quot;,</span></span>
+<span id="L171"><span class="lineNum">     171</span> <span class="tlaGNC">           1 :                 &quot;test6zfam4nauxtjkckvkd6fp55bjuikaj5wevftsfhdromu7wuj2pyd.onion&quot;,</span></span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaGNC">           1 :                 &quot;testssyxuohidxfvtma4wxpiot5qqkmukqcrjw7t2ngfltidzxo6eyid.onion&quot;,</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaGNC">           1 :                 &quot;testmcfwamtj4adtz46izavwrddkp7fbu2swtapuyt5eyfupnztsd6qd.onion&quot;,</span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC">           1 :                 &quot;testcycabwxf7em7hu2css5aax7up3opds6twra7hmpjnxi6fdmgs3yd.onion&quot;,</span></span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaGNC">           1 :                 &quot;testaev2vumiarnfrr4x4japjc2xtvvlp65gt4vwwqf3q4zolvprs5id.onion&quot;,</span></span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaGNC">           1 :                 &quot;testkynjqkj65t6wvuwajm55xzninrap4piqek5ao6jiwewvqwezalqd.onion&quot;,</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">           1 :                 &quot;testnfxt6eemmiwhlme7ys7rj647jv46razwdf6whiwyjoruw4xceyad.onion&quot;,</span></span>
+<span id="L178"><span class="lineNum">     178</span> <span class="tlaGNC">           1 :                 &quot;testrbutgvilidnf55thbo4pye4jn322ugmepc37celxvazal5uugoid.onion&quot;,</span></span>
+<span id="L179"><span class="lineNum">     179</span> <span class="tlaGNC">           1 :                 &quot;test7xcn36xbr6raxldgh3kf2xk36gyor3hx3gzy2guhxzntxlvf3iid.onion&quot;,</span></span>
+<span id="L180"><span class="lineNum">     180</span> <span class="tlaGNC">           1 :                 &quot;testsdjiq77anfffxus3utsmykucoqexpeojaklbmzhab3vow3ozfdqd.onion&quot;,</span></span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC">           1 :                 &quot;testggm7oruqsw3sr2fd4nq4b3nh2fdd7rgw76p6gpz6pu6nsffv6byd.onion&quot;,</span></span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC">           1 :                 &quot;testk5b5gjpsc5jkvqnd24aujh25ksvorjrcw457eremkynzoaxjrhad.onion&quot;,</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaGNC">           1 :                 &quot;testc6mexahgqsbqkxoso5t77nitwwumqn5ucdzbsntgkvuwpxzv4mqd.onion&quot;,</span></span>
+<span id="L184"><span class="lineNum">     184</span> <span class="tlaGNC">           1 :                 &quot;testcbsvi6v7h2avabs74osdnifiszdlygi4sljxohvuugf24hadjvid.onion&quot;,</span></span>
+<span id="L185"><span class="lineNum">     185</span> <span class="tlaGNC">           1 :                 &quot;testfbhecs2llswxsgjuuqvq5boo6se3gni7ygjtbnagt4x5qt7sppid.onion&quot;,</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaGNC">           1 :                 &quot;test7gjc7xb7ynoa5nzqrceqvo3fsotmtw2k5tj7ie2okvkmxuejobad.onion&quot;,</span></span>
+<span id="L187"><span class="lineNum">     187</span> <span class="tlaGNC">           1 :                 &quot;testmskkbp3ikvsfvtfekm5hmjc4ou4hqlerx45qchm5yrwd56m6stad.onion&quot;,</span></span>
+<span id="L188"><span class="lineNum">     188</span> <span class="tlaGNC">           1 :                 &quot;testv52txxzvdmi5kuuhwbzyrbzrhqnxr6ltvycgavt3wb5uyxcbrqqd.onion&quot;,</span></span>
+<span id="L189"><span class="lineNum">     189</span> <span class="tlaGNC">           1 :                 &quot;test7nsiyeg2hsmuvi7uhqbaoygf4lfa6ysihaqicrkzwulp7shsh3ad.onion&quot;,</span></span>
+<span id="L190"><span class="lineNum">     190</span> <span class="tlaGNC">           1 :                 &quot;testu2p6psiaw7qnhvi3v7tjgawbf6zpmjajmbfdofimv3wpniaqleyd.onion&quot;,</span></span>
+<span id="L191"><span class="lineNum">     191</span> <span class="tlaGNC">           1 :                 &quot;testkqcq6qg3yibtnwxgm2qceti2k74suvgqet2wdqmcoluzu4b3fkqd.onion&quot;,</span></span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC">           1 :                 &quot;test2i4762wcfcl5wgjf7ofnkorsq6l6buuet7ldddezeqgd372sysyd.onion&quot;,</span></span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaGNC">           1 :                 &quot;testftqmujq6h5rhey73mmqlhpuh5zs5cipqqxwbzihiqgw6gnfpp6id.onion&quot;,</span></span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaGNC">           1 :                 &quot;test5hua7kwnsnv3uiwathv3khq4nmhbwsayl6uzj2gs6pmimork2iid.onion&quot;,</span></span>
+<span id="L195"><span class="lineNum">     195</span> <span class="tlaGNC">           1 :                 &quot;test7tdanour43exhioddlji7jgsgiibi5hg3jhu47wxaszbvtwat2ad.onion&quot;,</span></span>
+<span id="L196"><span class="lineNum">     196</span> <span class="tlaGNC">           1 :                 &quot;testd26wxq4q44wmvplnngh5onomax5f3brjrocazz56mj7qylogy6id.onion&quot;,</span></span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaGNC">           1 :                 &quot;testyuwguibjovaw2mmzvpxqh2r3dhjddeaez6242pmro37gxivknrqd.onion&quot;,</span></span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">           1 :                 &quot;testi5lokj4wrawmihfqmic74wac6a4asy6o7erzxjosuyedzsscdeid.onion&quot;,</span></span>
+<span id="L199"><span class="lineNum">     199</span> <span class="tlaGNC">           1 :                 &quot;testbuwdono434jdgv76u7jjczd7sweu36ga55vo66tdcsjscov5dfad.onion&quot;,</span></span>
+<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">           1 :                 &quot;testor6cqxswpeomtnsqhc73knjftqchalz5whatqddaxguwm5s2fhad.onion&quot;,</span></span>
+<span id="L201"><span class="lineNum">     201</span> <span class="tlaGNC">           1 :                 &quot;test2tz52bpiib5zbxt2bfg77ika54cfvz3p6ovkqbqiyu6d5ecaetyd.onion&quot;,</span></span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaGNC">           1 :                 &quot;testc5wvnm55zfk3ihkebuf4kxkhaandcqwizkehb6fpfgs2f4tfxvqd.onion&quot;,</span></span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaGNC">           1 :                 &quot;testpxuiq5dgkvhwynsyzrtdsxtthrt4lhjtb2egs34ypwzcvsrgbhqd.onion&quot;,</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaGNC">           1 :                 &quot;testgpc7h7f6tmo6lrz6to5svh6gw2mxgelbo5du6kakuuco5oyu2pad.onion&quot;,</span></span>
+<span id="L205"><span class="lineNum">     205</span> <span class="tlaGNC">           1 :                 &quot;test7vlusiy2t5e2dpwf4ttlajpefxqpbj274l25iml3ltjf6dwgzhyd.onion&quot;,</span></span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">           1 :                 &quot;testcaq5d3ehqqwdkdcux4db57lbbcfcl5wfebg7jxwl5gpv7aavxfyd.onion&quot;,</span></span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaGNC">           1 :                 &quot;testaqtkrclsz3ehn4i3i4maqoxniivmdl5gnefelzva6ts2yrx5vyyd.onion&quot;,</span></span>
+<span id="L208"><span class="lineNum">     208</span> <span class="tlaGNC">           1 :                 &quot;testgkfz4a2ir44r6pacf3fvyrldjk6n4u3odbyveseo2jatze6euxyd.onion&quot;,</span></span>
+<span id="L209"><span class="lineNum">     209</span> <span class="tlaGNC">           1 :                 &quot;testsrinaqfbsh22gjlkabcwn4rbypsb3nmtutqnjr37tvqmhdc2ysqd.onion&quot;,</span></span>
+<span id="L210"><span class="lineNum">     210</span> <span class="tlaGNC">           1 :                 &quot;testyo5bximqrzkkeppmr5mopciote6wx6wcnus6wnuanl5c2zztuwad.onion&quot;,</span></span>
+<span id="L211"><span class="lineNum">     211</span> <span class="tlaGNC">           1 :                 &quot;testmgjjfxt5frdpvfqchrgmoohxnba63q6wt3spva7kvgiae36jjuqd.onion&quot;,</span></span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">           1 :                 &quot;testn2qrokp2v4vtjjdrrlzosa6iz2v322ntsrguj6t4d2hguouhpzad.onion&quot;,</span></span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">           1 :                 &quot;test3njq3v3rp4sy5uhyulvl3eus34hev4cybkernrgvlmqonadxalid.onion&quot;,</span></span>
+<span id="L214"><span class="lineNum">     214</span> <span class="tlaGNC">           1 :                 &quot;testylx25ok4zwlm5myjgvlbudigeqxyvxy2hhk7kvwub4uqsfaawbyd.onion&quot;,</span></span>
+<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">           1 :                 &quot;test4zcne6f7w6xstprxyhwp2gbl4exvvltewrnjhtsss4bu74faokqd.onion&quot;,</span></span>
+<span id="L216"><span class="lineNum">     216</span> <span class="tlaGNC">           1 :                 &quot;testddleenrfxcbpsqrugj3ugnpjgd2xeneznzopzcndqebmavo65sqd.onion&quot;,</span></span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">           1 :                 &quot;testoq3eqrragrjpwiegwokzukqd2p73ffy6dcgnc6nerxtodsfotkad.onion&quot;,</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">           1 :                 &quot;testyivcoaauwqekzux66r2ao4j2hizka4kdeyb5lyvmdzsrw3uybeid.onion&quot;,</span></span>
+<span id="L219"><span class="lineNum">     219</span> <span class="tlaGNC">           1 :                 &quot;testz5tgehn7i3myjdobvjlnbax7yd2e3ra27gyiprzicvksm5r6i5yd.onion&quot;,</span></span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">           1 :                 &quot;testc4vbagkuxee3pkgvlb7w2pqgdq3rlaru2ipgpox5xzssejhfizad.onion&quot;,</span></span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">           1 :                 &quot;testq4ryujfitfcxabcjde6m7uqdztdep6mzd32e4wbtqna4jyponaad.onion&quot;,</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">           1 :                 &quot;test2muitbvopcoducxb6d5bqry5dmxdatupvh34anzjdeav6xiigead.onion&quot;,</span></span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">           1 :                 &quot;test76ais6k5t4bmap4uyl2eleh6o4g423cxuvifcoke4gtgd6pjtpqd.onion&quot;,</span></span>
+<span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">           1 :                 &quot;TEST76ais6k5t4bmap4uyl2eleh6o4g423cxuvifcoke4gtgd6pjtpqd.onion&quot;,</span></span>
+<span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">           1 :         };</span></span>
+<span id="L226"><span class="lineNum">     226</span>              : </span>
+<span id="L227"><span class="lineNum">     227</span> <span class="tlaGNC">         104 :         for (const std::string&amp; address : tests) {</span></span>
+<span id="L228"><span class="lineNum">     228</span> <span class="tlaGNC">         104 :                 const hash h = from_onion_v3(address);</span></span>
+<span id="L229"><span class="lineNum">     229</span> <span class="tlaGNC">         104 :                 ASSERT_TRUE(!h.empty());</span></span>
+<span id="L230"><span class="lineNum">     230</span>              : </span>
+<span id="L231"><span class="lineNum">     231</span> <span class="tlaGNC">         104 :                 const std::string s1 = to_onion_v3(h);</span></span>
+<span id="L232"><span class="lineNum">     232</span>              : </span>
+<span id="L233"><span class="lineNum">     233</span> <span class="tlaGNC">         104 :                 std::string s2 = address;</span></span>
+<span id="L234"><span class="lineNum">     234</span> <span class="tlaGNC">        6448 :                 for (char&amp; c : s2) {</span></span>
+<span id="L235"><span class="lineNum">     235</span> <span class="tlaGNC">        6448 :                         c = std::tolower(c);</span></span>
+<span id="L236"><span class="lineNum">     236</span> <span class="tlaGNC">        6448 :                 }</span></span>
+<span id="L237"><span class="lineNum">     237</span>              : </span>
+<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">         104 :                 ASSERT_EQ(s1, s2);</span></span>
+<span id="L239"><span class="lineNum">     239</span> <span class="tlaGNC">         104 :         }</span></span>
+<span id="L240"><span class="lineNum">     240</span>              : </span>
+<span id="L241"><span class="lineNum">     241</span> <span class="tlaGNC">           1 :         ASSERT_TRUE(from_onion_v3(&quot;tooshort.onion&quot;).empty());</span></span>
+<span id="L242"><span class="lineNum">     242</span> <span class="tlaGNC">           1 :         ASSERT_TRUE(from_onion_v3(&quot;inval1dcharacter777777777777777777777777777777777777777d.onion&quot;).empty());</span></span>
+<span id="L243"><span class="lineNum">     243</span> <span class="tlaGNC">           1 :         ASSERT_TRUE(from_onion_v3(&quot;wrongchecksum777777777777777777777777777777777777777777d.onion&quot;).empty());</span></span>
+<span id="L244"><span class="lineNum">     244</span> <span class="tlaGNC">           1 :         ASSERT_TRUE(from_onion_v3(&quot;yucmgsbw7nknw7oi3bkuwudvc657g2xcqahhbjyewazusyytapqo4xid.xnion&quot;).empty());</span></span>
+<span id="L245"><span class="lineNum">     245</span>              : </span>
+<span id="L246"><span class="lineNum">     246</span>              :         // Invalid pubkey</span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaGNC">           1 :         ASSERT_TRUE(from_onion_v3(&quot;civ5tgldg3yx73ytse6hvvk3nm6q3zctbqvytpszihm35b33ze73kxad.onion&quot;).empty());</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaGNC">           1 : }</span></span>
+<span id="L249"><span class="lineNum">     249</span>              : </span>
+<span id="L250"><span class="lineNum">     250</span>              : }</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.0-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

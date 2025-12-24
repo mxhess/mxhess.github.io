@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - external/src/rapidjson/include/rapidjson/istreamwrapper.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../../../index.html">top level</a> - <a href="index.html">external/src/rapidjson/include/rapidjson</a> - istreamwrapper.h<span style="font-size: 80%;"> (source / <a href="istreamwrapper.h.func-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2025-12-24 00:16:12</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+                  <tr><td><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : // Tencent is pleased to support the open source community by making RapidJSON available.</span>
+<span id="L2"><span class="lineNum">       2</span>              : // </span>
+<span id="L3"><span class="lineNum">       3</span>              : // Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.</span>
+<span id="L4"><span class="lineNum">       4</span>              : //</span>
+<span id="L5"><span class="lineNum">       5</span>              : // Licensed under the MIT License (the &quot;License&quot;); you may not use this file except</span>
+<span id="L6"><span class="lineNum">       6</span>              : // in compliance with the License. You may obtain a copy of the License at</span>
+<span id="L7"><span class="lineNum">       7</span>              : //</span>
+<span id="L8"><span class="lineNum">       8</span>              : // http://opensource.org/licenses/MIT</span>
+<span id="L9"><span class="lineNum">       9</span>              : //</span>
+<span id="L10"><span class="lineNum">      10</span>              : // Unless required by applicable law or agreed to in writing, software distributed </span>
+<span id="L11"><span class="lineNum">      11</span>              : // under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR </span>
+<span id="L12"><span class="lineNum">      12</span>              : // CONDITIONS OF ANY KIND, either express or implied. See the License for the </span>
+<span id="L13"><span class="lineNum">      13</span>              : // specific language governing permissions and limitations under the License.</span>
+<span id="L14"><span class="lineNum">      14</span>              : </span>
+<span id="L15"><span class="lineNum">      15</span>              : #ifndef RAPIDJSON_ISTREAMWRAPPER_H_</span>
+<span id="L16"><span class="lineNum">      16</span>              : #define RAPIDJSON_ISTREAMWRAPPER_H_</span>
+<span id="L17"><span class="lineNum">      17</span>              : </span>
+<span id="L18"><span class="lineNum">      18</span>              : #include &quot;stream.h&quot;</span>
+<span id="L19"><span class="lineNum">      19</span>              : #include &lt;iosfwd&gt;</span>
+<span id="L20"><span class="lineNum">      20</span>              : #include &lt;ios&gt;</span>
+<span id="L21"><span class="lineNum">      21</span>              : </span>
+<span id="L22"><span class="lineNum">      22</span>              : #ifdef __clang__</span>
+<span id="L23"><span class="lineNum">      23</span>              : RAPIDJSON_DIAG_PUSH</span>
+<span id="L24"><span class="lineNum">      24</span>              : RAPIDJSON_DIAG_OFF(padded)</span>
+<span id="L25"><span class="lineNum">      25</span>              : #elif defined(_MSC_VER)</span>
+<span id="L26"><span class="lineNum">      26</span>              : RAPIDJSON_DIAG_PUSH</span>
+<span id="L27"><span class="lineNum">      27</span>              : #endif</span>
+<span id="L28"><span class="lineNum">      28</span>              : </span>
+<span id="L29"><span class="lineNum">      29</span>              : RAPIDJSON_NAMESPACE_BEGIN</span>
+<span id="L30"><span class="lineNum">      30</span>              : </span>
+<span id="L31"><span class="lineNum">      31</span>              : //! Wrapper of \c std::basic_istream into RapidJSON's Stream concept.</span>
+<span id="L32"><span class="lineNum">      32</span>              : /*!</span>
+<span id="L33"><span class="lineNum">      33</span>              :     The classes can be wrapped including but not limited to:</span>
+<span id="L34"><span class="lineNum">      34</span>              : </span>
+<span id="L35"><span class="lineNum">      35</span>              :     - \c std::istringstream</span>
+<span id="L36"><span class="lineNum">      36</span>              :     - \c std::stringstream</span>
+<span id="L37"><span class="lineNum">      37</span>              :     - \c std::wistringstream</span>
+<span id="L38"><span class="lineNum">      38</span>              :     - \c std::wstringstream</span>
+<span id="L39"><span class="lineNum">      39</span>              :     - \c std::ifstream</span>
+<span id="L40"><span class="lineNum">      40</span>              :     - \c std::fstream</span>
+<span id="L41"><span class="lineNum">      41</span>              :     - \c std::wifstream</span>
+<span id="L42"><span class="lineNum">      42</span>              :     - \c std::wfstream</span>
+<span id="L43"><span class="lineNum">      43</span>              : </span>
+<span id="L44"><span class="lineNum">      44</span>              :     \tparam StreamType Class derived from \c std::basic_istream.</span>
+<span id="L45"><span class="lineNum">      45</span>              : */</span>
+<span id="L46"><span class="lineNum">      46</span>              :    </span>
+<span id="L47"><span class="lineNum">      47</span>              : template &lt;typename StreamType&gt;</span>
+<span id="L48"><span class="lineNum">      48</span>              : class BasicIStreamWrapper {</span>
+<span id="L49"><span class="lineNum">      49</span>              : public:</span>
+<span id="L50"><span class="lineNum">      50</span>              :     typedef typename StreamType::char_type Ch;</span>
+<span id="L51"><span class="lineNum">      51</span>              : </span>
+<span id="L52"><span class="lineNum">      52</span>              :     //! Constructor.</span>
+<span id="L53"><span class="lineNum">      53</span>              :     /*!</span>
+<span id="L54"><span class="lineNum">      54</span>              :         \param stream stream opened for read.</span>
+<span id="L55"><span class="lineNum">      55</span>              :     */</span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaUNC tlaBgUNC">           0 :     BasicIStreamWrapper(StreamType &amp;stream) : stream_(stream), buffer_(peekBuffer_), bufferSize_(4), bufferLast_(0), current_(buffer_), readCount_(0), count_(0), eof_(false) { </span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaUNC">           0 :         Read();</span></span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L59"><span class="lineNum">      59</span>              : </span>
+<span id="L60"><span class="lineNum">      60</span>              :     //! Constructor.</span>
+<span id="L61"><span class="lineNum">      61</span>              :     /*!</span>
+<span id="L62"><span class="lineNum">      62</span>              :         \param stream stream opened for read.</span>
+<span id="L63"><span class="lineNum">      63</span>              :         \param buffer user-supplied buffer.</span>
+<span id="L64"><span class="lineNum">      64</span>              :         \param bufferSize size of buffer in bytes. Must &gt;=4 bytes.</span>
+<span id="L65"><span class="lineNum">      65</span>              :     */</span>
+<span id="L66"><span class="lineNum">      66</span>              :     BasicIStreamWrapper(StreamType &amp;stream, char* buffer, size_t bufferSize) : stream_(stream), buffer_(buffer), bufferSize_(bufferSize), bufferLast_(0), current_(buffer_), readCount_(0), count_(0), eof_(false) { </span>
+<span id="L67"><span class="lineNum">      67</span>              :         RAPIDJSON_ASSERT(bufferSize &gt;= 4);</span>
+<span id="L68"><span class="lineNum">      68</span>              :         Read();</span>
+<span id="L69"><span class="lineNum">      69</span>              :     }</span>
+<span id="L70"><span class="lineNum">      70</span>              : </span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaUNC">           0 :     Ch Peek() const { return *current_; }</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaUNC">           0 :     Ch Take() { Ch c = *current_; Read(); return c; }</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaUNC">           0 :     size_t Tell() const { return count_ + static_cast&lt;size_t&gt;(current_ - buffer_); }</span></span>
+<span id="L74"><span class="lineNum">      74</span>              : </span>
+<span id="L75"><span class="lineNum">      75</span>              :     // Not implemented</span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaUNC">           0 :     void Put(Ch) { RAPIDJSON_ASSERT(false); }</span></span>
+<span id="L77"><span class="lineNum">      77</span>              :     void Flush() { RAPIDJSON_ASSERT(false); } </span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaUNC">           0 :     Ch* PutBegin() { RAPIDJSON_ASSERT(false); return 0; }</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :     size_t PutEnd(Ch*) { RAPIDJSON_ASSERT(false); return 0; }</span></span>
+<span id="L80"><span class="lineNum">      80</span>              : </span>
+<span id="L81"><span class="lineNum">      81</span>              :     // For encoding detection only.</span>
+<span id="L82"><span class="lineNum">      82</span>              :     const Ch* Peek4() const {</span>
+<span id="L83"><span class="lineNum">      83</span>              :         return (current_ + 4 - !eof_ &lt;= bufferLast_) ? current_ : 0;</span>
+<span id="L84"><span class="lineNum">      84</span>              :     }</span>
+<span id="L85"><span class="lineNum">      85</span>              : </span>
+<span id="L86"><span class="lineNum">      86</span>              : private:</span>
+<span id="L87"><span class="lineNum">      87</span>              :     BasicIStreamWrapper();</span>
+<span id="L88"><span class="lineNum">      88</span>              :     BasicIStreamWrapper(const BasicIStreamWrapper&amp;);</span>
+<span id="L89"><span class="lineNum">      89</span>              :     BasicIStreamWrapper&amp; operator=(const BasicIStreamWrapper&amp;);</span>
+<span id="L90"><span class="lineNum">      90</span>              : </span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaUNC">           0 :     void Read() {</span></span>
+<span id="L92"><span class="lineNum">      92</span> <span class="tlaUNC">           0 :         if (current_ &lt; bufferLast_)</span></span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaUNC">           0 :             ++current_;</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaUNC">           0 :         else if (!eof_) {</span></span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaUNC">           0 :             count_ += readCount_;</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaUNC">           0 :             readCount_ = bufferSize_;</span></span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaUNC">           0 :             bufferLast_ = buffer_ + readCount_ - 1;</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaUNC">           0 :             current_ = buffer_;</span></span>
+<span id="L99"><span class="lineNum">      99</span>              : </span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaUNC">           0 :             if (!stream_.read(buffer_, static_cast&lt;std::streamsize&gt;(bufferSize_))) {</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaUNC">           0 :                 readCount_ = static_cast&lt;size_t&gt;(stream_.gcount());</span></span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaUNC">           0 :                 *(bufferLast_ = buffer_ + readCount_) = '\0';</span></span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaUNC">           0 :                 eof_ = true;</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L107"><span class="lineNum">     107</span>              : </span>
+<span id="L108"><span class="lineNum">     108</span>              :     StreamType &amp;stream_;</span>
+<span id="L109"><span class="lineNum">     109</span>              :     Ch peekBuffer_[4], *buffer_;</span>
+<span id="L110"><span class="lineNum">     110</span>              :     size_t bufferSize_;</span>
+<span id="L111"><span class="lineNum">     111</span>              :     Ch *bufferLast_;</span>
+<span id="L112"><span class="lineNum">     112</span>              :     Ch *current_;</span>
+<span id="L113"><span class="lineNum">     113</span>              :     size_t readCount_;</span>
+<span id="L114"><span class="lineNum">     114</span>              :     size_t count_;  //!&lt; Number of characters read</span>
+<span id="L115"><span class="lineNum">     115</span>              :     bool eof_;</span>
+<span id="L116"><span class="lineNum">     116</span>              : };</span>
+<span id="L117"><span class="lineNum">     117</span>              : </span>
+<span id="L118"><span class="lineNum">     118</span>              : typedef BasicIStreamWrapper&lt;std::istream&gt; IStreamWrapper;</span>
+<span id="L119"><span class="lineNum">     119</span>              : typedef BasicIStreamWrapper&lt;std::wistream&gt; WIStreamWrapper;</span>
+<span id="L120"><span class="lineNum">     120</span>              : </span>
+<span id="L121"><span class="lineNum">     121</span>              : #if defined(__clang__) || defined(_MSC_VER)</span>
+<span id="L122"><span class="lineNum">     122</span>              : RAPIDJSON_DIAG_POP</span>
+<span id="L123"><span class="lineNum">     123</span>              : #endif</span>
+<span id="L124"><span class="lineNum">     124</span>              : </span>
+<span id="L125"><span class="lineNum">     125</span>              : RAPIDJSON_NAMESPACE_END</span>
+<span id="L126"><span class="lineNum">     126</span>              : </span>
+<span id="L127"><span class="lineNum">     127</span>              : #endif // RAPIDJSON_ISTREAMWRAPPER_H_</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.0-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

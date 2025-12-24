@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - tests/src/wallet_tests.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">tests/src</a> - wallet_tests.cpp<span style="font-size: 80%;"> (source / <a href="wallet_tests.cpp.func-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">134</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2025-12-24 00:16:12</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+                  <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /*</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * This file is part of the Monero P2Pool &lt;https://github.com/SChernykh/p2pool&gt;</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * Copyright (c) 2021-2024 SChernykh &lt;https://github.com/SChernykh&gt;</span>
+<span id="L4"><span class="lineNum">       4</span>              :  *</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * This program is free software: you can redistribute it and/or modify</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * it under the terms of the GNU General Public License as published by</span>
+<span id="L7"><span class="lineNum">       7</span>              :  * the Free Software Foundation, version 3.</span>
+<span id="L8"><span class="lineNum">       8</span>              :  *</span>
+<span id="L9"><span class="lineNum">       9</span>              :  * This program is distributed in the hope that it will be useful, but</span>
+<span id="L10"><span class="lineNum">      10</span>              :  * WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span id="L11"><span class="lineNum">      11</span>              :  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU</span>
+<span id="L12"><span class="lineNum">      12</span>              :  * General Public License for more details.</span>
+<span id="L13"><span class="lineNum">      13</span>              :  *</span>
+<span id="L14"><span class="lineNum">      14</span>              :  * You should have received a copy of the GNU General Public License</span>
+<span id="L15"><span class="lineNum">      15</span>              :  * along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span id="L16"><span class="lineNum">      16</span>              :  */</span>
+<span id="L17"><span class="lineNum">      17</span>              : </span>
+<span id="L18"><span class="lineNum">      18</span>              : #include &quot;common.h&quot;</span>
+<span id="L19"><span class="lineNum">      19</span>              : #include &quot;wallet.h&quot;</span>
+<span id="L20"><span class="lineNum">      20</span>              : #include &quot;keccak.h&quot;</span>
+<span id="L21"><span class="lineNum">      21</span>              : #include &quot;gtest/gtest.h&quot;</span>
+<span id="L22"><span class="lineNum">      22</span>              : </span>
+<span id="L23"><span class="lineNum">      23</span>              : namespace p2pool {</span>
+<span id="L24"><span class="lineNum">      24</span>              : </span>
+<span id="L25"><span class="lineNum">      25</span>              : TEST(wallet, DISABLED_input_output)</span>
+<span id="L26"><span class="lineNum">      26</span> <span class="tlaUNC tlaBgUNC">           0 : {</span></span>
+<span id="L27"><span class="lineNum">      27</span>              :         // No data</span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaUNC">           0 :                 Wallet w(nullptr);</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.valid());</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L32"><span class="lineNum">      32</span>              : </span>
+<span id="L33"><span class="lineNum">      33</span>              :         // Wrong length</span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaUNC">           0 :                 Wallet w(&quot;456&quot;);</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.valid());</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L38"><span class="lineNum">      38</span>              : </span>
+<span id="L39"><span class="lineNum">      39</span>              :         // Symbol '0' is not from base-58</span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaUNC">           0 :                 Wallet w(&quot;40ccoSmrBTPJd5yf8VYCULh4J5rHQaXP1TeC8Cnqhd5H9Y2cMwkJ9w42euLmMghKtCiQcgZEiGYW1K6Ae4biZ7w1HLSexS6&quot;);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.valid());</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L44"><span class="lineNum">      44</span>              : </span>
+<span id="L45"><span class="lineNum">      45</span>              :         // Invalid checksum</span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaUNC">           0 :                 Wallet w(&quot;49ccoSmrBTPJd5yf8VYCULh4J5rHQaXP1TeC8Cnqhd5H9Y2cMwkJ9w42euLmMghKtCiQcgZEiGYW1K6Ae4biZ7w1HLSexS7&quot;);</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.valid());</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L50"><span class="lineNum">      50</span>              : </span>
+<span id="L51"><span class="lineNum">      51</span>              :         // 64-bit overflow</span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaUNC">           0 :                 Wallet w(&quot;49ccoSmrBTPzzzzzzzzzzzh4J5rHQaXP1TeC8Cnqhd5H9Y2cMwkJ9w42euLmMghKtCiQcgZEiGYW1K6Ae4biZ7w1HLSexS6&quot;);</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.valid());</span></span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L56"><span class="lineNum">      56</span>              : </span>
+<span id="L57"><span class="lineNum">      57</span>              :         // Invalid pubkey</span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaUNC">           0 :                 Wallet w(&quot;47wU9Pe8Ez8anN3jf2XjqfXQfxmoqT4Pw1h4msNWyynMBiwjCtkQFAvBoR7sQJR4Khhcq8Nmgufa6JKLm8yWEu9R1g6B9jj&quot;);</span></span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.valid());</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L62"><span class="lineNum">      62</span>              : </span>
+<span id="L63"><span class="lineNum">      63</span>              :         // Invalid pubkeys</span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaUNC">           0 :                 Wallet w(nullptr);</span></span>
+<span id="L66"><span class="lineNum">      66</span>              : </span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaUNC">           0 :                 constexpr hash invalid_spend_pub = keccak(&quot;invalid spend pub key 1&quot;);</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaUNC">           0 :                 constexpr hash valid_spend_pub = keccak(&quot;valid spend pub key 2&quot;);</span></span>
+<span id="L69"><span class="lineNum">      69</span>              : </span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaUNC">           0 :                 constexpr hash invalid_view_pub = keccak(&quot;invalid view pub key 3&quot;);</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaUNC">           0 :                 constexpr hash valid_view_pub = keccak(&quot;valid view pub key 1&quot;);</span></span>
+<span id="L72"><span class="lineNum">      72</span>              : </span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaUNC">           0 :                 ASSERT_TRUE(w.assign(valid_spend_pub, valid_view_pub, NetworkType::Mainnet, false));</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.assign(invalid_spend_pub, valid_view_pub, NetworkType::Mainnet, false));</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.assign(valid_spend_pub, invalid_view_pub, NetworkType::Mainnet, false));</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w.assign(invalid_spend_pub, invalid_view_pub, NetworkType::Mainnet, false));</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L78"><span class="lineNum">      78</span>              : </span>
+<span id="L79"><span class="lineNum">      79</span>              :         // Invalid prefix</span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaUNC">           0 :                 Wallet w1(&quot;4KKHpFbLniuJd5yf8VYCULh4J5rHQaXP1TeC8Cnqhd5H9Y2cMwkJ9w42euLmMghKtCiQcgZEiGYW1K6Ae4biZ7w1HLSexS6&quot;);</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaUNC">           0 :                 Wallet w2(&quot;49ccoSmrBTPJd5yf8VYCULh4J5rHQaXP1TeC8Cnqhd5H9Y2cMwkJ9w42euLmMghKtCiQcgZEiGYW1K6Ae4biZ7w1HLSexS6&quot;);</span></span>
+<span id="L83"><span class="lineNum">      83</span>              : </span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaUNC">           0 :                 ASSERT_TRUE(w2.assign(w2.spend_public_key(), w2.view_public_key(), NetworkType::Invalid, false));</span></span>
+<span id="L85"><span class="lineNum">      85</span>              : </span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w1.valid());</span></span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaUNC">           0 :                 ASSERT_FALSE(w2.valid());</span></span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L89"><span class="lineNum">      89</span>              : </span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaUNC">           0 :         auto check = [](NetworkType t, bool subaddress, uint64_t prefix, uint32_t checksum, const char* address, const char* spendkey, const char* viewkey)</span></span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L92"><span class="lineNum">      92</span>              :                 // Test Wallet::decode()</span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaUNC">           0 :                 Wallet w(address);</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaUNC">           0 :                 ASSERT_TRUE(w.valid());</span></span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w.type(), t);</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w.is_subaddress(), subaddress);</span></span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w.prefix(), prefix);</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w.checksum(), checksum);</span></span>
+<span id="L99"><span class="lineNum">      99</span>              : </span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaUNC">           0 :                 char buf[log::Stream::BUF_SIZE + 1];</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaUNC">           0 :                 log::Stream s(buf);</span></span>
+<span id="L102"><span class="lineNum">     102</span>              : </span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaUNC">           0 :                 s &lt;&lt; w.spend_public_key();</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(memcmp(buf, spendkey, HASH_SIZE * 2), 0);</span></span>
+<span id="L105"><span class="lineNum">     105</span>              : </span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaUNC">           0 :                 s.m_pos = 0;</span></span>
+<span id="L107"><span class="lineNum">     107</span> <span class="tlaUNC">           0 :                 s &lt;&lt; w.view_public_key();</span></span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(memcmp(buf, viewkey, HASH_SIZE * 2), 0);</span></span>
+<span id="L109"><span class="lineNum">     109</span>              : </span>
+<span id="L110"><span class="lineNum">     110</span>              :                 // Test Wallet copy</span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaUNC">           0 :                 Wallet w1(w);</span></span>
+<span id="L112"><span class="lineNum">     112</span>              : </span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w1.prefix(),           w.prefix());</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w1.spend_public_key(), w.spend_public_key());</span></span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w1.view_public_key(),  w.view_public_key());</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w1.checksum(),         w.checksum());</span></span>
+<span id="L117"><span class="lineNum">     117</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w1.type(),             w.type());</span></span>
+<span id="L118"><span class="lineNum">     118</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w1.is_subaddress(),    w.is_subaddress());</span></span>
+<span id="L119"><span class="lineNum">     119</span>              : </span>
+<span id="L120"><span class="lineNum">     120</span>              :                 // Test Wallet::assign()</span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaUNC">           0 :                 Wallet w2(nullptr);</span></span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaUNC">           0 :                 ASSERT_TRUE(w2.assign(w.spend_public_key(), w.view_public_key(), w.type(), w.is_subaddress()));</span></span>
+<span id="L123"><span class="lineNum">     123</span>              : </span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w2.prefix(),           w.prefix());</span></span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w2.spend_public_key(), w.spend_public_key());</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w2.view_public_key(),  w.view_public_key());</span></span>
+<span id="L127"><span class="lineNum">     127</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w2.checksum(),         w.checksum());</span></span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w2.type(),             w.type());</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(w2.is_subaddress(),    w.is_subaddress());</span></span>
+<span id="L130"><span class="lineNum">     130</span>              : </span>
+<span id="L131"><span class="lineNum">     131</span>              :                 // Test Wallet::encode()</span>
+<span id="L132"><span class="lineNum">     132</span> <span class="tlaUNC">           0 :                 const std::string s0 = address;</span></span>
+<span id="L133"><span class="lineNum">     133</span> <span class="tlaUNC">           0 :                 const std::string s1 = w.encode();</span></span>
+<span id="L134"><span class="lineNum">     134</span> <span class="tlaUNC">           0 :                 const std::string s2 = w2.encode();</span></span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(s1, s0);</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(s2, s0);</span></span>
+<span id="L137"><span class="lineNum">     137</span>              : </span>
+<span id="L138"><span class="lineNum">     138</span>              :                 // Test Wallet::encode(buf)</span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaUNC">           0 :                 char buf1[Wallet::ADDRESS_LENGTH] = {};</span></span>
+<span id="L140"><span class="lineNum">     140</span> <span class="tlaUNC">           0 :                 w.encode(buf1);</span></span>
+<span id="L141"><span class="lineNum">     141</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(memcmp(buf1, address, Wallet::ADDRESS_LENGTH), 0);</span></span>
+<span id="L142"><span class="lineNum">     142</span>              : </span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaUNC">           0 :                 char buf2[Wallet::ADDRESS_LENGTH] = {};</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaUNC">           0 :                 w2.encode(buf2);</span></span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaUNC">           0 :                 ASSERT_EQ(memcmp(buf2, address, Wallet::ADDRESS_LENGTH), 0);</span></span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaUNC">           0 :         };</span></span>
+<span id="L147"><span class="lineNum">     147</span>              : </span>
+<span id="L148"><span class="lineNum">     148</span>              :         // Correct mainnet addresses</span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L150"><span class="lineNum">     150</span> <span class="tlaUNC">           0 :                 NetworkType::Mainnet, false, 18, 0xA345C1C9UL, &quot;49ccoSmrBTPJd5yf8VYCULh4J5rHQaXP1TeC8Cnqhd5H9Y2cMwkJ9w42euLmMghKtCiQcgZEiGYW1K6Ae4biZ7w1HLSexS6&quot;,</span></span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaUNC">           0 :                 &quot;d2e232e441546a695b27187692d035ef7be5c54692700c9f470dcd706753a833&quot;, &quot;06f68970da46f709e2b4d0ffabd0d1f78ea6717786b5766c25c259111f212490&quot;</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L153"><span class="lineNum">     153</span>              : </span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L155"><span class="lineNum">     155</span> <span class="tlaUNC">           0 :                 NetworkType::Mainnet, false, 18, 0x8C8FB6E6UL, &quot;45JHuqGBSqUXUyZx95H4C2J5aEL4zFjM3jpTmMTESPXPa3jmtSQWYezHX7r4A2xPQNBGsQupJqmPhRZb2QgBcEWRDQ9ywwR&quot;,</span></span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaUNC">           0 :                 &quot;60fe176eaf3cffb63df130bc25036b661b947900941052fffe6ff4b51fc4f2c5&quot;, &quot;9387910b0a2e4f62c32621b77ddbeb3d6c0054e5ed9bc492d87bab1a1eef366d&quot;</span></span>
+<span id="L157"><span class="lineNum">     157</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L158"><span class="lineNum">     158</span>              : </span>
+<span id="L159"><span class="lineNum">     159</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaUNC">           0 :                 NetworkType::Mainnet, false, 18, 0x0E705A56UL, &quot;43S5vhReDY4fJs99DBZtFS8JoJVNG17iaAVAARvRT8xzSYZqnJfXfTACLrZUzoBHQKhiJZCWCpqB4Kf3c64CEagdSRXd5D7&quot;,</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaUNC">           0 :                 &quot;2fc2f902659541e50753853ddb96912baf55f26bebe7d338b5c2239c437ddb98&quot;, &quot;b814951166253543cfb0e1b8bdea58f366de824fddb8ef6f895fcf631873f6e1&quot;</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L163"><span class="lineNum">     163</span>              : </span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L165"><span class="lineNum">     165</span> <span class="tlaUNC">           0 :                 NetworkType::Mainnet, true, 42, 0x832DB4D1UL, &quot;86eQxzSW4AZfvsWRSop755WZUsog6L3x32NRZukeeShnS4mBGVpcqQhS6pCNxj44usPKNwesZ45ooHyjDku6nVZdT3Q9qrz&quot;,</span></span>
+<span id="L166"><span class="lineNum">     166</span> <span class="tlaUNC">           0 :                 &quot;6ea1b3ea41038ee8bd793d4d31851cb0ba4e4605213fe8082fdb51393c51b995&quot;, &quot;da5d41e01f57c6961083bd6a0f779e856c8054e7cea82265815714b0bd7aece6&quot;</span></span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L168"><span class="lineNum">     168</span>              : </span>
+<span id="L169"><span class="lineNum">     169</span>              :         // Correct testnet addresses</span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L171"><span class="lineNum">     171</span> <span class="tlaUNC">           0 :                 NetworkType::Testnet, false, 53, 0x6F896672UL, &quot;9x6aEN1yd2WhPMPw89LV5LLK1ZFe6N8xiAm18Ay4q1U4LKMde7MpDdPRN6GiiGCJMVTHuptGGmfj2Qfp2vcKSRSG79HJrQn&quot;,</span></span>
+<span id="L172"><span class="lineNum">     172</span> <span class="tlaUNC">           0 :                 &quot;821623ac165f07f172c86980254a43737332fd89ca36d33a57dc02d8026d9173&quot;, &quot;7c55413e672f8691a9211eac6003109d2fdf224ba72c4d8d82353427a02bc136&quot;</span></span>
+<span id="L173"><span class="lineNum">     173</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L174"><span class="lineNum">     174</span>              : </span>
+<span id="L175"><span class="lineNum">     175</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L176"><span class="lineNum">     176</span> <span class="tlaUNC">           0 :                 NetworkType::Testnet, false, 53, 0x4124092AUL, &quot;9zsJP6KFF6ZGern5UkR7gyRXHFRTba6jG8JKnfzDySeqEdwPZaD8MNYGkjyADdVpWs7rXgyeu712JdxhX2k7d9SNB4TdRdS&quot;,</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaUNC">           0 :                 &quot;cb366a3b44f6aa5d94e03db06325b6929b9e75dbf19dcf2ba2d14eb2efa53651&quot;, &quot;8789afa33dca295e301baef826cec028fa22b831822c1bdcf8a847a43a3bff59&quot;</span></span>
+<span id="L178"><span class="lineNum">     178</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L179"><span class="lineNum">     179</span>              : </span>
+<span id="L180"><span class="lineNum">     180</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaUNC">           0 :                 NetworkType::Testnet, false, 53, 0x0AC6459FUL, &quot;A1SqL5oPjh8Km1At7mao7U1fNjWkzeSwvQ39GimMqvhBF3FUoJhx1zxL2i6XbHzzAXDhKetiwSmYQeVwG6sUgwJuEqPyjWq&quot;,</span></span>
+<span id="L182"><span class="lineNum">     182</span> <span class="tlaUNC">           0 :                 &quot;da78298fb6eb8f702698bec873bad703f4a51e1377a66d89ba977ca7f43b8e53&quot;, &quot;eeb348f70afad971c50aa062f1d1544be64ef9cdc12475e030f2d295305e6e7a&quot;</span></span>
+<span id="L183"><span class="lineNum">     183</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L184"><span class="lineNum">     184</span>              : </span>
+<span id="L185"><span class="lineNum">     185</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L186"><span class="lineNum">     186</span> <span class="tlaUNC">           0 :                 NetworkType::Testnet, true, 63, 0x2232C90AUL, &quot;BfPfAxrFBbLJiMzVGyNmgJbejtcZEMELsbWSv5h3xTc3LSvKpwJetPrNk4fMSZ4bYCA4o93yGdVqjUpZSqUGxWkZ5HwBzrM&quot;,</span></span>
+<span id="L187"><span class="lineNum">     187</span> <span class="tlaUNC">           0 :                 &quot;be4e4f17b8e00f69e661683116f7bfcf29b2c96fccbe84ce4ede5e58de0fd074&quot;, &quot;43ecfeedf706b181fd5e5a321db3f13632df743113480aa6532973bf06b5da26&quot;</span></span>
+<span id="L188"><span class="lineNum">     188</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L189"><span class="lineNum">     189</span>              : </span>
+<span id="L190"><span class="lineNum">     190</span>              :         // Correct stagenet addresses</span>
+<span id="L191"><span class="lineNum">     191</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaUNC">           0 :                 NetworkType::Stagenet, false, 24, 0x36E99D1DUL, &quot;55AJ4jJBhV6JsoqrEsAazTLrJjg9SA1SFReLUoXDudrsA9tdL9i2VkJefEbx3zrFRt6swuibPVySPGNzsNvyshrRNZbSDnD&quot;,</span></span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaUNC">           0 :                 &quot;57e0c2fef80a1d6adfa3189134009076ad0ddc4c4668709355cea98524e9fc36&quot;, &quot;b94fafe59d5037e126557665f76cd3232504ebd82500e05bf25801d853d182bf&quot;</span></span>
+<span id="L194"><span class="lineNum">     194</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L195"><span class="lineNum">     195</span>              : </span>
+<span id="L196"><span class="lineNum">     196</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L197"><span class="lineNum">     197</span> <span class="tlaUNC">           0 :                 NetworkType::Stagenet, false, 24, 0x16DF3958UL, &quot;5BQqg4HTWuN3j4NzBHTK31eTaygRXYxWRQW9dTD7qMuJSiVtskraSErXQ24FUBeifiV6NaQPmxLS559vbUT4xYUoF2fiGvH&quot;,</span></span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaUNC">           0 :                 &quot;fcd35a53cef9a1104ae556f01cee0cdff2f18f2f2f6bde8c833d5bd980fe8999&quot;, &quot;be2b1142a046bfb5bb21e1f2a49bd1a7f46e1c18b009b218d5962f663938707c&quot;</span></span>
+<span id="L199"><span class="lineNum">     199</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L200"><span class="lineNum">     200</span>              : </span>
+<span id="L201"><span class="lineNum">     201</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L202"><span class="lineNum">     202</span> <span class="tlaUNC">           0 :                 NetworkType::Stagenet, false, 24, 0xF17D6524UL, &quot;53CFYfjzcouW95hQ7AHvqS3GZ2UAAaRLKc1ymmhHATQTZxhtakpYcfjiRVzrRdxVZ5F8p61KSpPEmFu9DVRULRDkK4v1TCU&quot;,</span></span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaUNC">           0 :                 &quot;23fdd143264794ae367083791bb8fd0d8f719b27b7b858d15a2b67d6eddd60c5&quot;, &quot;0ebafc1284ab1af7a5ff4ade682bcc54817a319a00eede591344855c420beba0&quot;</span></span>
+<span id="L204"><span class="lineNum">     204</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L205"><span class="lineNum">     205</span>              : </span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaUNC">           0 :         check(</span></span>
+<span id="L207"><span class="lineNum">     207</span> <span class="tlaUNC">           0 :                 NetworkType::Stagenet, true, 36, 0xE5250D95UL, &quot;77jhPoqpvTnGqds2oAWGVmiZv5fiQb2E8BizTL3oh7ia54sQRSEQ7SAAyRj9TpvwgHGuX1cYNDCHP7WHJCBXHcLqSnmApfe&quot;,</span></span>
+<span id="L208"><span class="lineNum">     208</span> <span class="tlaUNC">           0 :                 &quot;90e6541963cd1d5eb1459f6f546db8f8840fa31ea09cfd401d4d519f48e56318&quot;, &quot;50317de0182c133b9fb6958d1787f65f17b5366aff7b9226e3d205cf22844ae4&quot;</span></span>
+<span id="L209"><span class="lineNum">     209</span> <span class="tlaUNC">           0 :         );</span></span>
+<span id="L210"><span class="lineNum">     210</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L211"><span class="lineNum">     211</span>              : </span>
+<span id="L212"><span class="lineNum">     212</span>              : }</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.0-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - src/keccak.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - keccak.cpp<span style="font-size: 80%;"> (source / <a href="keccak.cpp.func-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">98.0&nbsp;%</td>
+            <td class="headerCovTableEntry">99</td>
+            <td class="headerCovTableEntry">97</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2025-12-24 00:16:12</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+          </tr>
+                  <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : /*</span>
+<span id="L2"><span class="lineNum">       2</span>              :  * This file is part of the Monero P2Pool &lt;https://github.com/SChernykh/p2pool&gt;</span>
+<span id="L3"><span class="lineNum">       3</span>              :  * Copyright (c) 2021-2025 SChernykh &lt;https://github.com/SChernykh&gt;</span>
+<span id="L4"><span class="lineNum">       4</span>              :  *</span>
+<span id="L5"><span class="lineNum">       5</span>              :  * This program is free software: you can redistribute it and/or modify</span>
+<span id="L6"><span class="lineNum">       6</span>              :  * it under the terms of the GNU General Public License as published by</span>
+<span id="L7"><span class="lineNum">       7</span>              :  * the Free Software Foundation, version 3.</span>
+<span id="L8"><span class="lineNum">       8</span>              :  *</span>
+<span id="L9"><span class="lineNum">       9</span>              :  * This program is distributed in the hope that it will be useful, but</span>
+<span id="L10"><span class="lineNum">      10</span>              :  * WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span id="L11"><span class="lineNum">      11</span>              :  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU</span>
+<span id="L12"><span class="lineNum">      12</span>              :  * General Public License for more details.</span>
+<span id="L13"><span class="lineNum">      13</span>              :  *</span>
+<span id="L14"><span class="lineNum">      14</span>              :  * You should have received a copy of the GNU General Public License</span>
+<span id="L15"><span class="lineNum">      15</span>              :  * along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span id="L16"><span class="lineNum">      16</span>              :  */</span>
+<span id="L17"><span class="lineNum">      17</span>              : </span>
+<span id="L18"><span class="lineNum">      18</span>              : #include &quot;common.h&quot;</span>
+<span id="L19"><span class="lineNum">      19</span>              : #include &quot;keccak.h&quot;</span>
+<span id="L20"><span class="lineNum">      20</span>              : #include &quot;RandomX/src/cpu.hpp&quot;</span>
+<span id="L21"><span class="lineNum">      21</span>              : </span>
+<span id="L22"><span class="lineNum">      22</span>              : namespace p2pool {</span>
+<span id="L23"><span class="lineNum">      23</span>              : </span>
+<span id="L24"><span class="lineNum">      24</span>              : #ifndef ROTL64</span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC tlaBgGNC">   706242336 : #define ROTL64(x, y) (((x) &lt;&lt; (y)) | ((x) &gt;&gt; (64 - (y))))</span></span>
+<span id="L26"><span class="lineNum">      26</span>              : #endif</span>
+<span id="L27"><span class="lineNum">      27</span>              : </span>
+<span id="L28"><span class="lineNum">      28</span>              : const uint64_t keccakf_rndc[24] = </span>
+<span id="L29"><span class="lineNum">      29</span>              : {</span>
+<span id="L30"><span class="lineNum">      30</span>              :         0x0000000000000001, 0x0000000000008082, 0x800000000000808a,</span>
+<span id="L31"><span class="lineNum">      31</span>              :         0x8000000080008000, 0x000000000000808b, 0x0000000080000001,</span>
+<span id="L32"><span class="lineNum">      32</span>              :         0x8000000080008081, 0x8000000000008009, 0x000000000000008a,</span>
+<span id="L33"><span class="lineNum">      33</span>              :         0x0000000000000088, 0x0000000080008009, 0x000000008000000a,</span>
+<span id="L34"><span class="lineNum">      34</span>              :         0x000000008000808b, 0x800000000000008b, 0x8000000000008089,</span>
+<span id="L35"><span class="lineNum">      35</span>              :         0x8000000000008003, 0x8000000000008002, 0x8000000000000080, </span>
+<span id="L36"><span class="lineNum">      36</span>              :         0x000000000000800a, 0x800000008000000a, 0x8000000080008081,</span>
+<span id="L37"><span class="lineNum">      37</span>              :         0x8000000000008080, 0x0000000080000001, 0x8000000080008008</span>
+<span id="L38"><span class="lineNum">      38</span>              : };</span>
+<span id="L39"><span class="lineNum">      39</span>              : </span>
+<span id="L40"><span class="lineNum">      40</span>              : NOINLINE void keccakf_plain(std::array&lt;uint64_t, 25&gt;&amp; st)</span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">     1014716 : {</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">    25367900 :         for (int round = 0; round &lt; KeccakParams::ROUNDS; ++round) {</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">    24353184 :                 uint64_t bc[5];</span></span>
+<span id="L44"><span class="lineNum">      44</span>              : </span>
+<span id="L45"><span class="lineNum">      45</span>              :                 // Theta</span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">    24353184 :                 bc[0] = st[0] ^ st[5] ^ st[10] ^ st[15] ^ st[20];</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">    24353184 :                 bc[1] = st[1] ^ st[6] ^ st[11] ^ st[16] ^ st[21];</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">    24353184 :                 bc[2] = st[2] ^ st[7] ^ st[12] ^ st[17] ^ st[22];</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">    24353184 :                 bc[3] = st[3] ^ st[8] ^ st[13] ^ st[18] ^ st[23];</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">    24353184 :                 bc[4] = st[4] ^ st[9] ^ st[14] ^ st[19] ^ st[24];</span></span>
+<span id="L51"><span class="lineNum">      51</span>              : </span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">   121765920 : #define THETA(i) { \</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">   121765920 :                         const uint64_t t = bc[((i) + 4) % 5] ^ ROTL64(bc[((i) + 1) % 5], 1); \</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">   121765920 :                         st[(i) +  0 ] ^= t; \</span></span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC">   121765920 :                         st[(i) +  5] ^= t; \</span></span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">   121765920 :                         st[(i) + 10] ^= t; \</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">   121765920 :                         st[(i) + 15] ^= t; \</span></span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">   121765920 :                         st[(i) + 20] ^= t; \</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">   121765920 :                 }</span></span>
+<span id="L60"><span class="lineNum">      60</span>              : </span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">    24353184 :                 THETA(0);</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">    24353184 :                 THETA(1);</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">    24353184 :                 THETA(2);</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">    24353184 :                 THETA(3);</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">    24353184 :                 THETA(4);</span></span>
+<span id="L66"><span class="lineNum">      66</span>              : </span>
+<span id="L67"><span class="lineNum">      67</span>              :                 // Rho Pi</span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">    24353184 :                 const uint64_t t = st[1];</span></span>
+<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">    24353184 :                 st[ 1] = ROTL64(st[ 6], 44);</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">    24353184 :                 st[ 6] = ROTL64(st[ 9], 20);</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">    24353184 :                 st[ 9] = ROTL64(st[22], 61);</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">    24353184 :                 st[22] = ROTL64(st[14], 39);</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">    24353184 :                 st[14] = ROTL64(st[20], 18);</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">    24353184 :                 st[20] = ROTL64(st[ 2], 62);</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">    24353184 :                 st[ 2] = ROTL64(st[12], 43);</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">    24353184 :                 st[12] = ROTL64(st[13], 25);</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">    24353184 :                 st[13] = ROTL64(st[19],  8);</span></span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaGNC">    24353184 :                 st[19] = ROTL64(st[23], 56);</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">    24353184 :                 st[23] = ROTL64(st[15], 41);</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">    24353184 :                 st[15] = ROTL64(st[ 4], 27);</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">    24353184 :                 st[ 4] = ROTL64(st[24], 14);</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaGNC">    24353184 :                 st[24] = ROTL64(st[21],  2);</span></span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">    24353184 :                 st[21] = ROTL64(st[ 8], 55);</span></span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">    24353184 :                 st[ 8] = ROTL64(st[16], 45);</span></span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">    24353184 :                 st[16] = ROTL64(st[ 5], 36);</span></span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC">    24353184 :                 st[ 5] = ROTL64(st[ 3], 28);</span></span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaGNC">    24353184 :                 st[ 3] = ROTL64(st[18], 21);</span></span>
+<span id="L88"><span class="lineNum">      88</span> <span class="tlaGNC">    24353184 :                 st[18] = ROTL64(st[17], 15);</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">    24353184 :                 st[17] = ROTL64(st[11], 10);</span></span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaGNC">    24353184 :                 st[11] = ROTL64(st[ 7],  6);</span></span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaGNC">    24353184 :                 st[ 7] = ROTL64(st[10],  3);</span></span>
+<span id="L92"><span class="lineNum">      92</span> <span class="tlaGNC">    24353184 :                 st[10] = ROTL64(t, 1);</span></span>
+<span id="L93"><span class="lineNum">      93</span>              : </span>
+<span id="L94"><span class="lineNum">      94</span>              :                 //  Chi</span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaGNC">   121765920 : #define CHI(j) { \</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaGNC">   121765920 :                         const uint64_t st0 = st[(j)    ]; \</span></span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaGNC">   121765920 :                         const uint64_t st1 = st[(j) + 1]; \</span></span>
+<span id="L98"><span class="lineNum">      98</span> <span class="tlaGNC">   121765920 :                         const uint64_t st2 = st[(j) + 2]; \</span></span>
+<span id="L99"><span class="lineNum">      99</span> <span class="tlaGNC">   121765920 :                         const uint64_t st3 = st[(j) + 3]; \</span></span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaGNC">   121765920 :                         const uint64_t st4 = st[(j) + 4]; \</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaGNC">   121765920 :                         st[(j)    ] ^= ~st1 &amp; st2; \</span></span>
+<span id="L102"><span class="lineNum">     102</span> <span class="tlaGNC">   121765920 :                         st[(j) + 1] ^= ~st2 &amp; st3; \</span></span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaGNC">   121765920 :                         st[(j) + 2] ^= ~st3 &amp; st4; \</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaGNC">   121765920 :                         st[(j) + 3] ^= ~st4 &amp; st0; \</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaGNC">   121765920 :                         st[(j) + 4] ^= ~st0 &amp; st1; \</span></span>
+<span id="L106"><span class="lineNum">     106</span> <span class="tlaGNC">   121765920 :                 }</span></span>
+<span id="L107"><span class="lineNum">     107</span>              : </span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaGNC">    24353184 :                 CHI( 0);</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaGNC">    24353184 :                 CHI( 5);</span></span>
+<span id="L110"><span class="lineNum">     110</span> <span class="tlaGNC">    24353184 :                 CHI(10);</span></span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaGNC">    24353184 :                 CHI(15);</span></span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaGNC">    24353184 :                 CHI(20);</span></span>
+<span id="L113"><span class="lineNum">     113</span>              : </span>
+<span id="L114"><span class="lineNum">     114</span>              :                 // Iota</span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaGNC">    24353184 :                 st[0] ^= keccakf_rndc[round];</span></span>
+<span id="L116"><span class="lineNum">     116</span> <span class="tlaGNC">    24353184 :         }</span></span>
+<span id="L117"><span class="lineNum">     117</span> <span class="tlaGNC">     1014716 : }</span></span>
+<span id="L118"><span class="lineNum">     118</span>              : </span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">           1 : keccakf_func keccakf = []() {</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaGNC">           1 : #if defined(__x86_64__) || defined(_M_AMD64)</span></span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaGNC">           1 :         if (randomx::Cpu().hasBmi()) {</span></span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC">           1 :                 return keccakf_bmi;</span></span>
+<span id="L123"><span class="lineNum">     123</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaUNC tlaBgUNC">           0 : #endif</span></span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaUNC">           0 :         return keccakf_plain;</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaGNC tlaBgGNC">           1 : }();</span></span>
+<span id="L127"><span class="lineNum">     127</span>              : </span>
+<span id="L128"><span class="lineNum">     128</span>              : NOINLINE void keccak_step(const uint8_t* &amp;in, int &amp;inlen, std::array&lt;uint64_t, 25&gt;&amp; st)</span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaGNC">     5309223 : {</span></span>
+<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC">     5309223 :         constexpr int rsiz = KeccakParams::HASH_DATA_AREA;</span></span>
+<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">     5309223 :         constexpr int rsizw = rsiz / 8;</span></span>
+<span id="L132"><span class="lineNum">     132</span>              : </span>
+<span id="L133"><span class="lineNum">     133</span> <span class="tlaGNC">     5366400 :         for (; inlen &gt;= rsiz; inlen -= rsiz, in += rsiz) {</span></span>
+<span id="L134"><span class="lineNum">     134</span> <span class="tlaGNC">     1028786 :                 for (int i = 0; i &lt; rsizw; i++) {</span></span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC">      971609 :                         st[i] ^= read_unaligned(reinterpret_cast&lt;const uint64_t*&gt;(in) + i);</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">      971609 :                 }</span></span>
+<span id="L137"><span class="lineNum">     137</span> <span class="tlaGNC">       57177 :                 keccakf(st);</span></span>
+<span id="L138"><span class="lineNum">     138</span> <span class="tlaGNC">       57177 :         }</span></span>
+<span id="L139"><span class="lineNum">     139</span> <span class="tlaGNC">     5309223 : }</span></span>
+<span id="L140"><span class="lineNum">     140</span>              : </span>
+<span id="L141"><span class="lineNum">     141</span>              : NOINLINE void keccak_finish(const uint8_t* in, int inlen, std::array&lt;uint64_t, 25&gt;&amp; st)</span>
+<span id="L142"><span class="lineNum">     142</span> <span class="tlaGNC">     2667441 : {</span></span>
+<span id="L143"><span class="lineNum">     143</span> <span class="tlaGNC">     2667441 :         constexpr int rsiz = KeccakParams::HASH_DATA_AREA;</span></span>
+<span id="L144"><span class="lineNum">     144</span> <span class="tlaGNC">     2667441 :         constexpr int rsizw = rsiz / 8;</span></span>
+<span id="L145"><span class="lineNum">     145</span>              : </span>
+<span id="L146"><span class="lineNum">     146</span> <span class="tlaGNC">     2667441 :         keccak_step(in, inlen, st);</span></span>
+<span id="L147"><span class="lineNum">     147</span>              : </span>
+<span id="L148"><span class="lineNum">     148</span>              :         // last block and padding</span>
+<span id="L149"><span class="lineNum">     149</span> <span class="tlaGNC">     2667441 :         alignas(8) uint8_t temp[144];</span></span>
+<span id="L150"><span class="lineNum">     150</span>              : </span>
+<span id="L151"><span class="lineNum">     151</span> <span class="tlaGNC">     2667441 :         memcpy(temp, in, inlen);</span></span>
+<span id="L152"><span class="lineNum">     152</span> <span class="tlaGNC">     2667441 :         temp[inlen++] = 1;</span></span>
+<span id="L153"><span class="lineNum">     153</span> <span class="tlaGNC">     2667441 :         memset(temp + inlen, 0, rsiz - inlen);</span></span>
+<span id="L154"><span class="lineNum">     154</span> <span class="tlaGNC">     2667441 :         temp[rsiz - 1] |= 0x80;</span></span>
+<span id="L155"><span class="lineNum">     155</span>              : </span>
+<span id="L156"><span class="lineNum">     156</span> <span class="tlaGNC">    47851078 :         for (int i = 0; i &lt; rsizw; i++) {</span></span>
+<span id="L157"><span class="lineNum">     157</span> <span class="tlaGNC">    45183637 :                 st[i] ^= reinterpret_cast&lt;uint64_t*&gt;(temp)[i];</span></span>
+<span id="L158"><span class="lineNum">     158</span> <span class="tlaGNC">    45183637 :         }</span></span>
+<span id="L159"><span class="lineNum">     159</span>              : </span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">     2667441 :         keccakf(st);</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">     2667441 : }</span></span>
+<span id="L162"><span class="lineNum">     162</span>              : </span>
+<span id="L163"><span class="lineNum">     163</span>              : } // namespace p2pool</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.0-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>
