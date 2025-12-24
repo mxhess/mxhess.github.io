@@ -31,18 +31,18 @@
             <td class="headerValue">coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">43.2&nbsp;%</td>
+            <td class="headerCovTableEntryLo">42.7&nbsp;%</td>
             <td class="headerCovTableEntry">2585</td>
-            <td class="headerCovTableEntry">1116</td>
+            <td class="headerCovTableEntry">1103</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-24 01:04:00</td>
+            <td class="headerValue">2025-12-24 04:29:26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntryLo">51.4&nbsp;%</td>
+            <td class="headerCovTableEntryLo">50.0&nbsp;%</td>
             <td class="headerCovTableEntry">74</td>
-            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntry">37</td>
           </tr>
                   <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
                 </table>
@@ -1374,25 +1374,25 @@
 <span id="L1312"><span class="lineNum">    1312</span>              : </span>
 <span id="L1313"><span class="lineNum">    1313</span>              :         // Every 5 minutes, delete wallets that weren't seen for more than 72 hours and onion pubkeys that weren't seen for more than 12 hours</span>
 <span id="L1314"><span class="lineNum">    1314</span> <span class="tlaGNC">       15935 :         if (m_seenWalletsLastPruneTime + 5ul * 60ul &lt;= cur_time) {</span></span>
-<span id="L1315"><span class="lineNum">    1315</span> <span class="tlaGNC">           6 :                 auto prune = [cur_time](auto&amp; data, uint64_t timeout) {</span></span>
-<span id="L1316"><span class="lineNum">    1316</span> <span class="tlaGNC">           9 :                         for (auto it = data.begin(); it != data.end();) {</span></span>
-<span id="L1317"><span class="lineNum">    1317</span> <span class="tlaGNC">           3 :                                 if (it-&gt;second + timeout &lt; cur_time) {</span></span>
-<span id="L1318"><span class="lineNum">    1318</span> <span class="tlaUNC tlaBgUNC">           0 :                                         it = data.erase(it);</span></span>
+<span id="L1315"><span class="lineNum">    1315</span> <span class="tlaUNC tlaBgUNC">           0 :                 auto prune = [cur_time](auto&amp; data, uint64_t timeout) {</span></span>
+<span id="L1316"><span class="lineNum">    1316</span> <span class="tlaUNC">           0 :                         for (auto it = data.begin(); it != data.end();) {</span></span>
+<span id="L1317"><span class="lineNum">    1317</span> <span class="tlaUNC">           0 :                                 if (it-&gt;second + timeout &lt; cur_time) {</span></span>
+<span id="L1318"><span class="lineNum">    1318</span> <span class="tlaUNC">           0 :                                         it = data.erase(it);</span></span>
 <span id="L1319"><span class="lineNum">    1319</span> <span class="tlaUNC">           0 :                                 }</span></span>
-<span id="L1320"><span class="lineNum">    1320</span> <span class="tlaGNC tlaBgGNC">           3 :                                 else {</span></span>
-<span id="L1321"><span class="lineNum">    1321</span> <span class="tlaGNC">           3 :                                         ++it;</span></span>
-<span id="L1322"><span class="lineNum">    1322</span> <span class="tlaGNC">           3 :                                 }</span></span>
-<span id="L1323"><span class="lineNum">    1323</span> <span class="tlaGNC">           3 :                         }</span></span>
-<span id="L1324"><span class="lineNum">    1324</span> <span class="tlaGNC">           6 :                 };</span></span>
+<span id="L1320"><span class="lineNum">    1320</span> <span class="tlaUNC">           0 :                                 else {</span></span>
+<span id="L1321"><span class="lineNum">    1321</span> <span class="tlaUNC">           0 :                                         ++it;</span></span>
+<span id="L1322"><span class="lineNum">    1322</span> <span class="tlaUNC">           0 :                                 }</span></span>
+<span id="L1323"><span class="lineNum">    1323</span> <span class="tlaUNC">           0 :                         }</span></span>
+<span id="L1324"><span class="lineNum">    1324</span> <span class="tlaUNC">           0 :                 };</span></span>
 <span id="L1325"><span class="lineNum">    1325</span>              : </span>
-<span id="L1326"><span class="lineNum">    1326</span> <span class="tlaGNC">           3 :                 constexpr uint64_t hour = 3600;</span></span>
+<span id="L1326"><span class="lineNum">    1326</span> <span class="tlaUNC">           0 :                 constexpr uint64_t hour = 3600;</span></span>
 <span id="L1327"><span class="lineNum">    1327</span>              : </span>
-<span id="L1328"><span class="lineNum">    1328</span> <span class="tlaGNC">           3 :                 prune(m_seenWallets, 72 * hour);</span></span>
-<span id="L1329"><span class="lineNum">    1329</span> <span class="tlaGNC">           3 :                 prune(m_seenOnionPubkeys, 12 * hour);</span></span>
+<span id="L1328"><span class="lineNum">    1328</span> <span class="tlaUNC">           0 :                 prune(m_seenWallets, 72 * hour);</span></span>
+<span id="L1329"><span class="lineNum">    1329</span> <span class="tlaUNC">           0 :                 prune(m_seenOnionPubkeys, 12 * hour);</span></span>
 <span id="L1330"><span class="lineNum">    1330</span>              : </span>
-<span id="L1331"><span class="lineNum">    1331</span> <span class="tlaGNC">           3 :                 m_seenWalletsLastPruneTime = cur_time;</span></span>
-<span id="L1332"><span class="lineNum">    1332</span> <span class="tlaGNC">           3 :         }</span></span>
-<span id="L1333"><span class="lineNum">    1333</span> <span class="tlaGNC">       15935 : }</span></span>
+<span id="L1331"><span class="lineNum">    1331</span> <span class="tlaUNC">           0 :                 m_seenWalletsLastPruneTime = cur_time;</span></span>
+<span id="L1332"><span class="lineNum">    1332</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L1333"><span class="lineNum">    1333</span> <span class="tlaGNC tlaBgGNC">       15935 : }</span></span>
 <span id="L1334"><span class="lineNum">    1334</span>              : </span>
 <span id="L1335"><span class="lineNum">    1335</span>              : uint64_t SideChain::last_updated() const</span>
 <span id="L1336"><span class="lineNum">    1336</span> <span class="tlaUNC tlaBgUNC">           0 : {</span></span>
