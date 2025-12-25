@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
-            <td class="headerCovTableEntry">302</td>
+            <td class="headerCovTableEntry">307</td>
             <td class="headerCovTableEntry">0</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-24 20:26:37</td>
+            <td class="headerValue">2025-12-25 03:49:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -305,251 +305,248 @@
 <span id="L243"><span class="lineNum">     243</span>              :                 }</span>
 <span id="L244"><span class="lineNum">     244</span>              : #endif</span>
 <span id="L245"><span class="lineNum">     245</span>              : </span>
-<span id="L246"><span class="lineNum">     246</span>              : /*</span>
-<span id="L247"><span class="lineNum">     247</span>              :                 if ((strcmp(argv[i], &quot;--merge-mine&quot;) == 0) &amp;&amp; (i + 2 &lt; argc)) {</span>
-<span id="L248"><span class="lineNum">     248</span>              :                         m_mergeMiningHosts.emplace_back(argv[i + 1], argv[i + 2]);</span>
-<span id="L249"><span class="lineNum">     249</span>              :                         i += 2;</span>
-<span id="L250"><span class="lineNum">     250</span>              :                         ok = true;</span>
-<span id="L251"><span class="lineNum">     251</span>              :                 }</span>
-<span id="L252"><span class="lineNum">     252</span>              : </span>
-<span id="L253"><span class="lineNum">     253</span>              :  */</span>
-<span id="L254"><span class="lineNum">     254</span>              : </span>
-<span id="L255"><span class="lineNum">     255</span>              : #ifdef WITH_TLS</span>
-<span id="L256"><span class="lineNum">     256</span>              :                 if ((strcmp(argv[i], &quot;--tls-cert&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
-<span id="L257"><span class="lineNum">     257</span>              :                         m_tlsCert = argv[++i];</span>
-<span id="L258"><span class="lineNum">     258</span>              :                         ok = true;</span>
-<span id="L259"><span class="lineNum">     259</span>              :                 }</span>
-<span id="L260"><span class="lineNum">     260</span>              : </span>
-<span id="L261"><span class="lineNum">     261</span>              :                 if ((strcmp(argv[i], &quot;--tls-cert-key&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
-<span id="L262"><span class="lineNum">     262</span>              :                         m_tlsCertKey = argv[++i];</span>
-<span id="L263"><span class="lineNum">     263</span>              :                         ok = true;</span>
-<span id="L264"><span class="lineNum">     264</span>              :                 }</span>
-<span id="L265"><span class="lineNum">     265</span>              : #endif</span>
-<span id="L266"><span class="lineNum">     266</span>              : </span>
-<span id="L267"><span class="lineNum">     267</span> <span class="tlaUNC">           0 :                 if (strcmp(argv[i], &quot;--no-stratum-http&quot;) == 0) {</span></span>
-<span id="L268"><span class="lineNum">     268</span> <span class="tlaUNC">           0 :                         m_enableStratumHTTP = false;</span></span>
-<span id="L269"><span class="lineNum">     269</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
-<span id="L270"><span class="lineNum">     270</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L271"><span class="lineNum">     271</span>              : </span>
-<span id="L272"><span class="lineNum">     272</span> <span class="tlaUNC">           0 : #ifdef WITH_MERGE_MINING_DONATION</span></span>
-<span id="L273"><span class="lineNum">     273</span> <span class="tlaUNC">           0 :                 if ((strcmp(argv[i], &quot;--adkf&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span></span>
-<span id="L274"><span class="lineNum">     274</span> <span class="tlaUNC">           0 :                         m_authorKeyFile = argv[++i];</span></span>
-<span id="L275"><span class="lineNum">     275</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
-<span id="L276"><span class="lineNum">     276</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L277"><span class="lineNum">     277</span> <span class="tlaUNC">           0 : #endif</span></span>
-<span id="L278"><span class="lineNum">     278</span>              : </span>
-<span id="L279"><span class="lineNum">     279</span> <span class="tlaUNC">           0 :                 if (strcmp(argv[i], &quot;--full-validation&quot;) == 0) {</span></span>
-<span id="L280"><span class="lineNum">     280</span> <span class="tlaUNC">           0 :                         m_enableFullValidation = true;</span></span>
-<span id="L281"><span class="lineNum">     281</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
-<span id="L282"><span class="lineNum">     282</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L283"><span class="lineNum">     283</span>              : </span>
-<span id="L284"><span class="lineNum">     284</span> <span class="tlaUNC">           0 :                 if ((strcmp(argv[i], &quot;--onion-address&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span></span>
-<span id="L285"><span class="lineNum">     285</span> <span class="tlaUNC">           0 :                         m_onionAddress = argv[++i];</span></span>
-<span id="L286"><span class="lineNum">     286</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
-<span id="L287"><span class="lineNum">     287</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L288"><span class="lineNum">     288</span>              : </span>
-<span id="L289"><span class="lineNum">     289</span> <span class="tlaUNC">           0 :                 if (strcmp(argv[i], &quot;--no-clearnet-p2p&quot;) == 0) {</span></span>
-<span id="L290"><span class="lineNum">     290</span> <span class="tlaUNC">           0 :                         m_noClearnetP2P = true;</span></span>
-<span id="L291"><span class="lineNum">     291</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
-<span id="L292"><span class="lineNum">     292</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L293"><span class="lineNum">     293</span>              : </span>
-<span id="L294"><span class="lineNum">     294</span>              : #ifdef WITH_REDIS</span>
-<span id="L295"><span class="lineNum">     295</span>              :                 if ((strcmp(argv[i], &quot;--redis-host&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
-<span id="L296"><span class="lineNum">     296</span>              :                         m_redisHost = argv[++i];</span>
-<span id="L297"><span class="lineNum">     297</span>              :                         ok = true;</span>
-<span id="L298"><span class="lineNum">     298</span>              :                 }</span>
-<span id="L299"><span class="lineNum">     299</span>              : </span>
-<span id="L300"><span class="lineNum">     300</span>              :                 if ((strcmp(argv[i], &quot;--redis-port&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
-<span id="L301"><span class="lineNum">     301</span>              :                         m_redisPort = static_cast&lt;int32_t&gt;(std::min(std::max(strtoul(argv[++i], nullptr, 10), 1UL), 65535UL));</span>
-<span id="L302"><span class="lineNum">     302</span>              :                         ok = true;</span>
-<span id="L303"><span class="lineNum">     303</span>              :                 }</span>
-<span id="L304"><span class="lineNum">     304</span>              : </span>
-<span id="L305"><span class="lineNum">     305</span>              :                 if ((strcmp(argv[i], &quot;--redis-db&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
-<span id="L306"><span class="lineNum">     306</span>              :                         m_redisDb = static_cast&lt;int32_t&gt;(strtoul(argv[++i], nullptr, 10));</span>
-<span id="L307"><span class="lineNum">     307</span>              :                         ok = true;</span>
-<span id="L308"><span class="lineNum">     308</span>              :                 }</span>
-<span id="L309"><span class="lineNum">     309</span>              : #endif</span>
-<span id="L310"><span class="lineNum">     310</span>              : </span>
-<span id="L311"><span class="lineNum">     311</span> <span class="tlaUNC">           0 :                 if (!ok) {</span></span>
-<span id="L312"><span class="lineNum">     312</span>              :                         // Wait to avoid log messages overlapping with printf() calls and making a mess on screen</span>
-<span id="L313"><span class="lineNum">     313</span> <span class="tlaUNC">           0 :                         std::this_thread::sleep_for(std::chrono::milliseconds(10));</span></span>
-<span id="L314"><span class="lineNum">     314</span>              : </span>
-<span id="L315"><span class="lineNum">     315</span> <span class="tlaUNC">           0 :                         fprintf(stderr, &quot;Unknown command line parameter %s\n\n&quot;, argv[i]);</span></span>
-<span id="L316"><span class="lineNum">     316</span> <span class="tlaUNC">           0 :                         p2pool_usage();</span></span>
-<span id="L317"><span class="lineNum">     317</span> <span class="tlaUNC">           0 :                         throw std::exception();</span></span>
-<span id="L318"><span class="lineNum">     318</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L319"><span class="lineNum">     319</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L246"><span class="lineNum">     246</span> <span class="tlaUNC">           0 :                 if ((strcmp(argv[i], &quot;--merge-mine&quot;) == 0) &amp;&amp; (i + 2 &lt; argc)) {</span></span>
+<span id="L247"><span class="lineNum">     247</span> <span class="tlaUNC">           0 :                         LOGWARN(0, &quot;Merge mining is not supported in Salvium P2Pool. --merge-mine flag ignored.&quot;);</span></span>
+<span id="L248"><span class="lineNum">     248</span> <span class="tlaUNC">           0 :                         i += 2;  // Skip the two arguments (host and wallet)</span></span>
+<span id="L249"><span class="lineNum">     249</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
+<span id="L250"><span class="lineNum">     250</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L251"><span class="lineNum">     251</span>              : </span>
+<span id="L252"><span class="lineNum">     252</span>              : #ifdef WITH_TLS</span>
+<span id="L253"><span class="lineNum">     253</span>              :                 if ((strcmp(argv[i], &quot;--tls-cert&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
+<span id="L254"><span class="lineNum">     254</span>              :                         m_tlsCert = argv[++i];</span>
+<span id="L255"><span class="lineNum">     255</span>              :                         ok = true;</span>
+<span id="L256"><span class="lineNum">     256</span>              :                 }</span>
+<span id="L257"><span class="lineNum">     257</span>              : </span>
+<span id="L258"><span class="lineNum">     258</span>              :                 if ((strcmp(argv[i], &quot;--tls-cert-key&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
+<span id="L259"><span class="lineNum">     259</span>              :                         m_tlsCertKey = argv[++i];</span>
+<span id="L260"><span class="lineNum">     260</span>              :                         ok = true;</span>
+<span id="L261"><span class="lineNum">     261</span>              :                 }</span>
+<span id="L262"><span class="lineNum">     262</span>              : #endif</span>
+<span id="L263"><span class="lineNum">     263</span>              : </span>
+<span id="L264"><span class="lineNum">     264</span> <span class="tlaUNC">           0 :                 if (strcmp(argv[i], &quot;--no-stratum-http&quot;) == 0) {</span></span>
+<span id="L265"><span class="lineNum">     265</span> <span class="tlaUNC">           0 :                         m_enableStratumHTTP = false;</span></span>
+<span id="L266"><span class="lineNum">     266</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
+<span id="L267"><span class="lineNum">     267</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L268"><span class="lineNum">     268</span>              : </span>
+<span id="L269"><span class="lineNum">     269</span> <span class="tlaUNC">           0 : #ifdef WITH_MERGE_MINING_DONATION</span></span>
+<span id="L270"><span class="lineNum">     270</span> <span class="tlaUNC">           0 :                 if ((strcmp(argv[i], &quot;--adkf&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span></span>
+<span id="L271"><span class="lineNum">     271</span> <span class="tlaUNC">           0 :                         m_authorKeyFile = argv[++i];</span></span>
+<span id="L272"><span class="lineNum">     272</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
+<span id="L273"><span class="lineNum">     273</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L274"><span class="lineNum">     274</span> <span class="tlaUNC">           0 : #endif</span></span>
+<span id="L275"><span class="lineNum">     275</span>              : </span>
+<span id="L276"><span class="lineNum">     276</span> <span class="tlaUNC">           0 :                 if (strcmp(argv[i], &quot;--full-validation&quot;) == 0) {</span></span>
+<span id="L277"><span class="lineNum">     277</span> <span class="tlaUNC">           0 :                         m_enableFullValidation = true;</span></span>
+<span id="L278"><span class="lineNum">     278</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
+<span id="L279"><span class="lineNum">     279</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L280"><span class="lineNum">     280</span>              : </span>
+<span id="L281"><span class="lineNum">     281</span> <span class="tlaUNC">           0 :                 if ((strcmp(argv[i], &quot;--onion-address&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span></span>
+<span id="L282"><span class="lineNum">     282</span> <span class="tlaUNC">           0 :                         m_onionAddress = argv[++i];</span></span>
+<span id="L283"><span class="lineNum">     283</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
+<span id="L284"><span class="lineNum">     284</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L285"><span class="lineNum">     285</span>              : </span>
+<span id="L286"><span class="lineNum">     286</span> <span class="tlaUNC">           0 :                 if (strcmp(argv[i], &quot;--no-clearnet-p2p&quot;) == 0) {</span></span>
+<span id="L287"><span class="lineNum">     287</span> <span class="tlaUNC">           0 :                         m_noClearnetP2P = true;</span></span>
+<span id="L288"><span class="lineNum">     288</span> <span class="tlaUNC">           0 :                         ok = true;</span></span>
+<span id="L289"><span class="lineNum">     289</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L290"><span class="lineNum">     290</span>              : </span>
+<span id="L291"><span class="lineNum">     291</span>              : #ifdef WITH_REDIS</span>
+<span id="L292"><span class="lineNum">     292</span>              :                 if ((strcmp(argv[i], &quot;--redis-host&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
+<span id="L293"><span class="lineNum">     293</span>              :                         m_redisHost = argv[++i];</span>
+<span id="L294"><span class="lineNum">     294</span>              :                         ok = true;</span>
+<span id="L295"><span class="lineNum">     295</span>              :                 }</span>
+<span id="L296"><span class="lineNum">     296</span>              : </span>
+<span id="L297"><span class="lineNum">     297</span>              :                 if ((strcmp(argv[i], &quot;--redis-port&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
+<span id="L298"><span class="lineNum">     298</span>              :                         m_redisPort = static_cast&lt;int32_t&gt;(std::min(std::max(strtoul(argv[++i], nullptr, 10), 1UL), 65535UL));</span>
+<span id="L299"><span class="lineNum">     299</span>              :                         ok = true;</span>
+<span id="L300"><span class="lineNum">     300</span>              :                 }</span>
+<span id="L301"><span class="lineNum">     301</span>              : </span>
+<span id="L302"><span class="lineNum">     302</span>              :                 if ((strcmp(argv[i], &quot;--redis-db&quot;) == 0) &amp;&amp; (i + 1 &lt; argc)) {</span>
+<span id="L303"><span class="lineNum">     303</span>              :                         m_redisDb = static_cast&lt;int32_t&gt;(strtoul(argv[++i], nullptr, 10));</span>
+<span id="L304"><span class="lineNum">     304</span>              :                         ok = true;</span>
+<span id="L305"><span class="lineNum">     305</span>              :                 }</span>
+<span id="L306"><span class="lineNum">     306</span>              : #endif</span>
+<span id="L307"><span class="lineNum">     307</span>              : </span>
+<span id="L308"><span class="lineNum">     308</span> <span class="tlaUNC">           0 :                 if (!ok) {</span></span>
+<span id="L309"><span class="lineNum">     309</span>              :                         // Wait to avoid log messages overlapping with printf() calls and making a mess on screen</span>
+<span id="L310"><span class="lineNum">     310</span> <span class="tlaUNC">           0 :                         std::this_thread::sleep_for(std::chrono::milliseconds(10));</span></span>
+<span id="L311"><span class="lineNum">     311</span>              : </span>
+<span id="L312"><span class="lineNum">     312</span> <span class="tlaUNC">           0 :                         fprintf(stderr, &quot;Unknown command line parameter %s\n\n&quot;, argv[i]);</span></span>
+<span id="L313"><span class="lineNum">     313</span> <span class="tlaUNC">           0 :                         p2pool_usage();</span></span>
+<span id="L314"><span class="lineNum">     314</span> <span class="tlaUNC">           0 :                         throw std::exception();</span></span>
+<span id="L315"><span class="lineNum">     315</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L316"><span class="lineNum">     316</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L317"><span class="lineNum">     317</span>              : </span>
+<span id="L318"><span class="lineNum">     318</span> <span class="tlaUNC">           0 :         if (!m_onionAddress.empty()) {</span></span>
+<span id="L319"><span class="lineNum">     319</span> <span class="tlaUNC">           0 :                 m_onionPubkey = from_onion_v3(m_onionAddress);</span></span>
 <span id="L320"><span class="lineNum">     320</span>              : </span>
-<span id="L321"><span class="lineNum">     321</span> <span class="tlaUNC">           0 :         if (!m_onionAddress.empty()) {</span></span>
-<span id="L322"><span class="lineNum">     322</span> <span class="tlaUNC">           0 :                 m_onionPubkey = from_onion_v3(m_onionAddress);</span></span>
-<span id="L323"><span class="lineNum">     323</span>              : </span>
-<span id="L324"><span class="lineNum">     324</span> <span class="tlaUNC">           0 :                 if (m_onionPubkey.empty()) {</span></span>
-<span id="L325"><span class="lineNum">     325</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Failed to parse \&quot;&quot; &lt;&lt; m_onionAddress &lt;&lt; '&quot;');</span></span>
-<span id="L326"><span class="lineNum">     326</span> <span class="tlaUNC">           0 :                         throw std::exception();</span></span>
-<span id="L327"><span class="lineNum">     327</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L328"><span class="lineNum">     328</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L329"><span class="lineNum">     329</span>              : </span>
-<span id="L330"><span class="lineNum">     330</span> <span class="tlaUNC">           0 :         auto invalid_host = [](const Host&amp; h)</span></span>
-<span id="L331"><span class="lineNum">     331</span> <span class="tlaUNC">           0 :         {</span></span>
-<span id="L332"><span class="lineNum">     332</span> <span class="tlaUNC">           0 :                 if (!h.valid()) {</span></span>
-<span id="L333"><span class="lineNum">     333</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Invalid host &quot; &lt;&lt; h.m_address &lt;&lt; ':' &lt;&lt; h.m_rpcPort &lt;&lt; &quot;:ZMQ:&quot; &lt;&lt; h.m_zmqPort &lt;&lt; &quot;. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
-<span id="L334"><span class="lineNum">     334</span> <span class="tlaUNC">           0 :                         return true;</span></span>
-<span id="L335"><span class="lineNum">     335</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L336"><span class="lineNum">     336</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L337"><span class="lineNum">     337</span> <span class="tlaUNC">           0 :         };</span></span>
-<span id="L338"><span class="lineNum">     338</span>              : </span>
-<span id="L339"><span class="lineNum">     339</span> <span class="tlaUNC">           0 :         m_hosts.erase(std::remove_if(m_hosts.begin(), m_hosts.end(), invalid_host), m_hosts.end());</span></span>
-<span id="L340"><span class="lineNum">     340</span>              : </span>
-<span id="L341"><span class="lineNum">     341</span> <span class="tlaUNC">           0 :         if (m_hosts.empty()) {</span></span>
-<span id="L342"><span class="lineNum">     342</span> <span class="tlaUNC">           0 :                 m_hosts.emplace_back();</span></span>
-<span id="L343"><span class="lineNum">     343</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L321"><span class="lineNum">     321</span> <span class="tlaUNC">           0 :                 if (m_onionPubkey.empty()) {</span></span>
+<span id="L322"><span class="lineNum">     322</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Failed to parse \&quot;&quot; &lt;&lt; m_onionAddress &lt;&lt; '&quot;');</span></span>
+<span id="L323"><span class="lineNum">     323</span> <span class="tlaUNC">           0 :                         throw std::exception();</span></span>
+<span id="L324"><span class="lineNum">     324</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L325"><span class="lineNum">     325</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L326"><span class="lineNum">     326</span>              : </span>
+<span id="L327"><span class="lineNum">     327</span> <span class="tlaUNC">           0 :         auto invalid_host = [](const Host&amp; h)</span></span>
+<span id="L328"><span class="lineNum">     328</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L329"><span class="lineNum">     329</span> <span class="tlaUNC">           0 :                 if (!h.valid()) {</span></span>
+<span id="L330"><span class="lineNum">     330</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Invalid host &quot; &lt;&lt; h.m_address &lt;&lt; ':' &lt;&lt; h.m_rpcPort &lt;&lt; &quot;:ZMQ:&quot; &lt;&lt; h.m_zmqPort &lt;&lt; &quot;. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
+<span id="L331"><span class="lineNum">     331</span> <span class="tlaUNC">           0 :                         return true;</span></span>
+<span id="L332"><span class="lineNum">     332</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L333"><span class="lineNum">     333</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L334"><span class="lineNum">     334</span> <span class="tlaUNC">           0 :         };</span></span>
+<span id="L335"><span class="lineNum">     335</span>              : </span>
+<span id="L336"><span class="lineNum">     336</span> <span class="tlaUNC">           0 :         m_hosts.erase(std::remove_if(m_hosts.begin(), m_hosts.end(), invalid_host), m_hosts.end());</span></span>
+<span id="L337"><span class="lineNum">     337</span>              : </span>
+<span id="L338"><span class="lineNum">     338</span> <span class="tlaUNC">           0 :         if (m_hosts.empty()) {</span></span>
+<span id="L339"><span class="lineNum">     339</span> <span class="tlaUNC">           0 :                 m_hosts.emplace_back();</span></span>
+<span id="L340"><span class="lineNum">     340</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L341"><span class="lineNum">     341</span>              : </span>
+<span id="L342"><span class="lineNum">     342</span> <span class="tlaUNC">           0 :         if (m_stratumAddresses.empty()) {</span></span>
+<span id="L343"><span class="lineNum">     343</span> <span class="tlaUNC">           0 :                 const int stratum_port = DEFAULT_STRATUM_PORT;</span></span>
 <span id="L344"><span class="lineNum">     344</span>              : </span>
-<span id="L345"><span class="lineNum">     345</span> <span class="tlaUNC">           0 :         if (m_stratumAddresses.empty()) {</span></span>
-<span id="L346"><span class="lineNum">     346</span> <span class="tlaUNC">           0 :                 const int stratum_port = DEFAULT_STRATUM_PORT;</span></span>
-<span id="L347"><span class="lineNum">     347</span>              : </span>
-<span id="L348"><span class="lineNum">     348</span> <span class="tlaUNC">           0 :                 char buf[48] = {};</span></span>
-<span id="L349"><span class="lineNum">     349</span> <span class="tlaUNC">           0 :                 log::Stream s(buf);</span></span>
-<span id="L350"><span class="lineNum">     350</span> <span class="tlaUNC">           0 :                 s &lt;&lt; &quot;[::]:&quot; &lt;&lt; stratum_port &lt;&lt; &quot;,0.0.0.0:&quot; &lt;&lt; stratum_port;</span></span>
+<span id="L345"><span class="lineNum">     345</span> <span class="tlaUNC">           0 :                 char buf[48] = {};</span></span>
+<span id="L346"><span class="lineNum">     346</span> <span class="tlaUNC">           0 :                 log::Stream s(buf);</span></span>
+<span id="L347"><span class="lineNum">     347</span> <span class="tlaUNC">           0 :                 s &lt;&lt; &quot;[::]:&quot; &lt;&lt; stratum_port &lt;&lt; &quot;,0.0.0.0:&quot; &lt;&lt; stratum_port;</span></span>
+<span id="L348"><span class="lineNum">     348</span>              : </span>
+<span id="L349"><span class="lineNum">     349</span> <span class="tlaUNC">           0 :                 m_stratumAddresses = buf;</span></span>
+<span id="L350"><span class="lineNum">     350</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L351"><span class="lineNum">     351</span>              : </span>
-<span id="L352"><span class="lineNum">     352</span> <span class="tlaUNC">           0 :                 m_stratumAddresses = buf;</span></span>
-<span id="L353"><span class="lineNum">     353</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L354"><span class="lineNum">     354</span>              : </span>
-<span id="L355"><span class="lineNum">     355</span> <span class="tlaUNC">           0 :         if(m_stratumBanTime &lt; MIN_STRATUM_BAN_TIME) {</span></span>
-<span id="L356"><span class="lineNum">     356</span> <span class="tlaUNC">           0 :                 LOGWARN(1, &quot;Value for --stratum-ban-time is too low, adjusting to &quot; &lt;&lt; MIN_STRATUM_BAN_TIME);</span></span>
-<span id="L357"><span class="lineNum">     357</span> <span class="tlaUNC">           0 :                 m_stratumBanTime = MIN_STRATUM_BAN_TIME;</span></span>
-<span id="L358"><span class="lineNum">     358</span> <span class="tlaUNC">           0 :         } else if(m_stratumBanTime &gt; MAX_STRATUM_BAN_TIME) {</span></span>
-<span id="L359"><span class="lineNum">     359</span> <span class="tlaUNC">           0 :                 LOGWARN(1, &quot;Value for --stratum-ban-time is too high, adjusting to &quot; &lt;&lt; MAX_STRATUM_BAN_TIME);</span></span>
-<span id="L360"><span class="lineNum">     360</span> <span class="tlaUNC">           0 :                 m_stratumBanTime = MAX_STRATUM_BAN_TIME;</span></span>
-<span id="L361"><span class="lineNum">     361</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L352"><span class="lineNum">     352</span> <span class="tlaUNC">           0 :         if(m_stratumBanTime &lt; MIN_STRATUM_BAN_TIME) {</span></span>
+<span id="L353"><span class="lineNum">     353</span> <span class="tlaUNC">           0 :                 LOGWARN(1, &quot;Value for --stratum-ban-time is too low, adjusting to &quot; &lt;&lt; MIN_STRATUM_BAN_TIME);</span></span>
+<span id="L354"><span class="lineNum">     354</span> <span class="tlaUNC">           0 :                 m_stratumBanTime = MIN_STRATUM_BAN_TIME;</span></span>
+<span id="L355"><span class="lineNum">     355</span> <span class="tlaUNC">           0 :         } else if(m_stratumBanTime &gt; MAX_STRATUM_BAN_TIME) {</span></span>
+<span id="L356"><span class="lineNum">     356</span> <span class="tlaUNC">           0 :                 LOGWARN(1, &quot;Value for --stratum-ban-time is too high, adjusting to &quot; &lt;&lt; MAX_STRATUM_BAN_TIME);</span></span>
+<span id="L357"><span class="lineNum">     357</span> <span class="tlaUNC">           0 :                 m_stratumBanTime = MAX_STRATUM_BAN_TIME;</span></span>
+<span id="L358"><span class="lineNum">     358</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L359"><span class="lineNum">     359</span>              : </span>
+<span id="L360"><span class="lineNum">     360</span> <span class="tlaUNC">           0 :         char display_wallet_buf[Wallet::ADDRESS_LENGTH] = {};</span></span>
+<span id="L361"><span class="lineNum">     361</span>              : </span>
 <span id="L362"><span class="lineNum">     362</span>              : </span>
-<span id="L363"><span class="lineNum">     363</span> <span class="tlaUNC">           0 :         char display_wallet_buf[Wallet::ADDRESS_LENGTH] = {};</span></span>
-<span id="L364"><span class="lineNum">     364</span>              : </span>
-<span id="L365"><span class="lineNum">     365</span>              : </span>
-<span id="L366"><span class="lineNum">     366</span> <span class="tlaUNC">           0 :         if (m_mainWallet.valid() &amp;&amp; m_subaddress.valid()) {</span></span>
-<span id="L367"><span class="lineNum">     367</span> <span class="tlaUNC">           0 :                 if (!m_miningWallet.assign(m_subaddress.spend_public_key(), m_mainWallet.view_public_key(), m_mainWallet.type(), false)) {</span></span>
-<span id="L368"><span class="lineNum">     368</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Failed to configure the mining wallet, falling back to &quot; &lt;&lt; m_mainWallet);</span></span>
-<span id="L369"><span class="lineNum">     369</span> <span class="tlaUNC">           0 :                         m_miningWallet = m_mainWallet;</span></span>
-<span id="L370"><span class="lineNum">     370</span> <span class="tlaUNC">           0 :                         m_mainWallet.encode(display_wallet_buf);</span></span>
+<span id="L363"><span class="lineNum">     363</span> <span class="tlaUNC">           0 :         if (m_mainWallet.valid() &amp;&amp; m_subaddress.valid()) {</span></span>
+<span id="L364"><span class="lineNum">     364</span> <span class="tlaUNC">           0 :                 if (!m_miningWallet.assign(m_subaddress.spend_public_key(), m_mainWallet.view_public_key(), m_mainWallet.type(), false)) {</span></span>
+<span id="L365"><span class="lineNum">     365</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Failed to configure the mining wallet, falling back to &quot; &lt;&lt; m_mainWallet);</span></span>
+<span id="L366"><span class="lineNum">     366</span> <span class="tlaUNC">           0 :                         m_miningWallet = m_mainWallet;</span></span>
+<span id="L367"><span class="lineNum">     367</span> <span class="tlaUNC">           0 :                         m_mainWallet.encode(display_wallet_buf);</span></span>
+<span id="L368"><span class="lineNum">     368</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L369"><span class="lineNum">     369</span> <span class="tlaUNC">           0 :                 else {</span></span>
+<span id="L370"><span class="lineNum">     370</span> <span class="tlaUNC">           0 :                         m_subaddress.encode(display_wallet_buf);</span></span>
 <span id="L371"><span class="lineNum">     371</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L372"><span class="lineNum">     372</span> <span class="tlaUNC">           0 :                 else {</span></span>
-<span id="L373"><span class="lineNum">     373</span> <span class="tlaUNC">           0 :                         m_subaddress.encode(display_wallet_buf);</span></span>
-<span id="L374"><span class="lineNum">     374</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L375"><span class="lineNum">     375</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L376"><span class="lineNum">     376</span> <span class="tlaUNC">           0 :         else if (m_mainWallet.valid()) {</span></span>
-<span id="L377"><span class="lineNum">     377</span> <span class="tlaUNC">           0 :                 m_miningWallet = m_mainWallet;</span></span>
-<span id="L378"><span class="lineNum">     378</span> <span class="tlaUNC">           0 :                 m_mainWallet.encode(display_wallet_buf);</span></span>
-<span id="L379"><span class="lineNum">     379</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L380"><span class="lineNum">     380</span>              : </span>
-<span id="L381"><span class="lineNum">     381</span>              :         // Initialize dev wallet based on network type</span>
-<span id="L382"><span class="lineNum">     382</span> <span class="tlaUNC">           0 :         const char* dev_wallet_str = nullptr;</span></span>
-<span id="L383"><span class="lineNum">     383</span> <span class="tlaUNC">           0 :         if (m_mainWallet.valid()) {</span></span>
-<span id="L384"><span class="lineNum">     384</span> <span class="tlaUNC">           0 :                 switch (m_mainWallet.type()) {</span></span>
-<span id="L385"><span class="lineNum">     385</span> <span class="tlaUNC">           0 :                 case NetworkType::Mainnet:</span></span>
-<span id="L386"><span class="lineNum">     386</span> <span class="tlaUNC">           0 :                         dev_wallet_str = &quot;SC11VXXJyJTZcFJikJrgQKE2HmfXCt2DnRoM7tLB2vm3H2urbN1bUvaVGHY1osS4pmKrQ558cXmAf4nRYDayAmER6PYG6QRoNX&quot;;</span></span>
+<span id="L372"><span class="lineNum">     372</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L373"><span class="lineNum">     373</span> <span class="tlaUNC">           0 :         else if (m_mainWallet.valid()) {</span></span>
+<span id="L374"><span class="lineNum">     374</span> <span class="tlaUNC">           0 :                 m_miningWallet = m_mainWallet;</span></span>
+<span id="L375"><span class="lineNum">     375</span> <span class="tlaUNC">           0 :                 m_mainWallet.encode(display_wallet_buf);</span></span>
+<span id="L376"><span class="lineNum">     376</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L377"><span class="lineNum">     377</span>              : </span>
+<span id="L378"><span class="lineNum">     378</span>              :         // Initialize dev wallet based on network type</span>
+<span id="L379"><span class="lineNum">     379</span> <span class="tlaUNC">           0 :         const char* dev_wallet_str = nullptr;</span></span>
+<span id="L380"><span class="lineNum">     380</span> <span class="tlaUNC">           0 :         if (m_mainWallet.valid()) {</span></span>
+<span id="L381"><span class="lineNum">     381</span> <span class="tlaUNC">           0 :                 switch (m_mainWallet.type()) {</span></span>
+<span id="L382"><span class="lineNum">     382</span> <span class="tlaUNC">           0 :                 case NetworkType::Mainnet:</span></span>
+<span id="L383"><span class="lineNum">     383</span> <span class="tlaUNC">           0 :                         dev_wallet_str = &quot;SC11VXXJyJTZcFJikJrgQKE2HmfXCt2DnRoM7tLB2vm3H2urbN1bUvaVGHY1osS4pmKrQ558cXmAf4nRYDayAmER6PYG6QRoNX&quot;;</span></span>
+<span id="L384"><span class="lineNum">     384</span> <span class="tlaUNC">           0 :                         break;</span></span>
+<span id="L385"><span class="lineNum">     385</span> <span class="tlaUNC">           0 :                 case NetworkType::Testnet:</span></span>
+<span id="L386"><span class="lineNum">     386</span> <span class="tlaUNC">           0 :                         dev_wallet_str = &quot;SC1ToqmproHYLhyPtehEMhE6dYRT7YziKRhaTtRCX2tVFDjqPJDXKtHPfLDvD6pn5b8pm1ZLrDQ2FfcHUEtapFDnbxk5RBBYmqT&quot;; </span></span>
 <span id="L387"><span class="lineNum">     387</span> <span class="tlaUNC">           0 :                         break;</span></span>
-<span id="L388"><span class="lineNum">     388</span> <span class="tlaUNC">           0 :                 case NetworkType::Testnet:</span></span>
-<span id="L389"><span class="lineNum">     389</span> <span class="tlaUNC">           0 :                         dev_wallet_str = &quot;SC1ToqmproHYLhyPtehEMhE6dYRT7YziKRhaTtRCX2tVFDjqPJDXKtHPfLDvD6pn5b8pm1ZLrDQ2FfcHUEtapFDnbxk5RBBYmqT&quot;; </span></span>
+<span id="L388"><span class="lineNum">     388</span> <span class="tlaUNC">           0 :                 case NetworkType::Stagenet:</span></span>
+<span id="L389"><span class="lineNum">     389</span> <span class="tlaUNC">           0 :                         dev_wallet_str = &quot;&quot;;</span></span>
 <span id="L390"><span class="lineNum">     390</span> <span class="tlaUNC">           0 :                         break;</span></span>
-<span id="L391"><span class="lineNum">     391</span> <span class="tlaUNC">           0 :                 case NetworkType::Stagenet:</span></span>
-<span id="L392"><span class="lineNum">     392</span> <span class="tlaUNC">           0 :                         dev_wallet_str = &quot;&quot;;</span></span>
-<span id="L393"><span class="lineNum">     393</span> <span class="tlaUNC">           0 :                         break;</span></span>
-<span id="L394"><span class="lineNum">     394</span> <span class="tlaUNC">           0 :                 default:</span></span>
-<span id="L395"><span class="lineNum">     395</span> <span class="tlaUNC">           0 :                         break;</span></span>
-<span id="L396"><span class="lineNum">     396</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L391"><span class="lineNum">     391</span> <span class="tlaUNC">           0 :                 default:</span></span>
+<span id="L392"><span class="lineNum">     392</span> <span class="tlaUNC">           0 :                         break;</span></span>
+<span id="L393"><span class="lineNum">     393</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L394"><span class="lineNum">     394</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L395"><span class="lineNum">     395</span> <span class="tlaUNC">           0 :         if (dev_wallet_str &amp;&amp; !m_devWallet.decode(dev_wallet_str)) {</span></span>
+<span id="L396"><span class="lineNum">     396</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Failed to decode dev wallet address&quot;);</span></span>
 <span id="L397"><span class="lineNum">     397</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L398"><span class="lineNum">     398</span> <span class="tlaUNC">           0 :         if (dev_wallet_str &amp;&amp; !m_devWallet.decode(dev_wallet_str)) {</span></span>
-<span id="L399"><span class="lineNum">     399</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Failed to decode dev wallet address&quot;);</span></span>
-<span id="L400"><span class="lineNum">     400</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L398"><span class="lineNum">     398</span>              : </span>
+<span id="L399"><span class="lineNum">     399</span> <span class="tlaUNC">           0 :         m_displayWallet.assign(display_wallet_buf, Wallet::ADDRESS_LENGTH);</span></span>
+<span id="L400"><span class="lineNum">     400</span> <span class="tlaUNC">           0 : }</span></span>
 <span id="L401"><span class="lineNum">     401</span>              : </span>
-<span id="L402"><span class="lineNum">     402</span> <span class="tlaUNC">           0 :         m_displayWallet.assign(display_wallet_buf, Wallet::ADDRESS_LENGTH);</span></span>
-<span id="L403"><span class="lineNum">     403</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L404"><span class="lineNum">     404</span>              : </span>
-<span id="L405"><span class="lineNum">     405</span>              : bool Params::valid() const</span>
-<span id="L406"><span class="lineNum">     406</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L407"><span class="lineNum">     407</span> <span class="tlaUNC">           0 :         if (!m_mainWallet.valid() || !m_miningWallet.valid()) {</span></span>
-<span id="L408"><span class="lineNum">     408</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Invalid wallet address. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
-<span id="L409"><span class="lineNum">     409</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L410"><span class="lineNum">     410</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L411"><span class="lineNum">     411</span>              : </span>
-<span id="L412"><span class="lineNum">     412</span> <span class="tlaUNC">           0 :         if (m_mainWallet.is_subaddress()) {</span></span>
-<span id="L413"><span class="lineNum">     413</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Wallet address must be a main address (starting with SC1). Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
-<span id="L414"><span class="lineNum">     414</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L415"><span class="lineNum">     415</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L416"><span class="lineNum">     416</span>              : </span>
-<span id="L417"><span class="lineNum">     417</span> <span class="tlaUNC">           0 :         if (m_subaddress.valid()) {</span></span>
-<span id="L418"><span class="lineNum">     418</span> <span class="tlaUNC">           0 :                 if (!m_subaddress.is_subaddress()) {</span></span>
-<span id="L419"><span class="lineNum">     419</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Subaddress must start with SC1s. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
-<span id="L420"><span class="lineNum">     420</span> <span class="tlaUNC">           0 :                         return false;</span></span>
-<span id="L421"><span class="lineNum">     421</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L422"><span class="lineNum">     422</span> <span class="tlaUNC">           0 :                 if (m_subaddress.type() != m_mainWallet.type()) {</span></span>
-<span id="L423"><span class="lineNum">     423</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Subaddress must belong to the same network type as the main wallet address. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
-<span id="L424"><span class="lineNum">     424</span> <span class="tlaUNC">           0 :                         return false;</span></span>
-<span id="L425"><span class="lineNum">     425</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L426"><span class="lineNum">     426</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L427"><span class="lineNum">     427</span>              : </span>
-<span id="L428"><span class="lineNum">     428</span> <span class="tlaUNC">           0 :         if (!m_mainWallet.torsion_check()) {</span></span>
-<span id="L429"><span class="lineNum">     429</span> <span class="tlaUNC">           0 :                 LOGERR(1, m_mainWallet &lt;&lt; &quot; didn't pass the torsion check. It will be incompatible with FCMP++.&quot;);</span></span>
-<span id="L430"><span class="lineNum">     430</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L431"><span class="lineNum">     431</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L432"><span class="lineNum">     432</span>              : </span>
-<span id="L433"><span class="lineNum">     433</span> <span class="tlaUNC">           0 :         if (m_subaddress.valid() &amp;&amp; !m_subaddress.torsion_check()) {</span></span>
-<span id="L434"><span class="lineNum">     434</span> <span class="tlaUNC">           0 :                 LOGERR(1, m_subaddress &lt;&lt; &quot; didn't pass the torsion check. It will be incompatible with FCMP++.&quot;);</span></span>
-<span id="L435"><span class="lineNum">     435</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L436"><span class="lineNum">     436</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L437"><span class="lineNum">     437</span>              : </span>
-<span id="L438"><span class="lineNum">     438</span> <span class="tlaUNC">           0 :         if (m_mergeMiningHosts.size() &gt; 10) {</span></span>
-<span id="L439"><span class="lineNum">     439</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Too many merge mining blockchains.&quot;);</span></span>
-<span id="L440"><span class="lineNum">     440</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L441"><span class="lineNum">     441</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L442"><span class="lineNum">     442</span>              : </span>
-<span id="L443"><span class="lineNum">     443</span>              : #ifdef WITH_TLS</span>
-<span id="L444"><span class="lineNum">     444</span>              :         if (m_tlsCert.empty() != m_tlsCertKey.empty()) {</span>
-<span id="L445"><span class="lineNum">     445</span>              :                 LOGERR(1, &quot;Both --tls-cert and --tls-cert-key files must be specified&quot;);</span>
-<span id="L446"><span class="lineNum">     446</span>              :                 return false;</span>
-<span id="L447"><span class="lineNum">     447</span>              :         }</span>
-<span id="L448"><span class="lineNum">     448</span>              : #endif</span>
-<span id="L449"><span class="lineNum">     449</span>              : </span>
-<span id="L450"><span class="lineNum">     450</span> <span class="tlaUNC">           0 :         if (m_mini &amp;&amp; m_nano) {</span></span>
-<span id="L451"><span class="lineNum">     451</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;You can't have both --mini and --nano in the command line&quot;);</span></span>
-<span id="L452"><span class="lineNum">     452</span> <span class="tlaUNC">           0 :                 return false;</span></span>
-<span id="L453"><span class="lineNum">     453</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L402"><span class="lineNum">     402</span>              : bool Params::valid() const</span>
+<span id="L403"><span class="lineNum">     403</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L404"><span class="lineNum">     404</span> <span class="tlaUNC">           0 :         if (!m_mainWallet.valid() || !m_miningWallet.valid()) {</span></span>
+<span id="L405"><span class="lineNum">     405</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Invalid wallet address. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
+<span id="L406"><span class="lineNum">     406</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L407"><span class="lineNum">     407</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L408"><span class="lineNum">     408</span>              : </span>
+<span id="L409"><span class="lineNum">     409</span> <span class="tlaUNC">           0 :         if (m_mainWallet.is_subaddress()) {</span></span>
+<span id="L410"><span class="lineNum">     410</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Wallet address must be a main address (starting with SC1). Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
+<span id="L411"><span class="lineNum">     411</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L412"><span class="lineNum">     412</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L413"><span class="lineNum">     413</span>              : </span>
+<span id="L414"><span class="lineNum">     414</span> <span class="tlaUNC">           0 :         if (m_subaddress.valid()) {</span></span>
+<span id="L415"><span class="lineNum">     415</span> <span class="tlaUNC">           0 :                 if (!m_subaddress.is_subaddress()) {</span></span>
+<span id="L416"><span class="lineNum">     416</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Subaddress must start with SC1s. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
+<span id="L417"><span class="lineNum">     417</span> <span class="tlaUNC">           0 :                         return false;</span></span>
+<span id="L418"><span class="lineNum">     418</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L419"><span class="lineNum">     419</span> <span class="tlaUNC">           0 :                 if (m_subaddress.type() != m_mainWallet.type()) {</span></span>
+<span id="L420"><span class="lineNum">     420</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Subaddress must belong to the same network type as the main wallet address. Try \&quot;p2pool --help\&quot;.&quot;);</span></span>
+<span id="L421"><span class="lineNum">     421</span> <span class="tlaUNC">           0 :                         return false;</span></span>
+<span id="L422"><span class="lineNum">     422</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L423"><span class="lineNum">     423</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L424"><span class="lineNum">     424</span>              : </span>
+<span id="L425"><span class="lineNum">     425</span> <span class="tlaUNC">           0 :         if (!m_mainWallet.torsion_check()) {</span></span>
+<span id="L426"><span class="lineNum">     426</span> <span class="tlaUNC">           0 :                 LOGERR(1, m_mainWallet &lt;&lt; &quot; didn't pass the torsion check. It will be incompatible with FCMP++.&quot;);</span></span>
+<span id="L427"><span class="lineNum">     427</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L428"><span class="lineNum">     428</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L429"><span class="lineNum">     429</span>              : </span>
+<span id="L430"><span class="lineNum">     430</span> <span class="tlaUNC">           0 :         if (m_subaddress.valid() &amp;&amp; !m_subaddress.torsion_check()) {</span></span>
+<span id="L431"><span class="lineNum">     431</span> <span class="tlaUNC">           0 :                 LOGERR(1, m_subaddress &lt;&lt; &quot; didn't pass the torsion check. It will be incompatible with FCMP++.&quot;);</span></span>
+<span id="L432"><span class="lineNum">     432</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L433"><span class="lineNum">     433</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L434"><span class="lineNum">     434</span>              : </span>
+<span id="L435"><span class="lineNum">     435</span> <span class="tlaUNC">           0 :         if (m_mergeMiningHosts.size() &gt; 10) {</span></span>
+<span id="L436"><span class="lineNum">     436</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;Too many merge mining blockchains.&quot;);</span></span>
+<span id="L437"><span class="lineNum">     437</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L438"><span class="lineNum">     438</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L439"><span class="lineNum">     439</span>              : </span>
+<span id="L440"><span class="lineNum">     440</span>              : #ifdef WITH_TLS</span>
+<span id="L441"><span class="lineNum">     441</span>              :         if (m_tlsCert.empty() != m_tlsCertKey.empty()) {</span>
+<span id="L442"><span class="lineNum">     442</span>              :                 LOGERR(1, &quot;Both --tls-cert and --tls-cert-key files must be specified&quot;);</span>
+<span id="L443"><span class="lineNum">     443</span>              :                 return false;</span>
+<span id="L444"><span class="lineNum">     444</span>              :         }</span>
+<span id="L445"><span class="lineNum">     445</span>              : #endif</span>
+<span id="L446"><span class="lineNum">     446</span>              : </span>
+<span id="L447"><span class="lineNum">     447</span> <span class="tlaUNC">           0 :         if (m_mini &amp;&amp; m_nano) {</span></span>
+<span id="L448"><span class="lineNum">     448</span> <span class="tlaUNC">           0 :                 LOGERR(1, &quot;You can't have both --mini and --nano in the command line&quot;);</span></span>
+<span id="L449"><span class="lineNum">     449</span> <span class="tlaUNC">           0 :                 return false;</span></span>
+<span id="L450"><span class="lineNum">     450</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L451"><span class="lineNum">     451</span>              : </span>
+<span id="L452"><span class="lineNum">     452</span> <span class="tlaUNC">           0 :         return true;</span></span>
+<span id="L453"><span class="lineNum">     453</span> <span class="tlaUNC">           0 : }</span></span>
 <span id="L454"><span class="lineNum">     454</span>              : </span>
-<span id="L455"><span class="lineNum">     455</span> <span class="tlaUNC">           0 :         return true;</span></span>
-<span id="L456"><span class="lineNum">     456</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L457"><span class="lineNum">     457</span>              : </span>
-<span id="L458"><span class="lineNum">     458</span>              : bool Params::Host::init_display_name(const Params&amp; p)</span>
-<span id="L459"><span class="lineNum">     459</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L460"><span class="lineNum">     460</span> <span class="tlaUNC">           0 :         m_displayName = m_address;</span></span>
-<span id="L461"><span class="lineNum">     461</span>              : </span>
-<span id="L462"><span class="lineNum">     462</span> <span class="tlaUNC">           0 :         if (p.m_socks5Proxy.empty()) {</span></span>
-<span id="L463"><span class="lineNum">     463</span> <span class="tlaUNC">           0 :                 if (p.m_dns) {</span></span>
-<span id="L464"><span class="lineNum">     464</span> <span class="tlaUNC">           0 :                         bool is_v6;</span></span>
-<span id="L465"><span class="lineNum">     465</span> <span class="tlaUNC">           0 :                         if (!resolve_host(m_address, is_v6)) {</span></span>
-<span id="L466"><span class="lineNum">     466</span> <span class="tlaUNC">           0 :                                 LOGERR(1, &quot;resolve_host failed for &quot; &lt;&lt; m_address);</span></span>
-<span id="L467"><span class="lineNum">     467</span> <span class="tlaUNC">           0 :                                 return false;</span></span>
-<span id="L468"><span class="lineNum">     468</span> <span class="tlaUNC">           0 :                         }</span></span>
-<span id="L469"><span class="lineNum">     469</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L470"><span class="lineNum">     470</span> <span class="tlaUNC">           0 :                 else if (m_address.find_first_not_of(&quot;0123456789.:&quot;) != std::string::npos) {</span></span>
-<span id="L471"><span class="lineNum">     471</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Can't resolve hostname &quot; &lt;&lt; m_address &lt;&lt; &quot; with DNS disabled&quot;);</span></span>
-<span id="L472"><span class="lineNum">     472</span> <span class="tlaUNC">           0 :                         return false;</span></span>
-<span id="L473"><span class="lineNum">     473</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L474"><span class="lineNum">     474</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L475"><span class="lineNum">     475</span>              : </span>
-<span id="L476"><span class="lineNum">     476</span> <span class="tlaUNC">           0 :         char buf[log::Stream::BUF_SIZE + 1];</span></span>
-<span id="L477"><span class="lineNum">     477</span> <span class="tlaUNC">           0 :         buf[0] = '\0';</span></span>
-<span id="L478"><span class="lineNum">     478</span> <span class="tlaUNC">           0 :         log::Stream s(buf);</span></span>
-<span id="L479"><span class="lineNum">     479</span>              : </span>
-<span id="L480"><span class="lineNum">     480</span> <span class="tlaUNC">           0 :         s &lt;&lt; m_displayName &lt;&lt; (m_rpcSSL ? &quot;:RPC-SSL &quot; : &quot;:RPC &quot;) &lt;&lt; m_rpcPort &lt;&lt; &quot;:ZMQ &quot; &lt;&lt; m_zmqPort;</span></span>
-<span id="L481"><span class="lineNum">     481</span> <span class="tlaUNC">           0 :         if (m_address != m_displayName) {</span></span>
-<span id="L482"><span class="lineNum">     482</span> <span class="tlaUNC">           0 :                 s &lt;&lt; &quot; (&quot; &lt;&lt; m_address &lt;&lt; ')';</span></span>
-<span id="L483"><span class="lineNum">     483</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L484"><span class="lineNum">     484</span>              : </span>
-<span id="L485"><span class="lineNum">     485</span> <span class="tlaUNC">           0 :         m_displayName.assign(buf, s.m_pos);</span></span>
+<span id="L455"><span class="lineNum">     455</span>              : bool Params::Host::init_display_name(const Params&amp; p)</span>
+<span id="L456"><span class="lineNum">     456</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L457"><span class="lineNum">     457</span> <span class="tlaUNC">           0 :         m_displayName = m_address;</span></span>
+<span id="L458"><span class="lineNum">     458</span>              : </span>
+<span id="L459"><span class="lineNum">     459</span> <span class="tlaUNC">           0 :         if (p.m_socks5Proxy.empty()) {</span></span>
+<span id="L460"><span class="lineNum">     460</span> <span class="tlaUNC">           0 :                 if (p.m_dns) {</span></span>
+<span id="L461"><span class="lineNum">     461</span> <span class="tlaUNC">           0 :                         bool is_v6;</span></span>
+<span id="L462"><span class="lineNum">     462</span> <span class="tlaUNC">           0 :                         if (!resolve_host(m_address, is_v6)) {</span></span>
+<span id="L463"><span class="lineNum">     463</span> <span class="tlaUNC">           0 :                                 LOGERR(1, &quot;resolve_host failed for &quot; &lt;&lt; m_address);</span></span>
+<span id="L464"><span class="lineNum">     464</span> <span class="tlaUNC">           0 :                                 return false;</span></span>
+<span id="L465"><span class="lineNum">     465</span> <span class="tlaUNC">           0 :                         }</span></span>
+<span id="L466"><span class="lineNum">     466</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L467"><span class="lineNum">     467</span> <span class="tlaUNC">           0 :                 else if (m_address.find_first_not_of(&quot;0123456789.:&quot;) != std::string::npos) {</span></span>
+<span id="L468"><span class="lineNum">     468</span> <span class="tlaUNC">           0 :                         LOGERR(1, &quot;Can't resolve hostname &quot; &lt;&lt; m_address &lt;&lt; &quot; with DNS disabled&quot;);</span></span>
+<span id="L469"><span class="lineNum">     469</span> <span class="tlaUNC">           0 :                         return false;</span></span>
+<span id="L470"><span class="lineNum">     470</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L471"><span class="lineNum">     471</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L472"><span class="lineNum">     472</span>              : </span>
+<span id="L473"><span class="lineNum">     473</span> <span class="tlaUNC">           0 :         char buf[log::Stream::BUF_SIZE + 1];</span></span>
+<span id="L474"><span class="lineNum">     474</span> <span class="tlaUNC">           0 :         buf[0] = '\0';</span></span>
+<span id="L475"><span class="lineNum">     475</span> <span class="tlaUNC">           0 :         log::Stream s(buf);</span></span>
+<span id="L476"><span class="lineNum">     476</span>              : </span>
+<span id="L477"><span class="lineNum">     477</span> <span class="tlaUNC">           0 :         s &lt;&lt; m_displayName &lt;&lt; (m_rpcSSL ? &quot;:RPC-SSL &quot; : &quot;:RPC &quot;) &lt;&lt; m_rpcPort &lt;&lt; &quot;:ZMQ &quot; &lt;&lt; m_zmqPort;</span></span>
+<span id="L478"><span class="lineNum">     478</span> <span class="tlaUNC">           0 :         if (m_address != m_displayName) {</span></span>
+<span id="L479"><span class="lineNum">     479</span> <span class="tlaUNC">           0 :                 s &lt;&lt; &quot; (&quot; &lt;&lt; m_address &lt;&lt; ')';</span></span>
+<span id="L480"><span class="lineNum">     480</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L481"><span class="lineNum">     481</span>              : </span>
+<span id="L482"><span class="lineNum">     482</span> <span class="tlaUNC">           0 :         m_displayName.assign(buf, s.m_pos);</span></span>
+<span id="L483"><span class="lineNum">     483</span>              : </span>
+<span id="L484"><span class="lineNum">     484</span> <span class="tlaUNC">           0 :         return true;</span></span>
+<span id="L485"><span class="lineNum">     485</span> <span class="tlaUNC">           0 : }</span></span>
 <span id="L486"><span class="lineNum">     486</span>              : </span>
-<span id="L487"><span class="lineNum">     487</span> <span class="tlaUNC">           0 :         return true;</span></span>
-<span id="L488"><span class="lineNum">     488</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L489"><span class="lineNum">     489</span>              : </span>
-<span id="L490"><span class="lineNum">     490</span>              : } // namespace p2pool</span>
+<span id="L487"><span class="lineNum">     487</span>              : } // namespace p2pool</span>
         </pre>
               </td>
             </tr>

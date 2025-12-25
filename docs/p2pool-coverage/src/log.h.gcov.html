@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-24 20:26:37</td>
+            <td class="headerValue">2025-12-25 03:49:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">12.6&nbsp;%</td>
@@ -451,16 +451,16 @@
 <span id="L389"><span class="lineNum">     389</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L390"><span class="lineNum">     390</span>              : };</span>
 <span id="L391"><span class="lineNum">     391</span>              : </span>
-<span id="L392"><span class="lineNum">     392</span>              : struct XMRAmount</span>
+<span id="L392"><span class="lineNum">     392</span>              : struct SALAmount</span>
 <span id="L393"><span class="lineNum">     393</span>              : {</span>
-<span id="L394"><span class="lineNum">     394</span> <span class="tlaUNC">           0 :         explicit FORCEINLINE XMRAmount(uint64_t data) : m_data(data) {}</span></span>
+<span id="L394"><span class="lineNum">     394</span> <span class="tlaUNC">           0 :         explicit FORCEINLINE SALAmount(uint64_t data) : m_data(data) {}</span></span>
 <span id="L395"><span class="lineNum">     395</span>              : </span>
 <span id="L396"><span class="lineNum">     396</span>              :         uint64_t m_data;</span>
 <span id="L397"><span class="lineNum">     397</span>              : };</span>
 <span id="L398"><span class="lineNum">     398</span>              : </span>
-<span id="L399"><span class="lineNum">     399</span>              : template&lt;&gt; struct log::Stream::Entry&lt;XMRAmount&gt;</span>
+<span id="L399"><span class="lineNum">     399</span>              : template&lt;&gt; struct log::Stream::Entry&lt;SALAmount&gt;</span>
 <span id="L400"><span class="lineNum">     400</span>              : {</span>
-<span id="L401"><span class="lineNum">     401</span>              :         static NOINLINE void put(XMRAmount value, Stream* wrapper)</span>
+<span id="L401"><span class="lineNum">     401</span>              :         static NOINLINE void put(SALAmount value, Stream* wrapper)</span>
 <span id="L402"><span class="lineNum">     402</span> <span class="tlaUNC">           0 :         {</span></span>
 <span id="L403"><span class="lineNum">     403</span> <span class="tlaUNC">           0 :                 constexpr uint64_t denomination = 100000000ULL;</span></span>
 <span id="L404"><span class="lineNum">     404</span> <span class="tlaUNC">           0 : </span></span>
@@ -643,7 +643,7 @@
 <span id="L581"><span class="lineNum">     581</span>              : #define SIDE_EFFECT_CHECK(level, ...)</span>
 <span id="L582"><span class="lineNum">     582</span>              : #else</span>
 <span id="L583"><span class="lineNum">     583</span>              : #define SIDE_EFFECT_CHECK(level, ...) \</span>
-<span id="L584"><span class="lineNum">     584</span> <span class="tlaGNC tlaBgGNC">    11522793 :         if (0) { \</span></span>
+<span id="L584"><span class="lineNum">     584</span> <span class="tlaGNC tlaBgGNC">    11518359 :         if (0) { \</span></span>
 <span id="L585"><span class="lineNum">     585</span> <span class="tlaUNC tlaBgUNC">           0 :                 MSVC_PRAGMA(warning(suppress:26444)) \</span></span>
 <span id="L586"><span class="lineNum">     586</span> <span class="tlaUNC">           0 :                 [=]() { \</span></span>
 <span id="L587"><span class="lineNum">     587</span> <span class="tlaUNC">           0 :                         log::DummyStream x; \</span></span>
@@ -656,7 +656,7 @@
 <span id="L594"><span class="lineNum">     594</span>              : </span>
 <span id="L595"><span class="lineNum">     595</span>              : #ifdef P2POOL_LOG_DISABLE</span>
 <span id="L596"><span class="lineNum">     596</span>              : </span>
-<span id="L597"><span class="lineNum">     597</span> <span class="tlaGNC tlaBgGNC">    11506821 : #define LOGINFO(level, ...) SIDE_EFFECT_CHECK(level, log_category_prefix &lt;&lt; __VA_ARGS__)</span></span>
+<span id="L597"><span class="lineNum">     597</span> <span class="tlaGNC tlaBgGNC">    11502387 : #define LOGINFO(level, ...) SIDE_EFFECT_CHECK(level, log_category_prefix &lt;&lt; __VA_ARGS__)</span></span>
 <span id="L598"><span class="lineNum">     598</span> <span class="tlaGNC">       15972 : #define LOGWARN(level, ...) SIDE_EFFECT_CHECK(level, log_category_prefix &lt;&lt; __VA_ARGS__)</span></span>
 <span id="L599"><span class="lineNum">     599</span>              : </span>
 <span id="L600"><span class="lineNum">     600</span>              : #ifdef P2POOL_ABORT_ON_LOG_ERROR</span>

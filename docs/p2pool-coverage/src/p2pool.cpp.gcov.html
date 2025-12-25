@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-24 20:26:37</td>
+            <td class="headerValue">2025-12-25 03:49:24</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -504,7 +504,7 @@
 <span id="L442"><span class="lineNum">     442</span> <span class="tlaUNC">           0 :                 &quot;, fee = &quot; &lt;&lt; log::Gray() &lt;&lt; static_cast&lt;double&gt;(tx.fee) / 1e6 &lt;&lt; &quot; um&quot;);</span></span>
 <span id="L443"><span class="lineNum">     443</span>              : </span>
 <span id="L444"><span class="lineNum">     444</span> <span class="tlaUNC">           0 :         if (tx.fee &gt;= HIGH_FEE_VALUE) {</span></span>
-<span id="L445"><span class="lineNum">     445</span> <span class="tlaUNC">           0 :                 LOGINFO(4, &quot;high fee tx received: &quot; &lt;&lt; log::LightBlue() &lt;&lt; tx.id &lt;&lt; log::NoColor() &lt;&lt; &quot;, &quot; &lt;&lt; log::XMRAmount(tx.fee) &lt;&lt; &quot; - updating block template&quot;);</span></span>
+<span id="L445"><span class="lineNum">     445</span> <span class="tlaUNC">           0 :                 LOGINFO(4, &quot;high fee tx received: &quot; &lt;&lt; log::LightBlue() &lt;&lt; tx.id &lt;&lt; log::NoColor() &lt;&lt; &quot;, &quot; &lt;&lt; log::SALAmount(tx.fee) &lt;&lt; &quot; - updating block template&quot;);</span></span>
 <span id="L446"><span class="lineNum">     446</span> <span class="tlaUNC">           0 :                 update_block_template_async();</span></span>
 <span id="L447"><span class="lineNum">     447</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L448"><span class="lineNum">     448</span>              : </span>
@@ -723,7 +723,7 @@
 <span id="L661"><span class="lineNum">     661</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;new main chain block: height = &quot; &lt;&lt; log::Gray() &lt;&lt; data.height &lt;&lt; log::NoColor() &lt;&lt;</span></span>
 <span id="L662"><span class="lineNum">     662</span> <span class="tlaUNC">           0 :                 &quot;, id = &quot; &lt;&lt; log::LightBlue() &lt;&lt; data.id &lt;&lt; log::NoColor() &lt;&lt;</span></span>
 <span id="L663"><span class="lineNum">     663</span> <span class="tlaUNC">           0 :                 &quot;, timestamp = &quot; &lt;&lt; log::Gray() &lt;&lt; data.timestamp &lt;&lt; log::NoColor() &lt;&lt; </span></span>
-<span id="L664"><span class="lineNum">     664</span> <span class="tlaUNC">           0 :                 &quot;, reward = &quot; &lt;&lt; log::Gray() &lt;&lt; log::XMRAmount(data.reward));</span></span>
+<span id="L664"><span class="lineNum">     664</span> <span class="tlaUNC">           0 :                 &quot;, reward = &quot; &lt;&lt; log::Gray() &lt;&lt; log::SALAmount(data.reward));</span></span>
 <span id="L665"><span class="lineNum">     665</span>              : </span>
 <span id="L666"><span class="lineNum">     666</span> <span class="tlaUNC">           0 :         if (!merkle_root.empty()) {</span></span>
 <span id="L667"><span class="lineNum">     667</span> <span class="tlaUNC">           0 :                 const PoolBlock* block = side_chain().find_block_by_merkle_root(merkle_root);</span></span>
@@ -735,7 +735,7 @@
 <span id="L673"><span class="lineNum">     673</span>              : </span>
 <span id="L674"><span class="lineNum">     674</span> <span class="tlaUNC">           0 :                         const uint64_t payout = block-&gt;get_payout(w);</span></span>
 <span id="L675"><span class="lineNum">     675</span> <span class="tlaUNC">           0 :                         if (payout) {</span></span>
-<span id="L676"><span class="lineNum">     676</span> <span class="tlaUNC">           0 :                                 LOGINFO(0, log::LightCyan() &lt;&lt; &quot;Your wallet &quot; &lt;&lt; log::LightGreen() &lt;&lt; params().m_displayWallet &lt;&lt; log::LightCyan() &lt;&lt; &quot; got a payout of &quot; &lt;&lt; log::LightGreen() &lt;&lt; log::XMRAmount(payout) &lt;&lt; log::LightCyan() &lt;&lt; &quot; in block &quot; &lt;&lt; log::LightGreen() &lt;&lt; data.height);</span></span>
+<span id="L676"><span class="lineNum">     676</span> <span class="tlaUNC">           0 :                                 LOGINFO(0, log::LightCyan() &lt;&lt; &quot;Your wallet &quot; &lt;&lt; log::LightGreen() &lt;&lt; params().m_displayWallet &lt;&lt; log::LightCyan() &lt;&lt; &quot; got a payout of &quot; &lt;&lt; log::LightGreen() &lt;&lt; log::SALAmount(payout) &lt;&lt; log::LightCyan() &lt;&lt; &quot; in block &quot; &lt;&lt; log::LightGreen() &lt;&lt; data.height);</span></span>
 <span id="L677"><span class="lineNum">     677</span> <span class="tlaUNC">           0 :                         }</span></span>
 <span id="L678"><span class="lineNum">     678</span> <span class="tlaUNC">           0 :                         else {</span></span>
 <span id="L679"><span class="lineNum">     679</span> <span class="tlaUNC">           0 :                                 LOGINFO(0, log::LightCyan() &lt;&lt; &quot;Your wallet &quot; &lt;&lt; log::LightYellow() &lt;&lt; params().m_displayWallet &lt;&lt; log::LightCyan() &lt;&lt; &quot; didn't get a payout in block &quot; &lt;&lt; log::LightYellow() &lt;&lt; data.height &lt;&lt; log::LightCyan() &lt;&lt; &quot; because you had no shares in PPLNS window&quot;);</span></span>
