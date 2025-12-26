@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-26 14:10:16</td>
+            <td class="headerValue">2025-12-26 15:51:07</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">51.4&nbsp;%</td>
@@ -833,7 +833,7 @@
 <span id="L771"><span class="lineNum">     771</span>              :         // Extra log for blocks near checkpoint height during recovery</span>
 <span id="L772"><span class="lineNum">     772</span> <span class="tlaGNC">       15935 :         const uint64_t cp_height = get_latest_checkpoint_height();</span></span>
 <span id="L773"><span class="lineNum">     773</span> <span class="tlaGNC">       15935 :         if (block.m_sidechainHeight &gt;= cp_height &amp;&amp; block.m_sidechainHeight &lt;= cp_height + 5) {</span></span>
-<span id="L774"><span class="lineNum">     774</span> <span class="tlaGNC">         180 :                 LOGINFO(0, &quot;RECOVERY DEBUG: add_block height &quot; &lt;&lt; block.m_sidechainHeight</span></span>
+<span id="L774"><span class="lineNum">     774</span> <span class="tlaGNC">         180 :                 LOGINFO(6, &quot;RECOVERY DEBUG: add_block height &quot; &lt;&lt; block.m_sidechainHeight</span></span>
 <span id="L775"><span class="lineNum">     775</span> <span class="tlaGNC">         180 :                         &lt;&lt; &quot; parent=&quot; &lt;&lt; block.m_parent);</span></span>
 <span id="L776"><span class="lineNum">     776</span> <span class="tlaGNC">         180 :         }</span></span>
 <span id="L777"><span class="lineNum">     777</span>              : </span>
@@ -1695,7 +1695,7 @@
 <span id="L1633"><span class="lineNum">    1633</span> <span class="tlaGNC tlaBgGNC">        9216 :                 else {</span></span>
 <span id="L1634"><span class="lineNum">    1634</span>              :                         // Extra logging for blocks near checkpoint during recovery</span>
 <span id="L1635"><span class="lineNum">    1635</span> <span class="tlaGNC">        9216 :                         if (block-&gt;m_sidechainHeight &lt;= get_latest_checkpoint_height() + 10) {</span></span>
-<span id="L1636"><span class="lineNum">    1636</span> <span class="tlaGNC">        4846 :                             LOGINFO(0, &quot;RECOVERY DEBUG: VERIFIED block &quot; &lt;&lt; block-&gt;m_sidechainHeight</span></span>
+<span id="L1636"><span class="lineNum">    1636</span> <span class="tlaGNC">        4846 :                             LOGINFO(6, &quot;RECOVERY DEBUG: VERIFIED block &quot; &lt;&lt; block-&gt;m_sidechainHeight</span></span>
 <span id="L1637"><span class="lineNum">    1637</span> <span class="tlaGNC">        4846 :                                     &lt;&lt; &quot; (parent &quot; &lt;&lt; (block-&gt;m_sidechainHeight &gt; 0 ? block-&gt;m_sidechainHeight - 1 : 0) &lt;&lt; &quot; was verified)&quot;);</span></span>
 <span id="L1638"><span class="lineNum">    1638</span> <span class="tlaGNC">        4846 :                         }</span></span>
 <span id="L1639"><span class="lineNum">    1639</span> <span class="tlaGNC">        9216 :                         LOGINFO(3, &quot;verified block at height = &quot; &lt;&lt; block-&gt;m_sidechainHeight &lt;&lt;</span></span>
@@ -1827,7 +1827,7 @@
 <span id="L1765"><span class="lineNum">    1765</span> <span class="tlaGNC">       15592 :         if (!it-&gt;second-&gt;m_verified) {</span></span>
 <span id="L1766"><span class="lineNum">    1766</span>              :             // Only log for blocks close to checkpoint to reduce spam</span>
 <span id="L1767"><span class="lineNum">    1767</span> <span class="tlaGNC">        6935 :             if (block-&gt;m_sidechainHeight &lt;= get_latest_checkpoint_height() + 10) {</span></span>
-<span id="L1768"><span class="lineNum">    1768</span> <span class="tlaGNC">        2308 :                 LOGINFO(0, &quot;RECOVERY DEBUG: block &quot; &lt;&lt; block-&gt;m_sidechainHeight &lt;&lt; &quot; waiting for parent &quot;</span></span>
+<span id="L1768"><span class="lineNum">    1768</span> <span class="tlaGNC">        2308 :                 LOGINFO(6, &quot;RECOVERY DEBUG: block &quot; &lt;&lt; block-&gt;m_sidechainHeight &lt;&lt; &quot; waiting for parent &quot;</span></span>
 <span id="L1769"><span class="lineNum">    1769</span> <span class="tlaGNC">        2308 :                         &lt;&lt; it-&gt;second-&gt;m_sidechainHeight &lt;&lt; &quot; (parent verified=&quot; &lt;&lt; (it-&gt;second-&gt;m_verified ? 1 : 0)</span></span>
 <span id="L1770"><span class="lineNum">    1770</span> <span class="tlaGNC">        2308 :                         &lt;&lt; &quot; invalid=&quot; &lt;&lt; (it-&gt;second-&gt;m_invalid ? 1 : 0) &lt;&lt; &quot;)&quot;);</span></span>
 <span id="L1771"><span class="lineNum">    1771</span> <span class="tlaGNC">        2308 :             }</span></span>
@@ -2755,7 +2755,7 @@
 <span id="L2693"><span class="lineNum">    2693</span> <span class="tlaUNC">           0 :                         missing_blocks.insert(b.second-&gt;m_parent);</span></span>
 <span id="L2694"><span class="lineNum">    2694</span>              :                         // Log missing parents near checkpoint</span>
 <span id="L2695"><span class="lineNum">    2695</span> <span class="tlaUNC">           0 :                         if (b.second-&gt;m_sidechainHeight &lt;= cp_height + 5) {</span></span>
-<span id="L2696"><span class="lineNum">    2696</span> <span class="tlaUNC">           0 :                                 LOGINFO(0, &quot;RECOVERY DEBUG: block &quot; &lt;&lt; b.second-&gt;m_sidechainHeight</span></span>
+<span id="L2696"><span class="lineNum">    2696</span> <span class="tlaUNC">           0 :                                 LOGINFO(6, &quot;RECOVERY DEBUG: block &quot; &lt;&lt; b.second-&gt;m_sidechainHeight</span></span>
 <span id="L2697"><span class="lineNum">    2697</span> <span class="tlaUNC">           0 :                                         &lt;&lt; &quot; needs missing parent &quot; &lt;&lt; b.second-&gt;m_parent);</span></span>
 <span id="L2698"><span class="lineNum">    2698</span> <span class="tlaUNC">           0 :                         }</span></span>
 <span id="L2699"><span class="lineNum">    2699</span> <span class="tlaUNC">           0 :                 }</span></span>
@@ -2778,7 +2778,7 @@
 <span id="L2716"><span class="lineNum">    2716</span>              : </span>
 <span id="L2717"><span class="lineNum">    2717</span>              :         // Summary log for recovery debugging</span>
 <span id="L2718"><span class="lineNum">    2718</span> <span class="tlaUNC">           0 :         if (!missing_blocks.empty() &amp;&amp; lowest_unverified &lt;= cp_height + 10) {</span></span>
-<span id="L2719"><span class="lineNum">    2719</span> <span class="tlaUNC">           0 :                 LOGINFO(0, &quot;RECOVERY DEBUG: &quot; &lt;&lt; missing_blocks.size() &lt;&lt; &quot; missing blocks, lowest unverified=&quot; &lt;&lt; lowest_unverified);</span></span>
+<span id="L2719"><span class="lineNum">    2719</span> <span class="tlaUNC">           0 :                 LOGINFO(6, &quot;RECOVERY DEBUG: &quot; &lt;&lt; missing_blocks.size() &lt;&lt; &quot; missing blocks, lowest unverified=&quot; &lt;&lt; lowest_unverified);</span></span>
 <span id="L2720"><span class="lineNum">    2720</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L2721"><span class="lineNum">    2721</span> <span class="tlaUNC">           0 : }</span></span>
 <span id="L2722"><span class="lineNum">    2722</span>              : </span>
