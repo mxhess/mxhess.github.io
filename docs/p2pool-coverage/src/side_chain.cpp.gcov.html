@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-26 15:51:07</td>
+            <td class="headerValue">2025-12-26 18:00:07</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">51.4&nbsp;%</td>
@@ -3403,7 +3403,7 @@
 <span id="L3341"><span class="lineNum">    3341</span>              : </span>
 <span id="L3342"><span class="lineNum">    3342</span>              :     // Forget deleted blocks so they can be re-downloaded from peers</span>
 <span id="L3343"><span class="lineNum">    3343</span> <span class="tlaUNC">           0 :     {</span></span>
-<span id="L3344"><span class="lineNum">    3344</span> <span class="tlaUNC">           0 :         MutexLock lock(m_incomingBlocksLock);</span></span>
+<span id="L3344"><span class="lineNum">    3344</span> <span class="tlaUNC">           0 :         MutexLock incomingLock(m_incomingBlocksLock);</span></span>
 <span id="L3345"><span class="lineNum">    3345</span> <span class="tlaUNC">           0 :         for (const auto&amp; [id, full_id] : blocks_to_remove) {</span></span>
 <span id="L3346"><span class="lineNum">    3346</span> <span class="tlaUNC">           0 :             m_incomingBlocks.erase(full_id);</span></span>
 <span id="L3347"><span class="lineNum">    3347</span> <span class="tlaUNC">           0 :         }</span></span>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-26 15:51:07</td>
+            <td class="headerValue">2025-12-26 18:00:07</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryMed">83.3&nbsp;%</td>
@@ -101,55 +101,55 @@
 <span id="L39"><span class="lineNum">      39</span>              : </span>
 <span id="L40"><span class="lineNum">      40</span>              : template&lt;size_t N&gt;</span>
 <span id="L41"><span class="lineNum">      41</span>              : FORCEINLINE void keccak(const uint8_t* in, int inlen, uint8_t (&amp;md)[N])</span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC tlaBgGNC">     2713759 : {</span></span>
-<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">     2713759 :         static_assert((N == 32) || (N == 200), &quot;invalid size&quot;);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC tlaBgGNC">     2749099 : {</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">     2749099 :         static_assert((N == 32) || (N == 200), &quot;invalid size&quot;);</span></span>
 <span id="L44"><span class="lineNum">      44</span>              : </span>
-<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">     2713759 :         std::array&lt;uint64_t, 25&gt; st = {};</span></span>
-<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">     2713759 :         keccak_step(in, inlen, st);</span></span>
-<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">     2713759 :         keccak_finish(in, inlen, st);</span></span>
-<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">     2713759 :         memcpy(md, st.data(), N);</span></span>
-<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">     2713759 : }</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">     2749099 :         std::array&lt;uint64_t, 25&gt; st = {};</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">     2749099 :         keccak_step(in, inlen, st);</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">     2749099 :         keccak_finish(in, inlen, st);</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">     2749099 :         memcpy(md, st.data(), N);</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">     2749099 : }</span></span>
 <span id="L50"><span class="lineNum">      50</span>              : </span>
 <span id="L51"><span class="lineNum">      51</span>              : template&lt;typename T&gt;</span>
 <span id="L52"><span class="lineNum">      52</span>              : FORCEINLINE void keccak_custom(T&amp;&amp; in, int inlen, uint8_t* md, int mdlen, bool SHA3 = false)</span>
-<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">       63265 : {</span></span>
-<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">       63265 :         std::array&lt;uint64_t, 25&gt; st = {};</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">       63288 : {</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">       63288 :         std::array&lt;uint64_t, 25&gt; st = {};</span></span>
 <span id="L55"><span class="lineNum">      55</span>              : </span>
-<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">       63265 :         const int rsiz = sizeof(st) == mdlen ? KeccakParams::HASH_DATA_AREA : 200 - 2 * mdlen;</span></span>
-<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">       63265 :         const int rsizw = rsiz / 8;</span></span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">       63288 :         const int rsiz = sizeof(st) == mdlen ? KeccakParams::HASH_DATA_AREA : 200 - 2 * mdlen;</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">       63288 :         const int rsizw = rsiz / 8;</span></span>
 <span id="L58"><span class="lineNum">      58</span>              : </span>
-<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">       63265 :         int offset = 0;</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">       63288 :         int offset = 0;</span></span>
 <span id="L60"><span class="lineNum">      60</span>              : </span>
-<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">      378810 :         for (; inlen &gt;= rsiz; inlen -= rsiz, offset += rsiz) {</span></span>
-<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">     5370010 :                 for (int i = 0; i &lt; rsizw; ++i) {</span></span>
-<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">     5054465 :                         uint64_t k = 0;</span></span>
-<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">    45423448 :                         for (int j = 0; j &lt; 8; ++j) {</span></span>
-<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">    40368983 :                                 k |= static_cast&lt;uint64_t&gt;(in(offset + i * 8 + j)) &lt;&lt; (j * 8);</span></span>
-<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">    40368983 :                         }</span></span>
-<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">     5054465 :                         st[i] ^= k;</span></span>
-<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">     5054465 :                 }</span></span>
-<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">      315545 :                 keccakf(st);</span></span>
-<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">      315545 :         }</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">      379200 :         for (; inlen &gt;= rsiz; inlen -= rsiz, offset += rsiz) {</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">     5448740 :                 for (int i = 0; i &lt; rsizw; ++i) {</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">     5132828 :                         uint64_t k = 0;</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">    46093935 :                         for (int j = 0; j &lt; 8; ++j) {</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">    40961107 :                                 k |= static_cast&lt;uint64_t&gt;(in(offset + i * 8 + j)) &lt;&lt; (j * 8);</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">    40961107 :                         }</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">     5132828 :                         st[i] ^= k;</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">     5132828 :                 }</span></span>
+<span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">      315912 :                 keccakf(st);</span></span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">      315912 :         }</span></span>
 <span id="L71"><span class="lineNum">      71</span>              : </span>
 <span id="L72"><span class="lineNum">      72</span>              :         // last block and padding</span>
-<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">       63265 :         alignas(8) uint8_t temp[144];</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaGNC">       63288 :         alignas(8) uint8_t temp[144];</span></span>
 <span id="L74"><span class="lineNum">      74</span>              : </span>
-<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">     2005481 :         for (int i = 0; i &lt; inlen; ++i) {</span></span>
-<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">     1942216 :                 temp[i] = in(offset + i);</span></span>
-<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">     1942216 :         }</span></span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">     2006811 :         for (int i = 0; i &lt; inlen; ++i) {</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaGNC">     1943523 :                 temp[i] = in(offset + i);</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaGNC">     1943523 :         }</span></span>
 <span id="L78"><span class="lineNum">      78</span>              : </span>
-<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">       63265 :         temp[inlen++] = SHA3 ? 6 : 1;</span></span>
-<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">       63265 :         memset(temp + inlen, 0, rsiz - inlen);</span></span>
-<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">       63265 :         temp[rsiz - 1] |= 0x80;</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaGNC">       63288 :         temp[inlen++] = SHA3 ? 6 : 1;</span></span>
+<span id="L80"><span class="lineNum">      80</span> <span class="tlaGNC">       63288 :         memset(temp + inlen, 0, rsiz - inlen);</span></span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaGNC">       63288 :         temp[rsiz - 1] |= 0x80;</span></span>
 <span id="L82"><span class="lineNum">      82</span>              : </span>
-<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">     1140419 :         for (int i = 0; i &lt; rsizw; i++) {</span></span>
-<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">     1077154 :                 st[i] ^= reinterpret_cast&lt;uint64_t*&gt;(temp)[i];</span></span>
-<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">     1077154 :         }</span></span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC">     1140578 :         for (int i = 0; i &lt; rsizw; i++) {</span></span>
+<span id="L84"><span class="lineNum">      84</span> <span class="tlaGNC">     1077290 :                 st[i] ^= reinterpret_cast&lt;uint64_t*&gt;(temp)[i];</span></span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">     1077290 :         }</span></span>
 <span id="L86"><span class="lineNum">      86</span>              : </span>
-<span id="L87"><span class="lineNum">      87</span> <span class="tlaGNC">       63265 :         keccakf(st);</span></span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaGNC">       63288 :         keccakf(st);</span></span>
 <span id="L88"><span class="lineNum">      88</span>              : </span>
-<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">       63265 :         memcpy(md, st.data(), mdlen);</span></span>
-<span id="L90"><span class="lineNum">      90</span> <span class="tlaGNC">       63265 : }</span></span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">       63288 :         memcpy(md, st.data(), mdlen);</span></span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaGNC">       63288 : }</span></span>
 <span id="L91"><span class="lineNum">      91</span>              : </span>
 <span id="L92"><span class="lineNum">      92</span>              : } // namespace p2pool</span>
         </pre>

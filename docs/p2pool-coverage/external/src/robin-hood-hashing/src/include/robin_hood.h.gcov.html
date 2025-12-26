@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-26 15:51:07</td>
+            <td class="headerValue">2025-12-26 18:00:07</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">51.3&nbsp;%</td>
@@ -240,7 +240,7 @@
 <span id="L178"><span class="lineNum">     178</span>              : #    define ROBIN_HOOD_LIKELY(condition) condition</span>
 <span id="L179"><span class="lineNum">     179</span>              : #    define ROBIN_HOOD_UNLIKELY(condition) condition</span>
 <span id="L180"><span class="lineNum">     180</span>              : #else</span>
-<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC tlaBgGNC">    59140520 : #    define ROBIN_HOOD_LIKELY(condition) __builtin_expect(condition, 1)</span></span>
+<span id="L181"><span class="lineNum">     181</span> <span class="tlaGNC tlaBgGNC">    59140519 : #    define ROBIN_HOOD_LIKELY(condition) __builtin_expect(condition, 1)</span></span>
 <span id="L182"><span class="lineNum">     182</span> <span class="tlaGNC">      369881 : #    define ROBIN_HOOD_UNLIKELY(condition) __builtin_expect(condition, 0)</span></span>
 <span id="L183"><span class="lineNum">     183</span>              : #endif</span>
 <span id="L184"><span class="lineNum">     184</span>              : </span>
@@ -394,9 +394,9 @@
 <span id="L332"><span class="lineNum">     332</span>              : // 'uint64_t*' {aka 'long unsigned int*'} increases required alignment of target type&quot;. Use with</span>
 <span id="L333"><span class="lineNum">     333</span>              : // care!</span>
 <span id="L334"><span class="lineNum">     334</span>              : template &lt;typename T&gt;</span>
-<span id="L335"><span class="lineNum">     335</span> <span class="tlaGNC">   101214268 : inline T reinterpret_cast_no_cast_align_warning(void* ptr) noexcept {</span></span>
-<span id="L336"><span class="lineNum">     336</span> <span class="tlaGNC">   101214268 :     return reinterpret_cast&lt;T&gt;(ptr);</span></span>
-<span id="L337"><span class="lineNum">     337</span> <span class="tlaGNC">   101214268 : }</span></span>
+<span id="L335"><span class="lineNum">     335</span> <span class="tlaGNC">   101214269 : inline T reinterpret_cast_no_cast_align_warning(void* ptr) noexcept {</span></span>
+<span id="L336"><span class="lineNum">     336</span> <span class="tlaGNC">   101214269 :     return reinterpret_cast&lt;T&gt;(ptr);</span></span>
+<span id="L337"><span class="lineNum">     337</span> <span class="tlaGNC">   101214269 : }</span></span>
 <span id="L338"><span class="lineNum">     338</span>              : </span>
 <span id="L339"><span class="lineNum">     339</span>              : template &lt;typename T&gt;</span>
 <span id="L340"><span class="lineNum">     340</span>              : inline T reinterpret_cast_no_cast_align_warning(void const* ptr) noexcept {</span>
@@ -427,13 +427,13 @@
 <span id="L365"><span class="lineNum">     365</span> <span class="tlaGNC">       27961 : }</span></span>
 <span id="L366"><span class="lineNum">     366</span>              : </span>
 <span id="L367"><span class="lineNum">     367</span>              : template &lt;typename T&gt;</span>
-<span id="L368"><span class="lineNum">     368</span> <span class="tlaGNC">   323388022 : inline T unaligned_load(void const* ptr) noexcept {</span></span>
+<span id="L368"><span class="lineNum">     368</span> <span class="tlaGNC">   323362819 : inline T unaligned_load(void const* ptr) noexcept {</span></span>
 <span id="L369"><span class="lineNum">     369</span>              :     // using memcpy so we don't get into unaligned load problems.</span>
 <span id="L370"><span class="lineNum">     370</span>              :     // compiler should optimize this very well anyways.</span>
-<span id="L371"><span class="lineNum">     371</span> <span class="tlaGNC">   323388022 :     T t;</span></span>
-<span id="L372"><span class="lineNum">     372</span> <span class="tlaGNC">   323388022 :     std::memcpy(&amp;t, ptr, sizeof(T));</span></span>
-<span id="L373"><span class="lineNum">     373</span> <span class="tlaGNC">   323388022 :     return t;</span></span>
-<span id="L374"><span class="lineNum">     374</span> <span class="tlaGNC">   323388022 : }</span></span>
+<span id="L371"><span class="lineNum">     371</span> <span class="tlaGNC">   323362819 :     T t;</span></span>
+<span id="L372"><span class="lineNum">     372</span> <span class="tlaGNC">   323362819 :     std::memcpy(&amp;t, ptr, sizeof(T));</span></span>
+<span id="L373"><span class="lineNum">     373</span> <span class="tlaGNC">   323362819 :     return t;</span></span>
+<span id="L374"><span class="lineNum">     374</span> <span class="tlaGNC">   323362819 : }</span></span>
 <span id="L375"><span class="lineNum">     375</span>              : </span>
 <span id="L376"><span class="lineNum">     376</span>              : // Allocates bulks of memory for objects of type T. This deallocates the memory in the destructor,</span>
 <span id="L377"><span class="lineNum">     377</span>              : // and keeps a linked list of the allocated memory around. Overhead per allocation is the size of a</span>
@@ -764,28 +764,28 @@
 <span id="L702"><span class="lineNum">     702</span>              :     return !(x &lt; y);</span>
 <span id="L703"><span class="lineNum">     703</span>              : }</span>
 <span id="L704"><span class="lineNum">     704</span>              : </span>
-<span id="L705"><span class="lineNum">     705</span> <span class="tlaGNC">    68555416 : inline size_t hash_bytes(void const* ptr, size_t len) noexcept {</span></span>
-<span id="L706"><span class="lineNum">     706</span> <span class="tlaGNC">    68555416 :     static constexpr uint64_t m = UINT64_C(0xc6a4a7935bd1e995);</span></span>
-<span id="L707"><span class="lineNum">     707</span> <span class="tlaGNC">    68555416 :     static constexpr uint64_t seed = UINT64_C(0xe17a1465);</span></span>
-<span id="L708"><span class="lineNum">     708</span> <span class="tlaGNC">    68555416 :     static constexpr unsigned int r = 47;</span></span>
+<span id="L705"><span class="lineNum">     705</span> <span class="tlaGNC">    68553296 : inline size_t hash_bytes(void const* ptr, size_t len) noexcept {</span></span>
+<span id="L706"><span class="lineNum">     706</span> <span class="tlaGNC">    68553296 :     static constexpr uint64_t m = UINT64_C(0xc6a4a7935bd1e995);</span></span>
+<span id="L707"><span class="lineNum">     707</span> <span class="tlaGNC">    68553296 :     static constexpr uint64_t seed = UINT64_C(0xe17a1465);</span></span>
+<span id="L708"><span class="lineNum">     708</span> <span class="tlaGNC">    68553296 :     static constexpr unsigned int r = 47;</span></span>
 <span id="L709"><span class="lineNum">     709</span>              : </span>
-<span id="L710"><span class="lineNum">     710</span> <span class="tlaGNC">    68555416 :     auto const* const data64 = static_cast&lt;uint64_t const*&gt;(ptr);</span></span>
-<span id="L711"><span class="lineNum">     711</span> <span class="tlaGNC">    68555416 :     uint64_t h = seed ^ (len * m);</span></span>
+<span id="L710"><span class="lineNum">     710</span> <span class="tlaGNC">    68553296 :     auto const* const data64 = static_cast&lt;uint64_t const*&gt;(ptr);</span></span>
+<span id="L711"><span class="lineNum">     711</span> <span class="tlaGNC">    68553296 :     uint64_t h = seed ^ (len * m);</span></span>
 <span id="L712"><span class="lineNum">     712</span>              : </span>
-<span id="L713"><span class="lineNum">     713</span> <span class="tlaGNC">    68555416 :     size_t const n_blocks = len / 8;</span></span>
-<span id="L714"><span class="lineNum">     714</span> <span class="tlaGNC">   342970475 :     for (size_t i = 0; i &lt; n_blocks; ++i) {</span></span>
-<span id="L715"><span class="lineNum">     715</span> <span class="tlaGNC">   274415059 :         auto k = detail::unaligned_load&lt;uint64_t&gt;(data64 + i);</span></span>
+<span id="L713"><span class="lineNum">     713</span> <span class="tlaGNC">    68553296 :     size_t const n_blocks = len / 8;</span></span>
+<span id="L714"><span class="lineNum">     714</span> <span class="tlaGNC">   342951930 :     for (size_t i = 0; i &lt; n_blocks; ++i) {</span></span>
+<span id="L715"><span class="lineNum">     715</span> <span class="tlaGNC">   274398634 :         auto k = detail::unaligned_load&lt;uint64_t&gt;(data64 + i);</span></span>
 <span id="L716"><span class="lineNum">     716</span>              : </span>
-<span id="L717"><span class="lineNum">     717</span> <span class="tlaGNC">   274415059 :         k *= m;</span></span>
-<span id="L718"><span class="lineNum">     718</span> <span class="tlaGNC">   274415059 :         k ^= k &gt;&gt; r;</span></span>
-<span id="L719"><span class="lineNum">     719</span> <span class="tlaGNC">   274415059 :         k *= m;</span></span>
+<span id="L717"><span class="lineNum">     717</span> <span class="tlaGNC">   274398634 :         k *= m;</span></span>
+<span id="L718"><span class="lineNum">     718</span> <span class="tlaGNC">   274398634 :         k ^= k &gt;&gt; r;</span></span>
+<span id="L719"><span class="lineNum">     719</span> <span class="tlaGNC">   274398634 :         k *= m;</span></span>
 <span id="L720"><span class="lineNum">     720</span>              : </span>
-<span id="L721"><span class="lineNum">     721</span> <span class="tlaGNC">   274415059 :         h ^= k;</span></span>
-<span id="L722"><span class="lineNum">     722</span> <span class="tlaGNC">   274415059 :         h *= m;</span></span>
-<span id="L723"><span class="lineNum">     723</span> <span class="tlaGNC">   274415059 :     }</span></span>
+<span id="L721"><span class="lineNum">     721</span> <span class="tlaGNC">   274398634 :         h ^= k;</span></span>
+<span id="L722"><span class="lineNum">     722</span> <span class="tlaGNC">   274398634 :         h *= m;</span></span>
+<span id="L723"><span class="lineNum">     723</span> <span class="tlaGNC">   274398634 :     }</span></span>
 <span id="L724"><span class="lineNum">     724</span>              : </span>
-<span id="L725"><span class="lineNum">     725</span> <span class="tlaGNC">    68555416 :     auto const* const data8 = reinterpret_cast&lt;uint8_t const*&gt;(data64 + n_blocks);</span></span>
-<span id="L726"><span class="lineNum">     726</span> <span class="tlaGNC">    68555416 :     switch (len &amp; 7U) {</span></span>
+<span id="L725"><span class="lineNum">     725</span> <span class="tlaGNC">    68553296 :     auto const* const data8 = reinterpret_cast&lt;uint8_t const*&gt;(data64 + n_blocks);</span></span>
+<span id="L726"><span class="lineNum">     726</span> <span class="tlaGNC">    68553296 :     switch (len &amp; 7U) {</span></span>
 <span id="L727"><span class="lineNum">     727</span> <span class="tlaUNC tlaBgUNC">           0 :     case 7:</span></span>
 <span id="L728"><span class="lineNum">     728</span> <span class="tlaUNC">           0 :         h ^= static_cast&lt;uint64_t&gt;(data8[6]) &lt;&lt; 48U;</span></span>
 <span id="L729"><span class="lineNum">     729</span> <span class="tlaUNC">           0 :         ROBIN_HOOD(FALLTHROUGH); // FALLTHROUGH</span></span>
@@ -808,17 +808,17 @@
 <span id="L746"><span class="lineNum">     746</span> <span class="tlaUNC">           0 :         h ^= static_cast&lt;uint64_t&gt;(data8[0]);</span></span>
 <span id="L747"><span class="lineNum">     747</span> <span class="tlaUNC">           0 :         h *= m;</span></span>
 <span id="L748"><span class="lineNum">     748</span> <span class="tlaUNC">           0 :         ROBIN_HOOD(FALLTHROUGH); // FALLTHROUGH</span></span>
-<span id="L749"><span class="lineNum">     749</span> <span class="tlaGNC tlaBgGNC">    68555781 :     default:</span></span>
-<span id="L750"><span class="lineNum">     750</span> <span class="tlaGNC">    68555781 :         break;</span></span>
-<span id="L751"><span class="lineNum">     751</span> <span class="tlaGNC">    68555416 :     }</span></span>
+<span id="L749"><span class="lineNum">     749</span> <span class="tlaGNC tlaBgGNC">    68553952 :     default:</span></span>
+<span id="L750"><span class="lineNum">     750</span> <span class="tlaGNC">    68553952 :         break;</span></span>
+<span id="L751"><span class="lineNum">     751</span> <span class="tlaGNC">    68553296 :     }</span></span>
 <span id="L752"><span class="lineNum">     752</span>              : </span>
-<span id="L753"><span class="lineNum">     753</span> <span class="tlaGNC">    68553623 :     h ^= h &gt;&gt; r;</span></span>
+<span id="L753"><span class="lineNum">     753</span> <span class="tlaGNC">    68551572 :     h ^= h &gt;&gt; r;</span></span>
 <span id="L754"><span class="lineNum">     754</span>              : </span>
 <span id="L755"><span class="lineNum">     755</span>              :     // not doing the final step here, because this will be done by keyToIdx anyways</span>
 <span id="L756"><span class="lineNum">     756</span>              :     // h *= m;</span>
 <span id="L757"><span class="lineNum">     757</span>              :     // h ^= h &gt;&gt; r;</span>
-<span id="L758"><span class="lineNum">     758</span> <span class="tlaGNC">    68553623 :     return static_cast&lt;size_t&gt;(h);</span></span>
-<span id="L759"><span class="lineNum">     759</span> <span class="tlaGNC">    68555416 : }</span></span>
+<span id="L758"><span class="lineNum">     758</span> <span class="tlaGNC">    68551572 :     return static_cast&lt;size_t&gt;(h);</span></span>
+<span id="L759"><span class="lineNum">     759</span> <span class="tlaGNC">    68553296 : }</span></span>
 <span id="L760"><span class="lineNum">     760</span>              : </span>
 <span id="L761"><span class="lineNum">     761</span> <span class="tlaGNC">       16927 : inline size_t hash_int(uint64_t x) noexcept {</span></span>
 <span id="L762"><span class="lineNum">     762</span>              :     // tried lots of different hashes, let's stick with murmurhash3. It's simple, fast, well tested,</span>
@@ -1145,15 +1145,15 @@
 <span id="L1083"><span class="lineNum">    1083</span> <span class="tlaGNC">    32092619 :             return *mData;</span></span>
 <span id="L1084"><span class="lineNum">    1084</span> <span class="tlaGNC">    32092619 :         }</span></span>
 <span id="L1085"><span class="lineNum">    1085</span>              : </span>
-<span id="L1086"><span class="lineNum">    1086</span> <span class="tlaGNC">   135238477 :         value_type&amp; operator*() {</span></span>
-<span id="L1087"><span class="lineNum">    1087</span> <span class="tlaGNC">   135238477 :             return *mData;</span></span>
-<span id="L1088"><span class="lineNum">    1088</span> <span class="tlaGNC">   135238477 :         }</span></span>
+<span id="L1086"><span class="lineNum">    1086</span> <span class="tlaGNC">   135238476 :         value_type&amp; operator*() {</span></span>
+<span id="L1087"><span class="lineNum">    1087</span> <span class="tlaGNC">   135238476 :             return *mData;</span></span>
+<span id="L1088"><span class="lineNum">    1088</span> <span class="tlaGNC">   135238476 :         }</span></span>
 <span id="L1089"><span class="lineNum">    1089</span>              : </span>
 <span id="L1090"><span class="lineNum">    1090</span>              :         template &lt;typename VT = value_type&gt;</span>
 <span id="L1091"><span class="lineNum">    1091</span>              :         ROBIN_HOOD(NODISCARD)</span>
-<span id="L1092"><span class="lineNum">    1092</span> <span class="tlaGNC">    59010104 :         typename std::enable_if&lt;is_map, typename VT::first_type&amp;&gt;::type getFirst() noexcept {</span></span>
-<span id="L1093"><span class="lineNum">    1093</span> <span class="tlaGNC">    59010104 :             return mData-&gt;first;</span></span>
-<span id="L1094"><span class="lineNum">    1094</span> <span class="tlaGNC">    59010104 :         }</span></span>
+<span id="L1092"><span class="lineNum">    1092</span> <span class="tlaGNC">    59010103 :         typename std::enable_if&lt;is_map, typename VT::first_type&amp;&gt;::type getFirst() noexcept {</span></span>
+<span id="L1093"><span class="lineNum">    1093</span> <span class="tlaGNC">    59010103 :             return mData-&gt;first;</span></span>
+<span id="L1094"><span class="lineNum">    1094</span> <span class="tlaGNC">    59010103 :         }</span></span>
 <span id="L1095"><span class="lineNum">    1095</span>              :         template &lt;typename VT = value_type&gt;</span>
 <span id="L1096"><span class="lineNum">    1096</span>              :         ROBIN_HOOD(NODISCARD)</span>
 <span id="L1097"><span class="lineNum">    1097</span> <span class="tlaGNC">    10585096 :         typename std::enable_if&lt;is_set, VT&amp;&gt;::type getFirst() noexcept {</span></span>
@@ -1360,9 +1360,9 @@
 <span id="L1298"><span class="lineNum">    1298</span> <span class="tlaGNC">      100585 :             return **mKeyVals;</span></span>
 <span id="L1299"><span class="lineNum">    1299</span> <span class="tlaGNC">      100585 :         }</span></span>
 <span id="L1300"><span class="lineNum">    1300</span>              : </span>
-<span id="L1301"><span class="lineNum">    1301</span> <span class="tlaGNC">   167230511 :         pointer operator-&gt;() const {</span></span>
-<span id="L1302"><span class="lineNum">    1302</span> <span class="tlaGNC">   167230511 :             return &amp;**mKeyVals;</span></span>
-<span id="L1303"><span class="lineNum">    1303</span> <span class="tlaGNC">   167230511 :         }</span></span>
+<span id="L1301"><span class="lineNum">    1301</span> <span class="tlaGNC">   167230510 :         pointer operator-&gt;() const {</span></span>
+<span id="L1302"><span class="lineNum">    1302</span> <span class="tlaGNC">   167230510 :             return &amp;**mKeyVals;</span></span>
+<span id="L1303"><span class="lineNum">    1303</span> <span class="tlaGNC">   167230510 :         }</span></span>
 <span id="L1304"><span class="lineNum">    1304</span>              : </span>
 <span id="L1305"><span class="lineNum">    1305</span>              :         template &lt;bool O&gt;</span>
 <span id="L1306"><span class="lineNum">    1306</span> <span class="tlaGNC">    32774272 :         bool operator==(Iter&lt;O&gt; const&amp; o) const noexcept {</span></span>
@@ -1435,10 +1435,10 @@
 <span id="L1373"><span class="lineNum">    1373</span> <span class="tlaGNC">    68560921 :     }</span></span>
 <span id="L1374"><span class="lineNum">    1374</span>              : </span>
 <span id="L1375"><span class="lineNum">    1375</span>              :     // forwards the index by one, wrapping around at the end</span>
-<span id="L1376"><span class="lineNum">    1376</span> <span class="tlaGNC">    38913871 :     void next(InfoType* info, size_t* idx) const noexcept {</span></span>
-<span id="L1377"><span class="lineNum">    1377</span> <span class="tlaGNC">    38913871 :         *idx = *idx + 1;</span></span>
-<span id="L1378"><span class="lineNum">    1378</span> <span class="tlaGNC">    38913871 :         *info += mInfoInc;</span></span>
-<span id="L1379"><span class="lineNum">    1379</span> <span class="tlaGNC">    38913871 :     }</span></span>
+<span id="L1376"><span class="lineNum">    1376</span> <span class="tlaGNC">    38913873 :     void next(InfoType* info, size_t* idx) const noexcept {</span></span>
+<span id="L1377"><span class="lineNum">    1377</span> <span class="tlaGNC">    38913873 :         *idx = *idx + 1;</span></span>
+<span id="L1378"><span class="lineNum">    1378</span> <span class="tlaGNC">    38913873 :         *info += mInfoInc;</span></span>
+<span id="L1379"><span class="lineNum">    1379</span> <span class="tlaGNC">    38913873 :     }</span></span>
 <span id="L1380"><span class="lineNum">    1380</span>              : </span>
 <span id="L1381"><span class="lineNum">    1381</span> <span class="tlaGNC">    10677316 :     void nextWhileLess(InfoType* info, size_t* idx) const noexcept {</span></span>
 <span id="L1382"><span class="lineNum">    1382</span>              :         // unrolling this by hand did not bring any speedups.</span>
@@ -1500,20 +1500,20 @@
 <span id="L1438"><span class="lineNum">    1438</span>              :             // unrolling this twice gives a bit of a speedup. More unrolling did not help.</span>
 <span id="L1439"><span class="lineNum">    1439</span> <span class="tlaGNC">    68502614 :             if (info == mInfo[idx] &amp;&amp;</span></span>
 <span id="L1440"><span class="lineNum">    1440</span> <span class="tlaGNC">    68502614 :                 ROBIN_HOOD_LIKELY(WKeyEqual::operator()(key, mKeyVals[idx].getFirst()))) {</span></span>
-<span id="L1441"><span class="lineNum">    1441</span> <span class="tlaGNC">    40443773 :                 return idx;</span></span>
-<span id="L1442"><span class="lineNum">    1442</span> <span class="tlaGNC">    40443773 :             }</span></span>
-<span id="L1443"><span class="lineNum">    1443</span> <span class="tlaGNC">    28058841 :             next(&amp;info, &amp;idx);</span></span>
-<span id="L1444"><span class="lineNum">    1444</span> <span class="tlaGNC">    28058841 :             if (info == mInfo[idx] &amp;&amp;</span></span>
-<span id="L1445"><span class="lineNum">    1445</span> <span class="tlaGNC">    28058841 :                 ROBIN_HOOD_LIKELY(WKeyEqual::operator()(key, mKeyVals[idx].getFirst()))) {</span></span>
+<span id="L1441"><span class="lineNum">    1441</span> <span class="tlaGNC">    40443772 :                 return idx;</span></span>
+<span id="L1442"><span class="lineNum">    1442</span> <span class="tlaGNC">    40443772 :             }</span></span>
+<span id="L1443"><span class="lineNum">    1443</span> <span class="tlaGNC">    28058842 :             next(&amp;info, &amp;idx);</span></span>
+<span id="L1444"><span class="lineNum">    1444</span> <span class="tlaGNC">    28058842 :             if (info == mInfo[idx] &amp;&amp;</span></span>
+<span id="L1445"><span class="lineNum">    1445</span> <span class="tlaGNC">    28058842 :                 ROBIN_HOOD_LIKELY(WKeyEqual::operator()(key, mKeyVals[idx].getFirst()))) {</span></span>
 <span id="L1446"><span class="lineNum">    1446</span> <span class="tlaGNC">    17353919 :                 return idx;</span></span>
 <span id="L1447"><span class="lineNum">    1447</span> <span class="tlaGNC">    17353919 :             }</span></span>
-<span id="L1448"><span class="lineNum">    1448</span> <span class="tlaGNC">    10704922 :             next(&amp;info, &amp;idx);</span></span>
-<span id="L1449"><span class="lineNum">    1449</span> <span class="tlaGNC">    10704922 :         } while (info &lt;= mInfo[idx]);</span></span>
+<span id="L1448"><span class="lineNum">    1448</span> <span class="tlaGNC">    10704923 :             next(&amp;info, &amp;idx);</span></span>
+<span id="L1449"><span class="lineNum">    1449</span> <span class="tlaGNC">    10704923 :         } while (info &lt;= mInfo[idx]);</span></span>
 <span id="L1450"><span class="lineNum">    1450</span>              : </span>
 <span id="L1451"><span class="lineNum">    1451</span>              :         // nothing found!</span>
-<span id="L1452"><span class="lineNum">    1452</span> <span class="tlaGNC">       19570 :         return mMask == 0 ? 0</span></span>
-<span id="L1453"><span class="lineNum">    1453</span> <span class="tlaGNC">       19570 :                           : static_cast&lt;size_t&gt;(std::distance(</span></span>
-<span id="L1454"><span class="lineNum">    1454</span> <span class="tlaGNC">       19559 :                                 mKeyVals, reinterpret_cast_no_cast_align_warning&lt;Node*&gt;(mInfo)));</span></span>
+<span id="L1452"><span class="lineNum">    1452</span> <span class="tlaGNC">       19571 :         return mMask == 0 ? 0</span></span>
+<span id="L1453"><span class="lineNum">    1453</span> <span class="tlaGNC">       19571 :                           : static_cast&lt;size_t&gt;(std::distance(</span></span>
+<span id="L1454"><span class="lineNum">    1454</span> <span class="tlaGNC">       19560 :                                 mKeyVals, reinterpret_cast_no_cast_align_warning&lt;Node*&gt;(mInfo)));</span></span>
 <span id="L1455"><span class="lineNum">    1455</span> <span class="tlaGNC">    57817262 :     }</span></span>
 <span id="L1456"><span class="lineNum">    1456</span>              : </span>
 <span id="L1457"><span class="lineNum">    1457</span> <span class="tlaUNC tlaBgUNC">           0 :     void cloneData(const Table&amp; o) {</span></span>
