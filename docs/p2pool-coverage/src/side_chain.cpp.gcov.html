@@ -31,18 +31,18 @@
             <td class="headerValue">coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">42.5&nbsp;%</td>
-            <td class="headerCovTableEntry">2639</td>
-            <td class="headerCovTableEntry">1122</td>
+            <td class="headerCovTableEntryLo">42.9&nbsp;%</td>
+            <td class="headerCovTableEntry">2644</td>
+            <td class="headerCovTableEntry">1135</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-26 23:03:29</td>
+            <td class="headerValue">2025-12-27 18:09:15</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntryLo">51.4&nbsp;%</td>
+            <td class="headerCovTableEntryLo">52.7&nbsp;%</td>
             <td class="headerCovTableEntry">74</td>
-            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntry">39</td>
           </tr>
                   <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
                 </table>
@@ -1385,25 +1385,25 @@
 <span id="L1323"><span class="lineNum">    1323</span>              : </span>
 <span id="L1324"><span class="lineNum">    1324</span>              :         // Every 5 minutes, delete wallets that weren't seen for more than 72 hours and onion pubkeys that weren't seen for more than 12 hours</span>
 <span id="L1325"><span class="lineNum">    1325</span> <span class="tlaGNC">       15935 :         if (m_seenWalletsLastPruneTime + 5ul * 60ul &lt;= cur_time) {</span></span>
-<span id="L1326"><span class="lineNum">    1326</span> <span class="tlaUNC tlaBgUNC">           0 :                 auto prune = [cur_time](auto&amp; data, uint64_t timeout) {</span></span>
-<span id="L1327"><span class="lineNum">    1327</span> <span class="tlaUNC">           0 :                         for (auto it = data.begin(); it != data.end();) {</span></span>
-<span id="L1328"><span class="lineNum">    1328</span> <span class="tlaUNC">           0 :                                 if (it-&gt;second + timeout &lt; cur_time) {</span></span>
-<span id="L1329"><span class="lineNum">    1329</span> <span class="tlaUNC">           0 :                                         it = data.erase(it);</span></span>
+<span id="L1326"><span class="lineNum">    1326</span> <span class="tlaGNC">           6 :                 auto prune = [cur_time](auto&amp; data, uint64_t timeout) {</span></span>
+<span id="L1327"><span class="lineNum">    1327</span> <span class="tlaGNC">           9 :                         for (auto it = data.begin(); it != data.end();) {</span></span>
+<span id="L1328"><span class="lineNum">    1328</span> <span class="tlaGNC">           3 :                                 if (it-&gt;second + timeout &lt; cur_time) {</span></span>
+<span id="L1329"><span class="lineNum">    1329</span> <span class="tlaUNC tlaBgUNC">           0 :                                         it = data.erase(it);</span></span>
 <span id="L1330"><span class="lineNum">    1330</span> <span class="tlaUNC">           0 :                                 }</span></span>
-<span id="L1331"><span class="lineNum">    1331</span> <span class="tlaUNC">           0 :                                 else {</span></span>
-<span id="L1332"><span class="lineNum">    1332</span> <span class="tlaUNC">           0 :                                         ++it;</span></span>
-<span id="L1333"><span class="lineNum">    1333</span> <span class="tlaUNC">           0 :                                 }</span></span>
-<span id="L1334"><span class="lineNum">    1334</span> <span class="tlaUNC">           0 :                         }</span></span>
-<span id="L1335"><span class="lineNum">    1335</span> <span class="tlaUNC">           0 :                 };</span></span>
+<span id="L1331"><span class="lineNum">    1331</span> <span class="tlaGNC tlaBgGNC">           3 :                                 else {</span></span>
+<span id="L1332"><span class="lineNum">    1332</span> <span class="tlaGNC">           3 :                                         ++it;</span></span>
+<span id="L1333"><span class="lineNum">    1333</span> <span class="tlaGNC">           3 :                                 }</span></span>
+<span id="L1334"><span class="lineNum">    1334</span> <span class="tlaGNC">           3 :                         }</span></span>
+<span id="L1335"><span class="lineNum">    1335</span> <span class="tlaGNC">           6 :                 };</span></span>
 <span id="L1336"><span class="lineNum">    1336</span>              : </span>
-<span id="L1337"><span class="lineNum">    1337</span> <span class="tlaUNC">           0 :                 constexpr uint64_t hour = 3600;</span></span>
+<span id="L1337"><span class="lineNum">    1337</span> <span class="tlaGNC">           3 :                 constexpr uint64_t hour = 3600;</span></span>
 <span id="L1338"><span class="lineNum">    1338</span>              : </span>
-<span id="L1339"><span class="lineNum">    1339</span> <span class="tlaUNC">           0 :                 prune(m_seenWallets, 72 * hour);</span></span>
-<span id="L1340"><span class="lineNum">    1340</span> <span class="tlaUNC">           0 :                 prune(m_seenOnionPubkeys, 12 * hour);</span></span>
+<span id="L1339"><span class="lineNum">    1339</span> <span class="tlaGNC">           3 :                 prune(m_seenWallets, 72 * hour);</span></span>
+<span id="L1340"><span class="lineNum">    1340</span> <span class="tlaGNC">           3 :                 prune(m_seenOnionPubkeys, 12 * hour);</span></span>
 <span id="L1341"><span class="lineNum">    1341</span>              : </span>
-<span id="L1342"><span class="lineNum">    1342</span> <span class="tlaUNC">           0 :                 m_seenWalletsLastPruneTime = cur_time;</span></span>
-<span id="L1343"><span class="lineNum">    1343</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L1344"><span class="lineNum">    1344</span> <span class="tlaGNC tlaBgGNC">       15935 : }</span></span>
+<span id="L1342"><span class="lineNum">    1342</span> <span class="tlaGNC">           3 :                 m_seenWalletsLastPruneTime = cur_time;</span></span>
+<span id="L1343"><span class="lineNum">    1343</span> <span class="tlaGNC">           3 :         }</span></span>
+<span id="L1344"><span class="lineNum">    1344</span> <span class="tlaGNC">       15935 : }</span></span>
 <span id="L1345"><span class="lineNum">    1345</span>              : </span>
 <span id="L1346"><span class="lineNum">    1346</span>              : uint64_t SideChain::last_updated() const</span>
 <span id="L1347"><span class="lineNum">    1347</span> <span class="tlaUNC tlaBgUNC">           0 : {</span></span>
@@ -3286,528 +3286,533 @@
 <span id="L3224"><span class="lineNum">    3224</span> <span class="tlaUNC">           0 :             &lt;&lt; &quot;, reason: &quot; &lt;&lt; reason);</span></span>
 <span id="L3225"><span class="lineNum">    3225</span>              :     </span>
 <span id="L3226"><span class="lineNum">    3226</span> <span class="tlaUNC">           0 :     if (m_externalBlockFailures &gt;= DIVERGENCE_THRESHOLD &amp;&amp; !m_recoveryMode.load()) {</span></span>
-<span id="L3227"><span class="lineNum">    3227</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;\n========================================&quot;);</span></span>
-<span id="L3228"><span class="lineNum">    3228</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;CONSENSUS FAILURE DETECTED&quot;);</span></span>
-<span id="L3229"><span class="lineNum">    3229</span> <span class="tlaUNC">           0 :         LOGERR(0, m_externalBlockFailures &lt;&lt; &quot; consecutive blocks rejected&quot;);</span></span>
-<span id="L3230"><span class="lineNum">    3230</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;Failure around height &quot; &lt;&lt; block-&gt;m_sidechainHeight);</span></span>
-<span id="L3231"><span class="lineNum">    3231</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;Initiating recovery...&quot;);</span></span>
-<span id="L3232"><span class="lineNum">    3232</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;========================================\n&quot;);</span></span>
-<span id="L3233"><span class="lineNum">    3233</span> <span class="tlaUNC">           0 :         trigger_recovery(block-&gt;m_sidechainHeight);</span></span>
-<span id="L3234"><span class="lineNum">    3234</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3235"><span class="lineNum">    3235</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3236"><span class="lineNum">    3236</span>              : </span>
-<span id="L3237"><span class="lineNum">    3237</span>              : void SideChain::on_block_accepted()</span>
-<span id="L3238"><span class="lineNum">    3238</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3239"><span class="lineNum">    3239</span> <span class="tlaUNC">           0 :     m_externalBlockFailures = 0;</span></span>
-<span id="L3240"><span class="lineNum">    3240</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3241"><span class="lineNum">    3241</span>              : </span>
-<span id="L3242"><span class="lineNum">    3242</span>              : void SideChain::trigger_recovery(uint64_t failure_height)</span>
-<span id="L3243"><span class="lineNum">    3243</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3244"><span class="lineNum">    3244</span> <span class="tlaUNC">           0 :     if (m_recoveryMode.exchange(true)) {</span></span>
-<span id="L3245"><span class="lineNum">    3245</span>              :         // Already in recovery mode</span>
-<span id="L3246"><span class="lineNum">    3246</span> <span class="tlaUNC">           0 :         return;</span></span>
-<span id="L3247"><span class="lineNum">    3247</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3248"><span class="lineNum">    3248</span>              :     </span>
-<span id="L3249"><span class="lineNum">    3249</span>              :     // Disable mining immediately</span>
-<span id="L3250"><span class="lineNum">    3250</span> <span class="tlaUNC">           0 :     m_readyToMine = false;</span></span>
-<span id="L3251"><span class="lineNum">    3251</span>              :     </span>
-<span id="L3252"><span class="lineNum">    3252</span>              :     // Find the checkpoint before the failure</span>
-<span id="L3253"><span class="lineNum">    3253</span> <span class="tlaUNC">           0 :     uint64_t recovery_checkpoint = (failure_height / CHECKPOINT_INTERVAL) * CHECKPOINT_INTERVAL;</span></span>
-<span id="L3254"><span class="lineNum">    3254</span> <span class="tlaUNC">           0 :     if (recovery_checkpoint &gt;= failure_height &amp;&amp; recovery_checkpoint &gt;= CHECKPOINT_INTERVAL) {</span></span>
-<span id="L3255"><span class="lineNum">    3255</span> <span class="tlaUNC">           0 :         recovery_checkpoint -= CHECKPOINT_INTERVAL;</span></span>
-<span id="L3256"><span class="lineNum">    3256</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3257"><span class="lineNum">    3257</span>              :     </span>
-<span id="L3258"><span class="lineNum">    3258</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Recovery target checkpoint: &quot; &lt;&lt; recovery_checkpoint);</span></span>
+<span id="L3227"><span class="lineNum">    3227</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;&quot;);</span></span>
+<span id="L3228"><span class="lineNum">    3228</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;================================================&quot;);</span></span>
+<span id="L3229"><span class="lineNum">    3229</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;  CONSENSUS FAILURE DETECTED&quot;);</span></span>
+<span id="L3230"><span class="lineNum">    3230</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;  &quot; &lt;&lt; m_externalBlockFailures &lt;&lt; &quot; consecutive blocks rejected&quot;);</span></span>
+<span id="L3231"><span class="lineNum">    3231</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;  Failure around height &quot; &lt;&lt; block-&gt;m_sidechainHeight);</span></span>
+<span id="L3232"><span class="lineNum">    3232</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;  Initiating recovery...&quot;);</span></span>
+<span id="L3233"><span class="lineNum">    3233</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;================================================&quot;);</span></span>
+<span id="L3234"><span class="lineNum">    3234</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;&quot;);</span></span>
+<span id="L3235"><span class="lineNum">    3235</span> <span class="tlaUNC">           0 :         trigger_recovery(block-&gt;m_sidechainHeight);</span></span>
+<span id="L3236"><span class="lineNum">    3236</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3237"><span class="lineNum">    3237</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3238"><span class="lineNum">    3238</span>              : </span>
+<span id="L3239"><span class="lineNum">    3239</span>              : void SideChain::on_block_accepted()</span>
+<span id="L3240"><span class="lineNum">    3240</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3241"><span class="lineNum">    3241</span> <span class="tlaUNC">           0 :     m_externalBlockFailures = 0;</span></span>
+<span id="L3242"><span class="lineNum">    3242</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3243"><span class="lineNum">    3243</span>              : </span>
+<span id="L3244"><span class="lineNum">    3244</span>              : void SideChain::trigger_recovery(uint64_t failure_height)</span>
+<span id="L3245"><span class="lineNum">    3245</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3246"><span class="lineNum">    3246</span> <span class="tlaUNC">           0 :     if (m_recoveryMode.exchange(true)) {</span></span>
+<span id="L3247"><span class="lineNum">    3247</span>              :         // Already in recovery mode</span>
+<span id="L3248"><span class="lineNum">    3248</span> <span class="tlaUNC">           0 :         return;</span></span>
+<span id="L3249"><span class="lineNum">    3249</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3250"><span class="lineNum">    3250</span>              :     </span>
+<span id="L3251"><span class="lineNum">    3251</span>              :     // Disable mining immediately</span>
+<span id="L3252"><span class="lineNum">    3252</span> <span class="tlaUNC">           0 :     m_readyToMine = false;</span></span>
+<span id="L3253"><span class="lineNum">    3253</span>              :     </span>
+<span id="L3254"><span class="lineNum">    3254</span>              :     // Find the checkpoint before the failure</span>
+<span id="L3255"><span class="lineNum">    3255</span> <span class="tlaUNC">           0 :     uint64_t recovery_checkpoint = (failure_height / CHECKPOINT_INTERVAL) * CHECKPOINT_INTERVAL;</span></span>
+<span id="L3256"><span class="lineNum">    3256</span> <span class="tlaUNC">           0 :     if (recovery_checkpoint &gt;= failure_height &amp;&amp; recovery_checkpoint &gt;= CHECKPOINT_INTERVAL) {</span></span>
+<span id="L3257"><span class="lineNum">    3257</span> <span class="tlaUNC">           0 :         recovery_checkpoint -= CHECKPOINT_INTERVAL;</span></span>
+<span id="L3258"><span class="lineNum">    3258</span> <span class="tlaUNC">           0 :     }</span></span>
 <span id="L3259"><span class="lineNum">    3259</span>              :     </span>
-<span id="L3260"><span class="lineNum">    3260</span> <span class="tlaUNC">           0 :     m_pendingRecoveryHeight = recovery_checkpoint;</span></span>
+<span id="L3260"><span class="lineNum">    3260</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Recovery target checkpoint: &quot; &lt;&lt; recovery_checkpoint);</span></span>
 <span id="L3261"><span class="lineNum">    3261</span>              :     </span>
-<span id="L3262"><span class="lineNum">    3262</span>              :     // Request checkpoint validation from peers via P2P server</span>
-<span id="L3263"><span class="lineNum">    3263</span> <span class="tlaUNC">           0 :     request_checkpoint_validation();</span></span>
-<span id="L3264"><span class="lineNum">    3264</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3265"><span class="lineNum">    3265</span>              : </span>
-<span id="L3266"><span class="lineNum">    3266</span>              : void SideChain::request_checkpoint_validation()</span>
-<span id="L3267"><span class="lineNum">    3267</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3268"><span class="lineNum">    3268</span>              :     // This will be called by P2P server to initiate checkpoint comparison</span>
-<span id="L3269"><span class="lineNum">    3269</span>              :     // For now, proceed directly to reset if we have a pending recovery</span>
-<span id="L3270"><span class="lineNum">    3270</span> <span class="tlaUNC">           0 :     uint64_t checkpoint_height = m_pendingRecoveryHeight.load();</span></span>
-<span id="L3271"><span class="lineNum">    3271</span> <span class="tlaUNC">           0 :     if (checkpoint_height &gt; 0) {</span></span>
-<span id="L3272"><span class="lineNum">    3272</span> <span class="tlaUNC">           0 :         reset_to_checkpoint(checkpoint_height);</span></span>
-<span id="L3273"><span class="lineNum">    3273</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3274"><span class="lineNum">    3274</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3275"><span class="lineNum">    3275</span>              : </span>
-<span id="L3276"><span class="lineNum">    3276</span>              : void SideChain::reset_to_checkpoint(uint64_t checkpoint_height)</span>
-<span id="L3277"><span class="lineNum">    3277</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3278"><span class="lineNum">    3278</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;\n========================================&quot;);</span></span>
-<span id="L3279"><span class="lineNum">    3279</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;RESETTING TO CHECKPOINT &quot; &lt;&lt; checkpoint_height);</span></span>
-<span id="L3280"><span class="lineNum">    3280</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;========================================\n&quot;);</span></span>
-<span id="L3281"><span class="lineNum">    3281</span>              : </span>
-<span id="L3282"><span class="lineNum">    3282</span> <span class="tlaUNC">           0 :     WriteLock lock(m_sidechainLock);</span></span>
-<span id="L3283"><span class="lineNum">    3283</span>              : </span>
-<span id="L3284"><span class="lineNum">    3284</span>              :     // Find the nearest available checkpoint at or below target height</span>
-<span id="L3285"><span class="lineNum">    3285</span> <span class="tlaUNC">           0 :     PoolBlock* checkpoint_block = nullptr;</span></span>
-<span id="L3286"><span class="lineNum">    3286</span> <span class="tlaUNC">           0 :     uint64_t actual_checkpoint_height = 0;</span></span>
-<span id="L3287"><span class="lineNum">    3287</span> <span class="tlaUNC">           0 :     {</span></span>
-<span id="L3288"><span class="lineNum">    3288</span> <span class="tlaUNC">           0 :         ReadLock cpLock(m_checkpointsLock);</span></span>
-<span id="L3289"><span class="lineNum">    3289</span> <span class="tlaUNC">           0 :         for (auto it = m_checkpoints.rbegin(); it != m_checkpoints.rend(); ++it) {</span></span>
-<span id="L3290"><span class="lineNum">    3290</span> <span class="tlaUNC">           0 :             if (it-&gt;height &lt;= checkpoint_height) {</span></span>
-<span id="L3291"><span class="lineNum">    3291</span> <span class="tlaUNC">           0 :                 auto block_it = m_blocksById.find(it-&gt;id);</span></span>
-<span id="L3292"><span class="lineNum">    3292</span> <span class="tlaUNC">           0 :                 if (block_it != m_blocksById.end()) {</span></span>
-<span id="L3293"><span class="lineNum">    3293</span> <span class="tlaUNC">           0 :                     checkpoint_block = block_it-&gt;second;</span></span>
-<span id="L3294"><span class="lineNum">    3294</span> <span class="tlaUNC">           0 :                     actual_checkpoint_height = it-&gt;height;</span></span>
-<span id="L3295"><span class="lineNum">    3295</span> <span class="tlaUNC">           0 :                     break;</span></span>
-<span id="L3296"><span class="lineNum">    3296</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3297"><span class="lineNum">    3297</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3298"><span class="lineNum">    3298</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3299"><span class="lineNum">    3299</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3300"><span class="lineNum">    3300</span>              : </span>
-<span id="L3301"><span class="lineNum">    3301</span> <span class="tlaUNC">           0 :     if (!checkpoint_block) {</span></span>
-<span id="L3302"><span class="lineNum">    3302</span> <span class="tlaUNC">           0 :         LOGWARN(0, &quot;No checkpoint found at or below height &quot; &lt;&lt; checkpoint_height &lt;&lt; &quot; - recovery aborted&quot;);</span></span>
-<span id="L3303"><span class="lineNum">    3303</span> <span class="tlaUNC">           0 :         m_recoveryMode = false;</span></span>
-<span id="L3304"><span class="lineNum">    3304</span> <span class="tlaUNC">           0 :         m_pendingRecoveryHeight = 0;</span></span>
-<span id="L3305"><span class="lineNum">    3305</span> <span class="tlaUNC">           0 :         return;</span></span>
-<span id="L3306"><span class="lineNum">    3306</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3307"><span class="lineNum">    3307</span>              : </span>
-<span id="L3308"><span class="lineNum">    3308</span> <span class="tlaUNC">           0 :     if (actual_checkpoint_height != checkpoint_height) {</span></span>
-<span id="L3309"><span class="lineNum">    3309</span> <span class="tlaUNC">           0 :         LOGINFO(0, &quot;Using nearest checkpoint at height &quot; &lt;&lt; actual_checkpoint_height &lt;&lt; &quot; (requested &quot; &lt;&lt; checkpoint_height &lt;&lt; &quot;)&quot;);</span></span>
-<span id="L3310"><span class="lineNum">    3310</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3311"><span class="lineNum">    3311</span>              : </span>
-<span id="L3312"><span class="lineNum">    3312</span>              :     // Remove blocks above checkpoint so fresh ones come from peers</span>
-<span id="L3313"><span class="lineNum">    3313</span>              :     // Collect block info to remove (can't modify map while iterating)</span>
-<span id="L3314"><span class="lineNum">    3314</span> <span class="tlaUNC">           0 :     std::vector&lt;std::pair&lt;hash, PoolBlock::full_id&gt;&gt; blocks_to_remove;</span></span>
-<span id="L3315"><span class="lineNum">    3315</span> <span class="tlaUNC">           0 :     for (const auto&amp; kv : m_blocksById) {</span></span>
-<span id="L3316"><span class="lineNum">    3316</span> <span class="tlaUNC">           0 :         if (kv.second-&gt;m_sidechainHeight &gt; actual_checkpoint_height) {</span></span>
-<span id="L3317"><span class="lineNum">    3317</span> <span class="tlaUNC">           0 :             blocks_to_remove.emplace_back(kv.first, kv.second-&gt;get_full_id());</span></span>
-<span id="L3318"><span class="lineNum">    3318</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3319"><span class="lineNum">    3319</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3320"><span class="lineNum">    3320</span>              : </span>
-<span id="L3321"><span class="lineNum">    3321</span>              :     // Remove from all indices</span>
-<span id="L3322"><span class="lineNum">    3322</span> <span class="tlaUNC">           0 :     for (const auto&amp; [id, full_id] : blocks_to_remove) {</span></span>
-<span id="L3323"><span class="lineNum">    3323</span> <span class="tlaUNC">           0 :         auto it = m_blocksById.find(id);</span></span>
-<span id="L3324"><span class="lineNum">    3324</span> <span class="tlaUNC">           0 :         if (it != m_blocksById.end()) {</span></span>
-<span id="L3325"><span class="lineNum">    3325</span> <span class="tlaUNC">           0 :             PoolBlock* block = it-&gt;second;</span></span>
-<span id="L3326"><span class="lineNum">    3326</span>              : </span>
-<span id="L3327"><span class="lineNum">    3327</span>              :             // Remove from blocksByHeight vector</span>
-<span id="L3328"><span class="lineNum">    3328</span> <span class="tlaUNC">           0 :             auto height_it = m_blocksByHeight.find(block-&gt;m_sidechainHeight);</span></span>
-<span id="L3329"><span class="lineNum">    3329</span> <span class="tlaUNC">           0 :             if (height_it != m_blocksByHeight.end()) {</span></span>
-<span id="L3330"><span class="lineNum">    3330</span> <span class="tlaUNC">           0 :                 auto&amp; vec = height_it-&gt;second;</span></span>
-<span id="L3331"><span class="lineNum">    3331</span> <span class="tlaUNC">           0 :                 vec.erase(std::remove(vec.begin(), vec.end(), block), vec.end());</span></span>
-<span id="L3332"><span class="lineNum">    3332</span> <span class="tlaUNC">           0 :                 if (vec.empty()) {</span></span>
-<span id="L3333"><span class="lineNum">    3333</span> <span class="tlaUNC">           0 :                     m_blocksByHeight.erase(height_it);</span></span>
-<span id="L3334"><span class="lineNum">    3334</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3335"><span class="lineNum">    3335</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3336"><span class="lineNum">    3336</span>              : </span>
-<span id="L3337"><span class="lineNum">    3337</span> <span class="tlaUNC">           0 :             m_blocksById.erase(it);</span></span>
-<span id="L3338"><span class="lineNum">    3338</span> <span class="tlaUNC">           0 :             delete block;</span></span>
-<span id="L3339"><span class="lineNum">    3339</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3340"><span class="lineNum">    3340</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3341"><span class="lineNum">    3341</span>              : </span>
-<span id="L3342"><span class="lineNum">    3342</span>              :     // Forget deleted blocks so they can be re-downloaded from peers</span>
-<span id="L3343"><span class="lineNum">    3343</span> <span class="tlaUNC">           0 :     {</span></span>
-<span id="L3344"><span class="lineNum">    3344</span> <span class="tlaUNC">           0 :         MutexLock incomingLock(m_incomingBlocksLock);</span></span>
-<span id="L3345"><span class="lineNum">    3345</span> <span class="tlaUNC">           0 :         for (const auto&amp; [id, full_id] : blocks_to_remove) {</span></span>
-<span id="L3346"><span class="lineNum">    3346</span> <span class="tlaUNC">           0 :             m_incomingBlocks.erase(full_id);</span></span>
-<span id="L3347"><span class="lineNum">    3347</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3348"><span class="lineNum">    3348</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3349"><span class="lineNum">    3349</span>              : </span>
-<span id="L3350"><span class="lineNum">    3350</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Removed &quot; &lt;&lt; blocks_to_remove.size() &lt;&lt; &quot; blocks above checkpoint &quot; &lt;&lt; actual_checkpoint_height);</span></span>
-<span id="L3351"><span class="lineNum">    3351</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Cleared &quot; &lt;&lt; blocks_to_remove.size() &lt;&lt; &quot; entries from incoming blocks tracking&quot;);</span></span>
+<span id="L3262"><span class="lineNum">    3262</span> <span class="tlaUNC">           0 :     m_pendingRecoveryHeight = recovery_checkpoint;</span></span>
+<span id="L3263"><span class="lineNum">    3263</span>              :     </span>
+<span id="L3264"><span class="lineNum">    3264</span>              :     // Request checkpoint validation from peers via P2P server</span>
+<span id="L3265"><span class="lineNum">    3265</span> <span class="tlaUNC">           0 :     request_checkpoint_validation();</span></span>
+<span id="L3266"><span class="lineNum">    3266</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3267"><span class="lineNum">    3267</span>              : </span>
+<span id="L3268"><span class="lineNum">    3268</span>              : void SideChain::request_checkpoint_validation()</span>
+<span id="L3269"><span class="lineNum">    3269</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3270"><span class="lineNum">    3270</span>              :     // This will be called by P2P server to initiate checkpoint comparison</span>
+<span id="L3271"><span class="lineNum">    3271</span>              :     // For now, proceed directly to reset if we have a pending recovery</span>
+<span id="L3272"><span class="lineNum">    3272</span> <span class="tlaUNC">           0 :     uint64_t checkpoint_height = m_pendingRecoveryHeight.load();</span></span>
+<span id="L3273"><span class="lineNum">    3273</span> <span class="tlaUNC">           0 :     if (checkpoint_height &gt; 0) {</span></span>
+<span id="L3274"><span class="lineNum">    3274</span> <span class="tlaUNC">           0 :         reset_to_checkpoint(checkpoint_height);</span></span>
+<span id="L3275"><span class="lineNum">    3275</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3276"><span class="lineNum">    3276</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3277"><span class="lineNum">    3277</span>              : </span>
+<span id="L3278"><span class="lineNum">    3278</span>              : void SideChain::reset_to_checkpoint(uint64_t checkpoint_height)</span>
+<span id="L3279"><span class="lineNum">    3279</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3280"><span class="lineNum">    3280</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;&quot;);</span></span>
+<span id="L3281"><span class="lineNum">    3281</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;================================================&quot;);</span></span>
+<span id="L3282"><span class="lineNum">    3282</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;  RESETTING TO CHECKPOINT &quot; &lt;&lt; checkpoint_height);</span></span>
+<span id="L3283"><span class="lineNum">    3283</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;================================================&quot;);</span></span>
+<span id="L3284"><span class="lineNum">    3284</span>              : </span>
+<span id="L3285"><span class="lineNum">    3285</span> <span class="tlaUNC">           0 :     WriteLock lock(m_sidechainLock);</span></span>
+<span id="L3286"><span class="lineNum">    3286</span>              : </span>
+<span id="L3287"><span class="lineNum">    3287</span>              :     // Find the nearest available checkpoint at or below target height</span>
+<span id="L3288"><span class="lineNum">    3288</span> <span class="tlaUNC">           0 :     PoolBlock* checkpoint_block = nullptr;</span></span>
+<span id="L3289"><span class="lineNum">    3289</span> <span class="tlaUNC">           0 :     uint64_t actual_checkpoint_height = 0;</span></span>
+<span id="L3290"><span class="lineNum">    3290</span> <span class="tlaUNC">           0 :     {</span></span>
+<span id="L3291"><span class="lineNum">    3291</span> <span class="tlaUNC">           0 :         ReadLock cpLock(m_checkpointsLock);</span></span>
+<span id="L3292"><span class="lineNum">    3292</span> <span class="tlaUNC">           0 :         for (auto it = m_checkpoints.rbegin(); it != m_checkpoints.rend(); ++it) {</span></span>
+<span id="L3293"><span class="lineNum">    3293</span> <span class="tlaUNC">           0 :             if (it-&gt;height &lt;= checkpoint_height) {</span></span>
+<span id="L3294"><span class="lineNum">    3294</span> <span class="tlaUNC">           0 :                 auto block_it = m_blocksById.find(it-&gt;id);</span></span>
+<span id="L3295"><span class="lineNum">    3295</span> <span class="tlaUNC">           0 :                 if (block_it != m_blocksById.end()) {</span></span>
+<span id="L3296"><span class="lineNum">    3296</span> <span class="tlaUNC">           0 :                     checkpoint_block = block_it-&gt;second;</span></span>
+<span id="L3297"><span class="lineNum">    3297</span> <span class="tlaUNC">           0 :                     actual_checkpoint_height = it-&gt;height;</span></span>
+<span id="L3298"><span class="lineNum">    3298</span> <span class="tlaUNC">           0 :                     break;</span></span>
+<span id="L3299"><span class="lineNum">    3299</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3300"><span class="lineNum">    3300</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3301"><span class="lineNum">    3301</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3302"><span class="lineNum">    3302</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3303"><span class="lineNum">    3303</span>              : </span>
+<span id="L3304"><span class="lineNum">    3304</span> <span class="tlaUNC">           0 :     if (!checkpoint_block) {</span></span>
+<span id="L3305"><span class="lineNum">    3305</span> <span class="tlaUNC">           0 :         LOGWARN(0, &quot;No checkpoint found at or below height &quot; &lt;&lt; checkpoint_height &lt;&lt; &quot; - recovery aborted&quot;);</span></span>
+<span id="L3306"><span class="lineNum">    3306</span> <span class="tlaUNC">           0 :         m_recoveryMode = false;</span></span>
+<span id="L3307"><span class="lineNum">    3307</span> <span class="tlaUNC">           0 :         m_pendingRecoveryHeight = 0;</span></span>
+<span id="L3308"><span class="lineNum">    3308</span> <span class="tlaUNC">           0 :         return;</span></span>
+<span id="L3309"><span class="lineNum">    3309</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3310"><span class="lineNum">    3310</span>              : </span>
+<span id="L3311"><span class="lineNum">    3311</span> <span class="tlaUNC">           0 :     if (actual_checkpoint_height != checkpoint_height) {</span></span>
+<span id="L3312"><span class="lineNum">    3312</span> <span class="tlaUNC">           0 :         LOGINFO(0, &quot;Using nearest checkpoint at height &quot; &lt;&lt; actual_checkpoint_height &lt;&lt; &quot; (requested &quot; &lt;&lt; checkpoint_height &lt;&lt; &quot;)&quot;);</span></span>
+<span id="L3313"><span class="lineNum">    3313</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3314"><span class="lineNum">    3314</span>              : </span>
+<span id="L3315"><span class="lineNum">    3315</span>              :     // Remove blocks above checkpoint so fresh ones come from peers</span>
+<span id="L3316"><span class="lineNum">    3316</span>              :     // Collect block info to remove (can't modify map while iterating)</span>
+<span id="L3317"><span class="lineNum">    3317</span> <span class="tlaUNC">           0 :     std::vector&lt;std::pair&lt;hash, PoolBlock::full_id&gt;&gt; blocks_to_remove;</span></span>
+<span id="L3318"><span class="lineNum">    3318</span> <span class="tlaUNC">           0 :     for (const auto&amp; kv : m_blocksById) {</span></span>
+<span id="L3319"><span class="lineNum">    3319</span> <span class="tlaUNC">           0 :         if (kv.second-&gt;m_sidechainHeight &gt; actual_checkpoint_height) {</span></span>
+<span id="L3320"><span class="lineNum">    3320</span> <span class="tlaUNC">           0 :             blocks_to_remove.emplace_back(kv.first, kv.second-&gt;get_full_id());</span></span>
+<span id="L3321"><span class="lineNum">    3321</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3322"><span class="lineNum">    3322</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3323"><span class="lineNum">    3323</span>              : </span>
+<span id="L3324"><span class="lineNum">    3324</span>              :     // Remove from all indices</span>
+<span id="L3325"><span class="lineNum">    3325</span> <span class="tlaUNC">           0 :     for (const auto&amp; [id, full_id] : blocks_to_remove) {</span></span>
+<span id="L3326"><span class="lineNum">    3326</span> <span class="tlaUNC">           0 :         auto it = m_blocksById.find(id);</span></span>
+<span id="L3327"><span class="lineNum">    3327</span> <span class="tlaUNC">           0 :         if (it != m_blocksById.end()) {</span></span>
+<span id="L3328"><span class="lineNum">    3328</span> <span class="tlaUNC">           0 :             PoolBlock* block = it-&gt;second;</span></span>
+<span id="L3329"><span class="lineNum">    3329</span>              : </span>
+<span id="L3330"><span class="lineNum">    3330</span>              :             // Remove from blocksByHeight vector</span>
+<span id="L3331"><span class="lineNum">    3331</span> <span class="tlaUNC">           0 :             auto height_it = m_blocksByHeight.find(block-&gt;m_sidechainHeight);</span></span>
+<span id="L3332"><span class="lineNum">    3332</span> <span class="tlaUNC">           0 :             if (height_it != m_blocksByHeight.end()) {</span></span>
+<span id="L3333"><span class="lineNum">    3333</span> <span class="tlaUNC">           0 :                 auto&amp; vec = height_it-&gt;second;</span></span>
+<span id="L3334"><span class="lineNum">    3334</span> <span class="tlaUNC">           0 :                 vec.erase(std::remove(vec.begin(), vec.end(), block), vec.end());</span></span>
+<span id="L3335"><span class="lineNum">    3335</span> <span class="tlaUNC">           0 :                 if (vec.empty()) {</span></span>
+<span id="L3336"><span class="lineNum">    3336</span> <span class="tlaUNC">           0 :                     m_blocksByHeight.erase(height_it);</span></span>
+<span id="L3337"><span class="lineNum">    3337</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3338"><span class="lineNum">    3338</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3339"><span class="lineNum">    3339</span>              : </span>
+<span id="L3340"><span class="lineNum">    3340</span> <span class="tlaUNC">           0 :             m_blocksById.erase(it);</span></span>
+<span id="L3341"><span class="lineNum">    3341</span> <span class="tlaUNC">           0 :             delete block;</span></span>
+<span id="L3342"><span class="lineNum">    3342</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3343"><span class="lineNum">    3343</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3344"><span class="lineNum">    3344</span>              : </span>
+<span id="L3345"><span class="lineNum">    3345</span>              :     // Forget deleted blocks so they can be re-downloaded from peers</span>
+<span id="L3346"><span class="lineNum">    3346</span> <span class="tlaUNC">           0 :     {</span></span>
+<span id="L3347"><span class="lineNum">    3347</span> <span class="tlaUNC">           0 :         MutexLock incomingLock(m_incomingBlocksLock);</span></span>
+<span id="L3348"><span class="lineNum">    3348</span> <span class="tlaUNC">           0 :         for (const auto&amp; [id, full_id] : blocks_to_remove) {</span></span>
+<span id="L3349"><span class="lineNum">    3349</span> <span class="tlaUNC">           0 :             m_incomingBlocks.erase(full_id);</span></span>
+<span id="L3350"><span class="lineNum">    3350</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3351"><span class="lineNum">    3351</span> <span class="tlaUNC">           0 :     }</span></span>
 <span id="L3352"><span class="lineNum">    3352</span>              : </span>
-<span id="L3353"><span class="lineNum">    3353</span> <span class="tlaUNC">           0 :     checkpoint_block-&gt;m_verified = true;  // Mark verified for propagation</span></span>
-<span id="L3354"><span class="lineNum">    3354</span> <span class="tlaUNC">           0 :     checkpoint_block-&gt;m_invalid = false;  // Ensure not marked invalid</span></span>
-<span id="L3355"><span class="lineNum">    3355</span> <span class="tlaUNC">           0 :     m_chainTip = checkpoint_block;</span></span>
-<span id="L3356"><span class="lineNum">    3356</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Chain tip reset to height &quot; &lt;&lt; actual_checkpoint_height</span></span>
-<span id="L3357"><span class="lineNum">    3357</span> <span class="tlaUNC">           0 :             &lt;&lt; &quot;, id &quot; &lt;&lt; checkpoint_block-&gt;m_sidechainId</span></span>
-<span id="L3358"><span class="lineNum">    3358</span> <span class="tlaUNC">           0 :             &lt;&lt; &quot;, verified=&quot; &lt;&lt; (checkpoint_block-&gt;m_verified ? 1 : 0));</span></span>
-<span id="L3359"><span class="lineNum">    3359</span>              : </span>
-<span id="L3360"><span class="lineNum">    3360</span>              :     // Clear checkpoints after this point</span>
-<span id="L3361"><span class="lineNum">    3361</span> <span class="tlaUNC">           0 :     {</span></span>
-<span id="L3362"><span class="lineNum">    3362</span> <span class="tlaUNC">           0 :         WriteLock cpLock(m_checkpointsLock);</span></span>
-<span id="L3363"><span class="lineNum">    3363</span> <span class="tlaUNC">           0 :         while (!m_checkpoints.empty() &amp;&amp; m_checkpoints.back().height &gt; actual_checkpoint_height) {</span></span>
-<span id="L3364"><span class="lineNum">    3364</span> <span class="tlaUNC">           0 :             m_checkpoints.pop_back();</span></span>
-<span id="L3365"><span class="lineNum">    3365</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3366"><span class="lineNum">    3366</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3367"><span class="lineNum">    3367</span>              :     </span>
-<span id="L3368"><span class="lineNum">    3368</span>              :     // Reset counters</span>
-<span id="L3369"><span class="lineNum">    3369</span> <span class="tlaUNC">           0 :     m_externalBlockFailures = 0;</span></span>
-<span id="L3370"><span class="lineNum">    3370</span> <span class="tlaUNC">           0 :     m_pendingRecoveryHeight = 0;</span></span>
-<span id="L3371"><span class="lineNum">    3371</span> <span class="tlaUNC">           0 :     m_recoveryMode = false;</span></span>
-<span id="L3372"><span class="lineNum">    3372</span>              : </span>
-<span id="L3373"><span class="lineNum">    3373</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;\n========================================&quot;);</span></span>
-<span id="L3374"><span class="lineNum">    3374</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;RESET COMPLETE - RESYNCING FROM &quot; &lt;&lt; checkpoint_height);</span></span>
-<span id="L3375"><span class="lineNum">    3375</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;========================================\n&quot;);</span></span>
-<span id="L3376"><span class="lineNum">    3376</span>              : </span>
-<span id="L3377"><span class="lineNum">    3377</span>              :     // Mining will be re-enabled after resync completes</span>
-<span id="L3378"><span class="lineNum">    3378</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3379"><span class="lineNum">    3379</span>              : </span>
-<span id="L3380"><span class="lineNum">    3380</span>              : void SideChain::clear_checkpoints()</span>
-<span id="L3381"><span class="lineNum">    3381</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3382"><span class="lineNum">    3382</span> <span class="tlaUNC">           0 :     WriteLock lock(m_checkpointsLock);</span></span>
-<span id="L3383"><span class="lineNum">    3383</span> <span class="tlaUNC">           0 :     m_checkpoints.clear();</span></span>
-<span id="L3384"><span class="lineNum">    3384</span> <span class="tlaUNC">           0 :     m_checkpointsNeedValidation = false;</span></span>
-<span id="L3385"><span class="lineNum">    3385</span> <span class="tlaUNC">           0 :     LOGINFO(1, &quot;Cleared in-memory checkpoints&quot;);</span></span>
-<span id="L3386"><span class="lineNum">    3386</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3387"><span class="lineNum">    3387</span>              : </span>
-<span id="L3388"><span class="lineNum">    3388</span>              : void SideChain::save_checkpoints() const</span>
-<span id="L3389"><span class="lineNum">    3389</span> <span class="tlaGNC tlaBgGNC">          39 : {</span></span>
-<span id="L3390"><span class="lineNum">    3390</span>              : #ifdef WITH_REDIS</span>
-<span id="L3391"><span class="lineNum">    3391</span>              :     ReadLock lock(m_checkpointsLock);</span>
+<span id="L3353"><span class="lineNum">    3353</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Removed &quot; &lt;&lt; blocks_to_remove.size() &lt;&lt; &quot; blocks above checkpoint &quot; &lt;&lt; actual_checkpoint_height);</span></span>
+<span id="L3354"><span class="lineNum">    3354</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Cleared &quot; &lt;&lt; blocks_to_remove.size() &lt;&lt; &quot; entries from incoming blocks tracking&quot;);</span></span>
+<span id="L3355"><span class="lineNum">    3355</span>              : </span>
+<span id="L3356"><span class="lineNum">    3356</span> <span class="tlaUNC">           0 :     checkpoint_block-&gt;m_verified = true;  // Mark verified for propagation</span></span>
+<span id="L3357"><span class="lineNum">    3357</span> <span class="tlaUNC">           0 :     checkpoint_block-&gt;m_invalid = false;  // Ensure not marked invalid</span></span>
+<span id="L3358"><span class="lineNum">    3358</span> <span class="tlaUNC">           0 :     m_chainTip = checkpoint_block;</span></span>
+<span id="L3359"><span class="lineNum">    3359</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Chain tip reset to height &quot; &lt;&lt; actual_checkpoint_height</span></span>
+<span id="L3360"><span class="lineNum">    3360</span> <span class="tlaUNC">           0 :             &lt;&lt; &quot;, id &quot; &lt;&lt; checkpoint_block-&gt;m_sidechainId</span></span>
+<span id="L3361"><span class="lineNum">    3361</span> <span class="tlaUNC">           0 :             &lt;&lt; &quot;, verified=&quot; &lt;&lt; (checkpoint_block-&gt;m_verified ? 1 : 0));</span></span>
+<span id="L3362"><span class="lineNum">    3362</span>              : </span>
+<span id="L3363"><span class="lineNum">    3363</span>              :     // Clear checkpoints after this point</span>
+<span id="L3364"><span class="lineNum">    3364</span> <span class="tlaUNC">           0 :     {</span></span>
+<span id="L3365"><span class="lineNum">    3365</span> <span class="tlaUNC">           0 :         WriteLock cpLock(m_checkpointsLock);</span></span>
+<span id="L3366"><span class="lineNum">    3366</span> <span class="tlaUNC">           0 :         while (!m_checkpoints.empty() &amp;&amp; m_checkpoints.back().height &gt; actual_checkpoint_height) {</span></span>
+<span id="L3367"><span class="lineNum">    3367</span> <span class="tlaUNC">           0 :             m_checkpoints.pop_back();</span></span>
+<span id="L3368"><span class="lineNum">    3368</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3369"><span class="lineNum">    3369</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3370"><span class="lineNum">    3370</span>              :     </span>
+<span id="L3371"><span class="lineNum">    3371</span>              :     // Reset counters</span>
+<span id="L3372"><span class="lineNum">    3372</span> <span class="tlaUNC">           0 :     m_externalBlockFailures = 0;</span></span>
+<span id="L3373"><span class="lineNum">    3373</span> <span class="tlaUNC">           0 :     m_pendingRecoveryHeight = 0;</span></span>
+<span id="L3374"><span class="lineNum">    3374</span> <span class="tlaUNC">           0 :     m_recoveryMode = false;</span></span>
+<span id="L3375"><span class="lineNum">    3375</span>              : </span>
+<span id="L3376"><span class="lineNum">    3376</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;&quot;);</span></span>
+<span id="L3377"><span class="lineNum">    3377</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;================================================&quot;);</span></span>
+<span id="L3378"><span class="lineNum">    3378</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;  RESET COMPLETE - RESYNCING FROM &quot; &lt;&lt; checkpoint_height);</span></span>
+<span id="L3379"><span class="lineNum">    3379</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;================================================&quot;);</span></span>
+<span id="L3380"><span class="lineNum">    3380</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;&quot;);</span></span>
+<span id="L3381"><span class="lineNum">    3381</span>              : </span>
+<span id="L3382"><span class="lineNum">    3382</span>              :     // Mining will be re-enabled after resync completes</span>
+<span id="L3383"><span class="lineNum">    3383</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3384"><span class="lineNum">    3384</span>              : </span>
+<span id="L3385"><span class="lineNum">    3385</span>              : void SideChain::clear_checkpoints()</span>
+<span id="L3386"><span class="lineNum">    3386</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3387"><span class="lineNum">    3387</span> <span class="tlaUNC">           0 :     WriteLock lock(m_checkpointsLock);</span></span>
+<span id="L3388"><span class="lineNum">    3388</span> <span class="tlaUNC">           0 :     m_checkpoints.clear();</span></span>
+<span id="L3389"><span class="lineNum">    3389</span> <span class="tlaUNC">           0 :     m_checkpointsNeedValidation = false;</span></span>
+<span id="L3390"><span class="lineNum">    3390</span> <span class="tlaUNC">           0 :     LOGINFO(1, &quot;Cleared in-memory checkpoints&quot;);</span></span>
+<span id="L3391"><span class="lineNum">    3391</span> <span class="tlaUNC">           0 : }</span></span>
 <span id="L3392"><span class="lineNum">    3392</span>              : </span>
-<span id="L3393"><span class="lineNum">    3393</span>              :     if (m_checkpoints.empty()) {</span>
-<span id="L3394"><span class="lineNum">    3394</span>              :         get_redis_storage().del(&quot;checkpoints&quot;);</span>
-<span id="L3395"><span class="lineNum">    3395</span>              :         return;</span>
-<span id="L3396"><span class="lineNum">    3396</span>              :     }</span>
+<span id="L3393"><span class="lineNum">    3393</span>              : void SideChain::save_checkpoints() const</span>
+<span id="L3394"><span class="lineNum">    3394</span> <span class="tlaGNC tlaBgGNC">          39 : {</span></span>
+<span id="L3395"><span class="lineNum">    3395</span>              : #ifdef WITH_REDIS</span>
+<span id="L3396"><span class="lineNum">    3396</span>              :     ReadLock lock(m_checkpointsLock);</span>
 <span id="L3397"><span class="lineNum">    3397</span>              : </span>
-<span id="L3398"><span class="lineNum">    3398</span>              :     // Build binary buffer matching file format</span>
-<span id="L3399"><span class="lineNum">    3399</span>              :     std::vector&lt;uint8_t&gt; buf;</span>
-<span id="L3400"><span class="lineNum">    3400</span>              :     const uint32_t version = 1;</span>
-<span id="L3401"><span class="lineNum">    3401</span>              :     const uint32_t count = static_cast&lt;uint32_t&gt;(m_checkpoints.size());</span>
+<span id="L3398"><span class="lineNum">    3398</span>              :     if (m_checkpoints.empty()) {</span>
+<span id="L3399"><span class="lineNum">    3399</span>              :         get_redis_storage().del(&quot;checkpoints&quot;);</span>
+<span id="L3400"><span class="lineNum">    3400</span>              :         return;</span>
+<span id="L3401"><span class="lineNum">    3401</span>              :     }</span>
 <span id="L3402"><span class="lineNum">    3402</span>              : </span>
-<span id="L3403"><span class="lineNum">    3403</span>              :     buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;version),</span>
-<span id="L3404"><span class="lineNum">    3404</span>              :                reinterpret_cast&lt;const uint8_t*&gt;(&amp;version) + sizeof(version));</span>
-<span id="L3405"><span class="lineNum">    3405</span>              :     buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;count),</span>
-<span id="L3406"><span class="lineNum">    3406</span>              :                reinterpret_cast&lt;const uint8_t*&gt;(&amp;count) + sizeof(count));</span>
+<span id="L3403"><span class="lineNum">    3403</span>              :     // Build binary buffer matching file format</span>
+<span id="L3404"><span class="lineNum">    3404</span>              :     std::vector&lt;uint8_t&gt; buf;</span>
+<span id="L3405"><span class="lineNum">    3405</span>              :     const uint32_t version = 1;</span>
+<span id="L3406"><span class="lineNum">    3406</span>              :     const uint32_t count = static_cast&lt;uint32_t&gt;(m_checkpoints.size());</span>
 <span id="L3407"><span class="lineNum">    3407</span>              : </span>
-<span id="L3408"><span class="lineNum">    3408</span>              :     for (const Checkpoint&amp; cp : m_checkpoints) {</span>
-<span id="L3409"><span class="lineNum">    3409</span>              :         buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.height),</span>
-<span id="L3410"><span class="lineNum">    3410</span>              :                    reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.height) + sizeof(cp.height));</span>
-<span id="L3411"><span class="lineNum">    3411</span>              :         buf.insert(buf.end(), cp.id.h, cp.id.h + HASH_SIZE);</span>
-<span id="L3412"><span class="lineNum">    3412</span>              :         buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.cumulative_difficulty),</span>
-<span id="L3413"><span class="lineNum">    3413</span>              :                    reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.cumulative_difficulty) + sizeof(cp.cumulative_difficulty));</span>
-<span id="L3414"><span class="lineNum">    3414</span>              :     }</span>
-<span id="L3415"><span class="lineNum">    3415</span>              : </span>
-<span id="L3416"><span class="lineNum">    3416</span>              :     if (!get_redis_storage().set(&quot;checkpoints&quot;, buf.data(), buf.size())) {</span>
-<span id="L3417"><span class="lineNum">    3417</span>              :         LOGWARN(1, &quot;Failed to save checkpoints to Redis&quot;);</span>
-<span id="L3418"><span class="lineNum">    3418</span>              :         return;</span>
+<span id="L3408"><span class="lineNum">    3408</span>              :     buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;version),</span>
+<span id="L3409"><span class="lineNum">    3409</span>              :                reinterpret_cast&lt;const uint8_t*&gt;(&amp;version) + sizeof(version));</span>
+<span id="L3410"><span class="lineNum">    3410</span>              :     buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;count),</span>
+<span id="L3411"><span class="lineNum">    3411</span>              :                reinterpret_cast&lt;const uint8_t*&gt;(&amp;count) + sizeof(count));</span>
+<span id="L3412"><span class="lineNum">    3412</span>              : </span>
+<span id="L3413"><span class="lineNum">    3413</span>              :     for (const Checkpoint&amp; cp : m_checkpoints) {</span>
+<span id="L3414"><span class="lineNum">    3414</span>              :         buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.height),</span>
+<span id="L3415"><span class="lineNum">    3415</span>              :                    reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.height) + sizeof(cp.height));</span>
+<span id="L3416"><span class="lineNum">    3416</span>              :         buf.insert(buf.end(), cp.id.h, cp.id.h + HASH_SIZE);</span>
+<span id="L3417"><span class="lineNum">    3417</span>              :         buf.insert(buf.end(), reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.cumulative_difficulty),</span>
+<span id="L3418"><span class="lineNum">    3418</span>              :                    reinterpret_cast&lt;const uint8_t*&gt;(&amp;cp.cumulative_difficulty) + sizeof(cp.cumulative_difficulty));</span>
 <span id="L3419"><span class="lineNum">    3419</span>              :     }</span>
-<span id="L3420"><span class="lineNum">    3420</span>              :     LOGINFO(3, &quot;Saved &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints to Redis&quot;);</span>
-<span id="L3421"><span class="lineNum">    3421</span>              : #else</span>
-<span id="L3422"><span class="lineNum">    3422</span> <span class="tlaGNC">          39 :     const std::string path = DATA_DIR + &quot;p2pool_checkpoints.dat&quot;;</span></span>
-<span id="L3423"><span class="lineNum">    3423</span>              : </span>
-<span id="L3424"><span class="lineNum">    3424</span> <span class="tlaGNC">          39 :     ReadLock lock(m_checkpointsLock);</span></span>
-<span id="L3425"><span class="lineNum">    3425</span>              : </span>
-<span id="L3426"><span class="lineNum">    3426</span> <span class="tlaGNC">          39 :     if (m_checkpoints.empty()) {</span></span>
-<span id="L3427"><span class="lineNum">    3427</span>              :         // No checkpoints to save, remove old file if exists</span>
-<span id="L3428"><span class="lineNum">    3428</span> <span class="tlaGNC">           1 :         remove(path.c_str());</span></span>
-<span id="L3429"><span class="lineNum">    3429</span> <span class="tlaGNC">           1 :         return;</span></span>
-<span id="L3430"><span class="lineNum">    3430</span> <span class="tlaGNC">           1 :     }</span></span>
-<span id="L3431"><span class="lineNum">    3431</span>              : </span>
-<span id="L3432"><span class="lineNum">    3432</span> <span class="tlaGNC">          38 :     std::ofstream f(path, std::ios::binary);</span></span>
-<span id="L3433"><span class="lineNum">    3433</span> <span class="tlaGNC">          38 :     if (!f.is_open()) {</span></span>
-<span id="L3434"><span class="lineNum">    3434</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGWARN(1, &quot;Failed to save checkpoints to &quot; &lt;&lt; path);</span></span>
-<span id="L3435"><span class="lineNum">    3435</span> <span class="tlaUNC">           0 :         return;</span></span>
-<span id="L3436"><span class="lineNum">    3436</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3437"><span class="lineNum">    3437</span>              : </span>
-<span id="L3438"><span class="lineNum">    3438</span>              :     // Write version marker for future compatibility</span>
-<span id="L3439"><span class="lineNum">    3439</span> <span class="tlaGNC tlaBgGNC">          38 :     const uint32_t version = 1;</span></span>
-<span id="L3440"><span class="lineNum">    3440</span> <span class="tlaGNC">          38 :     f.write(reinterpret_cast&lt;const char*&gt;(&amp;version), sizeof(version));</span></span>
-<span id="L3441"><span class="lineNum">    3441</span>              : </span>
-<span id="L3442"><span class="lineNum">    3442</span>              :     // Write checkpoint count</span>
-<span id="L3443"><span class="lineNum">    3443</span> <span class="tlaGNC">          38 :     const uint32_t count = static_cast&lt;uint32_t&gt;(m_checkpoints.size());</span></span>
-<span id="L3444"><span class="lineNum">    3444</span> <span class="tlaGNC">          38 :     f.write(reinterpret_cast&lt;const char*&gt;(&amp;count), sizeof(count));</span></span>
-<span id="L3445"><span class="lineNum">    3445</span>              : </span>
-<span id="L3446"><span class="lineNum">    3446</span>              :     // Write each checkpoint</span>
-<span id="L3447"><span class="lineNum">    3447</span> <span class="tlaGNC">         494 :     for (const Checkpoint&amp; cp : m_checkpoints) {</span></span>
-<span id="L3448"><span class="lineNum">    3448</span> <span class="tlaGNC">         494 :         f.write(reinterpret_cast&lt;const char*&gt;(&amp;cp.height), sizeof(cp.height));</span></span>
-<span id="L3449"><span class="lineNum">    3449</span> <span class="tlaGNC">         494 :         f.write(reinterpret_cast&lt;const char*&gt;(cp.id.h), HASH_SIZE);</span></span>
-<span id="L3450"><span class="lineNum">    3450</span> <span class="tlaGNC">         494 :         f.write(reinterpret_cast&lt;const char*&gt;(&amp;cp.cumulative_difficulty), sizeof(cp.cumulative_difficulty));</span></span>
-<span id="L3451"><span class="lineNum">    3451</span> <span class="tlaGNC">         494 :     }</span></span>
-<span id="L3452"><span class="lineNum">    3452</span>              : </span>
-<span id="L3453"><span class="lineNum">    3453</span> <span class="tlaGNC">          38 :     f.close();</span></span>
-<span id="L3454"><span class="lineNum">    3454</span> <span class="tlaGNC">          38 :     LOGINFO(3, &quot;Saved &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints to &quot; &lt;&lt; path);</span></span>
-<span id="L3455"><span class="lineNum">    3455</span> <span class="tlaGNC">          38 : #endif</span></span>
-<span id="L3456"><span class="lineNum">    3456</span> <span class="tlaGNC">          38 : }</span></span>
+<span id="L3420"><span class="lineNum">    3420</span>              : </span>
+<span id="L3421"><span class="lineNum">    3421</span>              :     if (!get_redis_storage().set(&quot;checkpoints&quot;, buf.data(), buf.size())) {</span>
+<span id="L3422"><span class="lineNum">    3422</span>              :         LOGWARN(1, &quot;Failed to save checkpoints to Redis&quot;);</span>
+<span id="L3423"><span class="lineNum">    3423</span>              :         return;</span>
+<span id="L3424"><span class="lineNum">    3424</span>              :     }</span>
+<span id="L3425"><span class="lineNum">    3425</span>              :     LOGINFO(3, &quot;Saved &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints to Redis&quot;);</span>
+<span id="L3426"><span class="lineNum">    3426</span>              : #else</span>
+<span id="L3427"><span class="lineNum">    3427</span> <span class="tlaGNC">          39 :     const std::string path = DATA_DIR + &quot;p2pool_checkpoints.dat&quot;;</span></span>
+<span id="L3428"><span class="lineNum">    3428</span>              : </span>
+<span id="L3429"><span class="lineNum">    3429</span> <span class="tlaGNC">          39 :     ReadLock lock(m_checkpointsLock);</span></span>
+<span id="L3430"><span class="lineNum">    3430</span>              : </span>
+<span id="L3431"><span class="lineNum">    3431</span> <span class="tlaGNC">          39 :     if (m_checkpoints.empty()) {</span></span>
+<span id="L3432"><span class="lineNum">    3432</span>              :         // No checkpoints to save, remove old file if exists</span>
+<span id="L3433"><span class="lineNum">    3433</span> <span class="tlaGNC">           1 :         remove(path.c_str());</span></span>
+<span id="L3434"><span class="lineNum">    3434</span> <span class="tlaGNC">           1 :         return;</span></span>
+<span id="L3435"><span class="lineNum">    3435</span> <span class="tlaGNC">           1 :     }</span></span>
+<span id="L3436"><span class="lineNum">    3436</span>              : </span>
+<span id="L3437"><span class="lineNum">    3437</span> <span class="tlaGNC">          38 :     std::ofstream f(path, std::ios::binary);</span></span>
+<span id="L3438"><span class="lineNum">    3438</span> <span class="tlaGNC">          38 :     if (!f.is_open()) {</span></span>
+<span id="L3439"><span class="lineNum">    3439</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGWARN(1, &quot;Failed to save checkpoints to &quot; &lt;&lt; path);</span></span>
+<span id="L3440"><span class="lineNum">    3440</span> <span class="tlaUNC">           0 :         return;</span></span>
+<span id="L3441"><span class="lineNum">    3441</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3442"><span class="lineNum">    3442</span>              : </span>
+<span id="L3443"><span class="lineNum">    3443</span>              :     // Write version marker for future compatibility</span>
+<span id="L3444"><span class="lineNum">    3444</span> <span class="tlaGNC tlaBgGNC">          38 :     const uint32_t version = 1;</span></span>
+<span id="L3445"><span class="lineNum">    3445</span> <span class="tlaGNC">          38 :     f.write(reinterpret_cast&lt;const char*&gt;(&amp;version), sizeof(version));</span></span>
+<span id="L3446"><span class="lineNum">    3446</span>              : </span>
+<span id="L3447"><span class="lineNum">    3447</span>              :     // Write checkpoint count</span>
+<span id="L3448"><span class="lineNum">    3448</span> <span class="tlaGNC">          38 :     const uint32_t count = static_cast&lt;uint32_t&gt;(m_checkpoints.size());</span></span>
+<span id="L3449"><span class="lineNum">    3449</span> <span class="tlaGNC">          38 :     f.write(reinterpret_cast&lt;const char*&gt;(&amp;count), sizeof(count));</span></span>
+<span id="L3450"><span class="lineNum">    3450</span>              : </span>
+<span id="L3451"><span class="lineNum">    3451</span>              :     // Write each checkpoint</span>
+<span id="L3452"><span class="lineNum">    3452</span> <span class="tlaGNC">         494 :     for (const Checkpoint&amp; cp : m_checkpoints) {</span></span>
+<span id="L3453"><span class="lineNum">    3453</span> <span class="tlaGNC">         494 :         f.write(reinterpret_cast&lt;const char*&gt;(&amp;cp.height), sizeof(cp.height));</span></span>
+<span id="L3454"><span class="lineNum">    3454</span> <span class="tlaGNC">         494 :         f.write(reinterpret_cast&lt;const char*&gt;(cp.id.h), HASH_SIZE);</span></span>
+<span id="L3455"><span class="lineNum">    3455</span> <span class="tlaGNC">         494 :         f.write(reinterpret_cast&lt;const char*&gt;(&amp;cp.cumulative_difficulty), sizeof(cp.cumulative_difficulty));</span></span>
+<span id="L3456"><span class="lineNum">    3456</span> <span class="tlaGNC">         494 :     }</span></span>
 <span id="L3457"><span class="lineNum">    3457</span>              : </span>
-<span id="L3458"><span class="lineNum">    3458</span>              : void SideChain::load_checkpoints()</span>
-<span id="L3459"><span class="lineNum">    3459</span> <span class="tlaGNC">           5 : {</span></span>
-<span id="L3460"><span class="lineNum">    3460</span>              : #ifdef WITH_REDIS</span>
-<span id="L3461"><span class="lineNum">    3461</span>              :     std::vector&lt;uint8_t&gt; buf;</span>
-<span id="L3462"><span class="lineNum">    3462</span>              :     if (!get_redis_storage().get(&quot;checkpoints&quot;, buf)) {</span>
-<span id="L3463"><span class="lineNum">    3463</span>              :         LOGINFO(3, &quot;No checkpoints found in Redis (normal for first run)&quot;);</span>
-<span id="L3464"><span class="lineNum">    3464</span>              :         return;</span>
-<span id="L3465"><span class="lineNum">    3465</span>              :     }</span>
-<span id="L3466"><span class="lineNum">    3466</span>              : </span>
-<span id="L3467"><span class="lineNum">    3467</span>              :     if (buf.size() &lt; 8) {</span>
-<span id="L3468"><span class="lineNum">    3468</span>              :         LOGWARN(1, &quot;Checkpoint data too small, ignoring&quot;);</span>
+<span id="L3458"><span class="lineNum">    3458</span> <span class="tlaGNC">          38 :     f.close();</span></span>
+<span id="L3459"><span class="lineNum">    3459</span> <span class="tlaGNC">          38 :     LOGINFO(3, &quot;Saved &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints to &quot; &lt;&lt; path);</span></span>
+<span id="L3460"><span class="lineNum">    3460</span> <span class="tlaGNC">          38 : #endif</span></span>
+<span id="L3461"><span class="lineNum">    3461</span> <span class="tlaGNC">          38 : }</span></span>
+<span id="L3462"><span class="lineNum">    3462</span>              : </span>
+<span id="L3463"><span class="lineNum">    3463</span>              : void SideChain::load_checkpoints()</span>
+<span id="L3464"><span class="lineNum">    3464</span> <span class="tlaGNC">           5 : {</span></span>
+<span id="L3465"><span class="lineNum">    3465</span>              : #ifdef WITH_REDIS</span>
+<span id="L3466"><span class="lineNum">    3466</span>              :     std::vector&lt;uint8_t&gt; buf;</span>
+<span id="L3467"><span class="lineNum">    3467</span>              :     if (!get_redis_storage().get(&quot;checkpoints&quot;, buf)) {</span>
+<span id="L3468"><span class="lineNum">    3468</span>              :         LOGINFO(3, &quot;No checkpoints found in Redis (normal for first run)&quot;);</span>
 <span id="L3469"><span class="lineNum">    3469</span>              :         return;</span>
 <span id="L3470"><span class="lineNum">    3470</span>              :     }</span>
 <span id="L3471"><span class="lineNum">    3471</span>              : </span>
-<span id="L3472"><span class="lineNum">    3472</span>              :     size_t offset = 0;</span>
-<span id="L3473"><span class="lineNum">    3473</span>              : </span>
-<span id="L3474"><span class="lineNum">    3474</span>              :     // Read version</span>
-<span id="L3475"><span class="lineNum">    3475</span>              :     uint32_t version = *reinterpret_cast&lt;const uint32_t*&gt;(buf.data() + offset);</span>
-<span id="L3476"><span class="lineNum">    3476</span>              :     offset += sizeof(version);</span>
-<span id="L3477"><span class="lineNum">    3477</span>              :     if (version != 1) {</span>
-<span id="L3478"><span class="lineNum">    3478</span>              :         LOGWARN(1, &quot;Unknown checkpoint version &quot; &lt;&lt; version &lt;&lt; &quot;, ignoring&quot;);</span>
-<span id="L3479"><span class="lineNum">    3479</span>              :         return;</span>
-<span id="L3480"><span class="lineNum">    3480</span>              :     }</span>
-<span id="L3481"><span class="lineNum">    3481</span>              : </span>
-<span id="L3482"><span class="lineNum">    3482</span>              :     // Read count</span>
-<span id="L3483"><span class="lineNum">    3483</span>              :     uint32_t count = *reinterpret_cast&lt;const uint32_t*&gt;(buf.data() + offset);</span>
-<span id="L3484"><span class="lineNum">    3484</span>              :     offset += sizeof(count);</span>
-<span id="L3485"><span class="lineNum">    3485</span>              :     if (count &gt; 100) {</span>
-<span id="L3486"><span class="lineNum">    3486</span>              :         LOGWARN(1, &quot;Suspicious checkpoint count &quot; &lt;&lt; count &lt;&lt; &quot;, ignoring&quot;);</span>
-<span id="L3487"><span class="lineNum">    3487</span>              :         return;</span>
-<span id="L3488"><span class="lineNum">    3488</span>              :     }</span>
-<span id="L3489"><span class="lineNum">    3489</span>              : </span>
-<span id="L3490"><span class="lineNum">    3490</span>              :     WriteLock lock(m_checkpointsLock);</span>
-<span id="L3491"><span class="lineNum">    3491</span>              :     m_checkpoints.clear();</span>
-<span id="L3492"><span class="lineNum">    3492</span>              : </span>
-<span id="L3493"><span class="lineNum">    3493</span>              :     for (uint32_t i = 0; i &lt; count; ++i) {</span>
-<span id="L3494"><span class="lineNum">    3494</span>              :         if (offset + sizeof(uint64_t) + HASH_SIZE + sizeof(difficulty_type) &gt; buf.size()) {</span>
-<span id="L3495"><span class="lineNum">    3495</span>              :             LOGWARN(1, &quot;Checkpoint data corrupted at entry &quot; &lt;&lt; i &lt;&lt; &quot;, discarding&quot;);</span>
-<span id="L3496"><span class="lineNum">    3496</span>              :             m_checkpoints.clear();</span>
-<span id="L3497"><span class="lineNum">    3497</span>              :             return;</span>
-<span id="L3498"><span class="lineNum">    3498</span>              :         }</span>
-<span id="L3499"><span class="lineNum">    3499</span>              : </span>
-<span id="L3500"><span class="lineNum">    3500</span>              :         Checkpoint cp;</span>
-<span id="L3501"><span class="lineNum">    3501</span>              :         memcpy(&amp;cp.height, buf.data() + offset, sizeof(cp.height));</span>
-<span id="L3502"><span class="lineNum">    3502</span>              :         offset += sizeof(cp.height);</span>
-<span id="L3503"><span class="lineNum">    3503</span>              :         memcpy(cp.id.h, buf.data() + offset, HASH_SIZE);</span>
-<span id="L3504"><span class="lineNum">    3504</span>              :         offset += HASH_SIZE;</span>
-<span id="L3505"><span class="lineNum">    3505</span>              :         memcpy(&amp;cp.cumulative_difficulty, buf.data() + offset, sizeof(cp.cumulative_difficulty));</span>
-<span id="L3506"><span class="lineNum">    3506</span>              :         offset += sizeof(cp.cumulative_difficulty);</span>
-<span id="L3507"><span class="lineNum">    3507</span>              : </span>
-<span id="L3508"><span class="lineNum">    3508</span>              :         m_checkpoints.push_back(cp);</span>
-<span id="L3509"><span class="lineNum">    3509</span>              :     }</span>
-<span id="L3510"><span class="lineNum">    3510</span>              : </span>
-<span id="L3511"><span class="lineNum">    3511</span>              :     LOGINFO(1, &quot;Loaded &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints from Redis&quot;);</span>
+<span id="L3472"><span class="lineNum">    3472</span>              :     if (buf.size() &lt; 8) {</span>
+<span id="L3473"><span class="lineNum">    3473</span>              :         LOGWARN(1, &quot;Checkpoint data too small, ignoring&quot;);</span>
+<span id="L3474"><span class="lineNum">    3474</span>              :         return;</span>
+<span id="L3475"><span class="lineNum">    3475</span>              :     }</span>
+<span id="L3476"><span class="lineNum">    3476</span>              : </span>
+<span id="L3477"><span class="lineNum">    3477</span>              :     size_t offset = 0;</span>
+<span id="L3478"><span class="lineNum">    3478</span>              : </span>
+<span id="L3479"><span class="lineNum">    3479</span>              :     // Read version</span>
+<span id="L3480"><span class="lineNum">    3480</span>              :     uint32_t version = *reinterpret_cast&lt;const uint32_t*&gt;(buf.data() + offset);</span>
+<span id="L3481"><span class="lineNum">    3481</span>              :     offset += sizeof(version);</span>
+<span id="L3482"><span class="lineNum">    3482</span>              :     if (version != 1) {</span>
+<span id="L3483"><span class="lineNum">    3483</span>              :         LOGWARN(1, &quot;Unknown checkpoint version &quot; &lt;&lt; version &lt;&lt; &quot;, ignoring&quot;);</span>
+<span id="L3484"><span class="lineNum">    3484</span>              :         return;</span>
+<span id="L3485"><span class="lineNum">    3485</span>              :     }</span>
+<span id="L3486"><span class="lineNum">    3486</span>              : </span>
+<span id="L3487"><span class="lineNum">    3487</span>              :     // Read count</span>
+<span id="L3488"><span class="lineNum">    3488</span>              :     uint32_t count = *reinterpret_cast&lt;const uint32_t*&gt;(buf.data() + offset);</span>
+<span id="L3489"><span class="lineNum">    3489</span>              :     offset += sizeof(count);</span>
+<span id="L3490"><span class="lineNum">    3490</span>              :     if (count &gt; 100) {</span>
+<span id="L3491"><span class="lineNum">    3491</span>              :         LOGWARN(1, &quot;Suspicious checkpoint count &quot; &lt;&lt; count &lt;&lt; &quot;, ignoring&quot;);</span>
+<span id="L3492"><span class="lineNum">    3492</span>              :         return;</span>
+<span id="L3493"><span class="lineNum">    3493</span>              :     }</span>
+<span id="L3494"><span class="lineNum">    3494</span>              : </span>
+<span id="L3495"><span class="lineNum">    3495</span>              :     WriteLock lock(m_checkpointsLock);</span>
+<span id="L3496"><span class="lineNum">    3496</span>              :     m_checkpoints.clear();</span>
+<span id="L3497"><span class="lineNum">    3497</span>              : </span>
+<span id="L3498"><span class="lineNum">    3498</span>              :     for (uint32_t i = 0; i &lt; count; ++i) {</span>
+<span id="L3499"><span class="lineNum">    3499</span>              :         if (offset + sizeof(uint64_t) + HASH_SIZE + sizeof(difficulty_type) &gt; buf.size()) {</span>
+<span id="L3500"><span class="lineNum">    3500</span>              :             LOGWARN(1, &quot;Checkpoint data corrupted at entry &quot; &lt;&lt; i &lt;&lt; &quot;, discarding&quot;);</span>
+<span id="L3501"><span class="lineNum">    3501</span>              :             m_checkpoints.clear();</span>
+<span id="L3502"><span class="lineNum">    3502</span>              :             return;</span>
+<span id="L3503"><span class="lineNum">    3503</span>              :         }</span>
+<span id="L3504"><span class="lineNum">    3504</span>              : </span>
+<span id="L3505"><span class="lineNum">    3505</span>              :         Checkpoint cp;</span>
+<span id="L3506"><span class="lineNum">    3506</span>              :         memcpy(&amp;cp.height, buf.data() + offset, sizeof(cp.height));</span>
+<span id="L3507"><span class="lineNum">    3507</span>              :         offset += sizeof(cp.height);</span>
+<span id="L3508"><span class="lineNum">    3508</span>              :         memcpy(cp.id.h, buf.data() + offset, HASH_SIZE);</span>
+<span id="L3509"><span class="lineNum">    3509</span>              :         offset += HASH_SIZE;</span>
+<span id="L3510"><span class="lineNum">    3510</span>              :         memcpy(&amp;cp.cumulative_difficulty, buf.data() + offset, sizeof(cp.cumulative_difficulty));</span>
+<span id="L3511"><span class="lineNum">    3511</span>              :         offset += sizeof(cp.cumulative_difficulty);</span>
 <span id="L3512"><span class="lineNum">    3512</span>              : </span>
-<span id="L3513"><span class="lineNum">    3513</span>              :     if (!m_checkpoints.empty()) {</span>
-<span id="L3514"><span class="lineNum">    3514</span>              :         LOGINFO(1, &quot;Latest anchor point: height &quot; &lt;&lt; m_checkpoints.back().height &lt;&lt;</span>
-<span id="L3515"><span class="lineNum">    3515</span>              :                 &quot;, id &quot; &lt;&lt; m_checkpoints.back().id);</span>
-<span id="L3516"><span class="lineNum">    3516</span>              :         m_checkpointsNeedValidation = true;</span>
-<span id="L3517"><span class="lineNum">    3517</span>              :     }</span>
-<span id="L3518"><span class="lineNum">    3518</span>              : #else</span>
-<span id="L3519"><span class="lineNum">    3519</span> <span class="tlaGNC">           5 :     const std::string path = DATA_DIR + &quot;p2pool_checkpoints.dat&quot;;</span></span>
-<span id="L3520"><span class="lineNum">    3520</span>              : </span>
-<span id="L3521"><span class="lineNum">    3521</span> <span class="tlaGNC">           5 :     std::ifstream f(path, std::ios::binary);</span></span>
-<span id="L3522"><span class="lineNum">    3522</span> <span class="tlaGNC">           5 :     if (!f.is_open()) {</span></span>
-<span id="L3523"><span class="lineNum">    3523</span> <span class="tlaGNC">           2 :         LOGINFO(3, &quot;No checkpoint file found at &quot; &lt;&lt; path &lt;&lt; &quot; (normal for first run)&quot;);</span></span>
-<span id="L3524"><span class="lineNum">    3524</span> <span class="tlaGNC">           2 :         return;</span></span>
-<span id="L3525"><span class="lineNum">    3525</span> <span class="tlaGNC">           2 :     }</span></span>
-<span id="L3526"><span class="lineNum">    3526</span>              : </span>
-<span id="L3527"><span class="lineNum">    3527</span>              :     // Read version</span>
-<span id="L3528"><span class="lineNum">    3528</span> <span class="tlaGNC">           3 :     uint32_t version = 0;</span></span>
-<span id="L3529"><span class="lineNum">    3529</span> <span class="tlaGNC">           3 :     f.read(reinterpret_cast&lt;char*&gt;(&amp;version), sizeof(version));</span></span>
-<span id="L3530"><span class="lineNum">    3530</span> <span class="tlaGNC">           3 :     if (version != 1) {</span></span>
-<span id="L3531"><span class="lineNum">    3531</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGWARN(1, &quot;Unknown checkpoint file version &quot; &lt;&lt; version &lt;&lt; &quot;, ignoring&quot;);</span></span>
-<span id="L3532"><span class="lineNum">    3532</span> <span class="tlaUNC">           0 :         return;</span></span>
-<span id="L3533"><span class="lineNum">    3533</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3534"><span class="lineNum">    3534</span>              : </span>
-<span id="L3535"><span class="lineNum">    3535</span>              :     // Read checkpoint count</span>
-<span id="L3536"><span class="lineNum">    3536</span> <span class="tlaGNC tlaBgGNC">           3 :     uint32_t count = 0;</span></span>
-<span id="L3537"><span class="lineNum">    3537</span> <span class="tlaGNC">           3 :     f.read(reinterpret_cast&lt;char*&gt;(&amp;count), sizeof(count));</span></span>
-<span id="L3538"><span class="lineNum">    3538</span>              : </span>
-<span id="L3539"><span class="lineNum">    3539</span> <span class="tlaGNC">           3 :     if (count &gt; 100) {</span></span>
-<span id="L3540"><span class="lineNum">    3540</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGWARN(1, &quot;Checkpoint file has suspicious count &quot; &lt;&lt; count &lt;&lt; &quot;, ignoring&quot;);</span></span>
-<span id="L3541"><span class="lineNum">    3541</span> <span class="tlaUNC">           0 :         return;</span></span>
-<span id="L3542"><span class="lineNum">    3542</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3513"><span class="lineNum">    3513</span>              :         m_checkpoints.push_back(cp);</span>
+<span id="L3514"><span class="lineNum">    3514</span>              :     }</span>
+<span id="L3515"><span class="lineNum">    3515</span>              : </span>
+<span id="L3516"><span class="lineNum">    3516</span>              :     LOGINFO(1, &quot;Loaded &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints from Redis&quot;);</span>
+<span id="L3517"><span class="lineNum">    3517</span>              : </span>
+<span id="L3518"><span class="lineNum">    3518</span>              :     if (!m_checkpoints.empty()) {</span>
+<span id="L3519"><span class="lineNum">    3519</span>              :         LOGINFO(1, &quot;Latest anchor point: height &quot; &lt;&lt; m_checkpoints.back().height &lt;&lt;</span>
+<span id="L3520"><span class="lineNum">    3520</span>              :                 &quot;, id &quot; &lt;&lt; m_checkpoints.back().id);</span>
+<span id="L3521"><span class="lineNum">    3521</span>              :         m_checkpointsNeedValidation = true;</span>
+<span id="L3522"><span class="lineNum">    3522</span>              :     }</span>
+<span id="L3523"><span class="lineNum">    3523</span>              : #else</span>
+<span id="L3524"><span class="lineNum">    3524</span> <span class="tlaGNC">           5 :     const std::string path = DATA_DIR + &quot;p2pool_checkpoints.dat&quot;;</span></span>
+<span id="L3525"><span class="lineNum">    3525</span>              : </span>
+<span id="L3526"><span class="lineNum">    3526</span> <span class="tlaGNC">           5 :     std::ifstream f(path, std::ios::binary);</span></span>
+<span id="L3527"><span class="lineNum">    3527</span> <span class="tlaGNC">           5 :     if (!f.is_open()) {</span></span>
+<span id="L3528"><span class="lineNum">    3528</span> <span class="tlaGNC">           2 :         LOGINFO(3, &quot;No checkpoint file found at &quot; &lt;&lt; path &lt;&lt; &quot; (normal for first run)&quot;);</span></span>
+<span id="L3529"><span class="lineNum">    3529</span> <span class="tlaGNC">           2 :         return;</span></span>
+<span id="L3530"><span class="lineNum">    3530</span> <span class="tlaGNC">           2 :     }</span></span>
+<span id="L3531"><span class="lineNum">    3531</span>              : </span>
+<span id="L3532"><span class="lineNum">    3532</span>              :     // Read version</span>
+<span id="L3533"><span class="lineNum">    3533</span> <span class="tlaGNC">           3 :     uint32_t version = 0;</span></span>
+<span id="L3534"><span class="lineNum">    3534</span> <span class="tlaGNC">           3 :     f.read(reinterpret_cast&lt;char*&gt;(&amp;version), sizeof(version));</span></span>
+<span id="L3535"><span class="lineNum">    3535</span> <span class="tlaGNC">           3 :     if (version != 1) {</span></span>
+<span id="L3536"><span class="lineNum">    3536</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGWARN(1, &quot;Unknown checkpoint file version &quot; &lt;&lt; version &lt;&lt; &quot;, ignoring&quot;);</span></span>
+<span id="L3537"><span class="lineNum">    3537</span> <span class="tlaUNC">           0 :         return;</span></span>
+<span id="L3538"><span class="lineNum">    3538</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3539"><span class="lineNum">    3539</span>              : </span>
+<span id="L3540"><span class="lineNum">    3540</span>              :     // Read checkpoint count</span>
+<span id="L3541"><span class="lineNum">    3541</span> <span class="tlaGNC tlaBgGNC">           3 :     uint32_t count = 0;</span></span>
+<span id="L3542"><span class="lineNum">    3542</span> <span class="tlaGNC">           3 :     f.read(reinterpret_cast&lt;char*&gt;(&amp;count), sizeof(count));</span></span>
 <span id="L3543"><span class="lineNum">    3543</span>              : </span>
-<span id="L3544"><span class="lineNum">    3544</span> <span class="tlaGNC tlaBgGNC">           3 :     WriteLock lock(m_checkpointsLock);</span></span>
-<span id="L3545"><span class="lineNum">    3545</span> <span class="tlaGNC">           3 :     m_checkpoints.clear();</span></span>
-<span id="L3546"><span class="lineNum">    3546</span>              : </span>
-<span id="L3547"><span class="lineNum">    3547</span> <span class="tlaGNC">          44 :     for (uint32_t i = 0; i &lt; count; ++i) {</span></span>
-<span id="L3548"><span class="lineNum">    3548</span> <span class="tlaGNC">          41 :         Checkpoint cp;</span></span>
-<span id="L3549"><span class="lineNum">    3549</span> <span class="tlaGNC">          41 :         f.read(reinterpret_cast&lt;char*&gt;(&amp;cp.height), sizeof(cp.height));</span></span>
-<span id="L3550"><span class="lineNum">    3550</span> <span class="tlaGNC">          41 :         f.read(reinterpret_cast&lt;char*&gt;(cp.id.h), HASH_SIZE);</span></span>
-<span id="L3551"><span class="lineNum">    3551</span> <span class="tlaGNC">          41 :         f.read(reinterpret_cast&lt;char*&gt;(&amp;cp.cumulative_difficulty), sizeof(cp.cumulative_difficulty));</span></span>
-<span id="L3552"><span class="lineNum">    3552</span>              : </span>
-<span id="L3553"><span class="lineNum">    3553</span> <span class="tlaGNC">          41 :         if (f.fail()) {</span></span>
-<span id="L3554"><span class="lineNum">    3554</span> <span class="tlaUNC tlaBgUNC">           0 :             LOGWARN(1, &quot;Checkpoint file corrupted at entry &quot; &lt;&lt; i &lt;&lt; &quot;, discarding&quot;);</span></span>
-<span id="L3555"><span class="lineNum">    3555</span> <span class="tlaUNC">           0 :             m_checkpoints.clear();</span></span>
-<span id="L3556"><span class="lineNum">    3556</span> <span class="tlaUNC">           0 :             return;</span></span>
-<span id="L3557"><span class="lineNum">    3557</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3558"><span class="lineNum">    3558</span>              : </span>
-<span id="L3559"><span class="lineNum">    3559</span> <span class="tlaGNC tlaBgGNC">          41 :         m_checkpoints.push_back(cp);</span></span>
-<span id="L3560"><span class="lineNum">    3560</span> <span class="tlaGNC">          41 :     }</span></span>
-<span id="L3561"><span class="lineNum">    3561</span>              : </span>
-<span id="L3562"><span class="lineNum">    3562</span> <span class="tlaGNC">           3 :     f.close();</span></span>
-<span id="L3563"><span class="lineNum">    3563</span> <span class="tlaGNC">           3 :     LOGINFO(1, &quot;Loaded &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints from &quot; &lt;&lt; path);</span></span>
-<span id="L3564"><span class="lineNum">    3564</span>              : </span>
-<span id="L3565"><span class="lineNum">    3565</span> <span class="tlaGNC">           3 :     if (!m_checkpoints.empty()) {</span></span>
-<span id="L3566"><span class="lineNum">    3566</span> <span class="tlaGNC">           3 :         LOGINFO(1, &quot;Latest anchor point: height &quot; &lt;&lt; m_checkpoints.back().height &lt;&lt;</span></span>
-<span id="L3567"><span class="lineNum">    3567</span> <span class="tlaGNC">           3 :                 &quot;, id &quot; &lt;&lt; m_checkpoints.back().id);</span></span>
-<span id="L3568"><span class="lineNum">    3568</span> <span class="tlaGNC">           3 :         m_checkpointsNeedValidation = true;</span></span>
-<span id="L3569"><span class="lineNum">    3569</span> <span class="tlaGNC">           3 :     }</span></span>
-<span id="L3570"><span class="lineNum">    3570</span> <span class="tlaGNC">           3 : #endif</span></span>
-<span id="L3571"><span class="lineNum">    3571</span> <span class="tlaGNC">           3 : }    </span></span>
-<span id="L3572"><span class="lineNum">    3572</span>              : </span>
-<span id="L3573"><span class="lineNum">    3573</span>              : bool SideChain::validate_loaded_checkpoints()</span>
-<span id="L3574"><span class="lineNum">    3574</span> <span class="tlaGNC">           2 : {</span></span>
-<span id="L3575"><span class="lineNum">    3575</span>              :     // IMPORTANT: This function assumes m_sidechainLock is already held by the caller (WriteLock)</span>
-<span id="L3576"><span class="lineNum">    3576</span>              :     // It's called from update_chain_tip() -&gt; prune_old_blocks() which is inside add_block()'s WriteLock</span>
+<span id="L3544"><span class="lineNum">    3544</span> <span class="tlaGNC">           3 :     if (count &gt; 100) {</span></span>
+<span id="L3545"><span class="lineNum">    3545</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGWARN(1, &quot;Checkpoint file has suspicious count &quot; &lt;&lt; count &lt;&lt; &quot;, ignoring&quot;);</span></span>
+<span id="L3546"><span class="lineNum">    3546</span> <span class="tlaUNC">           0 :         return;</span></span>
+<span id="L3547"><span class="lineNum">    3547</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3548"><span class="lineNum">    3548</span>              : </span>
+<span id="L3549"><span class="lineNum">    3549</span> <span class="tlaGNC tlaBgGNC">           3 :     WriteLock lock(m_checkpointsLock);</span></span>
+<span id="L3550"><span class="lineNum">    3550</span> <span class="tlaGNC">           3 :     m_checkpoints.clear();</span></span>
+<span id="L3551"><span class="lineNum">    3551</span>              : </span>
+<span id="L3552"><span class="lineNum">    3552</span> <span class="tlaGNC">          44 :     for (uint32_t i = 0; i &lt; count; ++i) {</span></span>
+<span id="L3553"><span class="lineNum">    3553</span> <span class="tlaGNC">          41 :         Checkpoint cp;</span></span>
+<span id="L3554"><span class="lineNum">    3554</span> <span class="tlaGNC">          41 :         f.read(reinterpret_cast&lt;char*&gt;(&amp;cp.height), sizeof(cp.height));</span></span>
+<span id="L3555"><span class="lineNum">    3555</span> <span class="tlaGNC">          41 :         f.read(reinterpret_cast&lt;char*&gt;(cp.id.h), HASH_SIZE);</span></span>
+<span id="L3556"><span class="lineNum">    3556</span> <span class="tlaGNC">          41 :         f.read(reinterpret_cast&lt;char*&gt;(&amp;cp.cumulative_difficulty), sizeof(cp.cumulative_difficulty));</span></span>
+<span id="L3557"><span class="lineNum">    3557</span>              : </span>
+<span id="L3558"><span class="lineNum">    3558</span> <span class="tlaGNC">          41 :         if (f.fail()) {</span></span>
+<span id="L3559"><span class="lineNum">    3559</span> <span class="tlaUNC tlaBgUNC">           0 :             LOGWARN(1, &quot;Checkpoint file corrupted at entry &quot; &lt;&lt; i &lt;&lt; &quot;, discarding&quot;);</span></span>
+<span id="L3560"><span class="lineNum">    3560</span> <span class="tlaUNC">           0 :             m_checkpoints.clear();</span></span>
+<span id="L3561"><span class="lineNum">    3561</span> <span class="tlaUNC">           0 :             return;</span></span>
+<span id="L3562"><span class="lineNum">    3562</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3563"><span class="lineNum">    3563</span>              : </span>
+<span id="L3564"><span class="lineNum">    3564</span> <span class="tlaGNC tlaBgGNC">          41 :         m_checkpoints.push_back(cp);</span></span>
+<span id="L3565"><span class="lineNum">    3565</span> <span class="tlaGNC">          41 :     }</span></span>
+<span id="L3566"><span class="lineNum">    3566</span>              : </span>
+<span id="L3567"><span class="lineNum">    3567</span> <span class="tlaGNC">           3 :     f.close();</span></span>
+<span id="L3568"><span class="lineNum">    3568</span> <span class="tlaGNC">           3 :     LOGINFO(1, &quot;Loaded &quot; &lt;&lt; count &lt;&lt; &quot; checkpoints from &quot; &lt;&lt; path);</span></span>
+<span id="L3569"><span class="lineNum">    3569</span>              : </span>
+<span id="L3570"><span class="lineNum">    3570</span> <span class="tlaGNC">           3 :     if (!m_checkpoints.empty()) {</span></span>
+<span id="L3571"><span class="lineNum">    3571</span> <span class="tlaGNC">           3 :         LOGINFO(1, &quot;Latest anchor point: height &quot; &lt;&lt; m_checkpoints.back().height &lt;&lt;</span></span>
+<span id="L3572"><span class="lineNum">    3572</span> <span class="tlaGNC">           3 :                 &quot;, id &quot; &lt;&lt; m_checkpoints.back().id);</span></span>
+<span id="L3573"><span class="lineNum">    3573</span> <span class="tlaGNC">           3 :         m_checkpointsNeedValidation = true;</span></span>
+<span id="L3574"><span class="lineNum">    3574</span> <span class="tlaGNC">           3 :     }</span></span>
+<span id="L3575"><span class="lineNum">    3575</span> <span class="tlaGNC">           3 : #endif</span></span>
+<span id="L3576"><span class="lineNum">    3576</span> <span class="tlaGNC">           3 : }    </span></span>
 <span id="L3577"><span class="lineNum">    3577</span>              : </span>
-<span id="L3578"><span class="lineNum">    3578</span> <span class="tlaGNC">           2 :     LOGINFO(3, &quot;validate_loaded_checkpoints() called, m_checkpointsNeedValidation=&quot; &lt;&lt; (m_checkpointsNeedValidation ? &quot;true&quot; : &quot;false&quot;));</span></span>
-<span id="L3579"><span class="lineNum">    3579</span>              : </span>
-<span id="L3580"><span class="lineNum">    3580</span> <span class="tlaGNC">           2 :     if (!m_checkpointsNeedValidation) {</span></span>
-<span id="L3581"><span class="lineNum">    3581</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGINFO(3, &quot;Skipping checkpoint validation - not needed&quot;);</span></span>
-<span id="L3582"><span class="lineNum">    3582</span> <span class="tlaUNC">           0 :         return true;  // Safe to mine</span></span>
-<span id="L3583"><span class="lineNum">    3583</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3578"><span class="lineNum">    3578</span>              : bool SideChain::validate_loaded_checkpoints()</span>
+<span id="L3579"><span class="lineNum">    3579</span> <span class="tlaGNC">           2 : {</span></span>
+<span id="L3580"><span class="lineNum">    3580</span>              :     // IMPORTANT: This function assumes m_sidechainLock is already held by the caller (WriteLock)</span>
+<span id="L3581"><span class="lineNum">    3581</span>              :     // It's called from update_chain_tip() -&gt; prune_old_blocks() which is inside add_block()'s WriteLock</span>
+<span id="L3582"><span class="lineNum">    3582</span>              : </span>
+<span id="L3583"><span class="lineNum">    3583</span> <span class="tlaGNC">           2 :     LOGINFO(3, &quot;validate_loaded_checkpoints() called, m_checkpointsNeedValidation=&quot; &lt;&lt; (m_checkpointsNeedValidation ? &quot;true&quot; : &quot;false&quot;));</span></span>
 <span id="L3584"><span class="lineNum">    3584</span>              : </span>
-<span id="L3585"><span class="lineNum">    3585</span> <span class="tlaGNC tlaBgGNC">           2 :     LOGINFO(3, &quot;Starting checkpoint validation...&quot;);</span></span>
-<span id="L3586"><span class="lineNum">    3586</span> <span class="tlaGNC">           2 :     bool all_valid = true;</span></span>
-<span id="L3587"><span class="lineNum">    3587</span> <span class="tlaGNC">           2 :     uint64_t first_mismatch_height = 0;</span></span>
-<span id="L3588"><span class="lineNum">    3588</span> <span class="tlaGNC">           2 :     std::vector&lt;Checkpoint&gt; valid_checkpoints;</span></span>
-<span id="L3589"><span class="lineNum">    3589</span> <span class="tlaGNC">           2 :     size_t original_count = 0;</span></span>
-<span id="L3590"><span class="lineNum">    3590</span> <span class="tlaGNC">           2 :     bool had_stale = false;</span></span>
-<span id="L3591"><span class="lineNum">    3591</span> <span class="tlaGNC">           2 :     std::vector&lt;PoolBlock*&gt; blocks_to_verify;</span></span>
-<span id="L3592"><span class="lineNum">    3592</span>              : </span>
-<span id="L3593"><span class="lineNum">    3593</span> <span class="tlaGNC">           2 :     {</span></span>
-<span id="L3594"><span class="lineNum">    3594</span> <span class="tlaGNC">           2 :         ReadLock cpLock(m_checkpointsLock);</span></span>
-<span id="L3595"><span class="lineNum">    3595</span>              :         // NOTE: m_sidechainLock already held by caller, don't acquire it again!</span>
-<span id="L3596"><span class="lineNum">    3596</span>              : </span>
-<span id="L3597"><span class="lineNum">    3597</span> <span class="tlaGNC">           2 :         if (m_checkpoints.empty()) {</span></span>
-<span id="L3598"><span class="lineNum">    3598</span> <span class="tlaUNC tlaBgUNC">           0 :             m_checkpointsNeedValidation = false;</span></span>
-<span id="L3599"><span class="lineNum">    3599</span>              :             // No checkpoints - need to bootstrap from chain tip</span>
-<span id="L3600"><span class="lineNum">    3600</span> <span class="tlaUNC">           0 :             const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3601"><span class="lineNum">    3601</span> <span class="tlaUNC">           0 :             if (tip &amp;&amp; !tip-&gt;m_verified) {</span></span>
-<span id="L3602"><span class="lineNum">    3602</span> <span class="tlaUNC">           0 :                 tip-&gt;m_verified = true;</span></span>
-<span id="L3603"><span class="lineNum">    3603</span> <span class="tlaUNC">           0 :                 LOGINFO(1, &quot;No checkpoints - bootstrapping verification from chain tip height &quot; &lt;&lt; tip-&gt;m_sidechainHeight);</span></span>
-<span id="L3604"><span class="lineNum">    3604</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3605"><span class="lineNum">    3605</span> <span class="tlaUNC">           0 :             return true;  // Safe to mine</span></span>
-<span id="L3606"><span class="lineNum">    3606</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3607"><span class="lineNum">    3607</span>              : </span>
-<span id="L3608"><span class="lineNum">    3608</span> <span class="tlaGNC tlaBgGNC">           2 :         original_count = m_checkpoints.size();</span></span>
-<span id="L3609"><span class="lineNum">    3609</span>              : </span>
-<span id="L3610"><span class="lineNum">    3610</span>              : </span>
-<span id="L3611"><span class="lineNum">    3611</span>              :         // Check each checkpoint against actual chain</span>
-<span id="L3612"><span class="lineNum">    3612</span> <span class="tlaGNC">          21 :         for (const Checkpoint&amp; cp : m_checkpoints) {</span></span>
-<span id="L3613"><span class="lineNum">    3613</span> <span class="tlaGNC">          21 :             LOGINFO(3, &quot;Validating checkpoint at height &quot; &lt;&lt; cp.height);</span></span>
+<span id="L3585"><span class="lineNum">    3585</span> <span class="tlaGNC">           2 :     if (!m_checkpointsNeedValidation) {</span></span>
+<span id="L3586"><span class="lineNum">    3586</span> <span class="tlaUNC tlaBgUNC">           0 :         LOGINFO(3, &quot;Skipping checkpoint validation - not needed&quot;);</span></span>
+<span id="L3587"><span class="lineNum">    3587</span> <span class="tlaUNC">           0 :         return true;  // Safe to mine</span></span>
+<span id="L3588"><span class="lineNum">    3588</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3589"><span class="lineNum">    3589</span>              : </span>
+<span id="L3590"><span class="lineNum">    3590</span> <span class="tlaGNC tlaBgGNC">           2 :     LOGINFO(3, &quot;Starting checkpoint validation...&quot;);</span></span>
+<span id="L3591"><span class="lineNum">    3591</span> <span class="tlaGNC">           2 :     bool all_valid = true;</span></span>
+<span id="L3592"><span class="lineNum">    3592</span> <span class="tlaGNC">           2 :     uint64_t first_mismatch_height = 0;</span></span>
+<span id="L3593"><span class="lineNum">    3593</span> <span class="tlaGNC">           2 :     std::vector&lt;Checkpoint&gt; valid_checkpoints;</span></span>
+<span id="L3594"><span class="lineNum">    3594</span> <span class="tlaGNC">           2 :     size_t original_count = 0;</span></span>
+<span id="L3595"><span class="lineNum">    3595</span> <span class="tlaGNC">           2 :     bool had_stale = false;</span></span>
+<span id="L3596"><span class="lineNum">    3596</span> <span class="tlaGNC">           2 :     std::vector&lt;PoolBlock*&gt; blocks_to_verify;</span></span>
+<span id="L3597"><span class="lineNum">    3597</span>              : </span>
+<span id="L3598"><span class="lineNum">    3598</span> <span class="tlaGNC">           2 :     {</span></span>
+<span id="L3599"><span class="lineNum">    3599</span> <span class="tlaGNC">           2 :         ReadLock cpLock(m_checkpointsLock);</span></span>
+<span id="L3600"><span class="lineNum">    3600</span>              :         // NOTE: m_sidechainLock already held by caller, don't acquire it again!</span>
+<span id="L3601"><span class="lineNum">    3601</span>              : </span>
+<span id="L3602"><span class="lineNum">    3602</span> <span class="tlaGNC">           2 :         if (m_checkpoints.empty()) {</span></span>
+<span id="L3603"><span class="lineNum">    3603</span> <span class="tlaUNC tlaBgUNC">           0 :             m_checkpointsNeedValidation = false;</span></span>
+<span id="L3604"><span class="lineNum">    3604</span>              :             // No checkpoints - need to bootstrap from chain tip</span>
+<span id="L3605"><span class="lineNum">    3605</span> <span class="tlaUNC">           0 :             const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3606"><span class="lineNum">    3606</span> <span class="tlaUNC">           0 :             if (tip &amp;&amp; !tip-&gt;m_verified) {</span></span>
+<span id="L3607"><span class="lineNum">    3607</span> <span class="tlaUNC">           0 :                 tip-&gt;m_verified = true;</span></span>
+<span id="L3608"><span class="lineNum">    3608</span> <span class="tlaUNC">           0 :                 LOGINFO(1, &quot;No checkpoints - bootstrapping verification from chain tip height &quot; &lt;&lt; tip-&gt;m_sidechainHeight);</span></span>
+<span id="L3609"><span class="lineNum">    3609</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3610"><span class="lineNum">    3610</span> <span class="tlaUNC">           0 :             return true;  // Safe to mine</span></span>
+<span id="L3611"><span class="lineNum">    3611</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3612"><span class="lineNum">    3612</span>              : </span>
+<span id="L3613"><span class="lineNum">    3613</span> <span class="tlaGNC tlaBgGNC">           2 :         original_count = m_checkpoints.size();</span></span>
 <span id="L3614"><span class="lineNum">    3614</span>              : </span>
-<span id="L3615"><span class="lineNum">    3615</span>              :             // First check if checkpoint is reachable (within PPLNS window of current tip)</span>
-<span id="L3616"><span class="lineNum">    3616</span> <span class="tlaGNC">          21 :             const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3617"><span class="lineNum">    3617</span> <span class="tlaGNC">          21 :             if (tip &amp;&amp; (cp.height + m_chainWindowSize &lt; tip-&gt;m_sidechainHeight)) {</span></span>
-<span id="L3618"><span class="lineNum">    3618</span>              :                 // Checkpoint is too old - outside sync window, discard it</span>
-<span id="L3619"><span class="lineNum">    3619</span> <span class="tlaGNC">          20 :                 LOGWARN(0, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is unreachable (tip=&quot; &lt;&lt; tip-&gt;m_sidechainHeight &lt;&lt; &quot;, window=&quot; &lt;&lt; m_chainWindowSize &lt;&lt; &quot;) - discarding stale checkpoint&quot;);</span></span>
-<span id="L3620"><span class="lineNum">    3620</span> <span class="tlaGNC">          20 :                 had_stale = true;</span></span>
-<span id="L3621"><span class="lineNum">    3621</span> <span class="tlaGNC">          20 :                 continue;  // Don't add to valid_checkpoints</span></span>
-<span id="L3622"><span class="lineNum">    3622</span> <span class="tlaGNC">          20 :             }</span></span>
-<span id="L3623"><span class="lineNum">    3623</span>              : </span>
-<span id="L3624"><span class="lineNum">    3624</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is reachable, looking up block id &quot; &lt;&lt; cp.id);</span></span>
-<span id="L3625"><span class="lineNum">    3625</span>              : </span>
-<span id="L3626"><span class="lineNum">    3626</span>              :             // Direct lookup - sidechain lock held above</span>
-<span id="L3627"><span class="lineNum">    3627</span> <span class="tlaGNC">           1 :             PoolBlock* found = nullptr;</span></span>
-<span id="L3628"><span class="lineNum">    3628</span> <span class="tlaGNC">           1 :             auto it = m_blocksById.find(cp.id);</span></span>
-<span id="L3629"><span class="lineNum">    3629</span> <span class="tlaGNC">           1 :             if (it != m_blocksById.end()) {</span></span>
-<span id="L3630"><span class="lineNum">    3630</span> <span class="tlaGNC">           1 :                 found = it-&gt;second;</span></span>
-<span id="L3631"><span class="lineNum">    3631</span> <span class="tlaGNC">           1 :             }</span></span>
-<span id="L3632"><span class="lineNum">    3632</span>              : </span>
-<span id="L3633"><span class="lineNum">    3633</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;find_block returned &quot; &lt;&lt; (found ? &quot;valid pointer&quot; : &quot;nullptr&quot;));</span></span>
-<span id="L3634"><span class="lineNum">    3634</span>              : </span>
-<span id="L3635"><span class="lineNum">    3635</span> <span class="tlaGNC">           1 :             if (!found) {</span></span>
-<span id="L3636"><span class="lineNum">    3636</span>              :                 // Block not yet synced but reachable - can't validate yet</span>
-<span id="L3637"><span class="lineNum">    3637</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; not yet synced, deferring validation - mining blocked&quot;);</span></span>
-<span id="L3638"><span class="lineNum">    3638</span> <span class="tlaUNC">           0 :                 return false;  // NOT safe to mine yet</span></span>
-<span id="L3639"><span class="lineNum">    3639</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3640"><span class="lineNum">    3640</span>              : </span>
-<span id="L3641"><span class="lineNum">    3641</span> <span class="tlaGNC tlaBgGNC">           1 :             PoolBlock* block = found;</span></span>
-<span id="L3642"><span class="lineNum">    3642</span>              : </span>
-<span id="L3643"><span class="lineNum">    3643</span> <span class="tlaGNC">           1 :             if (block-&gt;m_sidechainId != cp.id) {</span></span>
-<span id="L3644"><span class="lineNum">    3644</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(0, &quot;CHECKPOINT MISMATCH at height &quot; &lt;&lt; cp.height &lt;&lt;</span></span>
-<span id="L3645"><span class="lineNum">    3645</span> <span class="tlaUNC">           0 :                         &quot;: cached=&quot; &lt;&lt; cp.id &lt;&lt;</span></span>
-<span id="L3646"><span class="lineNum">    3646</span> <span class="tlaUNC">           0 :                         &quot;, actual=&quot; &lt;&lt; block-&gt;m_sidechainId);</span></span>
-<span id="L3647"><span class="lineNum">    3647</span> <span class="tlaUNC">           0 :                 all_valid = false;</span></span>
-<span id="L3648"><span class="lineNum">    3648</span> <span class="tlaUNC">           0 :                 if (first_mismatch_height == 0) {</span></span>
-<span id="L3649"><span class="lineNum">    3649</span> <span class="tlaUNC">           0 :                     first_mismatch_height = cp.height;</span></span>
-<span id="L3650"><span class="lineNum">    3650</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3651"><span class="lineNum">    3651</span> <span class="tlaGNC tlaBgGNC">           1 :             } else {</span></span>
-<span id="L3652"><span class="lineNum">    3652</span> <span class="tlaGNC">           1 :                 LOGINFO(3, &quot;Checkpoint validated: height &quot; &lt;&lt; cp.height &lt;&lt; &quot;, id &quot; &lt;&lt; cp.id);</span></span>
-<span id="L3653"><span class="lineNum">    3653</span> <span class="tlaGNC">           1 :                 block-&gt;m_verified = true;  // Trust the checkpoint as verification anchor</span></span>
-<span id="L3654"><span class="lineNum">    3654</span> <span class="tlaGNC">           1 :                 blocks_to_verify.push_back(block);  // Queue for verify_loop</span></span>
-<span id="L3655"><span class="lineNum">    3655</span> <span class="tlaGNC">           1 :                 valid_checkpoints.push_back(cp);  // Keep valid checkpoint</span></span>
-<span id="L3656"><span class="lineNum">    3656</span> <span class="tlaGNC">           1 :             }</span></span>
-<span id="L3657"><span class="lineNum">    3657</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3658"><span class="lineNum">    3658</span> <span class="tlaGNC">           2 :     } // Locks released here</span></span>
-<span id="L3659"><span class="lineNum">    3659</span>              : </span>
-<span id="L3660"><span class="lineNum">    3660</span> <span class="tlaGNC">           2 :     bool need_bootstrap = false;</span></span>
-<span id="L3661"><span class="lineNum">    3661</span> <span class="tlaGNC">           2 :     uint64_t bootstrap_height = 0;</span></span>
-<span id="L3662"><span class="lineNum">    3662</span>              : </span>
-<span id="L3663"><span class="lineNum">    3663</span>              :     // If we had stale checkpoints, update and save</span>
-<span id="L3664"><span class="lineNum">    3664</span> <span class="tlaGNC">           2 :     if (had_stale) {</span></span>
-<span id="L3665"><span class="lineNum">    3665</span> <span class="tlaGNC">           1 :         WriteLock wlock(m_checkpointsLock);</span></span>
-<span id="L3666"><span class="lineNum">    3666</span> <span class="tlaGNC">           1 :         m_checkpoints = std::move(valid_checkpoints);</span></span>
-<span id="L3667"><span class="lineNum">    3667</span> <span class="tlaGNC">           1 :         LOGINFO(1, &quot;Cleaned up stale checkpoints: &quot; &lt;&lt; original_count &lt;&lt; &quot; -&gt; &quot; &lt;&lt; m_checkpoints.size());</span></span>
-<span id="L3668"><span class="lineNum">    3668</span>              :         </span>
-<span id="L3669"><span class="lineNum">    3669</span>              :         // If ALL checkpoints were stale, bootstrap from chain tip</span>
-<span id="L3670"><span class="lineNum">    3670</span> <span class="tlaGNC">           1 :         if (m_checkpoints.empty()) {</span></span>
-<span id="L3671"><span class="lineNum">    3671</span> <span class="tlaGNC">           1 :             const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3672"><span class="lineNum">    3672</span> <span class="tlaGNC">           1 :             if (tip) {</span></span>
-<span id="L3673"><span class="lineNum">    3673</span> <span class="tlaGNC">           1 :                 tip-&gt;m_verified = true;</span></span>
-<span id="L3674"><span class="lineNum">    3674</span> <span class="tlaGNC">           1 :                 LOGINFO(1, &quot;All checkpoints stale - bootstrapping verification from chain tip height &quot; &lt;&lt; tip-&gt;m_sidechainHeight);</span></span>
-<span id="L3675"><span class="lineNum">    3675</span> <span class="tlaGNC">           1 :                 need_bootstrap = true;</span></span>
-<span id="L3676"><span class="lineNum">    3676</span> <span class="tlaGNC">           1 :                 bootstrap_height = tip-&gt;m_sidechainHeight;</span></span>
-<span id="L3677"><span class="lineNum">    3677</span> <span class="tlaGNC">           1 :             }</span></span>
-<span id="L3678"><span class="lineNum">    3678</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3679"><span class="lineNum">    3679</span> <span class="tlaGNC">           1 :     }  // WriteLock released here</span></span>
-<span id="L3680"><span class="lineNum">    3680</span>              :     </span>
-<span id="L3681"><span class="lineNum">    3681</span>              :     // Create new checkpoint outside the lock</span>
-<span id="L3682"><span class="lineNum">    3682</span> <span class="tlaGNC">           2 :     if (need_bootstrap) {</span></span>
-<span id="L3683"><span class="lineNum">    3683</span> <span class="tlaGNC">           1 :         update_checkpoints(bootstrap_height);</span></span>
-<span id="L3684"><span class="lineNum">    3684</span> <span class="tlaGNC">           1 :     }</span></span>
-<span id="L3685"><span class="lineNum">    3685</span>              : </span>
-<span id="L3686"><span class="lineNum">    3686</span> <span class="tlaGNC">           2 :     m_checkpointsNeedValidation = false;</span></span>
-<span id="L3687"><span class="lineNum">    3687</span>              : </span>
-<span id="L3688"><span class="lineNum">    3688</span> <span class="tlaGNC">           2 :     if (all_valid) {</span></span>
-<span id="L3689"><span class="lineNum">    3689</span> <span class="tlaGNC">           2 :         LOGINFO(1, &quot;All &quot; &lt;&lt; (had_stale ? m_checkpoints.size() : original_count) &lt;&lt; &quot; cached checkpoints validated successfully&quot;);</span></span>
+<span id="L3615"><span class="lineNum">    3615</span>              : </span>
+<span id="L3616"><span class="lineNum">    3616</span>              :         // Check each checkpoint against actual chain</span>
+<span id="L3617"><span class="lineNum">    3617</span> <span class="tlaGNC">          21 :         for (const Checkpoint&amp; cp : m_checkpoints) {</span></span>
+<span id="L3618"><span class="lineNum">    3618</span> <span class="tlaGNC">          21 :             LOGINFO(3, &quot;Validating checkpoint at height &quot; &lt;&lt; cp.height);</span></span>
+<span id="L3619"><span class="lineNum">    3619</span>              : </span>
+<span id="L3620"><span class="lineNum">    3620</span>              :             // First check if checkpoint is reachable (within PPLNS window of current tip)</span>
+<span id="L3621"><span class="lineNum">    3621</span> <span class="tlaGNC">          21 :             const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3622"><span class="lineNum">    3622</span> <span class="tlaGNC">          21 :             if (tip &amp;&amp; (cp.height + m_chainWindowSize &lt; tip-&gt;m_sidechainHeight)) {</span></span>
+<span id="L3623"><span class="lineNum">    3623</span>              :                 // Checkpoint is too old - outside sync window, discard it</span>
+<span id="L3624"><span class="lineNum">    3624</span> <span class="tlaGNC">          20 :                 LOGWARN(0, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is unreachable (tip=&quot; &lt;&lt; tip-&gt;m_sidechainHeight &lt;&lt; &quot;, window=&quot; &lt;&lt; m_chainWindowSize &lt;&lt; &quot;) - discarding stale checkpoint&quot;);</span></span>
+<span id="L3625"><span class="lineNum">    3625</span> <span class="tlaGNC">          20 :                 had_stale = true;</span></span>
+<span id="L3626"><span class="lineNum">    3626</span> <span class="tlaGNC">          20 :                 continue;  // Don't add to valid_checkpoints</span></span>
+<span id="L3627"><span class="lineNum">    3627</span> <span class="tlaGNC">          20 :             }</span></span>
+<span id="L3628"><span class="lineNum">    3628</span>              : </span>
+<span id="L3629"><span class="lineNum">    3629</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is reachable, looking up block id &quot; &lt;&lt; cp.id);</span></span>
+<span id="L3630"><span class="lineNum">    3630</span>              : </span>
+<span id="L3631"><span class="lineNum">    3631</span>              :             // Direct lookup - sidechain lock held above</span>
+<span id="L3632"><span class="lineNum">    3632</span> <span class="tlaGNC">           1 :             PoolBlock* found = nullptr;</span></span>
+<span id="L3633"><span class="lineNum">    3633</span> <span class="tlaGNC">           1 :             auto it = m_blocksById.find(cp.id);</span></span>
+<span id="L3634"><span class="lineNum">    3634</span> <span class="tlaGNC">           1 :             if (it != m_blocksById.end()) {</span></span>
+<span id="L3635"><span class="lineNum">    3635</span> <span class="tlaGNC">           1 :                 found = it-&gt;second;</span></span>
+<span id="L3636"><span class="lineNum">    3636</span> <span class="tlaGNC">           1 :             }</span></span>
+<span id="L3637"><span class="lineNum">    3637</span>              : </span>
+<span id="L3638"><span class="lineNum">    3638</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;find_block returned &quot; &lt;&lt; (found ? &quot;valid pointer&quot; : &quot;nullptr&quot;));</span></span>
+<span id="L3639"><span class="lineNum">    3639</span>              : </span>
+<span id="L3640"><span class="lineNum">    3640</span> <span class="tlaGNC">           1 :             if (!found) {</span></span>
+<span id="L3641"><span class="lineNum">    3641</span>              :                 // Block not yet synced but reachable - can't validate yet</span>
+<span id="L3642"><span class="lineNum">    3642</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; not yet synced, deferring validation - mining blocked&quot;);</span></span>
+<span id="L3643"><span class="lineNum">    3643</span> <span class="tlaUNC">           0 :                 return false;  // NOT safe to mine yet</span></span>
+<span id="L3644"><span class="lineNum">    3644</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3645"><span class="lineNum">    3645</span>              : </span>
+<span id="L3646"><span class="lineNum">    3646</span> <span class="tlaGNC tlaBgGNC">           1 :             PoolBlock* block = found;</span></span>
+<span id="L3647"><span class="lineNum">    3647</span>              : </span>
+<span id="L3648"><span class="lineNum">    3648</span> <span class="tlaGNC">           1 :             if (block-&gt;m_sidechainId != cp.id) {</span></span>
+<span id="L3649"><span class="lineNum">    3649</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(0, &quot;CHECKPOINT MISMATCH at height &quot; &lt;&lt; cp.height &lt;&lt;</span></span>
+<span id="L3650"><span class="lineNum">    3650</span> <span class="tlaUNC">           0 :                         &quot;: cached=&quot; &lt;&lt; cp.id &lt;&lt;</span></span>
+<span id="L3651"><span class="lineNum">    3651</span> <span class="tlaUNC">           0 :                         &quot;, actual=&quot; &lt;&lt; block-&gt;m_sidechainId);</span></span>
+<span id="L3652"><span class="lineNum">    3652</span> <span class="tlaUNC">           0 :                 all_valid = false;</span></span>
+<span id="L3653"><span class="lineNum">    3653</span> <span class="tlaUNC">           0 :                 if (first_mismatch_height == 0) {</span></span>
+<span id="L3654"><span class="lineNum">    3654</span> <span class="tlaUNC">           0 :                     first_mismatch_height = cp.height;</span></span>
+<span id="L3655"><span class="lineNum">    3655</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3656"><span class="lineNum">    3656</span> <span class="tlaGNC tlaBgGNC">           1 :             } else {</span></span>
+<span id="L3657"><span class="lineNum">    3657</span> <span class="tlaGNC">           1 :                 LOGINFO(3, &quot;Checkpoint validated: height &quot; &lt;&lt; cp.height &lt;&lt; &quot;, id &quot; &lt;&lt; cp.id);</span></span>
+<span id="L3658"><span class="lineNum">    3658</span> <span class="tlaGNC">           1 :                 block-&gt;m_verified = true;  // Trust the checkpoint as verification anchor</span></span>
+<span id="L3659"><span class="lineNum">    3659</span> <span class="tlaGNC">           1 :                 blocks_to_verify.push_back(block);  // Queue for verify_loop</span></span>
+<span id="L3660"><span class="lineNum">    3660</span> <span class="tlaGNC">           1 :                 valid_checkpoints.push_back(cp);  // Keep valid checkpoint</span></span>
+<span id="L3661"><span class="lineNum">    3661</span> <span class="tlaGNC">           1 :             }</span></span>
+<span id="L3662"><span class="lineNum">    3662</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3663"><span class="lineNum">    3663</span> <span class="tlaGNC">           2 :     } // Locks released here</span></span>
+<span id="L3664"><span class="lineNum">    3664</span>              : </span>
+<span id="L3665"><span class="lineNum">    3665</span> <span class="tlaGNC">           2 :     bool need_bootstrap = false;</span></span>
+<span id="L3666"><span class="lineNum">    3666</span> <span class="tlaGNC">           2 :     uint64_t bootstrap_height = 0;</span></span>
+<span id="L3667"><span class="lineNum">    3667</span>              : </span>
+<span id="L3668"><span class="lineNum">    3668</span>              :     // If we had stale checkpoints, update and save</span>
+<span id="L3669"><span class="lineNum">    3669</span> <span class="tlaGNC">           2 :     if (had_stale) {</span></span>
+<span id="L3670"><span class="lineNum">    3670</span> <span class="tlaGNC">           1 :         WriteLock wlock(m_checkpointsLock);</span></span>
+<span id="L3671"><span class="lineNum">    3671</span> <span class="tlaGNC">           1 :         m_checkpoints = std::move(valid_checkpoints);</span></span>
+<span id="L3672"><span class="lineNum">    3672</span> <span class="tlaGNC">           1 :         LOGINFO(1, &quot;Cleaned up stale checkpoints: &quot; &lt;&lt; original_count &lt;&lt; &quot; -&gt; &quot; &lt;&lt; m_checkpoints.size());</span></span>
+<span id="L3673"><span class="lineNum">    3673</span>              :         </span>
+<span id="L3674"><span class="lineNum">    3674</span>              :         // If ALL checkpoints were stale, bootstrap from chain tip</span>
+<span id="L3675"><span class="lineNum">    3675</span> <span class="tlaGNC">           1 :         if (m_checkpoints.empty()) {</span></span>
+<span id="L3676"><span class="lineNum">    3676</span> <span class="tlaGNC">           1 :             const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3677"><span class="lineNum">    3677</span> <span class="tlaGNC">           1 :             if (tip) {</span></span>
+<span id="L3678"><span class="lineNum">    3678</span> <span class="tlaGNC">           1 :                 tip-&gt;m_verified = true;</span></span>
+<span id="L3679"><span class="lineNum">    3679</span> <span class="tlaGNC">           1 :                 LOGINFO(1, &quot;All checkpoints stale - bootstrapping verification from chain tip height &quot; &lt;&lt; tip-&gt;m_sidechainHeight);</span></span>
+<span id="L3680"><span class="lineNum">    3680</span> <span class="tlaGNC">           1 :                 need_bootstrap = true;</span></span>
+<span id="L3681"><span class="lineNum">    3681</span> <span class="tlaGNC">           1 :                 bootstrap_height = tip-&gt;m_sidechainHeight;</span></span>
+<span id="L3682"><span class="lineNum">    3682</span> <span class="tlaGNC">           1 :             }</span></span>
+<span id="L3683"><span class="lineNum">    3683</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3684"><span class="lineNum">    3684</span> <span class="tlaGNC">           1 :     }  // WriteLock released here</span></span>
+<span id="L3685"><span class="lineNum">    3685</span>              :     </span>
+<span id="L3686"><span class="lineNum">    3686</span>              :     // Create new checkpoint outside the lock</span>
+<span id="L3687"><span class="lineNum">    3687</span> <span class="tlaGNC">           2 :     if (need_bootstrap) {</span></span>
+<span id="L3688"><span class="lineNum">    3688</span> <span class="tlaGNC">           1 :         update_checkpoints(bootstrap_height);</span></span>
+<span id="L3689"><span class="lineNum">    3689</span> <span class="tlaGNC">           1 :     }</span></span>
 <span id="L3690"><span class="lineNum">    3690</span>              : </span>
-<span id="L3691"><span class="lineNum">    3691</span>              :         // NOTE: m_sidechainLock already held by caller (WriteLock from add_block)</span>
-<span id="L3692"><span class="lineNum">    3692</span>              :         // No need to acquire it again - verify_loop and block scan can proceed</span>
-<span id="L3693"><span class="lineNum">    3693</span>              : </span>
-<span id="L3694"><span class="lineNum">    3694</span>              :         // Propagate verification from anchor points</span>
-<span id="L3695"><span class="lineNum">    3695</span> <span class="tlaGNC">           2 :         for (PoolBlock* block : blocks_to_verify) {</span></span>
-<span id="L3696"><span class="lineNum">    3696</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Running verify_loop from anchor height &quot; &lt;&lt; block-&gt;m_sidechainHeight);</span></span>
-<span id="L3697"><span class="lineNum">    3697</span> <span class="tlaGNC">           1 :             verify_loop(block);</span></span>
-<span id="L3698"><span class="lineNum">    3698</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3699"><span class="lineNum">    3699</span>              : </span>
-<span id="L3700"><span class="lineNum">    3700</span>              :         // Scan all blocks and verify any with verified parents</span>
-<span id="L3701"><span class="lineNum">    3701</span> <span class="tlaGNC">           2 :         LOGINFO(3, &quot;Scanning for unverified blocks with verified parents...&quot;);</span></span>
-<span id="L3702"><span class="lineNum">    3702</span> <span class="tlaGNC">           2 :         bool made_progress = true;</span></span>
-<span id="L3703"><span class="lineNum">    3703</span> <span class="tlaGNC">           2 :         int pass = 0;</span></span>
-<span id="L3704"><span class="lineNum">    3704</span> <span class="tlaGNC">           4 :         while (made_progress &amp;&amp; pass &lt; 100) {</span></span>
-<span id="L3705"><span class="lineNum">    3705</span> <span class="tlaGNC">           2 :             made_progress = false;</span></span>
-<span id="L3706"><span class="lineNum">    3706</span> <span class="tlaGNC">           2 :             ++pass;</span></span>
-<span id="L3707"><span class="lineNum">    3707</span>              : </span>
-<span id="L3708"><span class="lineNum">    3708</span> <span class="tlaGNC">        9216 :             for (auto&amp; pair : m_blocksById) {</span></span>
-<span id="L3709"><span class="lineNum">    3709</span> <span class="tlaGNC">        9216 :                 PoolBlock* b = pair.second;</span></span>
-<span id="L3710"><span class="lineNum">    3710</span> <span class="tlaGNC">        9216 :                 if (!b-&gt;m_verified &amp;&amp; b-&gt;m_sidechainHeight &gt; 0) {</span></span>
-<span id="L3711"><span class="lineNum">    3711</span> <span class="tlaGNC">         552 :                     auto parent_it = m_blocksById.find(b-&gt;m_parent);</span></span>
-<span id="L3712"><span class="lineNum">    3712</span> <span class="tlaGNC">         552 :                     if (parent_it != m_blocksById.end() &amp;&amp; parent_it-&gt;second-&gt;m_verified) {</span></span>
-<span id="L3713"><span class="lineNum">    3713</span> <span class="tlaUNC tlaBgUNC">           0 :                         b-&gt;m_verified = true;</span></span>
-<span id="L3714"><span class="lineNum">    3714</span> <span class="tlaUNC">           0 :                         made_progress = true;</span></span>
-<span id="L3715"><span class="lineNum">    3715</span> <span class="tlaUNC">           0 :                     }</span></span>
-<span id="L3716"><span class="lineNum">    3716</span> <span class="tlaGNC tlaBgGNC">         552 :                 }</span></span>
-<span id="L3717"><span class="lineNum">    3717</span> <span class="tlaGNC">        9216 :             }</span></span>
-<span id="L3718"><span class="lineNum">    3718</span> <span class="tlaGNC">           2 :             if (made_progress) {</span></span>
-<span id="L3719"><span class="lineNum">    3719</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGINFO(3, &quot;Verification pass &quot; &lt;&lt; pass &lt;&lt; &quot; - verified more blocks&quot;);</span></span>
-<span id="L3720"><span class="lineNum">    3720</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3721"><span class="lineNum">    3721</span> <span class="tlaGNC tlaBgGNC">           2 :         }</span></span>
-<span id="L3722"><span class="lineNum">    3722</span>              : </span>
-<span id="L3723"><span class="lineNum">    3723</span> <span class="tlaGNC">           2 :         if (had_stale) {</span></span>
-<span id="L3724"><span class="lineNum">    3724</span> <span class="tlaGNC">           1 :             save_checkpoints();  // Persist the cleaned list</span></span>
-<span id="L3725"><span class="lineNum">    3725</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3726"><span class="lineNum">    3726</span> <span class="tlaGNC">           2 :         return true;  // Safe to mine</span></span>
-<span id="L3727"><span class="lineNum">    3727</span> <span class="tlaGNC">           2 :     }</span></span>
-<span id="L3728"><span class="lineNum">    3728</span>              : </span>
-<span id="L3729"><span class="lineNum">    3729</span> <span class="tlaUNC tlaBgUNC">           0 :     LOGERR(0, &quot;Cached checkpoints are INVALID - chain has diverged since last run&quot;);</span></span>
-<span id="L3730"><span class="lineNum">    3730</span> <span class="tlaUNC">           0 :     LOGERR(0, &quot;First mismatch at height &quot; &lt;&lt; first_mismatch_height);</span></span>
-<span id="L3731"><span class="lineNum">    3731</span>              : </span>
-<span id="L3732"><span class="lineNum">    3732</span> <span class="tlaUNC">           0 :     {</span></span>
-<span id="L3733"><span class="lineNum">    3733</span> <span class="tlaUNC">           0 :         WriteLock wlock(m_checkpointsLock);</span></span>
-<span id="L3734"><span class="lineNum">    3734</span> <span class="tlaUNC">           0 :         m_checkpoints.clear();</span></span>
-<span id="L3735"><span class="lineNum">    3735</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3691"><span class="lineNum">    3691</span> <span class="tlaGNC">           2 :     m_checkpointsNeedValidation = false;</span></span>
+<span id="L3692"><span class="lineNum">    3692</span>              : </span>
+<span id="L3693"><span class="lineNum">    3693</span> <span class="tlaGNC">           2 :     if (all_valid) {</span></span>
+<span id="L3694"><span class="lineNum">    3694</span> <span class="tlaGNC">           2 :         LOGINFO(1, &quot;All &quot; &lt;&lt; (had_stale ? m_checkpoints.size() : original_count) &lt;&lt; &quot; cached checkpoints validated successfully&quot;);</span></span>
+<span id="L3695"><span class="lineNum">    3695</span>              : </span>
+<span id="L3696"><span class="lineNum">    3696</span>              :         // NOTE: m_sidechainLock already held by caller (WriteLock from add_block)</span>
+<span id="L3697"><span class="lineNum">    3697</span>              :         // No need to acquire it again - verify_loop and block scan can proceed</span>
+<span id="L3698"><span class="lineNum">    3698</span>              : </span>
+<span id="L3699"><span class="lineNum">    3699</span>              :         // Propagate verification from anchor points</span>
+<span id="L3700"><span class="lineNum">    3700</span> <span class="tlaGNC">           2 :         for (PoolBlock* block : blocks_to_verify) {</span></span>
+<span id="L3701"><span class="lineNum">    3701</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Running verify_loop from anchor height &quot; &lt;&lt; block-&gt;m_sidechainHeight);</span></span>
+<span id="L3702"><span class="lineNum">    3702</span> <span class="tlaGNC">           1 :             verify_loop(block);</span></span>
+<span id="L3703"><span class="lineNum">    3703</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3704"><span class="lineNum">    3704</span>              : </span>
+<span id="L3705"><span class="lineNum">    3705</span>              :         // Scan all blocks and verify any with verified parents</span>
+<span id="L3706"><span class="lineNum">    3706</span> <span class="tlaGNC">           2 :         LOGINFO(3, &quot;Scanning for unverified blocks with verified parents...&quot;);</span></span>
+<span id="L3707"><span class="lineNum">    3707</span> <span class="tlaGNC">           2 :         bool made_progress = true;</span></span>
+<span id="L3708"><span class="lineNum">    3708</span> <span class="tlaGNC">           2 :         int pass = 0;</span></span>
+<span id="L3709"><span class="lineNum">    3709</span> <span class="tlaGNC">           4 :         while (made_progress &amp;&amp; pass &lt; 100) {</span></span>
+<span id="L3710"><span class="lineNum">    3710</span> <span class="tlaGNC">           2 :             made_progress = false;</span></span>
+<span id="L3711"><span class="lineNum">    3711</span> <span class="tlaGNC">           2 :             ++pass;</span></span>
+<span id="L3712"><span class="lineNum">    3712</span>              : </span>
+<span id="L3713"><span class="lineNum">    3713</span> <span class="tlaGNC">        9216 :             for (auto&amp; pair : m_blocksById) {</span></span>
+<span id="L3714"><span class="lineNum">    3714</span> <span class="tlaGNC">        9216 :                 PoolBlock* b = pair.second;</span></span>
+<span id="L3715"><span class="lineNum">    3715</span> <span class="tlaGNC">        9216 :                 if (!b-&gt;m_verified &amp;&amp; b-&gt;m_sidechainHeight &gt; 0) {</span></span>
+<span id="L3716"><span class="lineNum">    3716</span> <span class="tlaGNC">         552 :                     auto parent_it = m_blocksById.find(b-&gt;m_parent);</span></span>
+<span id="L3717"><span class="lineNum">    3717</span> <span class="tlaGNC">         552 :                     if (parent_it != m_blocksById.end() &amp;&amp; parent_it-&gt;second-&gt;m_verified) {</span></span>
+<span id="L3718"><span class="lineNum">    3718</span> <span class="tlaUNC tlaBgUNC">           0 :                         b-&gt;m_verified = true;</span></span>
+<span id="L3719"><span class="lineNum">    3719</span> <span class="tlaUNC">           0 :                         made_progress = true;</span></span>
+<span id="L3720"><span class="lineNum">    3720</span> <span class="tlaUNC">           0 :                     }</span></span>
+<span id="L3721"><span class="lineNum">    3721</span> <span class="tlaGNC tlaBgGNC">         552 :                 }</span></span>
+<span id="L3722"><span class="lineNum">    3722</span> <span class="tlaGNC">        9216 :             }</span></span>
+<span id="L3723"><span class="lineNum">    3723</span> <span class="tlaGNC">           2 :             if (made_progress) {</span></span>
+<span id="L3724"><span class="lineNum">    3724</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGINFO(3, &quot;Verification pass &quot; &lt;&lt; pass &lt;&lt; &quot; - verified more blocks&quot;);</span></span>
+<span id="L3725"><span class="lineNum">    3725</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3726"><span class="lineNum">    3726</span> <span class="tlaGNC tlaBgGNC">           2 :         }</span></span>
+<span id="L3727"><span class="lineNum">    3727</span>              : </span>
+<span id="L3728"><span class="lineNum">    3728</span> <span class="tlaGNC">           2 :         if (had_stale) {</span></span>
+<span id="L3729"><span class="lineNum">    3729</span> <span class="tlaGNC">           1 :             save_checkpoints();  // Persist the cleaned list</span></span>
+<span id="L3730"><span class="lineNum">    3730</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3731"><span class="lineNum">    3731</span> <span class="tlaGNC">           2 :         return true;  // Safe to mine</span></span>
+<span id="L3732"><span class="lineNum">    3732</span> <span class="tlaGNC">           2 :     }</span></span>
+<span id="L3733"><span class="lineNum">    3733</span>              : </span>
+<span id="L3734"><span class="lineNum">    3734</span> <span class="tlaUNC tlaBgUNC">           0 :     LOGERR(0, &quot;Cached checkpoints are INVALID - chain has diverged since last run&quot;);</span></span>
+<span id="L3735"><span class="lineNum">    3735</span> <span class="tlaUNC">           0 :     LOGERR(0, &quot;First mismatch at height &quot; &lt;&lt; first_mismatch_height);</span></span>
 <span id="L3736"><span class="lineNum">    3736</span>              : </span>
-<span id="L3737"><span class="lineNum">    3737</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Cleared stale checkpoints - will rebuild from current chain&quot;);</span></span>
-<span id="L3738"><span class="lineNum">    3738</span> <span class="tlaUNC">           0 :     save_checkpoints();  // Persist the cleared state</span></span>
-<span id="L3739"><span class="lineNum">    3739</span>              : </span>
-<span id="L3740"><span class="lineNum">    3740</span>              :     // Rebuild checkpoints from current chain</span>
-<span id="L3741"><span class="lineNum">    3741</span> <span class="tlaUNC">           0 :     const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3742"><span class="lineNum">    3742</span> <span class="tlaUNC">           0 :     if (tip) {</span></span>
-<span id="L3743"><span class="lineNum">    3743</span> <span class="tlaUNC">           0 :         update_checkpoints(tip-&gt;m_sidechainHeight);</span></span>
-<span id="L3744"><span class="lineNum">    3744</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3745"><span class="lineNum">    3745</span> <span class="tlaUNC">           0 :     return true;  // Checkpoints cleared and rebuilt, safe to mine</span></span>
-<span id="L3746"><span class="lineNum">    3746</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3747"><span class="lineNum">    3747</span>              : </span>
-<span id="L3748"><span class="lineNum">    3748</span>              : } // namespace p2pool</span>
+<span id="L3737"><span class="lineNum">    3737</span> <span class="tlaUNC">           0 :     {</span></span>
+<span id="L3738"><span class="lineNum">    3738</span> <span class="tlaUNC">           0 :         WriteLock wlock(m_checkpointsLock);</span></span>
+<span id="L3739"><span class="lineNum">    3739</span> <span class="tlaUNC">           0 :         m_checkpoints.clear();</span></span>
+<span id="L3740"><span class="lineNum">    3740</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3741"><span class="lineNum">    3741</span>              : </span>
+<span id="L3742"><span class="lineNum">    3742</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Cleared stale checkpoints - will rebuild from current chain&quot;);</span></span>
+<span id="L3743"><span class="lineNum">    3743</span> <span class="tlaUNC">           0 :     save_checkpoints();  // Persist the cleared state</span></span>
+<span id="L3744"><span class="lineNum">    3744</span>              : </span>
+<span id="L3745"><span class="lineNum">    3745</span>              :     // Rebuild checkpoints from current chain</span>
+<span id="L3746"><span class="lineNum">    3746</span> <span class="tlaUNC">           0 :     const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3747"><span class="lineNum">    3747</span> <span class="tlaUNC">           0 :     if (tip) {</span></span>
+<span id="L3748"><span class="lineNum">    3748</span> <span class="tlaUNC">           0 :         update_checkpoints(tip-&gt;m_sidechainHeight);</span></span>
+<span id="L3749"><span class="lineNum">    3749</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3750"><span class="lineNum">    3750</span> <span class="tlaUNC">           0 :     return true;  // Checkpoints cleared and rebuilt, safe to mine</span></span>
+<span id="L3751"><span class="lineNum">    3751</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3752"><span class="lineNum">    3752</span>              : </span>
+<span id="L3753"><span class="lineNum">    3753</span>              : } // namespace p2pool</span>
         </pre>
               </td>
             </tr>

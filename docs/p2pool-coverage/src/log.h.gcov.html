@@ -37,11 +37,11 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-26 23:03:29</td>
+            <td class="headerValue">2025-12-27 18:09:15</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">12.6&nbsp;%</td>
-            <td class="headerCovTableEntry">356</td>
+            <td class="headerCovTableEntry">357</td>
             <td class="headerCovTableEntry">45</td>
           </tr>
                   <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
@@ -643,7 +643,7 @@
 <span id="L581"><span class="lineNum">     581</span>              : #define SIDE_EFFECT_CHECK(level, ...)</span>
 <span id="L582"><span class="lineNum">     582</span>              : #else</span>
 <span id="L583"><span class="lineNum">     583</span>              : #define SIDE_EFFECT_CHECK(level, ...) \</span>
-<span id="L584"><span class="lineNum">     584</span> <span class="tlaGNC tlaBgGNC">    11523193 :         if (0) { \</span></span>
+<span id="L584"><span class="lineNum">     584</span> <span class="tlaGNC tlaBgGNC">    11521807 :         if (0) { \</span></span>
 <span id="L585"><span class="lineNum">     585</span> <span class="tlaUNC tlaBgUNC">           0 :                 MSVC_PRAGMA(warning(suppress:26444)) \</span></span>
 <span id="L586"><span class="lineNum">     586</span> <span class="tlaUNC">           0 :                 [=]() { \</span></span>
 <span id="L587"><span class="lineNum">     587</span> <span class="tlaUNC">           0 :                         log::DummyStream x; \</span></span>
@@ -656,7 +656,7 @@
 <span id="L594"><span class="lineNum">     594</span>              : </span>
 <span id="L595"><span class="lineNum">     595</span>              : #ifdef P2POOL_LOG_DISABLE</span>
 <span id="L596"><span class="lineNum">     596</span>              : </span>
-<span id="L597"><span class="lineNum">     597</span> <span class="tlaGNC tlaBgGNC">    11514156 : #define LOGINFO(level, ...) SIDE_EFFECT_CHECK(level, log_category_prefix &lt;&lt; __VA_ARGS__)</span></span>
+<span id="L597"><span class="lineNum">     597</span> <span class="tlaGNC tlaBgGNC">    11512770 : #define LOGINFO(level, ...) SIDE_EFFECT_CHECK(level, log_category_prefix &lt;&lt; __VA_ARGS__)</span></span>
 <span id="L598"><span class="lineNum">     598</span> <span class="tlaGNC">        9037 : #define LOGWARN(level, ...) SIDE_EFFECT_CHECK(level, log_category_prefix &lt;&lt; __VA_ARGS__)</span></span>
 <span id="L599"><span class="lineNum">     599</span>              : </span>
 <span id="L600"><span class="lineNum">     600</span>              : #ifdef P2POOL_ABORT_ON_LOG_ERROR</span>
