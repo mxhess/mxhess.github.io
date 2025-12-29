@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-29 00:37:56</td>
+            <td class="headerValue">2025-12-29 18:49:52</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -86,46 +86,46 @@
 <span id="L24"><span class="lineNum">      24</span>              : namespace p2pool {</span>
 <span id="L25"><span class="lineNum">      25</span>              : </span>
 <span id="L26"><span class="lineNum">      26</span>              : void merkle_hash(const std::vector&lt;hash&gt;&amp; hashes, root_hash&amp; root)</span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC tlaBgGNC">        2874 : {</span></span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">        2874 :         const size_t count = hashes.size();</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC tlaBgGNC">        2913 : {</span></span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">        2913 :         const size_t count = hashes.size();</span></span>
 <span id="L29"><span class="lineNum">      29</span>              : </span>
-<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">        2874 :         if (count == 0) {</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">        2913 :         if (count == 0) {</span></span>
 <span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">           1 :                 root.clear();</span></span>
 <span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">           1 :                 return;</span></span>
 <span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">           1 :         }</span></span>
 <span id="L34"><span class="lineNum">      34</span>              : </span>
-<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        2873 :         const uint8_t* h = hashes[0].h;</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">        2912 :         const uint8_t* h = hashes[0].h;</span></span>
 <span id="L36"><span class="lineNum">      36</span>              : </span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        2873 :         if (count == 1) {</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        2912 :         if (count == 1) {</span></span>
 <span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">           1 :                 root = root_hash(hashes[0]);</span></span>
 <span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">        2872 :         else if (count == 2) {</span></span>
-<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">         867 :                 keccak(h, HASH_SIZE * 2, root.h);</span></span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">         867 :         }</span></span>
-<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">        2005 :         else {</span></span>
-<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">        2005 :                 size_t cnt = 1;</span></span>
-<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">       17999 :                 do { cnt &lt;&lt;= 1; } while (cnt &lt;= count);</span></span>
-<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">        2005 :                 cnt &gt;&gt;= 1;</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">        2911 :         else if (count == 2) {</span></span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">         915 :                 keccak(h, HASH_SIZE * 2, root.h);</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">         915 :         }</span></span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">        1996 :         else {</span></span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">        1996 :                 size_t cnt = 1;</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaGNC">       17934 :                 do { cnt &lt;&lt;= 1; } while (cnt &lt;= count);</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">        1996 :                 cnt &gt;&gt;= 1;</span></span>
 <span id="L47"><span class="lineNum">      47</span>              : </span>
-<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">        2005 :                 std::vector&lt;hash&gt; tmp_ints(cnt);</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">        1996 :                 std::vector&lt;hash&gt; tmp_ints(cnt);</span></span>
 <span id="L49"><span class="lineNum">      49</span>              : </span>
-<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">        2005 :                 const size_t k = cnt * 2 - count;</span></span>
-<span id="L51"><span class="lineNum">      51</span> <span class="tlaGNC">        2005 :                 memcpy(tmp_ints.data(), h, k * HASH_SIZE);</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">        1996 :                 const size_t k = cnt * 2 - count;</span></span>
+<span id="L51"><span class="lineNum">      51</span> <span class="tlaGNC">        1996 :                 memcpy(tmp_ints.data(), h, k * HASH_SIZE);</span></span>
 <span id="L52"><span class="lineNum">      52</span>              : </span>
-<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">       24867 :                 for (size_t i = k, j = k; j &lt; cnt; i += 2, ++j) {</span></span>
-<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">       22862 :                         keccak(h + i * HASH_SIZE, HASH_SIZE * 2, tmp_ints[j].h);</span></span>
-<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC">       22862 :                 }</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">       24711 :                 for (size_t i = k, j = k; j &lt; cnt; i += 2, ++j) {</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">       22715 :                         keccak(h + i * HASH_SIZE, HASH_SIZE * 2, tmp_ints[j].h);</span></span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC">       22715 :                 }</span></span>
 <span id="L56"><span class="lineNum">      56</span>              : </span>
-<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">       15920 :                 while (cnt &gt; 2) {</span></span>
-<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">       13915 :                         cnt &gt;&gt;= 1;</span></span>
-<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">      502927 :                         for (size_t i = 0, j = 0; j &lt; cnt; i += 2, ++j) {</span></span>
-<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">      489012 :                                 keccak(tmp_ints[i].h, HASH_SIZE * 2, tmp_ints[j].h);</span></span>
-<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">      489012 :                         }</span></span>
-<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">       13915 :                 }</span></span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaGNC">       15865 :                 while (cnt &gt; 2) {</span></span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">       13869 :                         cnt &gt;&gt;= 1;</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">      509217 :                         for (size_t i = 0, j = 0; j &lt; cnt; i += 2, ++j) {</span></span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">      495348 :                                 keccak(tmp_ints[i].h, HASH_SIZE * 2, tmp_ints[j].h);</span></span>
+<span id="L61"><span class="lineNum">      61</span> <span class="tlaGNC">      495348 :                         }</span></span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">       13869 :                 }</span></span>
 <span id="L63"><span class="lineNum">      63</span>              : </span>
-<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">        2005 :                 keccak(tmp_ints[0].h, HASH_SIZE * 2, root.h);</span></span>
-<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">        2005 :         }</span></span>
-<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">        2873 : }</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">        1996 :                 keccak(tmp_ints[0].h, HASH_SIZE * 2, root.h);</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">        1996 :         }</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">        2912 : }</span></span>
 <span id="L67"><span class="lineNum">      67</span>              : </span>
 <span id="L68"><span class="lineNum">      68</span>              : void merkle_hash_full_tree(const std::vector&lt;hash&gt;&amp; hashes, std::vector&lt;std::vector&lt;hash&gt;&gt;&amp; tree)</span>
 <span id="L69"><span class="lineNum">      69</span> <span class="tlaGNC">          11 : {</span></span>
@@ -346,14 +346,14 @@
 <span id="L284"><span class="lineNum">     284</span> <span class="tlaGNC">          54 : }</span></span>
 <span id="L285"><span class="lineNum">     285</span>              : </span>
 <span id="L286"><span class="lineNum">     286</span>              : root_hash get_root_from_proof(hash h, const std::vector&lt;hash&gt;&amp; proof, size_t index, size_t count)</span>
-<span id="L287"><span class="lineNum">     287</span> <span class="tlaGNC">       46035 : {</span></span>
-<span id="L288"><span class="lineNum">     288</span> <span class="tlaGNC">       46035 :         if (index &gt;= count) {</span></span>
+<span id="L287"><span class="lineNum">     287</span> <span class="tlaGNC">       46073 : {</span></span>
+<span id="L288"><span class="lineNum">     288</span> <span class="tlaGNC">       46073 :         if (index &gt;= count) {</span></span>
 <span id="L289"><span class="lineNum">     289</span> <span class="tlaGNC">          55 :                 return root_hash();</span></span>
 <span id="L290"><span class="lineNum">     290</span> <span class="tlaGNC">          55 :         }</span></span>
 <span id="L291"><span class="lineNum">     291</span>              : </span>
-<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">       45980 :         if (count == 1) {</span></span>
-<span id="L293"><span class="lineNum">     293</span> <span class="tlaGNC">       45722 :                 return root_hash(h);</span></span>
-<span id="L294"><span class="lineNum">     294</span> <span class="tlaGNC">       45722 :         }</span></span>
+<span id="L292"><span class="lineNum">     292</span> <span class="tlaGNC">       46018 :         if (count == 1) {</span></span>
+<span id="L293"><span class="lineNum">     293</span> <span class="tlaGNC">       45760 :                 return root_hash(h);</span></span>
+<span id="L294"><span class="lineNum">     294</span> <span class="tlaGNC">       45760 :         }</span></span>
 <span id="L295"><span class="lineNum">     295</span>              : </span>
 <span id="L296"><span class="lineNum">     296</span> <span class="tlaGNC">         258 :         hash tmp[2];</span></span>
 <span id="L297"><span class="lineNum">     297</span>              : </span>
@@ -451,24 +451,24 @@
 <span id="L389"><span class="lineNum">     389</span> <span class="tlaGNC">         260 : }</span></span>
 <span id="L390"><span class="lineNum">     390</span>              : </span>
 <span id="L391"><span class="lineNum">     391</span>              : uint32_t get_aux_slot(const hash &amp;id, uint32_t nonce, uint32_t n_aux_chains)</span>
-<span id="L392"><span class="lineNum">     392</span> <span class="tlaGNC">      189683 : {</span></span>
-<span id="L393"><span class="lineNum">     393</span> <span class="tlaGNC">      189683 :         if (n_aux_chains &lt;= 1) {</span></span>
-<span id="L394"><span class="lineNum">     394</span> <span class="tlaGNC">       45769 :                 return 0;</span></span>
-<span id="L395"><span class="lineNum">     395</span> <span class="tlaGNC">       45769 :         }</span></span>
+<span id="L392"><span class="lineNum">     392</span> <span class="tlaGNC">      189669 : {</span></span>
+<span id="L393"><span class="lineNum">     393</span> <span class="tlaGNC">      189669 :         if (n_aux_chains &lt;= 1) {</span></span>
+<span id="L394"><span class="lineNum">     394</span> <span class="tlaGNC">       45768 :                 return 0;</span></span>
+<span id="L395"><span class="lineNum">     395</span> <span class="tlaGNC">       45768 :         }</span></span>
 <span id="L396"><span class="lineNum">     396</span>              : </span>
-<span id="L397"><span class="lineNum">     397</span> <span class="tlaGNC">      143914 :         constexpr uint8_t HASH_KEY_MM_SLOT = 'm';</span></span>
+<span id="L397"><span class="lineNum">     397</span> <span class="tlaGNC">      143901 :         constexpr uint8_t HASH_KEY_MM_SLOT = 'm';</span></span>
 <span id="L398"><span class="lineNum">     398</span>              : </span>
-<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">      143914 :         uint8_t buf[HASH_SIZE + sizeof(uint32_t) + 1];</span></span>
+<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">      143901 :         uint8_t buf[HASH_SIZE + sizeof(uint32_t) + 1];</span></span>
 <span id="L400"><span class="lineNum">     400</span>              : </span>
-<span id="L401"><span class="lineNum">     401</span> <span class="tlaGNC">      143914 :         memcpy(buf, &amp;id, HASH_SIZE);</span></span>
-<span id="L402"><span class="lineNum">     402</span> <span class="tlaGNC">      143914 :         memcpy(buf + HASH_SIZE, &amp;nonce, sizeof(uint32_t));</span></span>
-<span id="L403"><span class="lineNum">     403</span> <span class="tlaGNC">      143914 :         buf[HASH_SIZE + sizeof(uint32_t)] = HASH_KEY_MM_SLOT;</span></span>
+<span id="L401"><span class="lineNum">     401</span> <span class="tlaGNC">      143901 :         memcpy(buf, &amp;id, HASH_SIZE);</span></span>
+<span id="L402"><span class="lineNum">     402</span> <span class="tlaGNC">      143901 :         memcpy(buf + HASH_SIZE, &amp;nonce, sizeof(uint32_t));</span></span>
+<span id="L403"><span class="lineNum">     403</span> <span class="tlaGNC">      143901 :         buf[HASH_SIZE + sizeof(uint32_t)] = HASH_KEY_MM_SLOT;</span></span>
 <span id="L404"><span class="lineNum">     404</span>              : </span>
-<span id="L405"><span class="lineNum">     405</span> <span class="tlaGNC">      143914 :         hash res;</span></span>
-<span id="L406"><span class="lineNum">     406</span> <span class="tlaGNC">      143914 :         sha256(buf, sizeof(buf), res.h);</span></span>
+<span id="L405"><span class="lineNum">     405</span> <span class="tlaGNC">      143901 :         hash res;</span></span>
+<span id="L406"><span class="lineNum">     406</span> <span class="tlaGNC">      143901 :         sha256(buf, sizeof(buf), res.h);</span></span>
 <span id="L407"><span class="lineNum">     407</span>              : </span>
-<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">      143914 :         return *reinterpret_cast&lt;uint32_t*&gt;(res.h) % n_aux_chains;</span></span>
-<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">      189683 : }</span></span>
+<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">      143901 :         return *reinterpret_cast&lt;uint32_t*&gt;(res.h) % n_aux_chains;</span></span>
+<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">      189669 : }</span></span>
 <span id="L410"><span class="lineNum">     410</span>              : </span>
 <span id="L411"><span class="lineNum">     411</span>              : bool find_aux_nonce(const std::vector&lt;hash&gt;&amp; aux_id, uint32_t&amp; nonce, uint32_t max_nonce)</span>
 <span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">          12 : {</span></span>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-29 00:37:56</td>
+            <td class="headerValue">2025-12-29 18:49:52</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">12.7&nbsp;%</td>
@@ -218,13 +218,13 @@
 <span id="L156"><span class="lineNum">     156</span>              : </span>
 <span id="L157"><span class="lineNum">     157</span>              : template&lt;typename T, typename U&gt;</span>
 <span id="L158"><span class="lineNum">     158</span>              : FORCEINLINE void writeVarint(T value, U&amp;&amp; callback)</span>
-<span id="L159"><span class="lineNum">     159</span> <span class="tlaGNC">     2920449 : {</span></span>
-<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">     7858101 :         while (value &gt;= 0x80) {</span></span>
-<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">     4937652 :                 callback(static_cast&lt;uint8_t&gt;((value &amp; 0x7F) | 0x80));</span></span>
-<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">     4937652 :                 value &gt;&gt;= 7;</span></span>
-<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">     4937652 :         }</span></span>
-<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">     2920449 :         callback(static_cast&lt;uint8_t&gt;(value));</span></span>
-<span id="L165"><span class="lineNum">     165</span> <span class="tlaGNC">     2920449 : }</span></span>
+<span id="L159"><span class="lineNum">     159</span> <span class="tlaGNC">     2920429 : {</span></span>
+<span id="L160"><span class="lineNum">     160</span> <span class="tlaGNC">     7858066 :         while (value &gt;= 0x80) {</span></span>
+<span id="L161"><span class="lineNum">     161</span> <span class="tlaGNC">     4937637 :                 callback(static_cast&lt;uint8_t&gt;((value &amp; 0x7F) | 0x80));</span></span>
+<span id="L162"><span class="lineNum">     162</span> <span class="tlaGNC">     4937637 :                 value &gt;&gt;= 7;</span></span>
+<span id="L163"><span class="lineNum">     163</span> <span class="tlaGNC">     4937637 :         }</span></span>
+<span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">     2920429 :         callback(static_cast&lt;uint8_t&gt;(value));</span></span>
+<span id="L165"><span class="lineNum">     165</span> <span class="tlaGNC">     2920429 : }</span></span>
 <span id="L166"><span class="lineNum">     166</span>              : </span>
 <span id="L167"><span class="lineNum">     167</span>              : template&lt;typename T&gt;</span>
 <span id="L168"><span class="lineNum">     168</span>              : FORCEINLINE void writeVarint(T value, std::vector&lt;uint8_t&gt;&amp; out)</span>
@@ -276,13 +276,13 @@
 <span id="L214"><span class="lineNum">     214</span>              : </span>
 <span id="L215"><span class="lineNum">     215</span>              : template&lt;typename T&gt;</span>
 <span id="L216"><span class="lineNum">     216</span>              : FORCEINLINE T read_unaligned(const T* p)</span>
-<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">      970197 : {</span></span>
-<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">      970197 :         static_assert(std::is_trivially_copyable&lt;T&gt;::value, &quot;T must be a trivially copyable type&quot;);</span></span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">      971059 : {</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">      971059 :         static_assert(std::is_trivially_copyable&lt;T&gt;::value, &quot;T must be a trivially copyable type&quot;);</span></span>
 <span id="L219"><span class="lineNum">     219</span>              : </span>
-<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">      970197 :         T result;</span></span>
-<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">      970197 :         memcpy(&amp;result, p, sizeof(T));</span></span>
-<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">      970197 :         return result;</span></span>
-<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">      970197 : }</span></span>
+<span id="L220"><span class="lineNum">     220</span> <span class="tlaGNC">      971059 :         T result;</span></span>
+<span id="L221"><span class="lineNum">     221</span> <span class="tlaGNC">      971059 :         memcpy(&amp;result, p, sizeof(T));</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">      971059 :         return result;</span></span>
+<span id="L223"><span class="lineNum">     223</span> <span class="tlaGNC">      971059 : }</span></span>
 <span id="L224"><span class="lineNum">     224</span>              : </span>
 <span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">       22048 : template&lt;typename T, size_t N&gt; FORCEINLINE constexpr size_t array_size(T(&amp;)[N]) { return N; }</span></span>
 <span id="L226"><span class="lineNum">     226</span> <span class="tlaGNC">        6742 : template&lt;typename T, typename U, size_t N&gt; FORCEINLINE constexpr size_t array_size(T(U::*)[N]) { return N; }</span></span>
