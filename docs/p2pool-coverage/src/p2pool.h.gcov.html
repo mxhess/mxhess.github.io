@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-12 20:14:05</td>
+            <td class="headerValue">2026-01-12 21:51:32</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -138,7 +138,7 @@
 <span id="L76"><span class="lineNum">      76</span>              :         bool get_seed(uint64_t height, hash&amp; seed) const;</span>
 <span id="L77"><span class="lineNum">      77</span>              : </span>
 <span id="L78"><span class="lineNum">      78</span> <span class="tlaUNC">           0 :         StratumServer* stratum_server() const { return m_stratumServer; }</span></span>
-<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :         P2PServer* p2p_server() const { return m_p2pServer; }</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :         P2PServer* p2p_server() const { return m_p2pServer.load(); }</span></span>
 <span id="L80"><span class="lineNum">      80</span>              : </span>
 <span id="L81"><span class="lineNum">      81</span>              : #if defined(WITH_RANDOMX) &amp;&amp; !defined(P2POOL_UNIT_TESTS)</span>
 <span id="L82"><span class="lineNum">      82</span>              :         void print_miner_status();</span>
@@ -291,7 +291,7 @@
 <span id="L229"><span class="lineNum">     229</span>              : </span>
 <span id="L230"><span class="lineNum">     230</span>              :         std::atomic&lt;uint32_t&gt; m_serversStarted{ 0 };</span>
 <span id="L231"><span class="lineNum">     231</span>              :         StratumServer* m_stratumServer = nullptr;</span>
-<span id="L232"><span class="lineNum">     232</span>              :         P2PServer* m_p2pServer = nullptr;</span>
+<span id="L232"><span class="lineNum">     232</span>              :         std::atomic&lt;P2PServer*&gt; m_p2pServer{ nullptr };</span>
 <span id="L233"><span class="lineNum">     233</span>              : </span>
 <span id="L234"><span class="lineNum">     234</span>              :         std::atomic&lt;bool&gt; m_startupFinished{ false };</span>
 <span id="L235"><span class="lineNum">     235</span>              : </span>
