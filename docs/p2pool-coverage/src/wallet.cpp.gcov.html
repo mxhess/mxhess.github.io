@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-29 18:49:52</td>
+            <td class="headerValue">2026-01-12 20:14:05</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">70.0&nbsp;%</td>
@@ -340,145 +340,144 @@
 <span id="L278"><span class="lineNum">     278</span> <span class="tlaGNC">       15937 :         m_subaddress = subaddress;</span></span>
 <span id="L279"><span class="lineNum">     279</span>              : </span>
 <span id="L280"><span class="lineNum">     280</span> <span class="tlaGNC">       15937 :         if (!torsion_check()) {</span></span>
-<span id="L281"><span class="lineNum">     281</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(1, &quot;Torsion check failed for wallet &quot; &lt;&lt; *this &lt;&lt; &quot;! It will not be compatible with FCMP++.&quot;);          </span></span>
-<span id="L282"><span class="lineNum">     282</span>              :                 // TODO: add &quot;m_type = NetworkType::Invalid;&quot; and return false in a later release, closer to FCMP++ hardfork</span>
-<span id="L283"><span class="lineNum">     283</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L284"><span class="lineNum">     284</span>              : </span>
-<span id="L285"><span class="lineNum">     285</span> <span class="tlaGNC tlaBgGNC">       15937 :         return true;</span></span>
-<span id="L286"><span class="lineNum">     286</span> <span class="tlaGNC">       15937 : }</span></span>
-<span id="L287"><span class="lineNum">     287</span>              : </span>
-<span id="L288"><span class="lineNum">     288</span>              : void Wallet::encode(char (&amp;buf)[ADDRESS_LENGTH]) const</span>
-<span id="L289"><span class="lineNum">     289</span> <span class="tlaUNC tlaBgUNC">           0 : {</span></span>
-<span id="L290"><span class="lineNum">     290</span> <span class="tlaUNC">           0 :         uint8_t data[73]; // Max: 8 bytes varint + 32 spend + 32 view + 4 checksum</span></span>
-<span id="L291"><span class="lineNum">     291</span> <span class="tlaUNC">           0 :         int data_index = 0;</span></span>
-<span id="L292"><span class="lineNum">     292</span>              :         </span>
-<span id="L293"><span class="lineNum">     293</span>              :         // Write prefix as varint</span>
-<span id="L294"><span class="lineNum">     294</span> <span class="tlaUNC">           0 :         uint64_t addr_prefix = m_prefix;</span></span>
-<span id="L295"><span class="lineNum">     295</span> <span class="tlaUNC">           0 :         do {</span></span>
-<span id="L296"><span class="lineNum">     296</span> <span class="tlaUNC">           0 :                 data[data_index++] = static_cast&lt;uint8_t&gt;((addr_prefix &amp; 0x7F) | (addr_prefix &gt; 0x7F ? 0x80 : 0));</span></span>
-<span id="L297"><span class="lineNum">     297</span> <span class="tlaUNC">           0 :                 addr_prefix &gt;&gt;= 7;</span></span>
-<span id="L298"><span class="lineNum">     298</span> <span class="tlaUNC">           0 :         } while (addr_prefix);</span></span>
-<span id="L299"><span class="lineNum">     299</span>              :         </span>
-<span id="L300"><span class="lineNum">     300</span>              :         // Write public keys</span>
-<span id="L301"><span class="lineNum">     301</span> <span class="tlaUNC">           0 :         memcpy(data + data_index, m_spendPublicKey.h, HASH_SIZE);</span></span>
-<span id="L302"><span class="lineNum">     302</span> <span class="tlaUNC">           0 :         memcpy(data + data_index + HASH_SIZE, m_viewPublicKey.h, HASH_SIZE);</span></span>
-<span id="L303"><span class="lineNum">     303</span>              :         </span>
-<span id="L304"><span class="lineNum">     304</span>              :         // Calculate and write checksum</span>
-<span id="L305"><span class="lineNum">     305</span> <span class="tlaUNC">           0 :         uint8_t md[200];</span></span>
-<span id="L306"><span class="lineNum">     306</span> <span class="tlaUNC">           0 :         const int pre_checksum_size = static_cast&lt;int&gt;(data_index + HASH_SIZE * 2);</span></span>
-<span id="L307"><span class="lineNum">     307</span> <span class="tlaUNC">           0 :         keccak(data, pre_checksum_size, md);</span></span>
-<span id="L308"><span class="lineNum">     308</span> <span class="tlaUNC">           0 :         memcpy(data + pre_checksum_size, md, sizeof(m_checksum));</span></span>
-<span id="L309"><span class="lineNum">     309</span>              : </span>
-<span id="L310"><span class="lineNum">     310</span> <span class="tlaUNC">           0 :         const int total_data_size = static_cast&lt;int&gt;(pre_checksum_size + sizeof(m_checksum));</span></span>
-<span id="L311"><span class="lineNum">     311</span>              : </span>
-<span id="L312"><span class="lineNum">     312</span>              :         // Encode to base58 with variable-length data</span>
-<span id="L313"><span class="lineNum">     313</span> <span class="tlaUNC">           0 :         const int actual_num_full_blocks = static_cast&lt;int&gt;(total_data_size / sizeof(uint64_t));</span></span>
-<span id="L314"><span class="lineNum">     314</span> <span class="tlaUNC">           0 :         const int actual_last_block_bytes = static_cast&lt;int&gt;(total_data_size % sizeof(uint64_t));</span></span>
-<span id="L315"><span class="lineNum">     315</span>              : </span>
-<span id="L316"><span class="lineNum">     316</span> <span class="tlaUNC">           0 :         int buf_index = 0;</span></span>
-<span id="L317"><span class="lineNum">     317</span> <span class="tlaUNC">           0 :         for (int i = 0; i &lt;= actual_num_full_blocks; ++i) {</span></span>
-<span id="L318"><span class="lineNum">     318</span> <span class="tlaUNC">           0 :                 const bool is_last_block = (i == actual_num_full_blocks);</span></span>
-<span id="L319"><span class="lineNum">     319</span> <span class="tlaUNC">           0 :                 const int bytes_in_block = is_last_block ? actual_last_block_bytes : static_cast&lt;int&gt;(sizeof(uint64_t));</span></span>
-<span id="L320"><span class="lineNum">     320</span>              : </span>
-<span id="L321"><span class="lineNum">     321</span> <span class="tlaUNC">           0 :                 if (is_last_block &amp;&amp; bytes_in_block == 0) break;</span></span>
-<span id="L322"><span class="lineNum">     322</span>              : </span>
-<span id="L323"><span class="lineNum">     323</span>              :                 // Read bytes in big-endian</span>
-<span id="L324"><span class="lineNum">     324</span> <span class="tlaUNC">           0 :                 uint64_t n = 0;</span></span>
-<span id="L325"><span class="lineNum">     325</span> <span class="tlaUNC">           0 :                 for (int j = 0; j &lt; bytes_in_block; ++j) {</span></span>
-<span id="L326"><span class="lineNum">     326</span> <span class="tlaUNC">           0 :                         n = (n &lt;&lt; 8) | data[i * sizeof(uint64_t) + j];</span></span>
-<span id="L327"><span class="lineNum">     327</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L328"><span class="lineNum">     328</span>              : </span>
-<span id="L329"><span class="lineNum">     329</span>              :                 // Determine output block size - use block_sizes directly indexed by byte count</span>
-<span id="L330"><span class="lineNum">     330</span> <span class="tlaUNC">           0 :                 const int output_block_size = is_last_block ? block_sizes[actual_last_block_bytes] : block_sizes.back();</span></span>
-<span id="L331"><span class="lineNum">     331</span>              :                 </span>
-<span id="L332"><span class="lineNum">     332</span>              :                 // Encode to base58</span>
-<span id="L333"><span class="lineNum">     333</span> <span class="tlaUNC">           0 :                 for (int j = output_block_size - 1; j &gt;= 0; --j) {</span></span>
-<span id="L334"><span class="lineNum">     334</span> <span class="tlaUNC">           0 :                         const int digit = static_cast&lt;int&gt;(n % alphabet_size);</span></span>
-<span id="L335"><span class="lineNum">     335</span> <span class="tlaUNC">           0 :                         n /= alphabet_size;</span></span>
-<span id="L336"><span class="lineNum">     336</span> <span class="tlaUNC">           0 :                         buf[buf_index + j] = alphabet[digit];</span></span>
-<span id="L337"><span class="lineNum">     337</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L338"><span class="lineNum">     338</span> <span class="tlaUNC">           0 :                 buf_index += output_block_size;</span></span>
-<span id="L339"><span class="lineNum">     339</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L340"><span class="lineNum">     340</span>              :         </span>
-<span id="L341"><span class="lineNum">     341</span>              :         // Null terminate</span>
-<span id="L342"><span class="lineNum">     342</span> <span class="tlaUNC">           0 :         buf[buf_index] = '\0';</span></span>
-<span id="L343"><span class="lineNum">     343</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L344"><span class="lineNum">     344</span>              : </span>
-<span id="L345"><span class="lineNum">     345</span>              : bool Wallet::get_eph_public_key(const hash&amp; txkey_sec, size_t output_index, hash&amp; eph_public_key, uint8_t&amp; view_tag, const uint8_t* expected_view_tag) const</span>
-<span id="L346"><span class="lineNum">     346</span> <span class="tlaGNC tlaBgGNC">          19 : {</span></span>
-<span id="L347"><span class="lineNum">     347</span> <span class="tlaGNC">          19 :         hash derivation;</span></span>
-<span id="L348"><span class="lineNum">     348</span> <span class="tlaGNC">          19 :         if (!generate_key_derivation(m_viewPublicKey, txkey_sec, output_index, derivation, view_tag)) {</span></span>
-<span id="L349"><span class="lineNum">     349</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
-<span id="L350"><span class="lineNum">     350</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L351"><span class="lineNum">     351</span>              : </span>
-<span id="L352"><span class="lineNum">     352</span> <span class="tlaGNC tlaBgGNC">          19 :         if (expected_view_tag &amp;&amp; (view_tag != *expected_view_tag)) {</span></span>
-<span id="L353"><span class="lineNum">     353</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
-<span id="L354"><span class="lineNum">     354</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L355"><span class="lineNum">     355</span>              : </span>
-<span id="L356"><span class="lineNum">     356</span> <span class="tlaGNC tlaBgGNC">          19 :         if (!derive_public_key(derivation, output_index, m_spendPublicKey, eph_public_key)) {</span></span>
-<span id="L357"><span class="lineNum">     357</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
-<span id="L358"><span class="lineNum">     358</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L359"><span class="lineNum">     359</span>              : </span>
-<span id="L360"><span class="lineNum">     360</span> <span class="tlaGNC tlaBgGNC">          19 :         return true;</span></span>
-<span id="L361"><span class="lineNum">     361</span> <span class="tlaGNC">          19 : }</span></span>
-<span id="L362"><span class="lineNum">     362</span>              : </span>
-<span id="L363"><span class="lineNum">     363</span>              : bool Wallet::torsion_check() const</span>
-<span id="L364"><span class="lineNum">     364</span> <span class="tlaGNC">       15939 : {</span></span>
-<span id="L365"><span class="lineNum">     365</span> <span class="tlaGNC">       15939 :         ge_p3 p1, p2;</span></span>
-<span id="L366"><span class="lineNum">     366</span> <span class="tlaGNC">       15939 :         if ((ge_frombytes_vartime(&amp;p1, m_spendPublicKey.h) != 0) || (ge_frombytes_vartime(&amp;p2, m_viewPublicKey.h) != 0)) {</span></span>
-<span id="L367"><span class="lineNum">     367</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
-<span id="L368"><span class="lineNum">     368</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L369"><span class="lineNum">     369</span>              : </span>
-<span id="L370"><span class="lineNum">     370</span> <span class="tlaGNC tlaBgGNC">       15939 :         return</span></span>
-<span id="L371"><span class="lineNum">     371</span> <span class="tlaGNC">       15939 :                 !fcmp_pp::mul8_is_identity(p1) &amp;&amp;</span></span>
-<span id="L372"><span class="lineNum">     372</span> <span class="tlaGNC">       15939 :                 !fcmp_pp::mul8_is_identity(p2) &amp;&amp;</span></span>
-<span id="L373"><span class="lineNum">     373</span> <span class="tlaGNC">       15939 :                 fcmp_pp::torsion_check_vartime(p1) &amp;&amp;</span></span>
-<span id="L374"><span class="lineNum">     374</span> <span class="tlaGNC">       15939 :                 fcmp_pp::torsion_check_vartime(p2);</span></span>
-<span id="L375"><span class="lineNum">     375</span> <span class="tlaGNC">       15939 : }</span></span>
-<span id="L376"><span class="lineNum">     376</span>              : </span>
-<span id="L377"><span class="lineNum">     377</span>              : bool Wallet::get_eph_public_key_carrot(const hash&amp; tx_key_seed, uint64_t height, size_t output_index, uint64_t amount, hash&amp; eph_public_key, uint8_t&amp; view_tag) const</span>
-<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">       12978 : {</span></span>
-<span id="L379"><span class="lineNum">     379</span> <span class="tlaGNC">       12978 :     (void)output_index;  // Not used - anchor derived from spend pubkey, not position</span></span>
-<span id="L380"><span class="lineNum">     380</span>              : </span>
-<span id="L381"><span class="lineNum">     381</span>              :     // 1. Build input_context from height</span>
-<span id="L382"><span class="lineNum">     382</span> <span class="tlaGNC">       12978 :     uint8_t input_context[33];</span></span>
-<span id="L383"><span class="lineNum">     383</span> <span class="tlaGNC">       12978 :     carrot::make_input_context_coinbase(height, input_context);</span></span>
-<span id="L384"><span class="lineNum">     384</span>              : </span>
-<span id="L385"><span class="lineNum">     385</span>              :     // 2. Derive anchor from wallet's spend public key (position-independent)</span>
-<span id="L386"><span class="lineNum">     386</span> <span class="tlaGNC">       12978 :     uint8_t anchor[16];</span></span>
-<span id="L387"><span class="lineNum">     387</span> <span class="tlaGNC">       12978 :     carrot::derive_deterministic_anchor_from_pubkey(tx_key_seed, m_spendPublicKey, anchor);</span></span>
-<span id="L388"><span class="lineNum">     388</span>              : </span>
-<span id="L389"><span class="lineNum">     389</span>              :     // 3. Derive per-output ephemeral private key d_e from anchor</span>
-<span id="L390"><span class="lineNum">     390</span> <span class="tlaGNC">       12978 :     static const uint8_t null_payment_id[8] = {0};</span></span>
-<span id="L391"><span class="lineNum">     391</span> <span class="tlaGNC">       12978 :     hash ephemeral_privkey;</span></span>
-<span id="L392"><span class="lineNum">     392</span> <span class="tlaGNC">       12978 :     carrot::make_ephemeral_privkey(anchor, input_context, m_spendPublicKey, null_payment_id, ephemeral_privkey);</span></span>
-<span id="L393"><span class="lineNum">     393</span>              : </span>
-<span id="L394"><span class="lineNum">     394</span>              :     // 4. Derive ephemeral public key D_e = d_e * B</span>
-<span id="L395"><span class="lineNum">     395</span> <span class="tlaGNC">       12978 :     hash ephemeral_pubkey;</span></span>
-<span id="L396"><span class="lineNum">     396</span> <span class="tlaGNC">       12978 :     carrot::make_ephemeral_pubkey_mainaddress(ephemeral_privkey, ephemeral_pubkey);</span></span>
-<span id="L397"><span class="lineNum">     397</span>              : </span>
-<span id="L398"><span class="lineNum">     398</span>              :     // 5. Derive shared secret using this wallet's view pubkey</span>
-<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">       12978 :     hash shared_secret;</span></span>
-<span id="L400"><span class="lineNum">     400</span> <span class="tlaGNC">       12978 :     if (!carrot::make_shared_secret_sender(ephemeral_privkey, m_viewPublicKey, shared_secret)) {</span></span>
-<span id="L401"><span class="lineNum">     401</span> <span class="tlaUNC tlaBgUNC">           0 :         return false;</span></span>
-<span id="L402"><span class="lineNum">     402</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L403"><span class="lineNum">     403</span>              : </span>
-<span id="L404"><span class="lineNum">     404</span>              :     // 6. Derive sender-receiver secret</span>
-<span id="L405"><span class="lineNum">     405</span> <span class="tlaGNC tlaBgGNC">       12978 :     hash sender_receiver_secret;</span></span>
-<span id="L406"><span class="lineNum">     406</span> <span class="tlaGNC">       12978 :     carrot::make_sender_receiver_secret(shared_secret, ephemeral_pubkey, input_context, sender_receiver_secret);</span></span>
-<span id="L407"><span class="lineNum">     407</span>              : </span>
-<span id="L408"><span class="lineNum">     408</span>              :     // 7. Derive onetime address K_o</span>
-<span id="L409"><span class="lineNum">     409</span> <span class="tlaGNC">       12978 :     carrot::make_onetime_address_coinbase(m_spendPublicKey, sender_receiver_secret, amount, eph_public_key);</span></span>
-<span id="L410"><span class="lineNum">     410</span>              : </span>
-<span id="L411"><span class="lineNum">     411</span>              :     // 8. Derive view tag</span>
-<span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">       12978 :     uint8_t view_tag_full[3];</span></span>
-<span id="L413"><span class="lineNum">     413</span> <span class="tlaGNC">       12978 :     carrot::make_view_tag(shared_secret, input_context, eph_public_key, view_tag_full);</span></span>
-<span id="L414"><span class="lineNum">     414</span> <span class="tlaGNC">       12978 :     view_tag = view_tag_full[0];</span></span>
-<span id="L415"><span class="lineNum">     415</span>              : </span>
-<span id="L416"><span class="lineNum">     416</span> <span class="tlaGNC">       12978 :     return true;</span></span>
-<span id="L417"><span class="lineNum">     417</span> <span class="tlaGNC">       12978 : }</span></span>
-<span id="L418"><span class="lineNum">     418</span>              : </span>
-<span id="L419"><span class="lineNum">     419</span>              : } // namespace p2pool</span>
+<span id="L281"><span class="lineNum">     281</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(1, &quot;Torsion check failed for wallet &quot; &lt;&lt; *this &lt;&lt; &quot;! It will not be compatible with FCMP++.&quot;);</span></span>
+<span id="L282"><span class="lineNum">     282</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L283"><span class="lineNum">     283</span>              : </span>
+<span id="L284"><span class="lineNum">     284</span> <span class="tlaGNC tlaBgGNC">       15937 :         return true;</span></span>
+<span id="L285"><span class="lineNum">     285</span> <span class="tlaGNC">       15937 : }</span></span>
+<span id="L286"><span class="lineNum">     286</span>              : </span>
+<span id="L287"><span class="lineNum">     287</span>              : void Wallet::encode(char (&amp;buf)[ADDRESS_LENGTH]) const</span>
+<span id="L288"><span class="lineNum">     288</span> <span class="tlaUNC tlaBgUNC">           0 : {</span></span>
+<span id="L289"><span class="lineNum">     289</span> <span class="tlaUNC">           0 :         uint8_t data[73]; // Max: 8 bytes varint + 32 spend + 32 view + 4 checksum</span></span>
+<span id="L290"><span class="lineNum">     290</span> <span class="tlaUNC">           0 :         int data_index = 0;</span></span>
+<span id="L291"><span class="lineNum">     291</span>              :         </span>
+<span id="L292"><span class="lineNum">     292</span>              :         // Write prefix as varint</span>
+<span id="L293"><span class="lineNum">     293</span> <span class="tlaUNC">           0 :         uint64_t addr_prefix = m_prefix;</span></span>
+<span id="L294"><span class="lineNum">     294</span> <span class="tlaUNC">           0 :         do {</span></span>
+<span id="L295"><span class="lineNum">     295</span> <span class="tlaUNC">           0 :                 data[data_index++] = static_cast&lt;uint8_t&gt;((addr_prefix &amp; 0x7F) | (addr_prefix &gt; 0x7F ? 0x80 : 0));</span></span>
+<span id="L296"><span class="lineNum">     296</span> <span class="tlaUNC">           0 :                 addr_prefix &gt;&gt;= 7;</span></span>
+<span id="L297"><span class="lineNum">     297</span> <span class="tlaUNC">           0 :         } while (addr_prefix);</span></span>
+<span id="L298"><span class="lineNum">     298</span>              :         </span>
+<span id="L299"><span class="lineNum">     299</span>              :         // Write public keys</span>
+<span id="L300"><span class="lineNum">     300</span> <span class="tlaUNC">           0 :         memcpy(data + data_index, m_spendPublicKey.h, HASH_SIZE);</span></span>
+<span id="L301"><span class="lineNum">     301</span> <span class="tlaUNC">           0 :         memcpy(data + data_index + HASH_SIZE, m_viewPublicKey.h, HASH_SIZE);</span></span>
+<span id="L302"><span class="lineNum">     302</span>              :         </span>
+<span id="L303"><span class="lineNum">     303</span>              :         // Calculate and write checksum</span>
+<span id="L304"><span class="lineNum">     304</span> <span class="tlaUNC">           0 :         uint8_t md[200];</span></span>
+<span id="L305"><span class="lineNum">     305</span> <span class="tlaUNC">           0 :         const int pre_checksum_size = static_cast&lt;int&gt;(data_index + HASH_SIZE * 2);</span></span>
+<span id="L306"><span class="lineNum">     306</span> <span class="tlaUNC">           0 :         keccak(data, pre_checksum_size, md);</span></span>
+<span id="L307"><span class="lineNum">     307</span> <span class="tlaUNC">           0 :         memcpy(data + pre_checksum_size, md, sizeof(m_checksum));</span></span>
+<span id="L308"><span class="lineNum">     308</span>              : </span>
+<span id="L309"><span class="lineNum">     309</span> <span class="tlaUNC">           0 :         const int total_data_size = static_cast&lt;int&gt;(pre_checksum_size + sizeof(m_checksum));</span></span>
+<span id="L310"><span class="lineNum">     310</span>              : </span>
+<span id="L311"><span class="lineNum">     311</span>              :         // Encode to base58 with variable-length data</span>
+<span id="L312"><span class="lineNum">     312</span> <span class="tlaUNC">           0 :         const int actual_num_full_blocks = static_cast&lt;int&gt;(total_data_size / sizeof(uint64_t));</span></span>
+<span id="L313"><span class="lineNum">     313</span> <span class="tlaUNC">           0 :         const int actual_last_block_bytes = static_cast&lt;int&gt;(total_data_size % sizeof(uint64_t));</span></span>
+<span id="L314"><span class="lineNum">     314</span>              : </span>
+<span id="L315"><span class="lineNum">     315</span> <span class="tlaUNC">           0 :         int buf_index = 0;</span></span>
+<span id="L316"><span class="lineNum">     316</span> <span class="tlaUNC">           0 :         for (int i = 0; i &lt;= actual_num_full_blocks; ++i) {</span></span>
+<span id="L317"><span class="lineNum">     317</span> <span class="tlaUNC">           0 :                 const bool is_last_block = (i == actual_num_full_blocks);</span></span>
+<span id="L318"><span class="lineNum">     318</span> <span class="tlaUNC">           0 :                 const int bytes_in_block = is_last_block ? actual_last_block_bytes : static_cast&lt;int&gt;(sizeof(uint64_t));</span></span>
+<span id="L319"><span class="lineNum">     319</span>              : </span>
+<span id="L320"><span class="lineNum">     320</span> <span class="tlaUNC">           0 :                 if (is_last_block &amp;&amp; bytes_in_block == 0) break;</span></span>
+<span id="L321"><span class="lineNum">     321</span>              : </span>
+<span id="L322"><span class="lineNum">     322</span>              :                 // Read bytes in big-endian</span>
+<span id="L323"><span class="lineNum">     323</span> <span class="tlaUNC">           0 :                 uint64_t n = 0;</span></span>
+<span id="L324"><span class="lineNum">     324</span> <span class="tlaUNC">           0 :                 for (int j = 0; j &lt; bytes_in_block; ++j) {</span></span>
+<span id="L325"><span class="lineNum">     325</span> <span class="tlaUNC">           0 :                         n = (n &lt;&lt; 8) | data[i * sizeof(uint64_t) + j];</span></span>
+<span id="L326"><span class="lineNum">     326</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L327"><span class="lineNum">     327</span>              : </span>
+<span id="L328"><span class="lineNum">     328</span>              :                 // Determine output block size - use block_sizes directly indexed by byte count</span>
+<span id="L329"><span class="lineNum">     329</span> <span class="tlaUNC">           0 :                 const int output_block_size = is_last_block ? block_sizes[actual_last_block_bytes] : block_sizes.back();</span></span>
+<span id="L330"><span class="lineNum">     330</span>              :                 </span>
+<span id="L331"><span class="lineNum">     331</span>              :                 // Encode to base58</span>
+<span id="L332"><span class="lineNum">     332</span> <span class="tlaUNC">           0 :                 for (int j = output_block_size - 1; j &gt;= 0; --j) {</span></span>
+<span id="L333"><span class="lineNum">     333</span> <span class="tlaUNC">           0 :                         const int digit = static_cast&lt;int&gt;(n % alphabet_size);</span></span>
+<span id="L334"><span class="lineNum">     334</span> <span class="tlaUNC">           0 :                         n /= alphabet_size;</span></span>
+<span id="L335"><span class="lineNum">     335</span> <span class="tlaUNC">           0 :                         buf[buf_index + j] = alphabet[digit];</span></span>
+<span id="L336"><span class="lineNum">     336</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L337"><span class="lineNum">     337</span> <span class="tlaUNC">           0 :                 buf_index += output_block_size;</span></span>
+<span id="L338"><span class="lineNum">     338</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L339"><span class="lineNum">     339</span>              :         </span>
+<span id="L340"><span class="lineNum">     340</span>              :         // Null terminate</span>
+<span id="L341"><span class="lineNum">     341</span> <span class="tlaUNC">           0 :         buf[buf_index] = '\0';</span></span>
+<span id="L342"><span class="lineNum">     342</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L343"><span class="lineNum">     343</span>              : </span>
+<span id="L344"><span class="lineNum">     344</span>              : bool Wallet::get_eph_public_key(const hash&amp; txkey_sec, size_t output_index, hash&amp; eph_public_key, uint8_t&amp; view_tag, const uint8_t* expected_view_tag) const</span>
+<span id="L345"><span class="lineNum">     345</span> <span class="tlaGNC tlaBgGNC">          19 : {</span></span>
+<span id="L346"><span class="lineNum">     346</span> <span class="tlaGNC">          19 :         hash derivation;</span></span>
+<span id="L347"><span class="lineNum">     347</span> <span class="tlaGNC">          19 :         if (!generate_key_derivation(m_viewPublicKey, txkey_sec, output_index, derivation, view_tag)) {</span></span>
+<span id="L348"><span class="lineNum">     348</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
+<span id="L349"><span class="lineNum">     349</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L350"><span class="lineNum">     350</span>              : </span>
+<span id="L351"><span class="lineNum">     351</span> <span class="tlaGNC tlaBgGNC">          19 :         if (expected_view_tag &amp;&amp; (view_tag != *expected_view_tag)) {</span></span>
+<span id="L352"><span class="lineNum">     352</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
+<span id="L353"><span class="lineNum">     353</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L354"><span class="lineNum">     354</span>              : </span>
+<span id="L355"><span class="lineNum">     355</span> <span class="tlaGNC tlaBgGNC">          19 :         if (!derive_public_key(derivation, output_index, m_spendPublicKey, eph_public_key)) {</span></span>
+<span id="L356"><span class="lineNum">     356</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
+<span id="L357"><span class="lineNum">     357</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L358"><span class="lineNum">     358</span>              : </span>
+<span id="L359"><span class="lineNum">     359</span> <span class="tlaGNC tlaBgGNC">          19 :         return true;</span></span>
+<span id="L360"><span class="lineNum">     360</span> <span class="tlaGNC">          19 : }</span></span>
+<span id="L361"><span class="lineNum">     361</span>              : </span>
+<span id="L362"><span class="lineNum">     362</span>              : bool Wallet::torsion_check() const</span>
+<span id="L363"><span class="lineNum">     363</span> <span class="tlaGNC">       15939 : {</span></span>
+<span id="L364"><span class="lineNum">     364</span> <span class="tlaGNC">       15939 :         ge_p3 p1, p2;</span></span>
+<span id="L365"><span class="lineNum">     365</span> <span class="tlaGNC">       15939 :         if ((ge_frombytes_vartime(&amp;p1, m_spendPublicKey.h) != 0) || (ge_frombytes_vartime(&amp;p2, m_viewPublicKey.h) != 0)) {</span></span>
+<span id="L366"><span class="lineNum">     366</span> <span class="tlaUNC tlaBgUNC">           0 :                 return false;</span></span>
+<span id="L367"><span class="lineNum">     367</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L368"><span class="lineNum">     368</span>              : </span>
+<span id="L369"><span class="lineNum">     369</span> <span class="tlaGNC tlaBgGNC">       15939 :         return</span></span>
+<span id="L370"><span class="lineNum">     370</span> <span class="tlaGNC">       15939 :                 !fcmp_pp::mul8_is_identity(p1) &amp;&amp;</span></span>
+<span id="L371"><span class="lineNum">     371</span> <span class="tlaGNC">       15939 :                 !fcmp_pp::mul8_is_identity(p2) &amp;&amp;</span></span>
+<span id="L372"><span class="lineNum">     372</span> <span class="tlaGNC">       15939 :                 fcmp_pp::torsion_check_vartime(p1) &amp;&amp;</span></span>
+<span id="L373"><span class="lineNum">     373</span> <span class="tlaGNC">       15939 :                 fcmp_pp::torsion_check_vartime(p2);</span></span>
+<span id="L374"><span class="lineNum">     374</span> <span class="tlaGNC">       15939 : }</span></span>
+<span id="L375"><span class="lineNum">     375</span>              : </span>
+<span id="L376"><span class="lineNum">     376</span>              : bool Wallet::get_eph_public_key_carrot(const hash&amp; tx_key_seed, uint64_t height, size_t output_index, uint64_t amount, hash&amp; eph_public_key, uint8_t&amp; view_tag) const</span>
+<span id="L377"><span class="lineNum">     377</span> <span class="tlaGNC">       12978 : {</span></span>
+<span id="L378"><span class="lineNum">     378</span> <span class="tlaGNC">       12978 :     (void)output_index;  // Not used - anchor derived from spend pubkey, not position</span></span>
+<span id="L379"><span class="lineNum">     379</span>              : </span>
+<span id="L380"><span class="lineNum">     380</span>              :     // 1. Build input_context from height</span>
+<span id="L381"><span class="lineNum">     381</span> <span class="tlaGNC">       12978 :     uint8_t input_context[33];</span></span>
+<span id="L382"><span class="lineNum">     382</span> <span class="tlaGNC">       12978 :     carrot::make_input_context_coinbase(height, input_context);</span></span>
+<span id="L383"><span class="lineNum">     383</span>              : </span>
+<span id="L384"><span class="lineNum">     384</span>              :     // 2. Derive anchor from wallet's spend public key (position-independent)</span>
+<span id="L385"><span class="lineNum">     385</span> <span class="tlaGNC">       12978 :     uint8_t anchor[16];</span></span>
+<span id="L386"><span class="lineNum">     386</span> <span class="tlaGNC">       12978 :     carrot::derive_deterministic_anchor_from_pubkey(tx_key_seed, m_spendPublicKey, anchor);</span></span>
+<span id="L387"><span class="lineNum">     387</span>              : </span>
+<span id="L388"><span class="lineNum">     388</span>              :     // 3. Derive per-output ephemeral private key d_e from anchor</span>
+<span id="L389"><span class="lineNum">     389</span> <span class="tlaGNC">       12978 :     static const uint8_t null_payment_id[8] = {0};</span></span>
+<span id="L390"><span class="lineNum">     390</span> <span class="tlaGNC">       12978 :     hash ephemeral_privkey;</span></span>
+<span id="L391"><span class="lineNum">     391</span> <span class="tlaGNC">       12978 :     carrot::make_ephemeral_privkey(anchor, input_context, m_spendPublicKey, null_payment_id, ephemeral_privkey);</span></span>
+<span id="L392"><span class="lineNum">     392</span>              : </span>
+<span id="L393"><span class="lineNum">     393</span>              :     // 4. Derive ephemeral public key D_e = d_e * B</span>
+<span id="L394"><span class="lineNum">     394</span> <span class="tlaGNC">       12978 :     hash ephemeral_pubkey;</span></span>
+<span id="L395"><span class="lineNum">     395</span> <span class="tlaGNC">       12978 :     carrot::make_ephemeral_pubkey_mainaddress(ephemeral_privkey, ephemeral_pubkey);</span></span>
+<span id="L396"><span class="lineNum">     396</span>              : </span>
+<span id="L397"><span class="lineNum">     397</span>              :     // 5. Derive shared secret using this wallet's view pubkey</span>
+<span id="L398"><span class="lineNum">     398</span> <span class="tlaGNC">       12978 :     hash shared_secret;</span></span>
+<span id="L399"><span class="lineNum">     399</span> <span class="tlaGNC">       12978 :     if (!carrot::make_shared_secret_sender(ephemeral_privkey, m_viewPublicKey, shared_secret)) {</span></span>
+<span id="L400"><span class="lineNum">     400</span> <span class="tlaUNC tlaBgUNC">           0 :         return false;</span></span>
+<span id="L401"><span class="lineNum">     401</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L402"><span class="lineNum">     402</span>              : </span>
+<span id="L403"><span class="lineNum">     403</span>              :     // 6. Derive sender-receiver secret</span>
+<span id="L404"><span class="lineNum">     404</span> <span class="tlaGNC tlaBgGNC">       12978 :     hash sender_receiver_secret;</span></span>
+<span id="L405"><span class="lineNum">     405</span> <span class="tlaGNC">       12978 :     carrot::make_sender_receiver_secret(shared_secret, ephemeral_pubkey, input_context, sender_receiver_secret);</span></span>
+<span id="L406"><span class="lineNum">     406</span>              : </span>
+<span id="L407"><span class="lineNum">     407</span>              :     // 7. Derive onetime address K_o</span>
+<span id="L408"><span class="lineNum">     408</span> <span class="tlaGNC">       12978 :     carrot::make_onetime_address_coinbase(m_spendPublicKey, sender_receiver_secret, amount, eph_public_key);</span></span>
+<span id="L409"><span class="lineNum">     409</span>              : </span>
+<span id="L410"><span class="lineNum">     410</span>              :     // 8. Derive view tag</span>
+<span id="L411"><span class="lineNum">     411</span> <span class="tlaGNC">       12978 :     uint8_t view_tag_full[3];</span></span>
+<span id="L412"><span class="lineNum">     412</span> <span class="tlaGNC">       12978 :     carrot::make_view_tag(shared_secret, input_context, eph_public_key, view_tag_full);</span></span>
+<span id="L413"><span class="lineNum">     413</span> <span class="tlaGNC">       12978 :     view_tag = view_tag_full[0];</span></span>
+<span id="L414"><span class="lineNum">     414</span>              : </span>
+<span id="L415"><span class="lineNum">     415</span> <span class="tlaGNC">       12978 :     return true;</span></span>
+<span id="L416"><span class="lineNum">     416</span> <span class="tlaGNC">       12978 : }</span></span>
+<span id="L417"><span class="lineNum">     417</span>              : </span>
+<span id="L418"><span class="lineNum">     418</span>              : } // namespace p2pool</span>
         </pre>
               </td>
             </tr>

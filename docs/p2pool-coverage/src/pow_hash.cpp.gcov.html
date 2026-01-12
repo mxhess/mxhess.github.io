@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-12-29 18:49:52</td>
+            <td class="headerValue">2026-01-12 20:14:05</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -506,7 +506,7 @@
 <span id="L444"><span class="lineNum">     444</span> <span class="tlaUNC">           0 :         LOGINFO(1, &quot;event loop stopped&quot;);</span></span>
 <span id="L445"><span class="lineNum">     445</span> <span class="tlaUNC">           0 : }</span></span>
 <span id="L446"><span class="lineNum">     446</span>              : </span>
-<span id="L447"><span class="lineNum">     447</span>              : bool RandomX_Hasher_RPC::calculate(const void* data_ptr, size_t size, uint64_t height, const hash&amp; /*seed*/, hash&amp; h, bool /*force_light_mode*/)</span>
+<span id="L447"><span class="lineNum">     447</span>              : bool RandomX_Hasher_RPC::calculate(const void* data_ptr, size_t size, uint64_t height, const hash&amp; seed, hash&amp; h, bool /*force_light_mode*/)</span>
 <span id="L448"><span class="lineNum">     448</span> <span class="tlaUNC">           0 : {</span></span>
 <span id="L449"><span class="lineNum">     449</span> <span class="tlaUNC">           0 :         MutexLock lock(m_requestMutex);</span></span>
 <span id="L450"><span class="lineNum">     450</span>              : </span>
@@ -518,7 +518,7 @@
 <span id="L456"><span class="lineNum">     456</span> <span class="tlaUNC">           0 :         s &lt;&lt; &quot;{\&quot;jsonrpc\&quot;:\&quot;2.0\&quot;,\&quot;id\&quot;:\&quot;0\&quot;,\&quot;method\&quot;:\&quot;calc_pow\&quot;,\&quot;params\&quot;:{\&quot;major_version\&quot;:&quot; &lt;&lt; major_version &lt;&lt;</span></span>
 <span id="L457"><span class="lineNum">     457</span> <span class="tlaUNC">           0 :                 &quot;,\&quot;height\&quot;:&quot; &lt;&lt; height &lt;&lt;</span></span>
 <span id="L458"><span class="lineNum">     458</span> <span class="tlaUNC">           0 :                 &quot;,\&quot;block_blob\&quot;:\&quot;&quot; &lt;&lt; log::hex_buf(data, size) &lt;&lt; '&quot;' &lt;&lt;</span></span>
-<span id="L459"><span class="lineNum">     459</span> <span class="tlaUNC">           0 :                 &quot;,\&quot;seed_hash\&quot;:\&quot;\&quot;}}&quot; &lt;&lt; '\0';</span></span>
+<span id="L459"><span class="lineNum">     459</span> <span class="tlaUNC">           0 :                 &quot;,\&quot;seed_hash\&quot;:\&quot;&quot; &lt;&lt; seed &lt;&lt; &quot;\&quot;}}&quot; &lt;&lt; '\0';</span></span>
 <span id="L460"><span class="lineNum">     460</span>              : </span>
 <span id="L461"><span class="lineNum">     461</span> <span class="tlaUNC">           0 :         std::atomic&lt;int&gt; result{ 0 };</span></span>
 <span id="L462"><span class="lineNum">     462</span> <span class="tlaUNC">           0 :         std::atomic&lt;bool&gt; done{ false };</span></span>
