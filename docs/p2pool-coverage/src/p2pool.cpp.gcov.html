@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-12 21:51:32</td>
+            <td class="headerValue">2026-01-13 00:36:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
@@ -1525,7 +1525,7 @@
 <span id="L1463"><span class="lineNum">    1463</span> <span class="tlaUNC">           0 :                                             genesis_wait_count++;</span></span>
 <span id="L1464"><span class="lineNum">    1464</span>              : </span>
 <span id="L1465"><span class="lineNum">    1465</span>              :                                             // Genesis node escape: if we created genesis and have no peers, proceed</span>
-<span id="L1466"><span class="lineNum">    1466</span> <span class="tlaUNC">           0 :                                             P2PServer* server = m_p2pServer.load();</span></span>
+<span id="L1466"><span class="lineNum">    1466</span> <span class="tlaUNC">           0 :                                             const P2PServer* server = m_p2pServer.load();</span></span>
 <span id="L1467"><span class="lineNum">    1467</span> <span class="tlaUNC">           0 :                                             if (server &amp;&amp; server-&gt;num_connections() == 0 &amp;&amp; genesis_wait_count &gt;= 6) {</span></span>
 <span id="L1468"><span class="lineNum">    1468</span> <span class="tlaUNC">           0 :                                                 LOGINFO(0, log::LightGreen() &lt;&lt; &quot;########################################&quot;);</span></span>
 <span id="L1469"><span class="lineNum">    1469</span> <span class="tlaUNC">           0 :                                                 LOGINFO(0, log::LightGreen() &lt;&lt; &quot;GENESIS NODE - MINING IS NOW ENABLED&quot;);</span></span>
