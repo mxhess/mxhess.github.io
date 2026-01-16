@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-13 01:54:58</td>
+            <td class="headerValue">2026-01-16 22:39:46</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">66.7&nbsp;%</td>
@@ -153,7 +153,7 @@
 <span id="L91"><span class="lineNum">      91</span>              :         // It's never sent over the network to avoid revealing it to the possible man in the middle</span>
 <span id="L92"><span class="lineNum">      92</span>              :         // Consensus ID can therefore be used as a password to create private P2Pools</span>
 <span id="L93"><span class="lineNum">      93</span> <span class="tlaGNC tlaBgGNC">       22659 :         [[nodiscard]] const std::vector&lt;uint8_t&gt;&amp; consensus_id() const { return m_consensusId; }</span></span>
-<span id="L94"><span class="lineNum">      94</span> <span class="tlaGNC">       45799 :         [[nodiscard]] const hash&amp; consensus_hash() const { return m_consensusHash; }</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaGNC">       45233 :         [[nodiscard]] const hash&amp; consensus_hash() const { return m_consensusHash; }</span></span>
 <span id="L95"><span class="lineNum">      95</span> <span class="tlaGNC">        6487 :         [[nodiscard]] uint64_t chain_window_size() const { return m_chainWindowSize; }</span></span>
 <span id="L96"><span class="lineNum">      96</span> <span class="tlaGNC">       15937 :         [[nodiscard]] static NetworkType network_type() { return s_networkType; }</span></span>
 <span id="L97"><span class="lineNum">      97</span>              :         [[nodiscard]] static uint64_t network_major_version(uint64_t height);</span>
@@ -176,158 +176,167 @@
 <span id="L114"><span class="lineNum">     114</span>              :         void check_and_run_deferred_recovery();</span>
 <span id="L115"><span class="lineNum">     115</span> <span class="tlaUNC tlaBgUNC">           0 :         bool is_in_recovery() const { return m_recoveryMode.load(); }</span></span>
 <span id="L116"><span class="lineNum">     116</span>              : </span>
-<span id="L117"><span class="lineNum">     117</span> <span class="tlaGNC tlaBgGNC">        6722 :         [[nodiscard]] FORCEINLINE difficulty_type difficulty() const { ReadLock lock(m_curDifficultyLock); return m_curDifficulty; }</span></span>
-<span id="L118"><span class="lineNum">     118</span>              :         [[nodiscard]] difficulty_type total_hashes() const;</span>
-<span id="L119"><span class="lineNum">     119</span> <span class="tlaGNC">        6481 :         [[nodiscard]] uint64_t block_time() const { return m_targetBlockTime; }</span></span>
-<span id="L120"><span class="lineNum">     120</span> <span class="tlaUNC tlaBgUNC">           0 :         [[nodiscard]] FORCEINLINE uint64_t miner_count() const { ReadLock lock(m_seenDataLock); return m_seenWallets.size(); }</span></span>
-<span id="L121"><span class="lineNum">     121</span> <span class="tlaUNC">           0 :         [[nodiscard]] FORCEINLINE uint64_t onion_pubkeys_count() const { ReadLock lock(m_seenDataLock); return m_seenOnionPubkeys.size(); }</span></span>
-<span id="L122"><span class="lineNum">     122</span>              :         [[nodiscard]] uint64_t last_updated() const;</span>
-<span id="L123"><span class="lineNum">     123</span> <span class="tlaUNC">           0 :         [[nodiscard]] bool is_ready_to_mine() const { return m_readyToMine.load(); }</span></span>
-<span id="L124"><span class="lineNum">     124</span> <span class="tlaUNC">           0 :         void set_ready_to_mine(bool ready) { m_readyToMine.store(ready); }</span></span>
-<span id="L125"><span class="lineNum">     125</span>              :         [[nodiscard]] bool is_default() const;</span>
-<span id="L126"><span class="lineNum">     126</span>              :         [[nodiscard]] bool is_mini() const;</span>
-<span id="L127"><span class="lineNum">     127</span>              :         [[nodiscard]] bool is_nano() const;</span>
-<span id="L128"><span class="lineNum">     128</span>              :         [[nodiscard]] uint64_t bottom_height(const PoolBlock* tip) const;</span>
-<span id="L129"><span class="lineNum">     129</span>              : </span>
-<span id="L130"><span class="lineNum">     130</span> <span class="tlaGNC tlaBgGNC">           1 :         [[nodiscard]] const PoolBlock* chainTip() const { return m_chainTip; }</span></span>
-<span id="L131"><span class="lineNum">     131</span> <span class="tlaGNC">           1 :         [[nodiscard]] bool precalcFinished() const { return m_precalcFinished.load(); }</span></span>
-<span id="L132"><span class="lineNum">     132</span>              : </span>
-<span id="L133"><span class="lineNum">     133</span>              :         [[nodiscard]] bool p2pool_update_available() const;</span>
+<span id="L117"><span class="lineNum">     117</span>              :         // Mainchain reorg handling</span>
+<span id="L118"><span class="lineNum">     118</span>              :         void on_mainchain_reorg(uint64_t split_height, const hash&amp; old_block_hash);</span>
+<span id="L119"><span class="lineNum">     119</span>              :         bool is_in_reorg_grace_period() const;</span>
+<span id="L120"><span class="lineNum">     120</span>              :         static constexpr uint64_t REORG_GRACE_PERIOD_SECONDS = 60;</span>
+<span id="L121"><span class="lineNum">     121</span>              : </span>
+<span id="L122"><span class="lineNum">     122</span> <span class="tlaGNC tlaBgGNC">        6722 :         [[nodiscard]] FORCEINLINE difficulty_type difficulty() const { ReadLock lock(m_curDifficultyLock); return m_curDifficulty; }</span></span>
+<span id="L123"><span class="lineNum">     123</span>              :         [[nodiscard]] difficulty_type total_hashes() const;</span>
+<span id="L124"><span class="lineNum">     124</span> <span class="tlaGNC">        6481 :         [[nodiscard]] uint64_t block_time() const { return m_targetBlockTime; }</span></span>
+<span id="L125"><span class="lineNum">     125</span> <span class="tlaUNC tlaBgUNC">           0 :         [[nodiscard]] FORCEINLINE uint64_t miner_count() const { ReadLock lock(m_seenDataLock); return m_seenWallets.size(); }</span></span>
+<span id="L126"><span class="lineNum">     126</span> <span class="tlaUNC">           0 :         [[nodiscard]] FORCEINLINE uint64_t onion_pubkeys_count() const { ReadLock lock(m_seenDataLock); return m_seenOnionPubkeys.size(); }</span></span>
+<span id="L127"><span class="lineNum">     127</span>              :         [[nodiscard]] uint64_t last_updated() const;</span>
+<span id="L128"><span class="lineNum">     128</span> <span class="tlaUNC">           0 :         [[nodiscard]] bool is_ready_to_mine() const { return m_readyToMine.load(); }</span></span>
+<span id="L129"><span class="lineNum">     129</span> <span class="tlaUNC">           0 :         void set_ready_to_mine(bool ready) { m_readyToMine.store(ready); }</span></span>
+<span id="L130"><span class="lineNum">     130</span>              :         [[nodiscard]] bool is_default() const;</span>
+<span id="L131"><span class="lineNum">     131</span>              :         [[nodiscard]] bool is_mini() const;</span>
+<span id="L132"><span class="lineNum">     132</span>              :         [[nodiscard]] bool is_nano() const;</span>
+<span id="L133"><span class="lineNum">     133</span>              :         [[nodiscard]] uint64_t bottom_height(const PoolBlock* tip) const;</span>
 <span id="L134"><span class="lineNum">     134</span>              : </span>
-<span id="L135"><span class="lineNum">     135</span>              :         [[nodiscard]] std::vector&lt;hash&gt; seen_onion_pubkeys() const;</span>
-<span id="L136"><span class="lineNum">     136</span>              :         void add_onion_pubkeys(const std::vector&lt;hash&gt;&amp; pubkeys);</span>
+<span id="L135"><span class="lineNum">     135</span> <span class="tlaGNC tlaBgGNC">           1 :         [[nodiscard]] const PoolBlock* chainTip() const { return m_chainTip; }</span></span>
+<span id="L136"><span class="lineNum">     136</span> <span class="tlaGNC">           1 :         [[nodiscard]] bool precalcFinished() const { return m_precalcFinished.load(); }</span></span>
 <span id="L137"><span class="lineNum">     137</span>              : </span>
-<span id="L138"><span class="lineNum">     138</span>              : #ifdef P2POOL_UNIT_TESTS</span>
-<span id="L139"><span class="lineNum">     139</span>              :         difficulty_type m_testMainChainDiff;</span>
-<span id="L140"><span class="lineNum">     140</span> <span class="tlaGNC">        9221 :         const unordered_map&lt;hash, PoolBlock*&gt;&amp; blocksById() const { return m_blocksById; }</span></span>
-<span id="L141"><span class="lineNum">     141</span>              : #endif</span>
+<span id="L138"><span class="lineNum">     138</span>              :         [[nodiscard]] bool p2pool_update_available() const;</span>
+<span id="L139"><span class="lineNum">     139</span>              : </span>
+<span id="L140"><span class="lineNum">     140</span>              :         [[nodiscard]] std::vector&lt;hash&gt; seen_onion_pubkeys() const;</span>
+<span id="L141"><span class="lineNum">     141</span>              :         void add_onion_pubkeys(const std::vector&lt;hash&gt;&amp; pubkeys);</span>
 <span id="L142"><span class="lineNum">     142</span>              : </span>
-<span id="L143"><span class="lineNum">     143</span>              :         [[nodiscard]] static bool split_reward(uint64_t reward, const std::vector&lt;MinerShare&gt;&amp; shares, std::vector&lt;uint64_t&gt;&amp; rewards);</span>
-<span id="L144"><span class="lineNum">     144</span>              : </span>
-<span id="L145"><span class="lineNum">     145</span>              : private:</span>
-<span id="L146"><span class="lineNum">     146</span>              :         p2pool* m_pool;</span>
-<span id="L147"><span class="lineNum">     147</span>              :         P2PServer* p2pServer() const;</span>
-<span id="L148"><span class="lineNum">     148</span>              :         static NetworkType s_networkType;</span>
+<span id="L143"><span class="lineNum">     143</span>              : #ifdef P2POOL_UNIT_TESTS</span>
+<span id="L144"><span class="lineNum">     144</span>              :         difficulty_type m_testMainChainDiff;</span>
+<span id="L145"><span class="lineNum">     145</span> <span class="tlaGNC">        9221 :         const unordered_map&lt;hash, PoolBlock*&gt;&amp; blocksById() const { return m_blocksById; }</span></span>
+<span id="L146"><span class="lineNum">     146</span>              : #endif</span>
+<span id="L147"><span class="lineNum">     147</span>              : </span>
+<span id="L148"><span class="lineNum">     148</span>              :         [[nodiscard]] static bool split_reward(uint64_t reward, const std::vector&lt;MinerShare&gt;&amp; shares, std::vector&lt;uint64_t&gt;&amp; rewards);</span>
 <span id="L149"><span class="lineNum">     149</span>              : </span>
 <span id="L150"><span class="lineNum">     150</span>              : private:</span>
-<span id="L151"><span class="lineNum">     151</span>              :         [[nodiscard]] bool get_shares(const PoolBlock* tip, std::vector&lt;MinerShare&gt;&amp; shares, uint64_t* bottom_height = nullptr, bool quiet = false) const;</span>
-<span id="L152"><span class="lineNum">     152</span>              :         [[nodiscard]] bool get_difficulty(const PoolBlock* tip, std::vector&lt;DifficultyData&gt;&amp; difficultyData, difficulty_type&amp; curDifficulty) const;</span>
-<span id="L153"><span class="lineNum">     153</span>              :         void verify_loop(PoolBlock* block);</span>
-<span id="L154"><span class="lineNum">     154</span>              :         void verify(PoolBlock* block);</span>
-<span id="L155"><span class="lineNum">     155</span>              :         void update_chain_tip(PoolBlock* block);</span>
-<span id="L156"><span class="lineNum">     156</span>              :         [[nodiscard]] PoolBlock* get_parent(const PoolBlock* block) const;</span>
-<span id="L157"><span class="lineNum">     157</span>              : </span>
-<span id="L158"><span class="lineNum">     158</span>              :         // Checks if &quot;candidate&quot; has longer (higher difficulty) chain than &quot;block&quot;</span>
-<span id="L159"><span class="lineNum">     159</span>              :         [[nodiscard]] bool is_longer_chain(const PoolBlock* block, const PoolBlock* candidate, bool&amp; is_alternative) const;</span>
-<span id="L160"><span class="lineNum">     160</span>              :         void update_depths(PoolBlock* block);</span>
-<span id="L161"><span class="lineNum">     161</span>              :         void prune_old_blocks();</span>
-<span id="L162"><span class="lineNum">     162</span>              :         bool is_checkpoint_block(const PoolBlock* block) const;</span>
-<span id="L163"><span class="lineNum">     163</span>              : </span>
-<span id="L164"><span class="lineNum">     164</span>              :         [[nodiscard]] bool load_config(const std::string&amp; filename);</span>
-<span id="L165"><span class="lineNum">     165</span>              :         [[nodiscard]] bool check_config() const;</span>
-<span id="L166"><span class="lineNum">     166</span>              : </span>
-<span id="L167"><span class="lineNum">     167</span>              :         void prune_seen_data();</span>
+<span id="L151"><span class="lineNum">     151</span>              :         p2pool* m_pool;</span>
+<span id="L152"><span class="lineNum">     152</span>              :         P2PServer* p2pServer() const;</span>
+<span id="L153"><span class="lineNum">     153</span>              :         static NetworkType s_networkType;</span>
+<span id="L154"><span class="lineNum">     154</span>              : </span>
+<span id="L155"><span class="lineNum">     155</span>              : private:</span>
+<span id="L156"><span class="lineNum">     156</span>              :         [[nodiscard]] bool get_shares(const PoolBlock* tip, std::vector&lt;MinerShare&gt;&amp; shares, uint64_t* bottom_height = nullptr, bool quiet = false) const;</span>
+<span id="L157"><span class="lineNum">     157</span>              :         [[nodiscard]] bool get_difficulty(const PoolBlock* tip, std::vector&lt;DifficultyData&gt;&amp; difficultyData, difficulty_type&amp; curDifficulty) const;</span>
+<span id="L158"><span class="lineNum">     158</span>              :         void verify_loop(PoolBlock* block);</span>
+<span id="L159"><span class="lineNum">     159</span>              :         void verify(PoolBlock* block);</span>
+<span id="L160"><span class="lineNum">     160</span>              :         void update_chain_tip(PoolBlock* block);</span>
+<span id="L161"><span class="lineNum">     161</span>              :         [[nodiscard]] PoolBlock* get_parent(const PoolBlock* block) const;</span>
+<span id="L162"><span class="lineNum">     162</span>              : </span>
+<span id="L163"><span class="lineNum">     163</span>              :         // Checks if &quot;candidate&quot; has longer (higher difficulty) chain than &quot;block&quot;</span>
+<span id="L164"><span class="lineNum">     164</span>              :         [[nodiscard]] bool is_longer_chain(const PoolBlock* block, const PoolBlock* candidate, bool&amp; is_alternative) const;</span>
+<span id="L165"><span class="lineNum">     165</span>              :         void update_depths(PoolBlock* block);</span>
+<span id="L166"><span class="lineNum">     166</span>              :         void prune_old_blocks();</span>
+<span id="L167"><span class="lineNum">     167</span>              :         bool is_checkpoint_block(const PoolBlock* block) const;</span>
 <span id="L168"><span class="lineNum">     168</span>              : </span>
-<span id="L169"><span class="lineNum">     169</span>              :         // Checkpoint system - internal</span>
-<span id="L170"><span class="lineNum">     170</span>              :         void update_checkpoints(uint64_t new_height);</span>
-<span id="L171"><span class="lineNum">     171</span>              :         PoolBlock* find_verified_block_at_height(uint64_t height) const;</span>
-<span id="L172"><span class="lineNum">     172</span>              :         void on_block_rejected(const PoolBlock* block, const char* reason);</span>
-<span id="L173"><span class="lineNum">     173</span>              :         void on_block_accepted();</span>
-<span id="L174"><span class="lineNum">     174</span>              :         void save_checkpoints() const;</span>
-<span id="L175"><span class="lineNum">     175</span>              :         void load_checkpoints();</span>
-<span id="L176"><span class="lineNum">     176</span>              :         bool validate_loaded_checkpoints();</span>
-<span id="L177"><span class="lineNum">     177</span>              : </span>
-<span id="L178"><span class="lineNum">     178</span>              :         mutable uv_rwlock_t m_sidechainLock;</span>
-<span id="L179"><span class="lineNum">     179</span>              :         std::atomic&lt;PoolBlock*&gt; m_chainTip;</span>
-<span id="L180"><span class="lineNum">     180</span>              : </span>
-<span id="L181"><span class="lineNum">     181</span>              :         // Genesis reconciliation</span>
-<span id="L182"><span class="lineNum">     182</span>              :         mutable std::atomic&lt;bool&gt; m_genesisDecisionMade{ false };</span>
-<span id="L183"><span class="lineNum">     183</span>              :         mutable hash m_adoptedGenesisId;</span>
-<span id="L184"><span class="lineNum">     184</span>              :         mutable uint64_t m_adoptedGenesisTimestamp{ 0 };</span>
-<span id="L185"><span class="lineNum">     185</span>              :         mutable uint64_t m_adoptedGenesisHeight{ 0 };</span>
-<span id="L186"><span class="lineNum">     186</span>              :         mutable uint64_t m_adoptedGenesisTime{ 0 };</span>
-<span id="L187"><span class="lineNum">     187</span>              : </span>
-<span id="L188"><span class="lineNum">     188</span>              :         // Sync state - prevents mining/bans during startup</span>
-<span id="L189"><span class="lineNum">     189</span>              :         std::atomic&lt;bool&gt; m_readyToMine{ false };</span>
-<span id="L190"><span class="lineNum">     190</span>              : </span>
-<span id="L191"><span class="lineNum">     191</span>              :         std::map&lt;uint64_t, std::vector&lt;PoolBlock*&gt;&gt; m_blocksByHeight;</span>
-<span id="L192"><span class="lineNum">     192</span>              :         unordered_map&lt;hash, PoolBlock*&gt; m_blocksById;</span>
-<span id="L193"><span class="lineNum">     193</span>              :         unordered_map&lt;root_hash, PoolBlock*&gt; m_blocksByMerkleRoot;</span>
-<span id="L194"><span class="lineNum">     194</span>              : </span>
-<span id="L195"><span class="lineNum">     195</span>              :         mutable ReadWriteLock m_seenDataLock;</span>
-<span id="L196"><span class="lineNum">     196</span>              :         unordered_map&lt;hash, uint64_t&gt; m_seenWallets;</span>
-<span id="L197"><span class="lineNum">     197</span>              :         unordered_map&lt;hash, uint64_t&gt; m_seenOnionPubkeys;</span>
-<span id="L198"><span class="lineNum">     198</span>              :         uint64_t m_seenWalletsLastPruneTime;</span>
+<span id="L169"><span class="lineNum">     169</span>              :         [[nodiscard]] bool load_config(const std::string&amp; filename);</span>
+<span id="L170"><span class="lineNum">     170</span>              :         [[nodiscard]] bool check_config() const;</span>
+<span id="L171"><span class="lineNum">     171</span>              : </span>
+<span id="L172"><span class="lineNum">     172</span>              :         void prune_seen_data();</span>
+<span id="L173"><span class="lineNum">     173</span>              : </span>
+<span id="L174"><span class="lineNum">     174</span>              :         // Checkpoint system - internal</span>
+<span id="L175"><span class="lineNum">     175</span>              :         void update_checkpoints(uint64_t new_height);</span>
+<span id="L176"><span class="lineNum">     176</span>              :         PoolBlock* find_verified_block_at_height(uint64_t height) const;</span>
+<span id="L177"><span class="lineNum">     177</span>              :         void on_block_rejected(const PoolBlock* block, const char* reason);</span>
+<span id="L178"><span class="lineNum">     178</span>              :         void on_block_accepted();</span>
+<span id="L179"><span class="lineNum">     179</span>              :         void save_checkpoints() const;</span>
+<span id="L180"><span class="lineNum">     180</span>              :         void load_checkpoints();</span>
+<span id="L181"><span class="lineNum">     181</span>              :         bool validate_loaded_checkpoints();</span>
+<span id="L182"><span class="lineNum">     182</span>              : </span>
+<span id="L183"><span class="lineNum">     183</span>              :         mutable uv_rwlock_t m_sidechainLock;</span>
+<span id="L184"><span class="lineNum">     184</span>              :         std::atomic&lt;PoolBlock*&gt; m_chainTip;</span>
+<span id="L185"><span class="lineNum">     185</span>              : </span>
+<span id="L186"><span class="lineNum">     186</span>              :         // Genesis reconciliation</span>
+<span id="L187"><span class="lineNum">     187</span>              :         mutable std::atomic&lt;bool&gt; m_genesisDecisionMade{ false };</span>
+<span id="L188"><span class="lineNum">     188</span>              :         mutable hash m_adoptedGenesisId;</span>
+<span id="L189"><span class="lineNum">     189</span>              :         mutable uint64_t m_adoptedGenesisTimestamp{ 0 };</span>
+<span id="L190"><span class="lineNum">     190</span>              :         mutable uint64_t m_adoptedGenesisHeight{ 0 };</span>
+<span id="L191"><span class="lineNum">     191</span>              :         mutable uint64_t m_adoptedGenesisTime{ 0 };</span>
+<span id="L192"><span class="lineNum">     192</span>              : </span>
+<span id="L193"><span class="lineNum">     193</span>              :         // Sync state - prevents mining/bans during startup</span>
+<span id="L194"><span class="lineNum">     194</span>              :         std::atomic&lt;bool&gt; m_readyToMine{ false };</span>
+<span id="L195"><span class="lineNum">     195</span>              : </span>
+<span id="L196"><span class="lineNum">     196</span>              :         std::map&lt;uint64_t, std::vector&lt;PoolBlock*&gt;&gt; m_blocksByHeight;</span>
+<span id="L197"><span class="lineNum">     197</span>              :         unordered_map&lt;hash, PoolBlock*&gt; m_blocksById;</span>
+<span id="L198"><span class="lineNum">     198</span>              :         unordered_map&lt;root_hash, PoolBlock*&gt; m_blocksByMerkleRoot;</span>
 <span id="L199"><span class="lineNum">     199</span>              : </span>
-<span id="L200"><span class="lineNum">     200</span>              :         // Used to quickly cut off multiple broadcasts of the same block by different peers. Only the first broadcast will be processed.</span>
-<span id="L201"><span class="lineNum">     201</span>              :         uv_mutex_t m_incomingBlocksLock;</span>
-<span id="L202"><span class="lineNum">     202</span>              :         unordered_map&lt;PoolBlock::full_id, uint64_t&gt; m_incomingBlocks;</span>
-<span id="L203"><span class="lineNum">     203</span>              : </span>
-<span id="L204"><span class="lineNum">     204</span>              :         std::vector&lt;DifficultyData&gt; m_difficultyData;</span>
-<span id="L205"><span class="lineNum">     205</span>              : </span>
-<span id="L206"><span class="lineNum">     206</span>              :         std::string m_poolName;</span>
-<span id="L207"><span class="lineNum">     207</span>              :         const Wallet* m_devWallet;</span>
-<span id="L208"><span class="lineNum">     208</span>              :         std::string m_poolPassword;</span>
-<span id="L209"><span class="lineNum">     209</span>              :         uint64_t m_targetBlockTime;</span>
-<span id="L210"><span class="lineNum">     210</span>              :         difficulty_type m_minDifficulty;</span>
-<span id="L211"><span class="lineNum">     211</span>              :         uint64_t m_chainWindowSize;</span>
-<span id="L212"><span class="lineNum">     212</span>              :         uint64_t m_unclePenalty;</span>
-<span id="L213"><span class="lineNum">     213</span>              : </span>
-<span id="L214"><span class="lineNum">     214</span>              :         std::vector&lt;uint8_t&gt; m_consensusId;</span>
-<span id="L215"><span class="lineNum">     215</span>              :         std::string m_consensusIdDisplayStr;</span>
-<span id="L216"><span class="lineNum">     216</span>              : </span>
-<span id="L217"><span class="lineNum">     217</span>              :         mutable uv_rwlock_t m_curDifficultyLock;</span>
-<span id="L218"><span class="lineNum">     218</span>              :         difficulty_type m_curDifficulty;</span>
-<span id="L219"><span class="lineNum">     219</span>              : </span>
-<span id="L220"><span class="lineNum">     220</span>              :         uv_rwlock_t m_watchBlockLock;</span>
-<span id="L221"><span class="lineNum">     221</span>              :         ChainMain m_watchBlock;</span>
-<span id="L222"><span class="lineNum">     222</span>              :         hash m_watchBlockMerkleRoot;</span>
-<span id="L223"><span class="lineNum">     223</span>              : </span>
-<span id="L224"><span class="lineNum">     224</span>              :         uv_cond_t m_precalcJobsCond;</span>
-<span id="L225"><span class="lineNum">     225</span>              :         uv_mutex_t m_precalcJobsMutex;</span>
-<span id="L226"><span class="lineNum">     226</span>              : </span>
-<span id="L227"><span class="lineNum">     227</span>              :         std::vector&lt;const PoolBlock*&gt; m_precalcJobs;</span>
-<span id="L228"><span class="lineNum">     228</span>              :         std::vector&lt;std::thread&gt; m_precalcWorkers;</span>
-<span id="L229"><span class="lineNum">     229</span>              :         unordered_set&lt;size_t&gt;* m_uniquePrecalcInputs;</span>
-<span id="L230"><span class="lineNum">     230</span>              : </span>
-<span id="L231"><span class="lineNum">     231</span>              :         std::atomic&lt;bool&gt; m_precalcFinished;</span>
-<span id="L232"><span class="lineNum">     232</span>              : </span>
-<span id="L233"><span class="lineNum">     233</span>              : #ifdef DEV_TEST_SYNC</span>
-<span id="L234"><span class="lineNum">     234</span>              :         uint64_t m_firstPruneTime;</span>
-<span id="L235"><span class="lineNum">     235</span>              : #endif</span>
-<span id="L236"><span class="lineNum">     236</span>              : </span>
-<span id="L237"><span class="lineNum">     237</span>              :         // Divergence detection</span>
-<span id="L238"><span class="lineNum">     238</span>              :         static constexpr uint32_t DIVERGENCE_THRESHOLD = 10;</span>
-<span id="L239"><span class="lineNum">     239</span>              :         uint32_t m_externalBlockFailures;</span>
-<span id="L240"><span class="lineNum">     240</span>              : </span>
-<span id="L241"><span class="lineNum">     241</span>              :         // Checkpoint system</span>
-<span id="L242"><span class="lineNum">     242</span>              :         std::vector&lt;Checkpoint&gt; m_checkpoints;</span>
-<span id="L243"><span class="lineNum">     243</span>              :         mutable uv_rwlock_t m_checkpointsLock;</span>
-<span id="L244"><span class="lineNum">     244</span>              :         std::atomic&lt;bool&gt; m_recoveryMode{false};</span>
-<span id="L245"><span class="lineNum">     245</span>              :         std::atomic&lt;uint64_t&gt; m_pendingRecoveryHeight{0};</span>
-<span id="L246"><span class="lineNum">     246</span>              :         bool m_checkpointsNeedValidation{false};</span>
-<span id="L247"><span class="lineNum">     247</span>              : </span>
-<span id="L248"><span class="lineNum">     248</span>              :         hash m_consensusHash;</span>
-<span id="L249"><span class="lineNum">     249</span>              : </span>
-<span id="L250"><span class="lineNum">     250</span>              :         void launch_precalc(const PoolBlock* block);</span>
-<span id="L251"><span class="lineNum">     251</span>              :         void precalc_worker();</span>
-<span id="L252"><span class="lineNum">     252</span>              :         void finish_precalc();</span>
-<span id="L253"><span class="lineNum">     253</span>              : };</span>
-<span id="L254"><span class="lineNum">     254</span>              : </span>
-<span id="L255"><span class="lineNum">     255</span>              : } // namespace p2pool</span>
+<span id="L200"><span class="lineNum">     200</span>              :         mutable ReadWriteLock m_seenDataLock;</span>
+<span id="L201"><span class="lineNum">     201</span>              :         unordered_map&lt;hash, uint64_t&gt; m_seenWallets;</span>
+<span id="L202"><span class="lineNum">     202</span>              :         unordered_map&lt;hash, uint64_t&gt; m_seenOnionPubkeys;</span>
+<span id="L203"><span class="lineNum">     203</span>              :         uint64_t m_seenWalletsLastPruneTime;</span>
+<span id="L204"><span class="lineNum">     204</span>              : </span>
+<span id="L205"><span class="lineNum">     205</span>              :         // Used to quickly cut off multiple broadcasts of the same block by different peers. Only the first broadcast will be processed.</span>
+<span id="L206"><span class="lineNum">     206</span>              :         uv_mutex_t m_incomingBlocksLock;</span>
+<span id="L207"><span class="lineNum">     207</span>              :         unordered_map&lt;PoolBlock::full_id, uint64_t&gt; m_incomingBlocks;</span>
+<span id="L208"><span class="lineNum">     208</span>              : </span>
+<span id="L209"><span class="lineNum">     209</span>              :         std::vector&lt;DifficultyData&gt; m_difficultyData;</span>
+<span id="L210"><span class="lineNum">     210</span>              : </span>
+<span id="L211"><span class="lineNum">     211</span>              :         std::string m_poolName;</span>
+<span id="L212"><span class="lineNum">     212</span>              :         const Wallet* m_devWallet;</span>
+<span id="L213"><span class="lineNum">     213</span>              :         std::string m_poolPassword;</span>
+<span id="L214"><span class="lineNum">     214</span>              :         uint64_t m_targetBlockTime;</span>
+<span id="L215"><span class="lineNum">     215</span>              :         difficulty_type m_minDifficulty;</span>
+<span id="L216"><span class="lineNum">     216</span>              :         uint64_t m_chainWindowSize;</span>
+<span id="L217"><span class="lineNum">     217</span>              :         uint64_t m_unclePenalty;</span>
+<span id="L218"><span class="lineNum">     218</span>              : </span>
+<span id="L219"><span class="lineNum">     219</span>              :         std::vector&lt;uint8_t&gt; m_consensusId;</span>
+<span id="L220"><span class="lineNum">     220</span>              :         std::string m_consensusIdDisplayStr;</span>
+<span id="L221"><span class="lineNum">     221</span>              : </span>
+<span id="L222"><span class="lineNum">     222</span>              :         mutable uv_rwlock_t m_curDifficultyLock;</span>
+<span id="L223"><span class="lineNum">     223</span>              :         difficulty_type m_curDifficulty;</span>
+<span id="L224"><span class="lineNum">     224</span>              : </span>
+<span id="L225"><span class="lineNum">     225</span>              :         uv_rwlock_t m_watchBlockLock;</span>
+<span id="L226"><span class="lineNum">     226</span>              :         ChainMain m_watchBlock;</span>
+<span id="L227"><span class="lineNum">     227</span>              :         hash m_watchBlockMerkleRoot;</span>
+<span id="L228"><span class="lineNum">     228</span>              : </span>
+<span id="L229"><span class="lineNum">     229</span>              :         uv_cond_t m_precalcJobsCond;</span>
+<span id="L230"><span class="lineNum">     230</span>              :         uv_mutex_t m_precalcJobsMutex;</span>
+<span id="L231"><span class="lineNum">     231</span>              : </span>
+<span id="L232"><span class="lineNum">     232</span>              :         std::vector&lt;const PoolBlock*&gt; m_precalcJobs;</span>
+<span id="L233"><span class="lineNum">     233</span>              :         std::vector&lt;std::thread&gt; m_precalcWorkers;</span>
+<span id="L234"><span class="lineNum">     234</span>              :         unordered_set&lt;size_t&gt;* m_uniquePrecalcInputs;</span>
+<span id="L235"><span class="lineNum">     235</span>              : </span>
+<span id="L236"><span class="lineNum">     236</span>              :         std::atomic&lt;bool&gt; m_precalcFinished;</span>
+<span id="L237"><span class="lineNum">     237</span>              : </span>
+<span id="L238"><span class="lineNum">     238</span>              : #ifdef DEV_TEST_SYNC</span>
+<span id="L239"><span class="lineNum">     239</span>              :         uint64_t m_firstPruneTime;</span>
+<span id="L240"><span class="lineNum">     240</span>              : #endif</span>
+<span id="L241"><span class="lineNum">     241</span>              : </span>
+<span id="L242"><span class="lineNum">     242</span>              :         // Divergence detection</span>
+<span id="L243"><span class="lineNum">     243</span>              :         static constexpr uint32_t DIVERGENCE_THRESHOLD = 10;</span>
+<span id="L244"><span class="lineNum">     244</span>              :         uint32_t m_externalBlockFailures;</span>
+<span id="L245"><span class="lineNum">     245</span>              : </span>
+<span id="L246"><span class="lineNum">     246</span>              :         // Checkpoint system</span>
+<span id="L247"><span class="lineNum">     247</span>              :         std::vector&lt;Checkpoint&gt; m_checkpoints;</span>
+<span id="L248"><span class="lineNum">     248</span>              :         mutable uv_rwlock_t m_checkpointsLock;</span>
+<span id="L249"><span class="lineNum">     249</span>              :         std::atomic&lt;bool&gt; m_recoveryMode{false};</span>
+<span id="L250"><span class="lineNum">     250</span>              :         std::atomic&lt;uint64_t&gt; m_pendingRecoveryHeight{0};</span>
+<span id="L251"><span class="lineNum">     251</span>              :         bool m_checkpointsNeedValidation{false};</span>
+<span id="L252"><span class="lineNum">     252</span>              : </span>
+<span id="L253"><span class="lineNum">     253</span>              :         // Mainchain reorg tracking</span>
+<span id="L254"><span class="lineNum">     254</span>              :         std::atomic&lt;uint64_t&gt; m_reorgGracePeriodEnd{0};</span>
+<span id="L255"><span class="lineNum">     255</span>              :         std::atomic&lt;uint64_t&gt; m_lastReorgHeight{0};</span>
 <span id="L256"><span class="lineNum">     256</span>              : </span>
-<span id="L257"><span class="lineNum">     257</span>              : namespace robin_hood {</span>
+<span id="L257"><span class="lineNum">     257</span>              :         hash m_consensusHash;</span>
 <span id="L258"><span class="lineNum">     258</span>              : </span>
-<span id="L259"><span class="lineNum">     259</span>              :         template&lt;&gt;</span>
-<span id="L260"><span class="lineNum">     260</span>              :         struct hash&lt;p2pool::MinerShare&gt;</span>
-<span id="L261"><span class="lineNum">     261</span>              :         {</span>
-<span id="L262"><span class="lineNum">     262</span>              :                 FORCEINLINE size_t operator()(const p2pool::MinerShare&amp; value) const noexcept</span>
-<span id="L263"><span class="lineNum">     263</span> <span class="tlaGNC">    10591831 :                 {</span></span>
-<span id="L264"><span class="lineNum">     264</span> <span class="tlaGNC">    10591831 :                         return hash_bytes(value.m_wallet-&gt;spend_public_key().h, p2pool::HASH_SIZE);</span></span>
-<span id="L265"><span class="lineNum">     265</span> <span class="tlaGNC">    10591831 :                 }</span></span>
-<span id="L266"><span class="lineNum">     266</span>              :         };</span>
+<span id="L259"><span class="lineNum">     259</span>              :         void launch_precalc(const PoolBlock* block);</span>
+<span id="L260"><span class="lineNum">     260</span>              :         void precalc_worker();</span>
+<span id="L261"><span class="lineNum">     261</span>              :         void finish_precalc();</span>
+<span id="L262"><span class="lineNum">     262</span>              : };</span>
+<span id="L263"><span class="lineNum">     263</span>              : </span>
+<span id="L264"><span class="lineNum">     264</span>              : } // namespace p2pool</span>
+<span id="L265"><span class="lineNum">     265</span>              : </span>
+<span id="L266"><span class="lineNum">     266</span>              : namespace robin_hood {</span>
 <span id="L267"><span class="lineNum">     267</span>              : </span>
-<span id="L268"><span class="lineNum">     268</span>              : } // namespace robin_hood</span>
+<span id="L268"><span class="lineNum">     268</span>              :         template&lt;&gt;</span>
+<span id="L269"><span class="lineNum">     269</span>              :         struct hash&lt;p2pool::MinerShare&gt;</span>
+<span id="L270"><span class="lineNum">     270</span>              :         {</span>
+<span id="L271"><span class="lineNum">     271</span>              :                 FORCEINLINE size_t operator()(const p2pool::MinerShare&amp; value) const noexcept</span>
+<span id="L272"><span class="lineNum">     272</span> <span class="tlaGNC">    10591831 :                 {</span></span>
+<span id="L273"><span class="lineNum">     273</span> <span class="tlaGNC">    10591831 :                         return hash_bytes(value.m_wallet-&gt;spend_public_key().h, p2pool::HASH_SIZE);</span></span>
+<span id="L274"><span class="lineNum">     274</span> <span class="tlaGNC">    10591831 :                 }</span></span>
+<span id="L275"><span class="lineNum">     275</span>              :         };</span>
+<span id="L276"><span class="lineNum">     276</span>              : </span>
+<span id="L277"><span class="lineNum">     277</span>              : } // namespace robin_hood</span>
         </pre>
               </td>
             </tr>

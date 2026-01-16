@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-13 01:54:58</td>
+            <td class="headerValue">2026-01-16 22:39:46</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryMed">78.1&nbsp;%</td>
@@ -226,7 +226,7 @@
 <span id="L164"><span class="lineNum">     164</span>              : {</span>
 <span id="L165"><span class="lineNum">     165</span>              :         uint8_t h[HASH_SIZE];</span>
 <span id="L166"><span class="lineNum">     166</span>              : </span>
-<span id="L167"><span class="lineNum">     167</span> <span class="tlaGNC tlaBgGNC">     2169921 :         FORCEINLINE constexpr hash() : h{} {}</span></span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaGNC tlaBgGNC">     2075613 :         FORCEINLINE constexpr hash() : h{} {}</span></span>
 <span id="L168"><span class="lineNum">     168</span>              : </span>
 <span id="L169"><span class="lineNum">     169</span> <span class="tlaUNC tlaBgUNC">           0 :         constexpr hash(std::initializer_list&lt;uint8_t&gt; l) : h{} {</span></span>
 <span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC">           0 :                 auto it = l.begin();</span></span>
@@ -272,7 +272,7 @@
 <span id="L210"><span class="lineNum">     210</span> <span class="tlaGNC">       15993 :         }</span></span>
 <span id="L211"><span class="lineNum">     211</span>              : </span>
 <span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">       15405 :         FORCEINLINE uint64_t* u64() { return reinterpret_cast&lt;uint64_t*&gt;(h); }</span></span>
-<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">   340313652 :         FORCEINLINE const uint64_t* u64() const { return reinterpret_cast&lt;const uint64_t*&gt;(h); }</span></span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">   340313653 :         FORCEINLINE const uint64_t* u64() const { return reinterpret_cast&lt;const uint64_t*&gt;(h); }</span></span>
 <span id="L214"><span class="lineNum">     214</span>              : </span>
 <span id="L215"><span class="lineNum">     215</span>              :         template&lt;int index&gt;</span>
 <span id="L216"><span class="lineNum">     216</span>              :         FORCEINLINE constexpr uint64_t u64() const</span>
@@ -296,8 +296,8 @@
 <span id="L234"><span class="lineNum">     234</span>              : </span>
 <span id="L235"><span class="lineNum">     235</span>              : struct root_hash : public hash</span>
 <span id="L236"><span class="lineNum">     236</span>              : {</span>
-<span id="L237"><span class="lineNum">     237</span> <span class="tlaGNC tlaBgGNC">       41787 :         FORCEINLINE root_hash() : hash() {}</span></span>
-<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">       45933 :         explicit FORCEINLINE root_hash(const hash&amp; h) : hash(h) {}</span></span>
+<span id="L237"><span class="lineNum">     237</span> <span class="tlaGNC tlaBgGNC">       41362 :         FORCEINLINE root_hash() : hash() {}</span></span>
+<span id="L238"><span class="lineNum">     238</span> <span class="tlaGNC">       45752 :         explicit FORCEINLINE root_hash(const hash&amp; h) : hash(h) {}</span></span>
 <span id="L239"><span class="lineNum">     239</span>              : };</span>
 <span id="L240"><span class="lineNum">     240</span>              : </span>
 <span id="L241"><span class="lineNum">     241</span>              : static_assert(sizeof(hash) == HASH_SIZE, &quot;struct hash has invalid size, check your compiler options&quot;);</span>
@@ -506,15 +506,15 @@
 <span id="L444"><span class="lineNum">     444</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L445"><span class="lineNum">     445</span>              : </span>
 <span id="L446"><span class="lineNum">     446</span>              :         FORCEINLINE operator hash() const</span>
-<span id="L447"><span class="lineNum">     447</span> <span class="tlaGNC tlaBgGNC">       91465 :         {</span></span>
-<span id="L448"><span class="lineNum">     448</span> <span class="tlaGNC">       91465 :                 const uint32_t i = m_index;</span></span>
+<span id="L447"><span class="lineNum">     447</span> <span class="tlaGNC tlaBgGNC">       91461 :         {</span></span>
+<span id="L448"><span class="lineNum">     448</span> <span class="tlaGNC">       91461 :                 const uint32_t i = m_index;</span></span>
 <span id="L449"><span class="lineNum">     449</span>              : </span>
-<span id="L450"><span class="lineNum">     450</span> <span class="tlaGNC">       91465 :                 if (i == std::numeric_limits&lt;uint32_t&gt;::max()) {</span></span>
+<span id="L450"><span class="lineNum">     450</span> <span class="tlaGNC">       91461 :                 if (i == std::numeric_limits&lt;uint32_t&gt;::max()) {</span></span>
 <span id="L451"><span class="lineNum">     451</span> <span class="tlaGNC">           2 :                         return {};</span></span>
 <span id="L452"><span class="lineNum">     452</span> <span class="tlaGNC">           2 :                 }</span></span>
 <span id="L453"><span class="lineNum">     453</span>              : </span>
-<span id="L454"><span class="lineNum">     454</span> <span class="tlaGNC">       91463 :                 return get(i);</span></span>
-<span id="L455"><span class="lineNum">     455</span> <span class="tlaGNC">       91465 :         }</span></span>
+<span id="L454"><span class="lineNum">     454</span> <span class="tlaGNC">       91459 :                 return get(i);</span></span>
+<span id="L455"><span class="lineNum">     455</span> <span class="tlaGNC">       91461 :         }</span></span>
 <span id="L456"><span class="lineNum">     456</span>              : </span>
 <span id="L457"><span class="lineNum">     457</span> <span class="tlaGNC">        9576 :         FORCEINLINE uint32_t get_bucket() const { return m_index &gt;&gt; BUCKET_SHIFT; }</span></span>
 <span id="L458"><span class="lineNum">     458</span>              : </span>
@@ -621,84 +621,85 @@
 <span id="L559"><span class="lineNum">     559</span>              : </span>
 <span id="L560"><span class="lineNum">     560</span>              : struct ChainMain</span>
 <span id="L561"><span class="lineNum">     561</span>              : {</span>
-<span id="L562"><span class="lineNum">     562</span> <span class="tlaGNC">           5 :         FORCEINLINE ChainMain() : difficulty(), height(0), timestamp(0), reward(0), id() {}</span></span>
+<span id="L562"><span class="lineNum">     562</span> <span class="tlaGNC">           5 :         FORCEINLINE ChainMain() : difficulty(), height(0), timestamp(0), reward(0), id(), prev_id() {}</span></span>
 <span id="L563"><span class="lineNum">     563</span>              : </span>
 <span id="L564"><span class="lineNum">     564</span>              :         difficulty_type difficulty;</span>
 <span id="L565"><span class="lineNum">     565</span>              :         uint64_t height;</span>
 <span id="L566"><span class="lineNum">     566</span>              :         uint64_t timestamp;</span>
 <span id="L567"><span class="lineNum">     567</span>              :         uint64_t reward;</span>
 <span id="L568"><span class="lineNum">     568</span>              :         hash id;</span>
-<span id="L569"><span class="lineNum">     569</span>              : };</span>
-<span id="L570"><span class="lineNum">     570</span>              : </span>
-<span id="L571"><span class="lineNum">     571</span>              : enum class NetworkType {</span>
-<span id="L572"><span class="lineNum">     572</span>              :         Invalid,</span>
-<span id="L573"><span class="lineNum">     573</span>              :         Mainnet,</span>
-<span id="L574"><span class="lineNum">     574</span>              :         Testnet,</span>
-<span id="L575"><span class="lineNum">     575</span>              :         Stagenet,</span>
-<span id="L576"><span class="lineNum">     576</span>              : };</span>
-<span id="L577"><span class="lineNum">     577</span>              : </span>
-<span id="L578"><span class="lineNum">     578</span>              : struct raw_ip</span>
-<span id="L579"><span class="lineNum">     579</span>              : {</span>
-<span id="L580"><span class="lineNum">     580</span>              :         alignas(8) uint8_t data[16];</span>
-<span id="L581"><span class="lineNum">     581</span>              : </span>
-<span id="L582"><span class="lineNum">     582</span>              :         FORCEINLINE bool operator&lt;(const raw_ip&amp; other) const</span>
-<span id="L583"><span class="lineNum">     583</span> <span class="tlaUNC tlaBgUNC">           0 :         {</span></span>
-<span id="L584"><span class="lineNum">     584</span> <span class="tlaUNC">           0 :                 const uint64_t* a = reinterpret_cast&lt;const uint64_t*&gt;(data);</span></span>
-<span id="L585"><span class="lineNum">     585</span> <span class="tlaUNC">           0 :                 const uint64_t* b = reinterpret_cast&lt;const uint64_t*&gt;(other.data);</span></span>
-<span id="L586"><span class="lineNum">     586</span> <span class="tlaUNC">           0 : </span></span>
-<span id="L587"><span class="lineNum">     587</span> <span class="tlaUNC">           0 :                 if (a[1] &lt; b[1]) return true;</span></span>
-<span id="L588"><span class="lineNum">     588</span> <span class="tlaUNC">           0 :                 if (a[1] &gt; b[1]) return false;</span></span>
-<span id="L589"><span class="lineNum">     589</span> <span class="tlaUNC">           0 : </span></span>
-<span id="L590"><span class="lineNum">     590</span> <span class="tlaUNC">           0 :                 return a[0] &lt; b[0];</span></span>
-<span id="L591"><span class="lineNum">     591</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L592"><span class="lineNum">     592</span>              : </span>
-<span id="L593"><span class="lineNum">     593</span>              :         FORCEINLINE bool operator==(const raw_ip&amp; other) const</span>
-<span id="L594"><span class="lineNum">     594</span> <span class="tlaUNC">           0 :         {</span></span>
-<span id="L595"><span class="lineNum">     595</span> <span class="tlaUNC">           0 :                 const uint64_t* a = reinterpret_cast&lt;const uint64_t*&gt;(data);</span></span>
-<span id="L596"><span class="lineNum">     596</span> <span class="tlaUNC">           0 :                 const uint64_t* b = reinterpret_cast&lt;const uint64_t*&gt;(other.data);</span></span>
-<span id="L597"><span class="lineNum">     597</span>              : </span>
-<span id="L598"><span class="lineNum">     598</span> <span class="tlaUNC">           0 :                 return (a[0] == b[0]) &amp;&amp; (a[1] == b[1]);</span></span>
-<span id="L599"><span class="lineNum">     599</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L600"><span class="lineNum">     600</span>              : </span>
-<span id="L601"><span class="lineNum">     601</span> <span class="tlaUNC">           0 :         FORCEINLINE bool operator!=(const raw_ip&amp; other) const { return !operator==(other); }</span></span>
-<span id="L602"><span class="lineNum">     602</span>              : </span>
-<span id="L603"><span class="lineNum">     603</span> <span class="tlaUNC">           0 :         FORCEINLINE bool is_localhost() const { return (*this == localhost_ipv4) || (*this == localhost_ipv6); }</span></span>
-<span id="L604"><span class="lineNum">     604</span> <span class="tlaUNC">           0 :         FORCEINLINE bool is_ipv4_prefix() const { return memcmp(data, ipv4_prefix, sizeof(ipv4_prefix)) == 0; }</span></span>
-<span id="L605"><span class="lineNum">     605</span>              : </span>
-<span id="L606"><span class="lineNum">     606</span>              :         static const raw_ip localhost_ipv4;</span>
-<span id="L607"><span class="lineNum">     607</span>              :         static const raw_ip localhost_ipv6;</span>
-<span id="L608"><span class="lineNum">     608</span>              : </span>
-<span id="L609"><span class="lineNum">     609</span>              :         alignas(8) static const uint8_t ipv4_prefix[12];</span>
-<span id="L610"><span class="lineNum">     610</span>              : };</span>
-<span id="L611"><span class="lineNum">     611</span>              : </span>
-<span id="L612"><span class="lineNum">     612</span>              : static_assert(sizeof(raw_ip) == 16, &quot;struct raw_ip has invalid size&quot;);</span>
-<span id="L613"><span class="lineNum">     613</span>              : </span>
-<span id="L614"><span class="lineNum">     614</span>              : struct MoneroBlockBroadcastHeader</span>
-<span id="L615"><span class="lineNum">     615</span>              : {</span>
-<span id="L616"><span class="lineNum">     616</span>              :         uint32_t header_size;</span>
-<span id="L617"><span class="lineNum">     617</span>              :         uint32_t miner_tx_size;</span>
-<span id="L618"><span class="lineNum">     618</span>              : };</span>
-<span id="L619"><span class="lineNum">     619</span>              : </span>
-<span id="L620"><span class="lineNum">     620</span>              : static_assert(sizeof(MoneroBlockBroadcastHeader) == sizeof(uint32_t) * 2, &quot;struct MoneroBlockBroadcastHeader has invalid size&quot;);</span>
-<span id="L621"><span class="lineNum">     621</span>              : </span>
-<span id="L622"><span class="lineNum">     622</span>              : void* malloc_hook(size_t n) noexcept;</span>
-<span id="L623"><span class="lineNum">     623</span>              : void* realloc_hook(void* ptr, size_t size) noexcept;</span>
-<span id="L624"><span class="lineNum">     624</span>              : void* calloc_hook(size_t count, size_t size) noexcept;</span>
-<span id="L625"><span class="lineNum">     625</span>              : void free_hook(void* p) noexcept;</span>
-<span id="L626"><span class="lineNum">     626</span>              : char* strdup_hook(const char* s) noexcept;</span>
-<span id="L627"><span class="lineNum">     627</span>              : </span>
-<span id="L628"><span class="lineNum">     628</span>              : extern const char* BLOCK_FOUND;</span>
-<span id="L629"><span class="lineNum">     629</span>              : </span>
-<span id="L630"><span class="lineNum">     630</span>              : } // namespace p2pool</span>
-<span id="L631"><span class="lineNum">     631</span>              : </span>
-<span id="L632"><span class="lineNum">     632</span>              : #include &quot;util.h&quot;</span>
-<span id="L633"><span class="lineNum">     633</span>              : </span>
-<span id="L634"><span class="lineNum">     634</span>              : #ifdef DEBUG_BUILD</span>
-<span id="L635"><span class="lineNum">     635</span>              : #undef FORCEINLINE</span>
-<span id="L636"><span class="lineNum">     636</span>              : #define FORCEINLINE NOINLINE</span>
-<span id="L637"><span class="lineNum">     637</span>              : #endif</span>
-<span id="L638"><span class="lineNum">     638</span>              : </span>
-<span id="L639"><span class="lineNum">     639</span>              : #include &quot;log.h&quot;</span>
+<span id="L569"><span class="lineNum">     569</span>              :         hash prev_id;  // Parent block hash - used for reorg detection</span>
+<span id="L570"><span class="lineNum">     570</span>              : };</span>
+<span id="L571"><span class="lineNum">     571</span>              : </span>
+<span id="L572"><span class="lineNum">     572</span>              : enum class NetworkType {</span>
+<span id="L573"><span class="lineNum">     573</span>              :         Invalid,</span>
+<span id="L574"><span class="lineNum">     574</span>              :         Mainnet,</span>
+<span id="L575"><span class="lineNum">     575</span>              :         Testnet,</span>
+<span id="L576"><span class="lineNum">     576</span>              :         Stagenet,</span>
+<span id="L577"><span class="lineNum">     577</span>              : };</span>
+<span id="L578"><span class="lineNum">     578</span>              : </span>
+<span id="L579"><span class="lineNum">     579</span>              : struct raw_ip</span>
+<span id="L580"><span class="lineNum">     580</span>              : {</span>
+<span id="L581"><span class="lineNum">     581</span>              :         alignas(8) uint8_t data[16];</span>
+<span id="L582"><span class="lineNum">     582</span>              : </span>
+<span id="L583"><span class="lineNum">     583</span>              :         FORCEINLINE bool operator&lt;(const raw_ip&amp; other) const</span>
+<span id="L584"><span class="lineNum">     584</span> <span class="tlaUNC tlaBgUNC">           0 :         {</span></span>
+<span id="L585"><span class="lineNum">     585</span> <span class="tlaUNC">           0 :                 const uint64_t* a = reinterpret_cast&lt;const uint64_t*&gt;(data);</span></span>
+<span id="L586"><span class="lineNum">     586</span> <span class="tlaUNC">           0 :                 const uint64_t* b = reinterpret_cast&lt;const uint64_t*&gt;(other.data);</span></span>
+<span id="L587"><span class="lineNum">     587</span> <span class="tlaUNC">           0 : </span></span>
+<span id="L588"><span class="lineNum">     588</span> <span class="tlaUNC">           0 :                 if (a[1] &lt; b[1]) return true;</span></span>
+<span id="L589"><span class="lineNum">     589</span> <span class="tlaUNC">           0 :                 if (a[1] &gt; b[1]) return false;</span></span>
+<span id="L590"><span class="lineNum">     590</span> <span class="tlaUNC">           0 : </span></span>
+<span id="L591"><span class="lineNum">     591</span> <span class="tlaUNC">           0 :                 return a[0] &lt; b[0];</span></span>
+<span id="L592"><span class="lineNum">     592</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L593"><span class="lineNum">     593</span>              : </span>
+<span id="L594"><span class="lineNum">     594</span>              :         FORCEINLINE bool operator==(const raw_ip&amp; other) const</span>
+<span id="L595"><span class="lineNum">     595</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L596"><span class="lineNum">     596</span> <span class="tlaUNC">           0 :                 const uint64_t* a = reinterpret_cast&lt;const uint64_t*&gt;(data);</span></span>
+<span id="L597"><span class="lineNum">     597</span> <span class="tlaUNC">           0 :                 const uint64_t* b = reinterpret_cast&lt;const uint64_t*&gt;(other.data);</span></span>
+<span id="L598"><span class="lineNum">     598</span>              : </span>
+<span id="L599"><span class="lineNum">     599</span> <span class="tlaUNC">           0 :                 return (a[0] == b[0]) &amp;&amp; (a[1] == b[1]);</span></span>
+<span id="L600"><span class="lineNum">     600</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L601"><span class="lineNum">     601</span>              : </span>
+<span id="L602"><span class="lineNum">     602</span> <span class="tlaUNC">           0 :         FORCEINLINE bool operator!=(const raw_ip&amp; other) const { return !operator==(other); }</span></span>
+<span id="L603"><span class="lineNum">     603</span>              : </span>
+<span id="L604"><span class="lineNum">     604</span> <span class="tlaUNC">           0 :         FORCEINLINE bool is_localhost() const { return (*this == localhost_ipv4) || (*this == localhost_ipv6); }</span></span>
+<span id="L605"><span class="lineNum">     605</span> <span class="tlaUNC">           0 :         FORCEINLINE bool is_ipv4_prefix() const { return memcmp(data, ipv4_prefix, sizeof(ipv4_prefix)) == 0; }</span></span>
+<span id="L606"><span class="lineNum">     606</span>              : </span>
+<span id="L607"><span class="lineNum">     607</span>              :         static const raw_ip localhost_ipv4;</span>
+<span id="L608"><span class="lineNum">     608</span>              :         static const raw_ip localhost_ipv6;</span>
+<span id="L609"><span class="lineNum">     609</span>              : </span>
+<span id="L610"><span class="lineNum">     610</span>              :         alignas(8) static const uint8_t ipv4_prefix[12];</span>
+<span id="L611"><span class="lineNum">     611</span>              : };</span>
+<span id="L612"><span class="lineNum">     612</span>              : </span>
+<span id="L613"><span class="lineNum">     613</span>              : static_assert(sizeof(raw_ip) == 16, &quot;struct raw_ip has invalid size&quot;);</span>
+<span id="L614"><span class="lineNum">     614</span>              : </span>
+<span id="L615"><span class="lineNum">     615</span>              : struct MoneroBlockBroadcastHeader</span>
+<span id="L616"><span class="lineNum">     616</span>              : {</span>
+<span id="L617"><span class="lineNum">     617</span>              :         uint32_t header_size;</span>
+<span id="L618"><span class="lineNum">     618</span>              :         uint32_t miner_tx_size;</span>
+<span id="L619"><span class="lineNum">     619</span>              : };</span>
+<span id="L620"><span class="lineNum">     620</span>              : </span>
+<span id="L621"><span class="lineNum">     621</span>              : static_assert(sizeof(MoneroBlockBroadcastHeader) == sizeof(uint32_t) * 2, &quot;struct MoneroBlockBroadcastHeader has invalid size&quot;);</span>
+<span id="L622"><span class="lineNum">     622</span>              : </span>
+<span id="L623"><span class="lineNum">     623</span>              : void* malloc_hook(size_t n) noexcept;</span>
+<span id="L624"><span class="lineNum">     624</span>              : void* realloc_hook(void* ptr, size_t size) noexcept;</span>
+<span id="L625"><span class="lineNum">     625</span>              : void* calloc_hook(size_t count, size_t size) noexcept;</span>
+<span id="L626"><span class="lineNum">     626</span>              : void free_hook(void* p) noexcept;</span>
+<span id="L627"><span class="lineNum">     627</span>              : char* strdup_hook(const char* s) noexcept;</span>
+<span id="L628"><span class="lineNum">     628</span>              : </span>
+<span id="L629"><span class="lineNum">     629</span>              : extern const char* BLOCK_FOUND;</span>
+<span id="L630"><span class="lineNum">     630</span>              : </span>
+<span id="L631"><span class="lineNum">     631</span>              : } // namespace p2pool</span>
+<span id="L632"><span class="lineNum">     632</span>              : </span>
+<span id="L633"><span class="lineNum">     633</span>              : #include &quot;util.h&quot;</span>
+<span id="L634"><span class="lineNum">     634</span>              : </span>
+<span id="L635"><span class="lineNum">     635</span>              : #ifdef DEBUG_BUILD</span>
+<span id="L636"><span class="lineNum">     636</span>              : #undef FORCEINLINE</span>
+<span id="L637"><span class="lineNum">     637</span>              : #define FORCEINLINE NOINLINE</span>
+<span id="L638"><span class="lineNum">     638</span>              : #endif</span>
+<span id="L639"><span class="lineNum">     639</span>              : </span>
+<span id="L640"><span class="lineNum">     640</span>              : #include &quot;log.h&quot;</span>
         </pre>
               </td>
             </tr>
