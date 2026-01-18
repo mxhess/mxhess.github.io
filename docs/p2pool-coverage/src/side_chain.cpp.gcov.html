@@ -31,18 +31,18 @@
             <td class="headerValue">coverage.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">40.8&nbsp;%</td>
-            <td class="headerCovTableEntry">2798</td>
-            <td class="headerCovTableEntry">1142</td>
+            <td class="headerCovTableEntryLo">40.4&nbsp;%</td>
+            <td class="headerCovTableEntry">2799</td>
+            <td class="headerCovTableEntry">1130</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2026-01-16 22:39:46</td>
+            <td class="headerValue">2026-01-18 14:45:00</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntryLo">51.3&nbsp;%</td>
+            <td class="headerCovTableEntryLo">50.0&nbsp;%</td>
             <td class="headerCovTableEntry">78</td>
-            <td class="headerCovTableEntry">40</td>
+            <td class="headerCovTableEntry">39</td>
           </tr>
                   <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
                 </table>
@@ -1394,25 +1394,25 @@
 <span id="L1332"><span class="lineNum">    1332</span>              : </span>
 <span id="L1333"><span class="lineNum">    1333</span>              :         // Every 5 minutes, delete wallets that weren't seen for more than 72 hours and onion pubkeys that weren't seen for more than 12 hours</span>
 <span id="L1334"><span class="lineNum">    1334</span> <span class="tlaGNC">       15935 :         if (m_seenWalletsLastPruneTime + 5ul * 60ul &lt;= cur_time) {</span></span>
-<span id="L1335"><span class="lineNum">    1335</span> <span class="tlaGNC">           6 :                 auto prune = [cur_time](auto&amp; data, uint64_t timeout) {</span></span>
-<span id="L1336"><span class="lineNum">    1336</span> <span class="tlaGNC">           9 :                         for (auto it = data.begin(); it != data.end();) {</span></span>
-<span id="L1337"><span class="lineNum">    1337</span> <span class="tlaGNC">           3 :                                 if (it-&gt;second + timeout &lt; cur_time) {</span></span>
-<span id="L1338"><span class="lineNum">    1338</span> <span class="tlaUNC tlaBgUNC">           0 :                                         it = data.erase(it);</span></span>
+<span id="L1335"><span class="lineNum">    1335</span> <span class="tlaUNC tlaBgUNC">           0 :                 auto prune = [cur_time](auto&amp; data, uint64_t timeout) {</span></span>
+<span id="L1336"><span class="lineNum">    1336</span> <span class="tlaUNC">           0 :                         for (auto it = data.begin(); it != data.end();) {</span></span>
+<span id="L1337"><span class="lineNum">    1337</span> <span class="tlaUNC">           0 :                                 if (it-&gt;second + timeout &lt; cur_time) {</span></span>
+<span id="L1338"><span class="lineNum">    1338</span> <span class="tlaUNC">           0 :                                         it = data.erase(it);</span></span>
 <span id="L1339"><span class="lineNum">    1339</span> <span class="tlaUNC">           0 :                                 }</span></span>
-<span id="L1340"><span class="lineNum">    1340</span> <span class="tlaGNC tlaBgGNC">           3 :                                 else {</span></span>
-<span id="L1341"><span class="lineNum">    1341</span> <span class="tlaGNC">           3 :                                         ++it;</span></span>
-<span id="L1342"><span class="lineNum">    1342</span> <span class="tlaGNC">           3 :                                 }</span></span>
-<span id="L1343"><span class="lineNum">    1343</span> <span class="tlaGNC">           3 :                         }</span></span>
-<span id="L1344"><span class="lineNum">    1344</span> <span class="tlaGNC">           6 :                 };</span></span>
+<span id="L1340"><span class="lineNum">    1340</span> <span class="tlaUNC">           0 :                                 else {</span></span>
+<span id="L1341"><span class="lineNum">    1341</span> <span class="tlaUNC">           0 :                                         ++it;</span></span>
+<span id="L1342"><span class="lineNum">    1342</span> <span class="tlaUNC">           0 :                                 }</span></span>
+<span id="L1343"><span class="lineNum">    1343</span> <span class="tlaUNC">           0 :                         }</span></span>
+<span id="L1344"><span class="lineNum">    1344</span> <span class="tlaUNC">           0 :                 };</span></span>
 <span id="L1345"><span class="lineNum">    1345</span>              : </span>
-<span id="L1346"><span class="lineNum">    1346</span> <span class="tlaGNC">           3 :                 constexpr uint64_t hour = 3600;</span></span>
+<span id="L1346"><span class="lineNum">    1346</span> <span class="tlaUNC">           0 :                 constexpr uint64_t hour = 3600;</span></span>
 <span id="L1347"><span class="lineNum">    1347</span>              : </span>
-<span id="L1348"><span class="lineNum">    1348</span> <span class="tlaGNC">           3 :                 prune(m_seenWallets, 72 * hour);</span></span>
-<span id="L1349"><span class="lineNum">    1349</span> <span class="tlaGNC">           3 :                 prune(m_seenOnionPubkeys, 12 * hour);</span></span>
+<span id="L1348"><span class="lineNum">    1348</span> <span class="tlaUNC">           0 :                 prune(m_seenWallets, 72 * hour);</span></span>
+<span id="L1349"><span class="lineNum">    1349</span> <span class="tlaUNC">           0 :                 prune(m_seenOnionPubkeys, 12 * hour);</span></span>
 <span id="L1350"><span class="lineNum">    1350</span>              : </span>
-<span id="L1351"><span class="lineNum">    1351</span> <span class="tlaGNC">           3 :                 m_seenWalletsLastPruneTime = cur_time;</span></span>
-<span id="L1352"><span class="lineNum">    1352</span> <span class="tlaGNC">           3 :         }</span></span>
-<span id="L1353"><span class="lineNum">    1353</span> <span class="tlaGNC">       15935 : }</span></span>
+<span id="L1351"><span class="lineNum">    1351</span> <span class="tlaUNC">           0 :                 m_seenWalletsLastPruneTime = cur_time;</span></span>
+<span id="L1352"><span class="lineNum">    1352</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L1353"><span class="lineNum">    1353</span> <span class="tlaGNC tlaBgGNC">       15935 : }</span></span>
 <span id="L1354"><span class="lineNum">    1354</span>              : </span>
 <span id="L1355"><span class="lineNum">    1355</span>              : uint64_t SideChain::last_updated() const</span>
 <span id="L1356"><span class="lineNum">    1356</span> <span class="tlaUNC tlaBgUNC">           0 : {</span></span>
@@ -3772,296 +3772,298 @@
 <span id="L3710"><span class="lineNum">    3710</span> <span class="tlaGNC">          43 :         for (const Checkpoint&amp; cp : m_checkpoints) {</span></span>
 <span id="L3711"><span class="lineNum">    3711</span> <span class="tlaGNC">          43 :             LOGINFO(3, &quot;Validating checkpoint at height &quot; &lt;&lt; cp.height);</span></span>
 <span id="L3712"><span class="lineNum">    3712</span>              : </span>
-<span id="L3713"><span class="lineNum">    3713</span>              :             // First check if checkpoint is reachable (within PPLNS window of current tip)</span>
-<span id="L3714"><span class="lineNum">    3714</span> <span class="tlaGNC">          43 :             const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3715"><span class="lineNum">    3715</span> <span class="tlaGNC">          43 :             if (tip &amp;&amp; (cp.height + m_chainWindowSize &lt; tip-&gt;m_sidechainHeight)) {</span></span>
-<span id="L3716"><span class="lineNum">    3716</span>              :                 // Checkpoint is too old - outside sync window, discard it</span>
-<span id="L3717"><span class="lineNum">    3717</span> <span class="tlaGNC">          42 :                 LOGWARN(0, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is unreachable (tip=&quot; &lt;&lt; tip-&gt;m_sidechainHeight &lt;&lt; &quot;, window=&quot; &lt;&lt; m_chainWindowSize &lt;&lt; &quot;) - discarding stale checkpoint&quot;);</span></span>
-<span id="L3718"><span class="lineNum">    3718</span> <span class="tlaGNC">          42 :                 had_stale = true;</span></span>
-<span id="L3719"><span class="lineNum">    3719</span> <span class="tlaGNC">          42 :                 continue;  // Don't add to valid_checkpoints</span></span>
-<span id="L3720"><span class="lineNum">    3720</span> <span class="tlaGNC">          42 :             }</span></span>
-<span id="L3721"><span class="lineNum">    3721</span>              : </span>
-<span id="L3722"><span class="lineNum">    3722</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is reachable, looking up block id &quot; &lt;&lt; cp.id);</span></span>
+<span id="L3713"><span class="lineNum">    3713</span>              :             // First check if checkpoint is reachable (within checkpoint history range of current tip)</span>
+<span id="L3714"><span class="lineNum">    3714</span>              :             // Use CHECKPOINT_HISTORY * CHECKPOINT_INTERVAL, not m_chainWindowSize</span>
+<span id="L3715"><span class="lineNum">    3715</span> <span class="tlaGNC">          43 :             const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3716"><span class="lineNum">    3716</span> <span class="tlaGNC">          43 :             const uint64_t checkpoint_range = CHECKPOINT_HISTORY * CHECKPOINT_INTERVAL;</span></span>
+<span id="L3717"><span class="lineNum">    3717</span> <span class="tlaGNC">          43 :             if (tip &amp;&amp; (cp.height + checkpoint_range &lt; tip-&gt;m_sidechainHeight)) {</span></span>
+<span id="L3718"><span class="lineNum">    3718</span>              :                 // Checkpoint is too old - outside checkpoint history range, discard it</span>
+<span id="L3719"><span class="lineNum">    3719</span> <span class="tlaGNC">          42 :                 LOGINFO(2, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is outside history range (tip=&quot; &lt;&lt; tip-&gt;m_sidechainHeight &lt;&lt; &quot;, range=&quot; &lt;&lt; checkpoint_range &lt;&lt; &quot;) - discarding&quot;);</span></span>
+<span id="L3720"><span class="lineNum">    3720</span> <span class="tlaGNC">          42 :                 had_stale = true;</span></span>
+<span id="L3721"><span class="lineNum">    3721</span> <span class="tlaGNC">          42 :                 continue;  // Don't add to valid_checkpoints</span></span>
+<span id="L3722"><span class="lineNum">    3722</span> <span class="tlaGNC">          42 :             }</span></span>
 <span id="L3723"><span class="lineNum">    3723</span>              : </span>
-<span id="L3724"><span class="lineNum">    3724</span>              :             // Direct lookup - sidechain lock held above</span>
-<span id="L3725"><span class="lineNum">    3725</span> <span class="tlaGNC">           1 :             PoolBlock* found = nullptr;</span></span>
-<span id="L3726"><span class="lineNum">    3726</span> <span class="tlaGNC">           1 :             auto it = m_blocksById.find(cp.id);</span></span>
-<span id="L3727"><span class="lineNum">    3727</span> <span class="tlaGNC">           1 :             if (it != m_blocksById.end()) {</span></span>
-<span id="L3728"><span class="lineNum">    3728</span> <span class="tlaGNC">           1 :                 found = it-&gt;second;</span></span>
-<span id="L3729"><span class="lineNum">    3729</span> <span class="tlaGNC">           1 :             }</span></span>
-<span id="L3730"><span class="lineNum">    3730</span>              : </span>
-<span id="L3731"><span class="lineNum">    3731</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;find_block returned &quot; &lt;&lt; (found ? &quot;valid pointer&quot; : &quot;nullptr&quot;));</span></span>
+<span id="L3724"><span class="lineNum">    3724</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; is reachable, looking up block id &quot; &lt;&lt; cp.id);</span></span>
+<span id="L3725"><span class="lineNum">    3725</span>              : </span>
+<span id="L3726"><span class="lineNum">    3726</span>              :             // Direct lookup - sidechain lock held above</span>
+<span id="L3727"><span class="lineNum">    3727</span> <span class="tlaGNC">           1 :             PoolBlock* found = nullptr;</span></span>
+<span id="L3728"><span class="lineNum">    3728</span> <span class="tlaGNC">           1 :             auto it = m_blocksById.find(cp.id);</span></span>
+<span id="L3729"><span class="lineNum">    3729</span> <span class="tlaGNC">           1 :             if (it != m_blocksById.end()) {</span></span>
+<span id="L3730"><span class="lineNum">    3730</span> <span class="tlaGNC">           1 :                 found = it-&gt;second;</span></span>
+<span id="L3731"><span class="lineNum">    3731</span> <span class="tlaGNC">           1 :             }</span></span>
 <span id="L3732"><span class="lineNum">    3732</span>              : </span>
-<span id="L3733"><span class="lineNum">    3733</span> <span class="tlaGNC">           1 :             if (!found) {</span></span>
-<span id="L3734"><span class="lineNum">    3734</span>              :                 // Block not yet synced but reachable - can't validate yet</span>
-<span id="L3735"><span class="lineNum">    3735</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; not yet synced, deferring validation - mining blocked&quot;);</span></span>
-<span id="L3736"><span class="lineNum">    3736</span> <span class="tlaUNC">           0 :                 return false;  // NOT safe to mine yet</span></span>
-<span id="L3737"><span class="lineNum">    3737</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3738"><span class="lineNum">    3738</span>              : </span>
-<span id="L3739"><span class="lineNum">    3739</span> <span class="tlaGNC tlaBgGNC">           1 :             PoolBlock* block = found;</span></span>
+<span id="L3733"><span class="lineNum">    3733</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;find_block returned &quot; &lt;&lt; (found ? &quot;valid pointer&quot; : &quot;nullptr&quot;));</span></span>
+<span id="L3734"><span class="lineNum">    3734</span>              : </span>
+<span id="L3735"><span class="lineNum">    3735</span> <span class="tlaGNC">           1 :             if (!found) {</span></span>
+<span id="L3736"><span class="lineNum">    3736</span>              :                 // Block not yet synced but reachable - can't validate yet</span>
+<span id="L3737"><span class="lineNum">    3737</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(3, &quot;Checkpoint at height &quot; &lt;&lt; cp.height &lt;&lt; &quot; not yet synced, deferring validation - mining blocked&quot;);</span></span>
+<span id="L3738"><span class="lineNum">    3738</span> <span class="tlaUNC">           0 :                 return false;  // NOT safe to mine yet</span></span>
+<span id="L3739"><span class="lineNum">    3739</span> <span class="tlaUNC">           0 :             }</span></span>
 <span id="L3740"><span class="lineNum">    3740</span>              : </span>
-<span id="L3741"><span class="lineNum">    3741</span> <span class="tlaGNC">           1 :             if (block-&gt;m_sidechainId != cp.id) {</span></span>
-<span id="L3742"><span class="lineNum">    3742</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(0, &quot;CHECKPOINT MISMATCH at height &quot; &lt;&lt; cp.height &lt;&lt;</span></span>
-<span id="L3743"><span class="lineNum">    3743</span> <span class="tlaUNC">           0 :                         &quot;: cached=&quot; &lt;&lt; cp.id &lt;&lt;</span></span>
-<span id="L3744"><span class="lineNum">    3744</span> <span class="tlaUNC">           0 :                         &quot;, actual=&quot; &lt;&lt; block-&gt;m_sidechainId);</span></span>
-<span id="L3745"><span class="lineNum">    3745</span> <span class="tlaUNC">           0 :                 all_valid = false;</span></span>
-<span id="L3746"><span class="lineNum">    3746</span> <span class="tlaUNC">           0 :                 if (first_mismatch_height == 0) {</span></span>
-<span id="L3747"><span class="lineNum">    3747</span> <span class="tlaUNC">           0 :                     first_mismatch_height = cp.height;</span></span>
-<span id="L3748"><span class="lineNum">    3748</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3749"><span class="lineNum">    3749</span> <span class="tlaGNC tlaBgGNC">           1 :             } else {</span></span>
-<span id="L3750"><span class="lineNum">    3750</span> <span class="tlaGNC">           1 :                 LOGINFO(3, &quot;Checkpoint validated: height &quot; &lt;&lt; cp.height &lt;&lt; &quot;, id &quot; &lt;&lt; cp.id);</span></span>
-<span id="L3751"><span class="lineNum">    3751</span> <span class="tlaGNC">           1 :                 block-&gt;m_verified = true;  // Trust the checkpoint as verification anchor</span></span>
-<span id="L3752"><span class="lineNum">    3752</span> <span class="tlaGNC">           1 :                 blocks_to_verify.push_back(block);  // Queue for verify_loop</span></span>
-<span id="L3753"><span class="lineNum">    3753</span> <span class="tlaGNC">           1 :                 valid_checkpoints.push_back(cp);  // Keep valid checkpoint</span></span>
-<span id="L3754"><span class="lineNum">    3754</span> <span class="tlaGNC">           1 :             }</span></span>
-<span id="L3755"><span class="lineNum">    3755</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3756"><span class="lineNum">    3756</span> <span class="tlaGNC">           2 :     } // Locks released here</span></span>
-<span id="L3757"><span class="lineNum">    3757</span>              : </span>
-<span id="L3758"><span class="lineNum">    3758</span> <span class="tlaGNC">           2 :     bool need_bootstrap = false;</span></span>
-<span id="L3759"><span class="lineNum">    3759</span> <span class="tlaGNC">           2 :     uint64_t bootstrap_height = 0;</span></span>
-<span id="L3760"><span class="lineNum">    3760</span>              : </span>
-<span id="L3761"><span class="lineNum">    3761</span>              :     // If we had stale checkpoints, update and save</span>
-<span id="L3762"><span class="lineNum">    3762</span> <span class="tlaGNC">           2 :     if (had_stale) {</span></span>
-<span id="L3763"><span class="lineNum">    3763</span> <span class="tlaGNC">           1 :         WriteLock wlock(m_checkpointsLock);</span></span>
-<span id="L3764"><span class="lineNum">    3764</span> <span class="tlaGNC">           1 :         m_checkpoints = std::move(valid_checkpoints);</span></span>
-<span id="L3765"><span class="lineNum">    3765</span> <span class="tlaGNC">           1 :         LOGINFO(1, &quot;Cleaned up stale checkpoints: &quot; &lt;&lt; original_count &lt;&lt; &quot; -&gt; &quot; &lt;&lt; m_checkpoints.size());</span></span>
-<span id="L3766"><span class="lineNum">    3766</span>              :         </span>
-<span id="L3767"><span class="lineNum">    3767</span>              :         // If ALL checkpoints were stale, bootstrap from chain tip</span>
-<span id="L3768"><span class="lineNum">    3768</span> <span class="tlaGNC">           1 :         if (m_checkpoints.empty()) {</span></span>
-<span id="L3769"><span class="lineNum">    3769</span> <span class="tlaGNC">           1 :             const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3770"><span class="lineNum">    3770</span> <span class="tlaGNC">           1 :             if (tip) {</span></span>
-<span id="L3771"><span class="lineNum">    3771</span> <span class="tlaGNC">           1 :                 tip-&gt;m_verified = true;</span></span>
-<span id="L3772"><span class="lineNum">    3772</span> <span class="tlaGNC">           1 :                 LOGINFO(1, &quot;All checkpoints stale - bootstrapping verification from chain tip height &quot; &lt;&lt; tip-&gt;m_sidechainHeight);</span></span>
-<span id="L3773"><span class="lineNum">    3773</span> <span class="tlaGNC">           1 :                 need_bootstrap = true;</span></span>
-<span id="L3774"><span class="lineNum">    3774</span> <span class="tlaGNC">           1 :                 bootstrap_height = tip-&gt;m_sidechainHeight;</span></span>
-<span id="L3775"><span class="lineNum">    3775</span> <span class="tlaGNC">           1 :             }</span></span>
-<span id="L3776"><span class="lineNum">    3776</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3777"><span class="lineNum">    3777</span> <span class="tlaGNC">           1 :     }  // WriteLock released here</span></span>
-<span id="L3778"><span class="lineNum">    3778</span>              :     </span>
-<span id="L3779"><span class="lineNum">    3779</span>              :     // Create new checkpoint outside the lock</span>
-<span id="L3780"><span class="lineNum">    3780</span> <span class="tlaGNC">           2 :     if (need_bootstrap) {</span></span>
-<span id="L3781"><span class="lineNum">    3781</span> <span class="tlaGNC">           1 :         update_checkpoints(bootstrap_height);</span></span>
-<span id="L3782"><span class="lineNum">    3782</span> <span class="tlaGNC">           1 :     }</span></span>
-<span id="L3783"><span class="lineNum">    3783</span>              : </span>
-<span id="L3784"><span class="lineNum">    3784</span> <span class="tlaGNC">           2 :     m_checkpointsNeedValidation = false;</span></span>
+<span id="L3741"><span class="lineNum">    3741</span> <span class="tlaGNC tlaBgGNC">           1 :             PoolBlock* block = found;</span></span>
+<span id="L3742"><span class="lineNum">    3742</span>              : </span>
+<span id="L3743"><span class="lineNum">    3743</span> <span class="tlaGNC">           1 :             if (block-&gt;m_sidechainId != cp.id) {</span></span>
+<span id="L3744"><span class="lineNum">    3744</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGWARN(0, &quot;CHECKPOINT MISMATCH at height &quot; &lt;&lt; cp.height &lt;&lt;</span></span>
+<span id="L3745"><span class="lineNum">    3745</span> <span class="tlaUNC">           0 :                         &quot;: cached=&quot; &lt;&lt; cp.id &lt;&lt;</span></span>
+<span id="L3746"><span class="lineNum">    3746</span> <span class="tlaUNC">           0 :                         &quot;, actual=&quot; &lt;&lt; block-&gt;m_sidechainId);</span></span>
+<span id="L3747"><span class="lineNum">    3747</span> <span class="tlaUNC">           0 :                 all_valid = false;</span></span>
+<span id="L3748"><span class="lineNum">    3748</span> <span class="tlaUNC">           0 :                 if (first_mismatch_height == 0) {</span></span>
+<span id="L3749"><span class="lineNum">    3749</span> <span class="tlaUNC">           0 :                     first_mismatch_height = cp.height;</span></span>
+<span id="L3750"><span class="lineNum">    3750</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3751"><span class="lineNum">    3751</span> <span class="tlaGNC tlaBgGNC">           1 :             } else {</span></span>
+<span id="L3752"><span class="lineNum">    3752</span> <span class="tlaGNC">           1 :                 LOGINFO(3, &quot;Checkpoint validated: height &quot; &lt;&lt; cp.height &lt;&lt; &quot;, id &quot; &lt;&lt; cp.id);</span></span>
+<span id="L3753"><span class="lineNum">    3753</span> <span class="tlaGNC">           1 :                 block-&gt;m_verified = true;  // Trust the checkpoint as verification anchor</span></span>
+<span id="L3754"><span class="lineNum">    3754</span> <span class="tlaGNC">           1 :                 blocks_to_verify.push_back(block);  // Queue for verify_loop</span></span>
+<span id="L3755"><span class="lineNum">    3755</span> <span class="tlaGNC">           1 :                 valid_checkpoints.push_back(cp);  // Keep valid checkpoint</span></span>
+<span id="L3756"><span class="lineNum">    3756</span> <span class="tlaGNC">           1 :             }</span></span>
+<span id="L3757"><span class="lineNum">    3757</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3758"><span class="lineNum">    3758</span> <span class="tlaGNC">           2 :     } // Locks released here</span></span>
+<span id="L3759"><span class="lineNum">    3759</span>              : </span>
+<span id="L3760"><span class="lineNum">    3760</span> <span class="tlaGNC">           2 :     bool need_bootstrap = false;</span></span>
+<span id="L3761"><span class="lineNum">    3761</span> <span class="tlaGNC">           2 :     uint64_t bootstrap_height = 0;</span></span>
+<span id="L3762"><span class="lineNum">    3762</span>              : </span>
+<span id="L3763"><span class="lineNum">    3763</span>              :     // If we had stale checkpoints, update and save</span>
+<span id="L3764"><span class="lineNum">    3764</span> <span class="tlaGNC">           2 :     if (had_stale) {</span></span>
+<span id="L3765"><span class="lineNum">    3765</span> <span class="tlaGNC">           1 :         WriteLock wlock(m_checkpointsLock);</span></span>
+<span id="L3766"><span class="lineNum">    3766</span> <span class="tlaGNC">           1 :         m_checkpoints = std::move(valid_checkpoints);</span></span>
+<span id="L3767"><span class="lineNum">    3767</span> <span class="tlaGNC">           1 :         LOGINFO(1, &quot;Cleaned up stale checkpoints: &quot; &lt;&lt; original_count &lt;&lt; &quot; -&gt; &quot; &lt;&lt; m_checkpoints.size());</span></span>
+<span id="L3768"><span class="lineNum">    3768</span>              :         </span>
+<span id="L3769"><span class="lineNum">    3769</span>              :         // If ALL checkpoints were stale, bootstrap from chain tip</span>
+<span id="L3770"><span class="lineNum">    3770</span> <span class="tlaGNC">           1 :         if (m_checkpoints.empty()) {</span></span>
+<span id="L3771"><span class="lineNum">    3771</span> <span class="tlaGNC">           1 :             const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3772"><span class="lineNum">    3772</span> <span class="tlaGNC">           1 :             if (tip) {</span></span>
+<span id="L3773"><span class="lineNum">    3773</span> <span class="tlaGNC">           1 :                 tip-&gt;m_verified = true;</span></span>
+<span id="L3774"><span class="lineNum">    3774</span> <span class="tlaGNC">           1 :                 LOGINFO(1, &quot;All checkpoints stale - bootstrapping verification from chain tip height &quot; &lt;&lt; tip-&gt;m_sidechainHeight);</span></span>
+<span id="L3775"><span class="lineNum">    3775</span> <span class="tlaGNC">           1 :                 need_bootstrap = true;</span></span>
+<span id="L3776"><span class="lineNum">    3776</span> <span class="tlaGNC">           1 :                 bootstrap_height = tip-&gt;m_sidechainHeight;</span></span>
+<span id="L3777"><span class="lineNum">    3777</span> <span class="tlaGNC">           1 :             }</span></span>
+<span id="L3778"><span class="lineNum">    3778</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3779"><span class="lineNum">    3779</span> <span class="tlaGNC">           1 :     }  // WriteLock released here</span></span>
+<span id="L3780"><span class="lineNum">    3780</span>              :     </span>
+<span id="L3781"><span class="lineNum">    3781</span>              :     // Create new checkpoint outside the lock</span>
+<span id="L3782"><span class="lineNum">    3782</span> <span class="tlaGNC">           2 :     if (need_bootstrap) {</span></span>
+<span id="L3783"><span class="lineNum">    3783</span> <span class="tlaGNC">           1 :         update_checkpoints(bootstrap_height);</span></span>
+<span id="L3784"><span class="lineNum">    3784</span> <span class="tlaGNC">           1 :     }</span></span>
 <span id="L3785"><span class="lineNum">    3785</span>              : </span>
-<span id="L3786"><span class="lineNum">    3786</span> <span class="tlaGNC">           2 :     if (all_valid) {</span></span>
-<span id="L3787"><span class="lineNum">    3787</span> <span class="tlaGNC">           2 :         LOGINFO(1, &quot;All &quot; &lt;&lt; (had_stale ? m_checkpoints.size() : original_count) &lt;&lt; &quot; cached checkpoints validated successfully&quot;);</span></span>
-<span id="L3788"><span class="lineNum">    3788</span>              : </span>
-<span id="L3789"><span class="lineNum">    3789</span>              :         // NOTE: m_sidechainLock already held by caller (WriteLock from add_block)</span>
-<span id="L3790"><span class="lineNum">    3790</span>              :         // No need to acquire it again - verify_loop and block scan can proceed</span>
-<span id="L3791"><span class="lineNum">    3791</span>              : </span>
-<span id="L3792"><span class="lineNum">    3792</span>              :         // Propagate verification from anchor points</span>
-<span id="L3793"><span class="lineNum">    3793</span> <span class="tlaGNC">           2 :         for (PoolBlock* block : blocks_to_verify) {</span></span>
-<span id="L3794"><span class="lineNum">    3794</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Running verify_loop from anchor height &quot; &lt;&lt; block-&gt;m_sidechainHeight);</span></span>
-<span id="L3795"><span class="lineNum">    3795</span> <span class="tlaGNC">           1 :             verify_loop(block);</span></span>
-<span id="L3796"><span class="lineNum">    3796</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3797"><span class="lineNum">    3797</span>              : </span>
-<span id="L3798"><span class="lineNum">    3798</span>              :         // Scan all blocks and verify any with verified parents</span>
-<span id="L3799"><span class="lineNum">    3799</span> <span class="tlaGNC">           2 :         LOGINFO(3, &quot;Scanning for unverified blocks with verified parents...&quot;);</span></span>
-<span id="L3800"><span class="lineNum">    3800</span> <span class="tlaGNC">           2 :         bool made_progress = true;</span></span>
-<span id="L3801"><span class="lineNum">    3801</span> <span class="tlaGNC">           2 :         int pass = 0;</span></span>
-<span id="L3802"><span class="lineNum">    3802</span> <span class="tlaGNC">           4 :         while (made_progress &amp;&amp; pass &lt; 100) {</span></span>
-<span id="L3803"><span class="lineNum">    3803</span> <span class="tlaGNC">           2 :             made_progress = false;</span></span>
-<span id="L3804"><span class="lineNum">    3804</span> <span class="tlaGNC">           2 :             ++pass;</span></span>
-<span id="L3805"><span class="lineNum">    3805</span>              : </span>
-<span id="L3806"><span class="lineNum">    3806</span> <span class="tlaGNC">        9216 :             for (auto&amp; pair : m_blocksById) {</span></span>
-<span id="L3807"><span class="lineNum">    3807</span> <span class="tlaGNC">        9216 :                 PoolBlock* b = pair.second;</span></span>
-<span id="L3808"><span class="lineNum">    3808</span> <span class="tlaGNC">        9216 :                 if (!b-&gt;m_verified &amp;&amp; b-&gt;m_sidechainHeight &gt; 0) {</span></span>
-<span id="L3809"><span class="lineNum">    3809</span> <span class="tlaGNC">         552 :                     auto parent_it = m_blocksById.find(b-&gt;m_parent);</span></span>
-<span id="L3810"><span class="lineNum">    3810</span> <span class="tlaGNC">         552 :                     if (parent_it != m_blocksById.end() &amp;&amp; parent_it-&gt;second-&gt;m_verified) {</span></span>
-<span id="L3811"><span class="lineNum">    3811</span> <span class="tlaUNC tlaBgUNC">           0 :                         b-&gt;m_verified = true;</span></span>
-<span id="L3812"><span class="lineNum">    3812</span> <span class="tlaUNC">           0 :                         made_progress = true;</span></span>
-<span id="L3813"><span class="lineNum">    3813</span> <span class="tlaUNC">           0 :                     }</span></span>
-<span id="L3814"><span class="lineNum">    3814</span> <span class="tlaGNC tlaBgGNC">         552 :                 }</span></span>
-<span id="L3815"><span class="lineNum">    3815</span> <span class="tlaGNC">        9216 :             }</span></span>
-<span id="L3816"><span class="lineNum">    3816</span> <span class="tlaGNC">           2 :             if (made_progress) {</span></span>
-<span id="L3817"><span class="lineNum">    3817</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGINFO(3, &quot;Verification pass &quot; &lt;&lt; pass &lt;&lt; &quot; - verified more blocks&quot;);</span></span>
-<span id="L3818"><span class="lineNum">    3818</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3819"><span class="lineNum">    3819</span> <span class="tlaGNC tlaBgGNC">           2 :         }</span></span>
-<span id="L3820"><span class="lineNum">    3820</span>              : </span>
-<span id="L3821"><span class="lineNum">    3821</span> <span class="tlaGNC">           2 :         if (had_stale) {</span></span>
-<span id="L3822"><span class="lineNum">    3822</span> <span class="tlaGNC">           1 :             save_checkpoints();  // Persist the cleaned list</span></span>
-<span id="L3823"><span class="lineNum">    3823</span> <span class="tlaGNC">           1 :         }</span></span>
-<span id="L3824"><span class="lineNum">    3824</span> <span class="tlaGNC">           2 :         return true;  // Safe to mine</span></span>
-<span id="L3825"><span class="lineNum">    3825</span> <span class="tlaGNC">           2 :     }</span></span>
-<span id="L3826"><span class="lineNum">    3826</span>              : </span>
-<span id="L3827"><span class="lineNum">    3827</span> <span class="tlaUNC tlaBgUNC">           0 :     LOGERR(0, &quot;Cached checkpoints are INVALID - chain has diverged since last run&quot;);</span></span>
-<span id="L3828"><span class="lineNum">    3828</span> <span class="tlaUNC">           0 :     LOGERR(0, &quot;First mismatch at height &quot; &lt;&lt; first_mismatch_height);</span></span>
-<span id="L3829"><span class="lineNum">    3829</span>              : </span>
-<span id="L3830"><span class="lineNum">    3830</span> <span class="tlaUNC">           0 :     {</span></span>
-<span id="L3831"><span class="lineNum">    3831</span> <span class="tlaUNC">           0 :         WriteLock wlock(m_checkpointsLock);</span></span>
-<span id="L3832"><span class="lineNum">    3832</span> <span class="tlaUNC">           0 :         m_checkpoints.clear();</span></span>
-<span id="L3833"><span class="lineNum">    3833</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3834"><span class="lineNum">    3834</span>              : </span>
-<span id="L3835"><span class="lineNum">    3835</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Cleared stale checkpoints - will rebuild from current chain&quot;);</span></span>
-<span id="L3836"><span class="lineNum">    3836</span> <span class="tlaUNC">           0 :     save_checkpoints();  // Persist the cleared state</span></span>
-<span id="L3837"><span class="lineNum">    3837</span>              : </span>
-<span id="L3838"><span class="lineNum">    3838</span>              :     // Rebuild checkpoints from current chain</span>
-<span id="L3839"><span class="lineNum">    3839</span> <span class="tlaUNC">           0 :     const PoolBlock* tip = m_chainTip;</span></span>
-<span id="L3840"><span class="lineNum">    3840</span> <span class="tlaUNC">           0 :     if (tip) {</span></span>
-<span id="L3841"><span class="lineNum">    3841</span> <span class="tlaUNC">           0 :         update_checkpoints(tip-&gt;m_sidechainHeight);</span></span>
-<span id="L3842"><span class="lineNum">    3842</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3843"><span class="lineNum">    3843</span> <span class="tlaUNC">           0 :     return true;  // Checkpoints cleared and rebuilt, safe to mine</span></span>
-<span id="L3844"><span class="lineNum">    3844</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3845"><span class="lineNum">    3845</span>              : </span>
-<span id="L3846"><span class="lineNum">    3846</span>              : void SideChain::on_mainchain_reorg(uint64_t split_height, const hash&amp; old_block_hash)</span>
-<span id="L3847"><span class="lineNum">    3847</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3848"><span class="lineNum">    3848</span>              :     // Level 1: Important event - mainchain reorg detected</span>
-<span id="L3849"><span class="lineNum">    3849</span> <span class="tlaUNC">           0 :     LOGINFO(1, log::LightYellow() &lt;&lt; &quot;MAINCHAIN REORG at height &quot; &lt;&lt; split_height</span></span>
-<span id="L3850"><span class="lineNum">    3850</span> <span class="tlaUNC">           0 :         &lt;&lt; &quot; (old block &quot; &lt;&lt; old_block_hash &lt;&lt; &quot;), handling sidechain...&quot;);</span></span>
-<span id="L3851"><span class="lineNum">    3851</span>              : </span>
-<span id="L3852"><span class="lineNum">    3852</span>              :     // PAUSE MINING IMMEDIATELY - no point mining on potentially invalid state</span>
-<span id="L3853"><span class="lineNum">    3853</span>              :     // This prevents wasted work and ensures reorg handling takes priority</span>
-<span id="L3854"><span class="lineNum">    3854</span> <span class="tlaUNC">           0 :     const bool was_mining = m_readyToMine.exchange(false);</span></span>
-<span id="L3855"><span class="lineNum">    3855</span> <span class="tlaUNC">           0 :     if (was_mining) {</span></span>
-<span id="L3856"><span class="lineNum">    3856</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;Mining paused for reorg handling&quot;);</span></span>
-<span id="L3857"><span class="lineNum">    3857</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3858"><span class="lineNum">    3858</span>              : </span>
-<span id="L3859"><span class="lineNum">    3859</span>              :     // Set grace period - don't disconnect peers for checkpoint mismatches during this time</span>
-<span id="L3860"><span class="lineNum">    3860</span> <span class="tlaUNC">           0 :     const uint64_t now = seconds_since_epoch();</span></span>
-<span id="L3861"><span class="lineNum">    3861</span> <span class="tlaUNC">           0 :     m_reorgGracePeriodEnd.store(now + REORG_GRACE_PERIOD_SECONDS);</span></span>
-<span id="L3862"><span class="lineNum">    3862</span> <span class="tlaUNC">           0 :     m_lastReorgHeight.store(split_height);</span></span>
-<span id="L3863"><span class="lineNum">    3863</span>              : </span>
-<span id="L3864"><span class="lineNum">    3864</span> <span class="tlaUNC">           0 :     LOGINFO(3, &quot;Grace period active for &quot; &lt;&lt; REORG_GRACE_PERIOD_SECONDS &lt;&lt; &quot; seconds&quot;);</span></span>
+<span id="L3786"><span class="lineNum">    3786</span> <span class="tlaGNC">           2 :     m_checkpointsNeedValidation = false;</span></span>
+<span id="L3787"><span class="lineNum">    3787</span>              : </span>
+<span id="L3788"><span class="lineNum">    3788</span> <span class="tlaGNC">           2 :     if (all_valid) {</span></span>
+<span id="L3789"><span class="lineNum">    3789</span> <span class="tlaGNC">           2 :         LOGINFO(1, &quot;All &quot; &lt;&lt; (had_stale ? m_checkpoints.size() : original_count) &lt;&lt; &quot; cached checkpoints validated successfully&quot;);</span></span>
+<span id="L3790"><span class="lineNum">    3790</span>              : </span>
+<span id="L3791"><span class="lineNum">    3791</span>              :         // NOTE: m_sidechainLock already held by caller (WriteLock from add_block)</span>
+<span id="L3792"><span class="lineNum">    3792</span>              :         // No need to acquire it again - verify_loop and block scan can proceed</span>
+<span id="L3793"><span class="lineNum">    3793</span>              : </span>
+<span id="L3794"><span class="lineNum">    3794</span>              :         // Propagate verification from anchor points</span>
+<span id="L3795"><span class="lineNum">    3795</span> <span class="tlaGNC">           2 :         for (PoolBlock* block : blocks_to_verify) {</span></span>
+<span id="L3796"><span class="lineNum">    3796</span> <span class="tlaGNC">           1 :             LOGINFO(3, &quot;Running verify_loop from anchor height &quot; &lt;&lt; block-&gt;m_sidechainHeight);</span></span>
+<span id="L3797"><span class="lineNum">    3797</span> <span class="tlaGNC">           1 :             verify_loop(block);</span></span>
+<span id="L3798"><span class="lineNum">    3798</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3799"><span class="lineNum">    3799</span>              : </span>
+<span id="L3800"><span class="lineNum">    3800</span>              :         // Scan all blocks and verify any with verified parents</span>
+<span id="L3801"><span class="lineNum">    3801</span> <span class="tlaGNC">           2 :         LOGINFO(3, &quot;Scanning for unverified blocks with verified parents...&quot;);</span></span>
+<span id="L3802"><span class="lineNum">    3802</span> <span class="tlaGNC">           2 :         bool made_progress = true;</span></span>
+<span id="L3803"><span class="lineNum">    3803</span> <span class="tlaGNC">           2 :         int pass = 0;</span></span>
+<span id="L3804"><span class="lineNum">    3804</span> <span class="tlaGNC">           4 :         while (made_progress &amp;&amp; pass &lt; 100) {</span></span>
+<span id="L3805"><span class="lineNum">    3805</span> <span class="tlaGNC">           2 :             made_progress = false;</span></span>
+<span id="L3806"><span class="lineNum">    3806</span> <span class="tlaGNC">           2 :             ++pass;</span></span>
+<span id="L3807"><span class="lineNum">    3807</span>              : </span>
+<span id="L3808"><span class="lineNum">    3808</span> <span class="tlaGNC">        9216 :             for (auto&amp; pair : m_blocksById) {</span></span>
+<span id="L3809"><span class="lineNum">    3809</span> <span class="tlaGNC">        9216 :                 PoolBlock* b = pair.second;</span></span>
+<span id="L3810"><span class="lineNum">    3810</span> <span class="tlaGNC">        9216 :                 if (!b-&gt;m_verified &amp;&amp; b-&gt;m_sidechainHeight &gt; 0) {</span></span>
+<span id="L3811"><span class="lineNum">    3811</span> <span class="tlaGNC">         552 :                     auto parent_it = m_blocksById.find(b-&gt;m_parent);</span></span>
+<span id="L3812"><span class="lineNum">    3812</span> <span class="tlaGNC">         552 :                     if (parent_it != m_blocksById.end() &amp;&amp; parent_it-&gt;second-&gt;m_verified) {</span></span>
+<span id="L3813"><span class="lineNum">    3813</span> <span class="tlaUNC tlaBgUNC">           0 :                         b-&gt;m_verified = true;</span></span>
+<span id="L3814"><span class="lineNum">    3814</span> <span class="tlaUNC">           0 :                         made_progress = true;</span></span>
+<span id="L3815"><span class="lineNum">    3815</span> <span class="tlaUNC">           0 :                     }</span></span>
+<span id="L3816"><span class="lineNum">    3816</span> <span class="tlaGNC tlaBgGNC">         552 :                 }</span></span>
+<span id="L3817"><span class="lineNum">    3817</span> <span class="tlaGNC">        9216 :             }</span></span>
+<span id="L3818"><span class="lineNum">    3818</span> <span class="tlaGNC">           2 :             if (made_progress) {</span></span>
+<span id="L3819"><span class="lineNum">    3819</span> <span class="tlaUNC tlaBgUNC">           0 :                 LOGINFO(3, &quot;Verification pass &quot; &lt;&lt; pass &lt;&lt; &quot; - verified more blocks&quot;);</span></span>
+<span id="L3820"><span class="lineNum">    3820</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3821"><span class="lineNum">    3821</span> <span class="tlaGNC tlaBgGNC">           2 :         }</span></span>
+<span id="L3822"><span class="lineNum">    3822</span>              : </span>
+<span id="L3823"><span class="lineNum">    3823</span> <span class="tlaGNC">           2 :         if (had_stale) {</span></span>
+<span id="L3824"><span class="lineNum">    3824</span> <span class="tlaGNC">           1 :             save_checkpoints();  // Persist the cleaned list</span></span>
+<span id="L3825"><span class="lineNum">    3825</span> <span class="tlaGNC">           1 :         }</span></span>
+<span id="L3826"><span class="lineNum">    3826</span> <span class="tlaGNC">           2 :         return true;  // Safe to mine</span></span>
+<span id="L3827"><span class="lineNum">    3827</span> <span class="tlaGNC">           2 :     }</span></span>
+<span id="L3828"><span class="lineNum">    3828</span>              : </span>
+<span id="L3829"><span class="lineNum">    3829</span> <span class="tlaUNC tlaBgUNC">           0 :     LOGERR(0, &quot;Cached checkpoints are INVALID - chain has diverged since last run&quot;);</span></span>
+<span id="L3830"><span class="lineNum">    3830</span> <span class="tlaUNC">           0 :     LOGERR(0, &quot;First mismatch at height &quot; &lt;&lt; first_mismatch_height);</span></span>
+<span id="L3831"><span class="lineNum">    3831</span>              : </span>
+<span id="L3832"><span class="lineNum">    3832</span> <span class="tlaUNC">           0 :     {</span></span>
+<span id="L3833"><span class="lineNum">    3833</span> <span class="tlaUNC">           0 :         WriteLock wlock(m_checkpointsLock);</span></span>
+<span id="L3834"><span class="lineNum">    3834</span> <span class="tlaUNC">           0 :         m_checkpoints.clear();</span></span>
+<span id="L3835"><span class="lineNum">    3835</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3836"><span class="lineNum">    3836</span>              : </span>
+<span id="L3837"><span class="lineNum">    3837</span> <span class="tlaUNC">           0 :     LOGINFO(0, &quot;Cleared stale checkpoints - will rebuild from current chain&quot;);</span></span>
+<span id="L3838"><span class="lineNum">    3838</span> <span class="tlaUNC">           0 :     save_checkpoints();  // Persist the cleared state</span></span>
+<span id="L3839"><span class="lineNum">    3839</span>              : </span>
+<span id="L3840"><span class="lineNum">    3840</span>              :     // Rebuild checkpoints from current chain</span>
+<span id="L3841"><span class="lineNum">    3841</span> <span class="tlaUNC">           0 :     const PoolBlock* tip = m_chainTip;</span></span>
+<span id="L3842"><span class="lineNum">    3842</span> <span class="tlaUNC">           0 :     if (tip) {</span></span>
+<span id="L3843"><span class="lineNum">    3843</span> <span class="tlaUNC">           0 :         update_checkpoints(tip-&gt;m_sidechainHeight);</span></span>
+<span id="L3844"><span class="lineNum">    3844</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3845"><span class="lineNum">    3845</span> <span class="tlaUNC">           0 :     return true;  // Checkpoints cleared and rebuilt, safe to mine</span></span>
+<span id="L3846"><span class="lineNum">    3846</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3847"><span class="lineNum">    3847</span>              : </span>
+<span id="L3848"><span class="lineNum">    3848</span>              : void SideChain::on_mainchain_reorg(uint64_t split_height, const hash&amp; old_block_hash)</span>
+<span id="L3849"><span class="lineNum">    3849</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3850"><span class="lineNum">    3850</span>              :     // Level 1: Important event - mainchain reorg detected</span>
+<span id="L3851"><span class="lineNum">    3851</span> <span class="tlaUNC">           0 :     LOGINFO(1, log::LightYellow() &lt;&lt; &quot;MAINCHAIN REORG at height &quot; &lt;&lt; split_height</span></span>
+<span id="L3852"><span class="lineNum">    3852</span> <span class="tlaUNC">           0 :         &lt;&lt; &quot; (old block &quot; &lt;&lt; old_block_hash &lt;&lt; &quot;), handling sidechain...&quot;);</span></span>
+<span id="L3853"><span class="lineNum">    3853</span>              : </span>
+<span id="L3854"><span class="lineNum">    3854</span>              :     // PAUSE MINING IMMEDIATELY - no point mining on potentially invalid state</span>
+<span id="L3855"><span class="lineNum">    3855</span>              :     // This prevents wasted work and ensures reorg handling takes priority</span>
+<span id="L3856"><span class="lineNum">    3856</span> <span class="tlaUNC">           0 :     const bool was_mining = m_readyToMine.exchange(false);</span></span>
+<span id="L3857"><span class="lineNum">    3857</span> <span class="tlaUNC">           0 :     if (was_mining) {</span></span>
+<span id="L3858"><span class="lineNum">    3858</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;Mining paused for reorg handling&quot;);</span></span>
+<span id="L3859"><span class="lineNum">    3859</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3860"><span class="lineNum">    3860</span>              : </span>
+<span id="L3861"><span class="lineNum">    3861</span>              :     // Set grace period - don't disconnect peers for checkpoint mismatches during this time</span>
+<span id="L3862"><span class="lineNum">    3862</span> <span class="tlaUNC">           0 :     const uint64_t now = seconds_since_epoch();</span></span>
+<span id="L3863"><span class="lineNum">    3863</span> <span class="tlaUNC">           0 :     m_reorgGracePeriodEnd.store(now + REORG_GRACE_PERIOD_SECONDS);</span></span>
+<span id="L3864"><span class="lineNum">    3864</span> <span class="tlaUNC">           0 :     m_lastReorgHeight.store(split_height);</span></span>
 <span id="L3865"><span class="lineNum">    3865</span>              : </span>
-<span id="L3866"><span class="lineNum">    3866</span> <span class="tlaUNC">           0 :     uint32_t affected_count = 0;</span></span>
-<span id="L3867"><span class="lineNum">    3867</span> <span class="tlaUNC">           0 :     bool tip_affected = false;</span></span>
-<span id="L3868"><span class="lineNum">    3868</span>              : </span>
-<span id="L3869"><span class="lineNum">    3869</span>              :     // Wrap all reorg handling in try-catch to ensure mining resumes even on error</span>
-<span id="L3870"><span class="lineNum">    3870</span> <span class="tlaUNC">           0 :     try {</span></span>
-<span id="L3871"><span class="lineNum">    3871</span>              :         // Phase 1: Find and mark ALL sidechain blocks that reference orphaned mainchain blocks</span>
-<span id="L3872"><span class="lineNum">    3872</span>              :         // Use chainmain_get_by_hash() to check if each block's mainchain reference is still valid</span>
-<span id="L3873"><span class="lineNum">    3873</span> <span class="tlaUNC">           0 :         unordered_set&lt;hash&gt; invalid_block_ids;</span></span>
-<span id="L3874"><span class="lineNum">    3874</span>              : </span>
-<span id="L3875"><span class="lineNum">    3875</span> <span class="tlaUNC">           0 :         {</span></span>
-<span id="L3876"><span class="lineNum">    3876</span> <span class="tlaUNC">           0 :             ReadLock lock(m_sidechainLock);</span></span>
-<span id="L3877"><span class="lineNum">    3877</span> <span class="tlaUNC">           0 :             const PoolBlock* current_tip = m_chainTip.load();</span></span>
-<span id="L3878"><span class="lineNum">    3878</span>              : </span>
-<span id="L3879"><span class="lineNum">    3879</span> <span class="tlaUNC">           0 :             for (auto&amp; pair : m_blocksById) {</span></span>
-<span id="L3880"><span class="lineNum">    3880</span> <span class="tlaUNC">           0 :                 PoolBlock* block = pair.second;</span></span>
-<span id="L3881"><span class="lineNum">    3881</span>              : </span>
-<span id="L3882"><span class="lineNum">    3882</span>              :                 // Skip blocks already marked invalid</span>
-<span id="L3883"><span class="lineNum">    3883</span> <span class="tlaUNC">           0 :                 if (block-&gt;m_invalid) {</span></span>
-<span id="L3884"><span class="lineNum">    3884</span> <span class="tlaUNC">           0 :                     continue;</span></span>
-<span id="L3885"><span class="lineNum">    3885</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3886"><span class="lineNum">    3886</span>              : </span>
-<span id="L3887"><span class="lineNum">    3887</span>              :                 // Check if this block's mainchain reference is still valid</span>
-<span id="L3888"><span class="lineNum">    3888</span> <span class="tlaUNC">           0 :                 ChainMain data;</span></span>
-<span id="L3889"><span class="lineNum">    3889</span> <span class="tlaUNC">           0 :                 if (!m_pool-&gt;chainmain_get_by_hash(block-&gt;m_prevId, data)) {</span></span>
-<span id="L3890"><span class="lineNum">    3890</span>              :                     // This sidechain block references an orphaned mainchain block</span>
-<span id="L3891"><span class="lineNum">    3891</span> <span class="tlaUNC">           0 :                     LOGINFO(4, &quot;Sidechain block &quot; &lt;&lt; block-&gt;m_sidechainId</span></span>
-<span id="L3892"><span class="lineNum">    3892</span> <span class="tlaUNC">           0 :                         &lt;&lt; &quot; at height &quot; &lt;&lt; block-&gt;m_sidechainHeight</span></span>
-<span id="L3893"><span class="lineNum">    3893</span> <span class="tlaUNC">           0 :                         &lt;&lt; &quot; references orphaned mainchain - marking invalid&quot;);</span></span>
-<span id="L3894"><span class="lineNum">    3894</span>              : </span>
-<span id="L3895"><span class="lineNum">    3895</span> <span class="tlaUNC">           0 :                     block-&gt;m_verified = false;</span></span>
-<span id="L3896"><span class="lineNum">    3896</span> <span class="tlaUNC">           0 :                     block-&gt;m_invalid = true;</span></span>
-<span id="L3897"><span class="lineNum">    3897</span> <span class="tlaUNC">           0 :                     invalid_block_ids.insert(block-&gt;m_sidechainId);</span></span>
-<span id="L3898"><span class="lineNum">    3898</span> <span class="tlaUNC">           0 :                     ++affected_count;</span></span>
-<span id="L3899"><span class="lineNum">    3899</span>              : </span>
-<span id="L3900"><span class="lineNum">    3900</span>              :                     // Check if the chain tip is affected</span>
-<span id="L3901"><span class="lineNum">    3901</span> <span class="tlaUNC">           0 :                     if (current_tip &amp;&amp; block-&gt;m_sidechainId == current_tip-&gt;m_sidechainId) {</span></span>
-<span id="L3902"><span class="lineNum">    3902</span> <span class="tlaUNC">           0 :                         tip_affected = true;</span></span>
-<span id="L3903"><span class="lineNum">    3903</span> <span class="tlaUNC">           0 :                     }</span></span>
-<span id="L3904"><span class="lineNum">    3904</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3905"><span class="lineNum">    3905</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3906"><span class="lineNum">    3906</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3907"><span class="lineNum">    3907</span>              : </span>
-<span id="L3908"><span class="lineNum">    3908</span> <span class="tlaUNC">           0 :         LOGINFO(3, &quot;Phase 1: &quot; &lt;&lt; affected_count &lt;&lt; &quot; sidechain blocks invalidated&quot;);</span></span>
+<span id="L3866"><span class="lineNum">    3866</span> <span class="tlaUNC">           0 :     LOGINFO(3, &quot;Grace period active for &quot; &lt;&lt; REORG_GRACE_PERIOD_SECONDS &lt;&lt; &quot; seconds&quot;);</span></span>
+<span id="L3867"><span class="lineNum">    3867</span>              : </span>
+<span id="L3868"><span class="lineNum">    3868</span> <span class="tlaUNC">           0 :     uint32_t affected_count = 0;</span></span>
+<span id="L3869"><span class="lineNum">    3869</span> <span class="tlaUNC">           0 :     bool tip_affected = false;</span></span>
+<span id="L3870"><span class="lineNum">    3870</span>              : </span>
+<span id="L3871"><span class="lineNum">    3871</span>              :     // Wrap all reorg handling in try-catch to ensure mining resumes even on error</span>
+<span id="L3872"><span class="lineNum">    3872</span> <span class="tlaUNC">           0 :     try {</span></span>
+<span id="L3873"><span class="lineNum">    3873</span>              :         // Phase 1: Find and mark ALL sidechain blocks that reference orphaned mainchain blocks</span>
+<span id="L3874"><span class="lineNum">    3874</span>              :         // Use chainmain_get_by_hash() to check if each block's mainchain reference is still valid</span>
+<span id="L3875"><span class="lineNum">    3875</span> <span class="tlaUNC">           0 :         unordered_set&lt;hash&gt; invalid_block_ids;</span></span>
+<span id="L3876"><span class="lineNum">    3876</span>              : </span>
+<span id="L3877"><span class="lineNum">    3877</span> <span class="tlaUNC">           0 :         {</span></span>
+<span id="L3878"><span class="lineNum">    3878</span> <span class="tlaUNC">           0 :             ReadLock lock(m_sidechainLock);</span></span>
+<span id="L3879"><span class="lineNum">    3879</span> <span class="tlaUNC">           0 :             const PoolBlock* current_tip = m_chainTip.load();</span></span>
+<span id="L3880"><span class="lineNum">    3880</span>              : </span>
+<span id="L3881"><span class="lineNum">    3881</span> <span class="tlaUNC">           0 :             for (auto&amp; pair : m_blocksById) {</span></span>
+<span id="L3882"><span class="lineNum">    3882</span> <span class="tlaUNC">           0 :                 PoolBlock* block = pair.second;</span></span>
+<span id="L3883"><span class="lineNum">    3883</span>              : </span>
+<span id="L3884"><span class="lineNum">    3884</span>              :                 // Skip blocks already marked invalid</span>
+<span id="L3885"><span class="lineNum">    3885</span> <span class="tlaUNC">           0 :                 if (block-&gt;m_invalid) {</span></span>
+<span id="L3886"><span class="lineNum">    3886</span> <span class="tlaUNC">           0 :                     continue;</span></span>
+<span id="L3887"><span class="lineNum">    3887</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3888"><span class="lineNum">    3888</span>              : </span>
+<span id="L3889"><span class="lineNum">    3889</span>              :                 // Check if this block's mainchain reference is still valid</span>
+<span id="L3890"><span class="lineNum">    3890</span> <span class="tlaUNC">           0 :                 ChainMain data;</span></span>
+<span id="L3891"><span class="lineNum">    3891</span> <span class="tlaUNC">           0 :                 if (!m_pool-&gt;chainmain_get_by_hash(block-&gt;m_prevId, data)) {</span></span>
+<span id="L3892"><span class="lineNum">    3892</span>              :                     // This sidechain block references an orphaned mainchain block</span>
+<span id="L3893"><span class="lineNum">    3893</span> <span class="tlaUNC">           0 :                     LOGINFO(4, &quot;Sidechain block &quot; &lt;&lt; block-&gt;m_sidechainId</span></span>
+<span id="L3894"><span class="lineNum">    3894</span> <span class="tlaUNC">           0 :                         &lt;&lt; &quot; at height &quot; &lt;&lt; block-&gt;m_sidechainHeight</span></span>
+<span id="L3895"><span class="lineNum">    3895</span> <span class="tlaUNC">           0 :                         &lt;&lt; &quot; references orphaned mainchain - marking invalid&quot;);</span></span>
+<span id="L3896"><span class="lineNum">    3896</span>              : </span>
+<span id="L3897"><span class="lineNum">    3897</span> <span class="tlaUNC">           0 :                     block-&gt;m_verified = false;</span></span>
+<span id="L3898"><span class="lineNum">    3898</span> <span class="tlaUNC">           0 :                     block-&gt;m_invalid = true;</span></span>
+<span id="L3899"><span class="lineNum">    3899</span> <span class="tlaUNC">           0 :                     invalid_block_ids.insert(block-&gt;m_sidechainId);</span></span>
+<span id="L3900"><span class="lineNum">    3900</span> <span class="tlaUNC">           0 :                     ++affected_count;</span></span>
+<span id="L3901"><span class="lineNum">    3901</span>              : </span>
+<span id="L3902"><span class="lineNum">    3902</span>              :                     // Check if the chain tip is affected</span>
+<span id="L3903"><span class="lineNum">    3903</span> <span class="tlaUNC">           0 :                     if (current_tip &amp;&amp; block-&gt;m_sidechainId == current_tip-&gt;m_sidechainId) {</span></span>
+<span id="L3904"><span class="lineNum">    3904</span> <span class="tlaUNC">           0 :                         tip_affected = true;</span></span>
+<span id="L3905"><span class="lineNum">    3905</span> <span class="tlaUNC">           0 :                     }</span></span>
+<span id="L3906"><span class="lineNum">    3906</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3907"><span class="lineNum">    3907</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3908"><span class="lineNum">    3908</span> <span class="tlaUNC">           0 :         }</span></span>
 <span id="L3909"><span class="lineNum">    3909</span>              : </span>
-<span id="L3910"><span class="lineNum">    3910</span>              :         // Phase 2: Clean checkpoints that reference invalid blocks</span>
-<span id="L3911"><span class="lineNum">    3911</span>              :         // Important: Use separate lock scopes to avoid deadlock</span>
-<span id="L3912"><span class="lineNum">    3912</span> <span class="tlaUNC">           0 :         if (!invalid_block_ids.empty()) {</span></span>
-<span id="L3913"><span class="lineNum">    3913</span> <span class="tlaUNC">           0 :             WriteLock cpLock(m_checkpointsLock);</span></span>
-<span id="L3914"><span class="lineNum">    3914</span> <span class="tlaUNC">           0 :             size_t old_count = m_checkpoints.size();</span></span>
-<span id="L3915"><span class="lineNum">    3915</span>              : </span>
-<span id="L3916"><span class="lineNum">    3916</span> <span class="tlaUNC">           0 :             m_checkpoints.erase(</span></span>
-<span id="L3917"><span class="lineNum">    3917</span> <span class="tlaUNC">           0 :                 std::remove_if(m_checkpoints.begin(), m_checkpoints.end(),</span></span>
-<span id="L3918"><span class="lineNum">    3918</span> <span class="tlaUNC">           0 :                     [&amp;invalid_block_ids](const Checkpoint&amp; cp) {</span></span>
-<span id="L3919"><span class="lineNum">    3919</span> <span class="tlaUNC">           0 :                         return invalid_block_ids.count(cp.id) &gt; 0;</span></span>
-<span id="L3920"><span class="lineNum">    3920</span> <span class="tlaUNC">           0 :                     }),</span></span>
-<span id="L3921"><span class="lineNum">    3921</span> <span class="tlaUNC">           0 :                 m_checkpoints.end()</span></span>
-<span id="L3922"><span class="lineNum">    3922</span> <span class="tlaUNC">           0 :             );</span></span>
-<span id="L3923"><span class="lineNum">    3923</span>              : </span>
-<span id="L3924"><span class="lineNum">    3924</span> <span class="tlaUNC">           0 :             if (m_checkpoints.size() &lt; old_count) {</span></span>
-<span id="L3925"><span class="lineNum">    3925</span> <span class="tlaUNC">           0 :                 LOGINFO(3, &quot;Phase 2: Removed &quot; &lt;&lt; (old_count - m_checkpoints.size()) &lt;&lt; &quot; checkpoints&quot;);</span></span>
-<span id="L3926"><span class="lineNum">    3926</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3927"><span class="lineNum">    3927</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3928"><span class="lineNum">    3928</span>              : </span>
-<span id="L3929"><span class="lineNum">    3929</span>              :         // Phase 3: Reset chain tip if current tip was invalidated</span>
-<span id="L3930"><span class="lineNum">    3930</span> <span class="tlaUNC">           0 :         if (tip_affected) {</span></span>
-<span id="L3931"><span class="lineNum">    3931</span> <span class="tlaUNC">           0 :             LOGINFO(2, &quot;Chain tip invalidated, finding new valid tip...&quot;);</span></span>
-<span id="L3932"><span class="lineNum">    3932</span>              : </span>
-<span id="L3933"><span class="lineNum">    3933</span> <span class="tlaUNC">           0 :             ReadLock lock(m_sidechainLock);</span></span>
-<span id="L3934"><span class="lineNum">    3934</span> <span class="tlaUNC">           0 :             PoolBlock* best = nullptr;</span></span>
-<span id="L3935"><span class="lineNum">    3935</span>              : </span>
-<span id="L3936"><span class="lineNum">    3936</span> <span class="tlaUNC">           0 :             for (auto&amp; pair : m_blocksById) {</span></span>
-<span id="L3937"><span class="lineNum">    3937</span> <span class="tlaUNC">           0 :                 PoolBlock* block = pair.second;</span></span>
-<span id="L3938"><span class="lineNum">    3938</span> <span class="tlaUNC">           0 :                 if (block-&gt;m_verified &amp;&amp; !block-&gt;m_invalid) {</span></span>
-<span id="L3939"><span class="lineNum">    3939</span> <span class="tlaUNC">           0 :                     if (!best || block-&gt;m_cumulativeDifficulty &gt; best-&gt;m_cumulativeDifficulty) {</span></span>
-<span id="L3940"><span class="lineNum">    3940</span> <span class="tlaUNC">           0 :                         best = block;</span></span>
-<span id="L3941"><span class="lineNum">    3941</span> <span class="tlaUNC">           0 :                     }</span></span>
-<span id="L3942"><span class="lineNum">    3942</span> <span class="tlaUNC">           0 :                 }</span></span>
-<span id="L3943"><span class="lineNum">    3943</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3944"><span class="lineNum">    3944</span>              : </span>
-<span id="L3945"><span class="lineNum">    3945</span> <span class="tlaUNC">           0 :             m_chainTip.store(best);</span></span>
-<span id="L3946"><span class="lineNum">    3946</span> <span class="tlaUNC">           0 :             if (best) {</span></span>
-<span id="L3947"><span class="lineNum">    3947</span> <span class="tlaUNC">           0 :                 LOGINFO(2, &quot;Chain tip reset to height &quot; &lt;&lt; best-&gt;m_sidechainHeight);</span></span>
-<span id="L3948"><span class="lineNum">    3948</span> <span class="tlaUNC">           0 :             } else {</span></span>
-<span id="L3949"><span class="lineNum">    3949</span> <span class="tlaUNC">           0 :                 LOGWARN(1, &quot;No valid chain tip after reorg - will sync from peers or create genesis&quot;);</span></span>
-<span id="L3950"><span class="lineNum">    3950</span> <span class="tlaUNC">           0 :             }</span></span>
-<span id="L3951"><span class="lineNum">    3951</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3952"><span class="lineNum">    3952</span>              : </span>
-<span id="L3953"><span class="lineNum">    3953</span>              :         // Phase 4: Rebuild checkpoints from valid chain</span>
-<span id="L3954"><span class="lineNum">    3954</span> <span class="tlaUNC">           0 :         const PoolBlock* tip = m_chainTip.load();</span></span>
-<span id="L3955"><span class="lineNum">    3955</span> <span class="tlaUNC">           0 :         if (tip &amp;&amp; affected_count &gt; 0) {</span></span>
-<span id="L3956"><span class="lineNum">    3956</span> <span class="tlaUNC">           0 :             LOGINFO(3, &quot;Phase 4: Rebuilding checkpoints...&quot;);</span></span>
-<span id="L3957"><span class="lineNum">    3957</span> <span class="tlaUNC">           0 :             update_checkpoints(tip-&gt;m_sidechainHeight);</span></span>
-<span id="L3958"><span class="lineNum">    3958</span> <span class="tlaUNC">           0 :             save_checkpoints();</span></span>
-<span id="L3959"><span class="lineNum">    3959</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3960"><span class="lineNum">    3960</span>              : </span>
-<span id="L3961"><span class="lineNum">    3961</span>              :         // Phase 5: Trigger re-verification of any pending blocks</span>
-<span id="L3962"><span class="lineNum">    3962</span> <span class="tlaUNC">           0 :         if (affected_count &gt; 0) {</span></span>
-<span id="L3963"><span class="lineNum">    3963</span> <span class="tlaUNC">           0 :             LOGINFO(3, &quot;Phase 5: Re-verifying pending blocks...&quot;);</span></span>
-<span id="L3964"><span class="lineNum">    3964</span> <span class="tlaUNC">           0 :             retry_unverified_blocks();</span></span>
-<span id="L3965"><span class="lineNum">    3965</span> <span class="tlaUNC">           0 :         }</span></span>
-<span id="L3966"><span class="lineNum">    3966</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3967"><span class="lineNum">    3967</span> <span class="tlaUNC">           0 :     catch (const std::exception&amp; e) {</span></span>
-<span id="L3968"><span class="lineNum">    3968</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;Exception during reorg handling: &quot; &lt;&lt; e.what());</span></span>
-<span id="L3969"><span class="lineNum">    3969</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3970"><span class="lineNum">    3970</span> <span class="tlaUNC">           0 :     catch (...) {</span></span>
-<span id="L3971"><span class="lineNum">    3971</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;Unknown exception during reorg handling&quot;);</span></span>
-<span id="L3972"><span class="lineNum">    3972</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3973"><span class="lineNum">    3973</span>              : </span>
-<span id="L3974"><span class="lineNum">    3974</span>              :     // ALWAYS RESUME MINING if it was active before</span>
-<span id="L3975"><span class="lineNum">    3975</span>              :     // Even without a valid tip, we need mining enabled to:</span>
-<span id="L3976"><span class="lineNum">    3976</span>              :     // 1. Create a new genesis block if all blocks were invalidated</span>
-<span id="L3977"><span class="lineNum">    3977</span>              :     // 2. Process new blocks from peers that might give us a valid tip</span>
-<span id="L3978"><span class="lineNum">    3978</span>              :     // Without this, a deep reorg could deadlock the entire network</span>
-<span id="L3979"><span class="lineNum">    3979</span> <span class="tlaUNC">           0 :     if (was_mining) {</span></span>
-<span id="L3980"><span class="lineNum">    3980</span> <span class="tlaUNC">           0 :         m_readyToMine.store(true);</span></span>
-<span id="L3981"><span class="lineNum">    3981</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;Mining resumed&quot;);</span></span>
-<span id="L3982"><span class="lineNum">    3982</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3983"><span class="lineNum">    3983</span>              : </span>
-<span id="L3984"><span class="lineNum">    3984</span>              :     // Level 1 summary: only if blocks were actually affected</span>
-<span id="L3985"><span class="lineNum">    3985</span> <span class="tlaUNC">           0 :     if (affected_count &gt; 0) {</span></span>
-<span id="L3986"><span class="lineNum">    3986</span> <span class="tlaUNC">           0 :         LOGINFO(1, log::LightYellow() &lt;&lt; &quot;Reorg handled: &quot; &lt;&lt; affected_count &lt;&lt; &quot; blocks invalidated&quot;</span></span>
-<span id="L3987"><span class="lineNum">    3987</span> <span class="tlaUNC">           0 :             &lt;&lt; (tip_affected ? &quot;, tip reset&quot; : &quot;&quot;));</span></span>
-<span id="L3988"><span class="lineNum">    3988</span> <span class="tlaUNC">           0 :     } else {</span></span>
-<span id="L3989"><span class="lineNum">    3989</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;Reorg handled: no sidechain blocks affected&quot;);</span></span>
-<span id="L3990"><span class="lineNum">    3990</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3991"><span class="lineNum">    3991</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L3992"><span class="lineNum">    3992</span>              : </span>
-<span id="L3993"><span class="lineNum">    3993</span>              : bool SideChain::is_in_reorg_grace_period() const</span>
-<span id="L3994"><span class="lineNum">    3994</span> <span class="tlaUNC">           0 : {</span></span>
-<span id="L3995"><span class="lineNum">    3995</span> <span class="tlaUNC">           0 :     const uint64_t grace_end = m_reorgGracePeriodEnd.load();</span></span>
-<span id="L3996"><span class="lineNum">    3996</span> <span class="tlaUNC">           0 :     if (grace_end == 0) {</span></span>
-<span id="L3997"><span class="lineNum">    3997</span> <span class="tlaUNC">           0 :         return false;</span></span>
-<span id="L3998"><span class="lineNum">    3998</span> <span class="tlaUNC">           0 :     }</span></span>
-<span id="L3999"><span class="lineNum">    3999</span> <span class="tlaUNC">           0 :     return seconds_since_epoch() &lt; grace_end;</span></span>
-<span id="L4000"><span class="lineNum">    4000</span> <span class="tlaUNC">           0 : }</span></span>
-<span id="L4001"><span class="lineNum">    4001</span>              : </span>
-<span id="L4002"><span class="lineNum">    4002</span>              : } // namespace p2pool</span>
+<span id="L3910"><span class="lineNum">    3910</span> <span class="tlaUNC">           0 :         LOGINFO(3, &quot;Phase 1: &quot; &lt;&lt; affected_count &lt;&lt; &quot; sidechain blocks invalidated&quot;);</span></span>
+<span id="L3911"><span class="lineNum">    3911</span>              : </span>
+<span id="L3912"><span class="lineNum">    3912</span>              :         // Phase 2: Clean checkpoints that reference invalid blocks</span>
+<span id="L3913"><span class="lineNum">    3913</span>              :         // Important: Use separate lock scopes to avoid deadlock</span>
+<span id="L3914"><span class="lineNum">    3914</span> <span class="tlaUNC">           0 :         if (!invalid_block_ids.empty()) {</span></span>
+<span id="L3915"><span class="lineNum">    3915</span> <span class="tlaUNC">           0 :             WriteLock cpLock(m_checkpointsLock);</span></span>
+<span id="L3916"><span class="lineNum">    3916</span> <span class="tlaUNC">           0 :             size_t old_count = m_checkpoints.size();</span></span>
+<span id="L3917"><span class="lineNum">    3917</span>              : </span>
+<span id="L3918"><span class="lineNum">    3918</span> <span class="tlaUNC">           0 :             m_checkpoints.erase(</span></span>
+<span id="L3919"><span class="lineNum">    3919</span> <span class="tlaUNC">           0 :                 std::remove_if(m_checkpoints.begin(), m_checkpoints.end(),</span></span>
+<span id="L3920"><span class="lineNum">    3920</span> <span class="tlaUNC">           0 :                     [&amp;invalid_block_ids](const Checkpoint&amp; cp) {</span></span>
+<span id="L3921"><span class="lineNum">    3921</span> <span class="tlaUNC">           0 :                         return invalid_block_ids.count(cp.id) &gt; 0;</span></span>
+<span id="L3922"><span class="lineNum">    3922</span> <span class="tlaUNC">           0 :                     }),</span></span>
+<span id="L3923"><span class="lineNum">    3923</span> <span class="tlaUNC">           0 :                 m_checkpoints.end()</span></span>
+<span id="L3924"><span class="lineNum">    3924</span> <span class="tlaUNC">           0 :             );</span></span>
+<span id="L3925"><span class="lineNum">    3925</span>              : </span>
+<span id="L3926"><span class="lineNum">    3926</span> <span class="tlaUNC">           0 :             if (m_checkpoints.size() &lt; old_count) {</span></span>
+<span id="L3927"><span class="lineNum">    3927</span> <span class="tlaUNC">           0 :                 LOGINFO(3, &quot;Phase 2: Removed &quot; &lt;&lt; (old_count - m_checkpoints.size()) &lt;&lt; &quot; checkpoints&quot;);</span></span>
+<span id="L3928"><span class="lineNum">    3928</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3929"><span class="lineNum">    3929</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3930"><span class="lineNum">    3930</span>              : </span>
+<span id="L3931"><span class="lineNum">    3931</span>              :         // Phase 3: Reset chain tip if current tip was invalidated</span>
+<span id="L3932"><span class="lineNum">    3932</span> <span class="tlaUNC">           0 :         if (tip_affected) {</span></span>
+<span id="L3933"><span class="lineNum">    3933</span> <span class="tlaUNC">           0 :             LOGINFO(2, &quot;Chain tip invalidated, finding new valid tip...&quot;);</span></span>
+<span id="L3934"><span class="lineNum">    3934</span>              : </span>
+<span id="L3935"><span class="lineNum">    3935</span> <span class="tlaUNC">           0 :             ReadLock lock(m_sidechainLock);</span></span>
+<span id="L3936"><span class="lineNum">    3936</span> <span class="tlaUNC">           0 :             PoolBlock* best = nullptr;</span></span>
+<span id="L3937"><span class="lineNum">    3937</span>              : </span>
+<span id="L3938"><span class="lineNum">    3938</span> <span class="tlaUNC">           0 :             for (auto&amp; pair : m_blocksById) {</span></span>
+<span id="L3939"><span class="lineNum">    3939</span> <span class="tlaUNC">           0 :                 PoolBlock* block = pair.second;</span></span>
+<span id="L3940"><span class="lineNum">    3940</span> <span class="tlaUNC">           0 :                 if (block-&gt;m_verified &amp;&amp; !block-&gt;m_invalid) {</span></span>
+<span id="L3941"><span class="lineNum">    3941</span> <span class="tlaUNC">           0 :                     if (!best || block-&gt;m_cumulativeDifficulty &gt; best-&gt;m_cumulativeDifficulty) {</span></span>
+<span id="L3942"><span class="lineNum">    3942</span> <span class="tlaUNC">           0 :                         best = block;</span></span>
+<span id="L3943"><span class="lineNum">    3943</span> <span class="tlaUNC">           0 :                     }</span></span>
+<span id="L3944"><span class="lineNum">    3944</span> <span class="tlaUNC">           0 :                 }</span></span>
+<span id="L3945"><span class="lineNum">    3945</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3946"><span class="lineNum">    3946</span>              : </span>
+<span id="L3947"><span class="lineNum">    3947</span> <span class="tlaUNC">           0 :             m_chainTip.store(best);</span></span>
+<span id="L3948"><span class="lineNum">    3948</span> <span class="tlaUNC">           0 :             if (best) {</span></span>
+<span id="L3949"><span class="lineNum">    3949</span> <span class="tlaUNC">           0 :                 LOGINFO(2, &quot;Chain tip reset to height &quot; &lt;&lt; best-&gt;m_sidechainHeight);</span></span>
+<span id="L3950"><span class="lineNum">    3950</span> <span class="tlaUNC">           0 :             } else {</span></span>
+<span id="L3951"><span class="lineNum">    3951</span> <span class="tlaUNC">           0 :                 LOGWARN(1, &quot;No valid chain tip after reorg - will sync from peers or create genesis&quot;);</span></span>
+<span id="L3952"><span class="lineNum">    3952</span> <span class="tlaUNC">           0 :             }</span></span>
+<span id="L3953"><span class="lineNum">    3953</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3954"><span class="lineNum">    3954</span>              : </span>
+<span id="L3955"><span class="lineNum">    3955</span>              :         // Phase 4: Rebuild checkpoints from valid chain</span>
+<span id="L3956"><span class="lineNum">    3956</span> <span class="tlaUNC">           0 :         const PoolBlock* tip = m_chainTip.load();</span></span>
+<span id="L3957"><span class="lineNum">    3957</span> <span class="tlaUNC">           0 :         if (tip &amp;&amp; affected_count &gt; 0) {</span></span>
+<span id="L3958"><span class="lineNum">    3958</span> <span class="tlaUNC">           0 :             LOGINFO(3, &quot;Phase 4: Rebuilding checkpoints...&quot;);</span></span>
+<span id="L3959"><span class="lineNum">    3959</span> <span class="tlaUNC">           0 :             update_checkpoints(tip-&gt;m_sidechainHeight);</span></span>
+<span id="L3960"><span class="lineNum">    3960</span> <span class="tlaUNC">           0 :             save_checkpoints();</span></span>
+<span id="L3961"><span class="lineNum">    3961</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3962"><span class="lineNum">    3962</span>              : </span>
+<span id="L3963"><span class="lineNum">    3963</span>              :         // Phase 5: Trigger re-verification of any pending blocks</span>
+<span id="L3964"><span class="lineNum">    3964</span> <span class="tlaUNC">           0 :         if (affected_count &gt; 0) {</span></span>
+<span id="L3965"><span class="lineNum">    3965</span> <span class="tlaUNC">           0 :             LOGINFO(3, &quot;Phase 5: Re-verifying pending blocks...&quot;);</span></span>
+<span id="L3966"><span class="lineNum">    3966</span> <span class="tlaUNC">           0 :             retry_unverified_blocks();</span></span>
+<span id="L3967"><span class="lineNum">    3967</span> <span class="tlaUNC">           0 :         }</span></span>
+<span id="L3968"><span class="lineNum">    3968</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3969"><span class="lineNum">    3969</span> <span class="tlaUNC">           0 :     catch (const std::exception&amp; e) {</span></span>
+<span id="L3970"><span class="lineNum">    3970</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;Exception during reorg handling: &quot; &lt;&lt; e.what());</span></span>
+<span id="L3971"><span class="lineNum">    3971</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3972"><span class="lineNum">    3972</span> <span class="tlaUNC">           0 :     catch (...) {</span></span>
+<span id="L3973"><span class="lineNum">    3973</span> <span class="tlaUNC">           0 :         LOGERR(0, &quot;Unknown exception during reorg handling&quot;);</span></span>
+<span id="L3974"><span class="lineNum">    3974</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3975"><span class="lineNum">    3975</span>              : </span>
+<span id="L3976"><span class="lineNum">    3976</span>              :     // ALWAYS RESUME MINING if it was active before</span>
+<span id="L3977"><span class="lineNum">    3977</span>              :     // Even without a valid tip, we need mining enabled to:</span>
+<span id="L3978"><span class="lineNum">    3978</span>              :     // 1. Create a new genesis block if all blocks were invalidated</span>
+<span id="L3979"><span class="lineNum">    3979</span>              :     // 2. Process new blocks from peers that might give us a valid tip</span>
+<span id="L3980"><span class="lineNum">    3980</span>              :     // Without this, a deep reorg could deadlock the entire network</span>
+<span id="L3981"><span class="lineNum">    3981</span> <span class="tlaUNC">           0 :     if (was_mining) {</span></span>
+<span id="L3982"><span class="lineNum">    3982</span> <span class="tlaUNC">           0 :         m_readyToMine.store(true);</span></span>
+<span id="L3983"><span class="lineNum">    3983</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;Mining resumed&quot;);</span></span>
+<span id="L3984"><span class="lineNum">    3984</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3985"><span class="lineNum">    3985</span>              : </span>
+<span id="L3986"><span class="lineNum">    3986</span>              :     // Level 1 summary: only if blocks were actually affected</span>
+<span id="L3987"><span class="lineNum">    3987</span> <span class="tlaUNC">           0 :     if (affected_count &gt; 0) {</span></span>
+<span id="L3988"><span class="lineNum">    3988</span> <span class="tlaUNC">           0 :         LOGINFO(1, log::LightYellow() &lt;&lt; &quot;Reorg handled: &quot; &lt;&lt; affected_count &lt;&lt; &quot; blocks invalidated&quot;</span></span>
+<span id="L3989"><span class="lineNum">    3989</span> <span class="tlaUNC">           0 :             &lt;&lt; (tip_affected ? &quot;, tip reset&quot; : &quot;&quot;));</span></span>
+<span id="L3990"><span class="lineNum">    3990</span> <span class="tlaUNC">           0 :     } else {</span></span>
+<span id="L3991"><span class="lineNum">    3991</span> <span class="tlaUNC">           0 :         LOGINFO(2, &quot;Reorg handled: no sidechain blocks affected&quot;);</span></span>
+<span id="L3992"><span class="lineNum">    3992</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L3993"><span class="lineNum">    3993</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L3994"><span class="lineNum">    3994</span>              : </span>
+<span id="L3995"><span class="lineNum">    3995</span>              : bool SideChain::is_in_reorg_grace_period() const</span>
+<span id="L3996"><span class="lineNum">    3996</span> <span class="tlaUNC">           0 : {</span></span>
+<span id="L3997"><span class="lineNum">    3997</span> <span class="tlaUNC">           0 :     const uint64_t grace_end = m_reorgGracePeriodEnd.load();</span></span>
+<span id="L3998"><span class="lineNum">    3998</span> <span class="tlaUNC">           0 :     if (grace_end == 0) {</span></span>
+<span id="L3999"><span class="lineNum">    3999</span> <span class="tlaUNC">           0 :         return false;</span></span>
+<span id="L4000"><span class="lineNum">    4000</span> <span class="tlaUNC">           0 :     }</span></span>
+<span id="L4001"><span class="lineNum">    4001</span> <span class="tlaUNC">           0 :     return seconds_since_epoch() &lt; grace_end;</span></span>
+<span id="L4002"><span class="lineNum">    4002</span> <span class="tlaUNC">           0 : }</span></span>
+<span id="L4003"><span class="lineNum">    4003</span>              : </span>
+<span id="L4004"><span class="lineNum">    4004</span>              : } // namespace p2pool</span>
         </pre>
               </td>
             </tr>
